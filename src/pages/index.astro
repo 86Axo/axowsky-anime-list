@@ -1,0 +1,284 @@
+---
+import dataset from '../../data/anime.json';
+import syncMeta from '../../data/sync-meta.json';
+import DawnMotif from '../components/DawnMotif.astro';
+import SpiderLily from '../components/SpiderLily.astro';
+import ThreadsDivider from '../components/ThreadsDivider.astro';
+import { TIERS } from '../config/rating';
+import { SITE } from '../config/site';
+import Layout from '../layouts/Layout.astro';
+import { loadBakedAnnotations } from '../lib/baked-annotations';
+import {
+  activityByMonth,
+  annotate,
+  computeStats,
+  genreCounts,
+  inProgress,
+  statusCounts,
+  tierCounts,
+  toListItems,
+  topRated,
+  typeCounts,
+} from '../lib/model';
+import { applyState, DEFAULT_STATE, PAGE_SIZE, statusSlug } from '../lib/query';
+import { barList, renderActivity, renderItems, renderStats, renderTierChart, renderTop, renderWatching } from '../lib/render';
+import { ANIME_TYPES, STATUSES, type AnimeEntry } from '../lib/types';
+
+const listItems = toListItems(dataset.entries as AnimeEntry[]);
+const annotations = await loadBakedAnnotations();
+const items = annotate(listItems, annotations);
+
+const stats = computeStats(items);
+const watching = inProgress(items);
+const top = topRated(items);
+const counts = statusCounts(items);
+const genres = genreCounts(items);
+const types = typeCounts(items);
+const firstPage = applyState(items, DEFAULT_STATE).slice(0, PAGE_SIZE);
+
+const allGenres = [...new Set(items.flatMap((i) => i.genres))].sort();
+const usedTypes = ANIME_TYPES.filter((t) => items.some((i) => i.type === t));
+const started = items.filter((i) => i.status !== 'Plan to Watch').length;
+const updated = new Date(`${syncMeta.lastChange}T00:00:00Z`).toLocaleDateString('en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'UTC',
+});
+
+---
+
+<Layout>
+  <a class="skip" href="#list">Skip to the list</a>
+
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="brand" href="/" aria-label={`${SITE.title}, home`}>
+        <svg width="22" height="22" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M11.5 22a4.5 4.5 0 0 1 9 0z" fill="currentColor" stroke="none"></path>
+          <path d="M7.5 22a8.5 8.5 0 0 1 17 0"></path>
+          <path d="M3.5 22a12.5 12.5 0 0 1 25 0M3.5 26h25" opacity=".55"></path>
+        </svg>
+        <span>{SITE.nickname}</span>
+      </a>
+      <nav class="nav" aria-label="Sections">
+        <a href="#watching">Watching</a>
+        <a href="#top">Top 10</a>
+        <a href="#list">List</a>
+        <a href="#charts">Charts</a>
+      </nav>
+      <button class="icon-btn theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme">
+        <svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+        </svg>
+        <svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="profile-name">
+      <DawnMotif />
+      <div class="wrap hero__inner">
+        <div class="profile">
+          <span class="avatar" aria-hidden="true">{SITE.nickname.slice(0, 1)}</span>
+          <div>
+            <h1 class="profile__name" id="profile-name">{SITE.title}</h1>
+            <p class="profile__sub">
+              Everything I have watched, rated my way. List from{' '}
+              <a href={SITE.oa.listUrl} target="_blank" rel="noopener">OglądajAnime</a>, details from{' '}
+              <a href="https://myanimelist.net" target="_blank" rel="noopener">MyAnimeList</a>.
+            </p>
+          </div>
+        </div>
+        <dl class="stats" id="stats" set:html={renderStats(stats)} />
+      </div>
+    </section>
+
+    <section class="section" id="watching" aria-labelledby="watching-title">
+      <div class="wrap section__head">
+        <h2 class="section__title" id="watching-title">Currently watching</h2>
+        <p class="section__note">In progress, newest first</p>
+      </div>
+      <ul class="watch-row" id="watch-row" tabindex="0" aria-label="Currently watching, scrollable" set:html={renderWatching(watching.shown, watching.totalWatching)} />
+    </section>
+
+    <section class="section wrap" id="top" aria-labelledby="top-title">
+      <div class="section__head">
+        <h2 class="section__title" id="top-title">Top 10</h2>
+        <p class="section__note">Highest rated</p>
+      </div>
+      <ol class="top" id="top-list" set:html={renderTop(top)} />
+    </section>
+
+    <ThreadsDivider />
+
+    <section class="section wrap" id="list" aria-labelledby="list-title">
+      <div class="section__head">
+        <h2 class="section__title" id="list-title">Full list</h2>
+        <p class="section__note">{items.length} titles</p>
+      </div>
+
+      <div class="controls">
+        <div class="tabs" role="group" aria-label="Filter by status" id="status-tabs">
+          <button class="tab" type="button" data-status="all" aria-pressed="true">All <span class="tab__count">{items.length}</span></button>
+          {
+            STATUSES.map((s) => (
+              <button class="tab" type="button" data-status={statusSlug(s)} aria-pressed="false">
+                {s} <span class="tab__count">{counts[s]}</span>
+              </button>
+            ))
+          }
+        </div>
+
+        <div class="filters">
+          <div class="field field--search">
+            <label class="vh" for="search">Search titles</label>
+            <input class="input" id="search" type="search" placeholder="Search titles, studios, tags" autocomplete="off" spellcheck="false" />
+            <kbd class="kbd" aria-hidden="true">/</kbd>
+          </div>
+          <div class="field">
+            <label class="vh" for="filter-genre">Genre</label>
+            <select class="select" id="filter-genre">
+              <option value="">All genres</option>
+              {allGenres.map((g) => <option value={g}>{g}</option>)}
+            </select>
+          </div>
+          <div class="field">
+            <label class="vh" for="filter-type">Type</label>
+            <select class="select" id="filter-type">
+              <option value="">All types</option>
+              {usedTypes.map((t) => <option value={t}>{t}</option>)}
+            </select>
+          </div>
+          <div class="field">
+            <label class="vh" for="filter-tier">Tier</label>
+            <select class="select" id="filter-tier">
+              <option value="">All tiers</option>
+              {TIERS.map((t) => <option value={t.id}>{`${t.name} · ${t.label}`}</option>)}
+              <option value="none">Not rated</option>
+            </select>
+          </div>
+          <div class="filters__end">
+            <div class="field">
+              <label class="vh" for="sort">Sort by</label>
+              <select class="select" id="sort">
+                <option value="score">Sort: my score</option>
+                <option value="title">Sort: title</option>
+                <option value="added">Sort: date added</option>
+                <option value="mal">Sort: MAL score</option>
+              </select>
+            </div>
+            <button class="icon-btn" id="sort-dir" type="button" data-dir="desc" aria-label="Sort direction: descending">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 5v14M6 13l6 6 6-6"></path>
+              </svg>
+            </button>
+            <div class="view-toggle" role="group" aria-label="Layout">
+              <button class="icon-btn" type="button" data-view="list" aria-pressed="true" aria-label="List view">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true">
+                  <path d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+              </button>
+              <button class="icon-btn" type="button" data-view="grid" aria-pressed="false" aria-label="Cover grid view">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                  <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                  <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                  <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <p class="result-line">
+          <span id="result-count" role="status">Showing all {items.length} titles</span>
+          <button class="link-btn" id="clear-filters" type="button" hidden>Clear filters</button>
+        </p>
+      </div>
+
+      <div class="list-wrap" id="list-wrap" data-view="list">
+        <div class="list-head" aria-hidden="true">
+          <span>Title</span>
+          <span>Status</span>
+          <span>Progress</span>
+          <span>My score</span>
+          <span class="num col-mal">MAL</span>
+          <span class="col-added">Added</span>
+        </div>
+        <ul class="list" id="anime-list" data-view="list" aria-labelledby="list-title" set:html={renderItems(firstPage)} />
+        <div class="empty" id="empty" hidden>
+          <SpiderLily />
+          <p>Nothing matches these filters.</p>
+          <button class="btn" type="button" id="empty-clear">Clear filters</button>
+        </div>
+        <div class="list-more" id="list-more" hidden={items.length <= PAGE_SIZE}>
+          <button class="btn" type="button" id="show-more">Show more</button>
+        </div>
+      </div>
+    </section>
+
+    <ThreadsDivider />
+
+    <section class="section wrap" id="charts" aria-labelledby="charts-title">
+      <div class="section__head">
+        <h2 class="section__title" id="charts-title">Charts</h2>
+      </div>
+      <div class="charts">
+        <figure class="chart">
+          <figcaption>
+            <h3 class="chart__title">Scores by tier</h3>
+            <p class="chart__sub">Rated titles in each tier</p>
+          </figcaption>
+          <ul class="bars bars--tiers" id="tier-chart" set:html={renderTierChart(tierCounts(items))} />
+        </figure>
+
+        <figure class="chart">
+          <figcaption>
+            <h3 class="chart__title">Types</h3>
+            <p class="chart__sub">Titles by format</p>
+          </figcaption>
+          <ul class="bars" set:html={barList(types.map((t) => ({ label: t.name, value: t.count })), items.length)} />
+        </figure>
+
+        <figure class="chart">
+          <figcaption>
+            <h3 class="chart__title">Genres</h3>
+            <p class="chart__sub">Most common genres among titles I have started</p>
+          </figcaption>
+          {
+            genres.length > 0 ? (
+              <ul class="bars" set:html={barList(genres.slice(0, 12).map((g) => ({ label: g.name, value: g.count })), started)} />
+            ) : (
+              <p class="chart-empty">Genre data is not available yet.</p>
+            )
+          }
+        </figure>
+
+        <figure class="chart">
+          <figcaption>
+            <h3 class="chart__title">Added to list per month</h3>
+            <p class="chart__sub">When titles joined my list. OglądajAnime keeps no finish dates.</p>
+          </figcaption>
+          <Fragment set:html={renderActivity(activityByMonth(items))} />
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <p>
+        Data updated {updated}. List from <a href={SITE.oa.listUrl} target="_blank" rel="noopener">OglądajAnime</a>, metadata and covers from{' '}
+        <a href="https://myanimelist.net" target="_blank" rel="noopener">MyAnimeList</a> via <a href="https://jikan.moe" target="_blank" rel="noopener">Jikan</a>.
+      </p>
+      <p><a href={SITE.repoUrl} target="_blank" rel="noopener">Source</a></p>
+    </div>
+  </footer>
+
+  <script src="../scripts/app.ts"></script>
+</Layout>

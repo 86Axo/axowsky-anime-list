@@ -1,0 +1,20 @@
+---
+/**
+ * Header motif, inspired by Akatsuki no Yona ("Yona of the Dawn"):
+ * a sun rising over a horizon, drawn as plain concentric arcs.
+ * Abstract geometry only; it takes the accent color through currentColor.
+ */
+const cx = 300;
+const horizon = 300;
+const radii = Array.from({ length: 11 }, (_, i) => 46 + i * 24);
+const arc = (r: number) => `M${cx - r} ${horizon}A${r} ${r} 0 0 1 ${cx + r} ${horizon}`;
+---
+
+<svg class="hero__motif" viewBox="0 0 600 300" fill="none" aria-hidden="true" focusable="false">
+  <path d={`M${cx - 22} ${horizon}A22 22 0 0 1 ${cx + 22} ${horizon}Z`} fill="currentColor" opacity="0.5"></path>
+  {
+    radii.map((r, i) => (
+      <path d={arc(r)} stroke="currentColor" stroke-width="1" opacity={(0.55 * (1 - i / radii.length) ** 1.4).toFixed(3)} />
+    ))
+  }
+</svg>

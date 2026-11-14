@@ -1,0 +1,6629 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "oaId": 90392,
+      "slug": "omae-gotoki-ga-maou-ni-kateru-to-omouna-to-yuusha-party-wo-tsuihou-sareta-node-outo-de-kimama-ni-kurashitai",
+      "title": "[Omae Gotoki ga Maou ni Kateru to Omouna] to Yuusha Party wo Tsuihou sareta node, Outo de Kimama ni Kurashitai",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 7,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-01-15T19:55:01",
+      "key": "oa:omae-gotoki-ga-maou-ni-kateru-to-omouna-to-yuusha-party-wo-tsuihou-sareta-node-outo-de-kimama-ni-kurashitai",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 1869,
+      "slug": "3-gatsu-no-lion",
+      "title": "3-gatsu no Lion",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 22,
+      "type": "TV",
+      "addedAt": "2026-08-16T02:43:33",
+      "key": "oa:3-gatsu-no-lion",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15472,
+      "slug": "86-eighty-six",
+      "title": "86: Eighty Six",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 10,
+      "watched": 11,
+      "total": 11,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:52",
+      "key": "oa:86-eighty-six",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15534,
+      "slug": "86-eighty-six-2nd-season",
+      "title": "86: Eighty Six Part 2",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 10,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:52",
+      "key": "oa:86-eighty-six-2nd-season",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 6093,
+      "slug": "91-days",
+      "title": "91 Days",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2026-10-08T20:17:49",
+      "key": "oa:91-days",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 3142,
+      "slug": "akagami-no-shirayuki-hime",
+      "title": "Akagami no Shirayuki-hime",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 7,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-08-11T01:41:09",
+      "key": "oa:akagami-no-shirayuki-hime",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 6580,
+      "slug": "akagami-no-shirayuki-hime-2nd-season",
+      "title": "Akagami no Shirayuki-hime 2nd Season",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 2,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-08-14T03:43:16",
+      "key": "oa:akagami-no-shirayuki-hime-2nd-season",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 11681,
+      "slug": "akatsuki-no-yona",
+      "title": "Akatsuki no Yona",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 10,
+      "watched": 24,
+      "total": 24,
+      "type": "TV",
+      "addedAt": "2026-08-01T01:10:25",
+      "key": "oa:akatsuki-no-yona",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 107676,
+      "slug": "akatsuki-no-yona-zoku-hen",
+      "title": "Akatsuki no Yona Season 2",
+      "status": "Plan to Watch",
+      "rawStatus": "Planuje",
+      "score": 10,
+      "watched": 0,
+      "total": null,
+      "type": "TV",
+      "addedAt": "2026-08-12T23:19:14",
+      "key": "oa:akatsuki-no-yona-zoku-hen",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 14501,
+      "slug": "akudama-drive",
+      "title": "Akudama Drive",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:52",
+      "key": "oa:akudama-drive",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19588,
+      "slug": "akujiki-reijou-to-kyouketsu-koushaku-sono-mamono-watashi-ga-oishiku-itadakimasu",
+      "title": "Akujiki Reijou to Kyouketsu Koushaku",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 5,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2025-10-17T18:45:48",
+      "key": "oa:akujiki-reijou-to-kyouketsu-koushaku-sono-mamono-watashi-ga-oishiku-itadakimasu",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18337,
+      "slug": "akuyaku-reijou-level-99-watashi-wa-ura-boss-desu-ga-maou-de-wa-arimasen",
+      "title": "Akuyaku Reijou Level 99",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 0,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-02-17T15:58:33",
+      "key": "oa:akuyaku-reijou-level-99-watashi-wa-ura-boss-desu-ga-maou-de-wa-arimasen",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 4616,
+      "slug": "amnesia",
+      "title": "Amnesia",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-08-02T22:33:35",
+      "key": "oa:amnesia",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 10013,
+      "slug": "angel-beats",
+      "title": "Angel Beats!",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 10,
+      "watched": 13,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:52",
+      "key": "oa:angel-beats",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 8803,
+      "slug": "another",
+      "title": "Another",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:52",
+      "key": "oa:another",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19981,
+      "slug": "ansatsusha-de-aru-ore-no-status-ga-yuusha-yori-mo-akiraka-ni-tsuyoi-no-da-ga",
+      "title": "Ansatsusha de Aru Ore no Status ga Yuusha yori mo Akiraka ni Tsuyoi no da ga",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 7,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2025-10-17T18:44:16",
+      "key": "oa:ansatsusha-de-aru-ore-no-status-ga-yuusha-yori-mo-akiraka-ni-tsuyoi-no-da-ga",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 8989,
+      "slug": "arifureta-shokugyou-de-sekai-saikyou",
+      "title": "Arifureta Shokugyou de Sekai Saikyou",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2026-08-27T22:43:18",
+      "key": "oa:arifureta-shokugyou-de-sekai-saikyou",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19135,
+      "slug": "arknights-enshin-shomei",
+      "title": "Arknights: Enshin Shomei",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 8,
+      "watched": 2,
+      "total": 10,
+      "type": "TV",
+      "addedAt": "2025-07-04T16:06:03",
+      "key": "oa:arknights-enshin-shomei",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18365,
+      "slug": "arknights-fuyukomori-kaerimichi",
+      "title": "Arknights: Fuyukomori Kaerimichi",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 8,
+      "total": 8,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:52",
+      "key": "oa:arknights-fuyukomori-kaerimichi",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15971,
+      "slug": "arknights-reimei-zensou",
+      "title": "Arknights: Reimei Zensou",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 8,
+      "total": 8,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:52",
+      "key": "oa:arknights-reimei-zensou",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15307,
+      "slug": "assault-lily-bouquet",
+      "title": "Assault Lily: Bouquet",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 8,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-01-03T15:46:41",
+      "key": "oa:assault-lily-bouquet",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18978,
+      "slug": "atri-my-dear-moments",
+      "title": "Atri: My Dear Moments",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 13,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2024-09-09T16:35:13",
+      "key": "oa:atri-my-dear-moments",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 8216,
+      "slug": "black-clover-tv",
+      "title": "Black Clover (TV)",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 170,
+      "total": 170,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:53",
+      "key": "oa:black-clover-tv",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 103248,
+      "slug": "black-clover-2nd-season",
+      "title": "Black Clover 2nd Season",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 26,
+      "type": "TV",
+      "addedAt": "2026-10-07T21:35:17",
+      "key": "oa:black-clover-2nd-season",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 6338,
+      "slug": "bleach",
+      "title": "Bleach",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 366,
+      "total": 366,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:54",
+      "key": "oa:bleach",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18556,
+      "slug": "blue-archive-the-animation",
+      "title": "Blue Archive the Animation",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-04-07T11:58:28",
+      "key": "oa:blue-archive-the-animation",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15965,
+      "slug": "blue-lock",
+      "title": "Blue Lock",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 5,
+      "watched": 24,
+      "total": 24,
+      "type": "TV",
+      "addedAt": "2026-05-02T16:36:22",
+      "key": "oa:blue-lock",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16975,
+      "slug": "blue-lock-2nd-season",
+      "title": "Blue Lock vs. U-20 Japan",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 5,
+      "watched": 14,
+      "total": 14,
+      "type": "TV",
+      "addedAt": "2026-05-02T16:36:17",
+      "key": "oa:blue-lock-2nd-season",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 11494,
+      "slug": "boku-dake-ga-inai-machi",
+      "title": "Boku dake ga Inai Machi",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:54",
+      "key": "oa:boku-dake-ga-inai-machi",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 12783,
+      "slug": "boku-no-hero-academia",
+      "title": "Boku no Hero Academia",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 13,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:54",
+      "key": "oa:boku-no-hero-academia",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 6699,
+      "slug": "boku-no-hero-academia-2nd-season",
+      "title": "Boku no Hero Academia 2nd Season",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 25,
+      "total": 25,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:54",
+      "key": "oa:boku-no-hero-academia-2nd-season",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 11182,
+      "slug": "boku-no-hero-academia-3rd-season",
+      "title": "Boku no Hero Academia 3rd Season",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 25,
+      "total": 25,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:54",
+      "key": "oa:boku-no-hero-academia-3rd-season",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 11194,
+      "slug": "boku-no-hero-academia-4th-season",
+      "title": "Boku no Hero Academia 4th Season",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 25,
+      "total": 25,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:54",
+      "key": "oa:boku-no-hero-academia-4th-season",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 14289,
+      "slug": "moja-akademia-bohaterow-5",
+      "title": "Boku no Hero Academia 5th Season",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 25,
+      "total": 25,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:54",
+      "key": "oa:moja-akademia-bohaterow-5",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15941,
+      "slug": "moja-akademia-bohaterow-6",
+      "title": "Boku no Hero Academia 6th Season",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 25,
+      "total": 25,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:54",
+      "key": "oa:moja-akademia-bohaterow-6",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18557,
+      "slug": "boku-no-hero-academia-7th-season",
+      "title": "Boku no Hero Academia 7th Season",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 7,
+      "watched": 21,
+      "total": 21,
+      "type": "TV",
+      "addedAt": "2026-05-02T16:32:57",
+      "key": "oa:boku-no-hero-academia-7th-season",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 14035,
+      "slug": "boku-no-hero-academia-the-movie-futari-no-hero-specials",
+      "title": "Boku no Hero Academia the Movie 1: Futari no Hero",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 2,
+      "total": 2,
+      "type": "Movie",
+      "addedAt": "2024-01-16T19:48:54",
+      "key": "oa:boku-no-hero-academia-the-movie-futari-no-hero-specials",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19562,
+      "slug": "boku-no-hero-academia-final-season",
+      "title": "Boku no Hero Academia: Final Season",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 8,
+      "watched": 11,
+      "total": 11,
+      "type": "TV",
+      "addedAt": "2026-05-02T16:33:06",
+      "key": "oa:boku-no-hero-academia-final-season",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16768,
+      "slug": "boku-no-hero-academia-ikinokore-kesshi-no-survival-kunren",
+      "title": "Boku no Hero Academia: Ikinokore! Kesshi no Survival Kunren",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 2,
+      "total": 2,
+      "type": "ONA",
+      "addedAt": "2024-01-16T19:48:54",
+      "key": "oa:boku-no-hero-academia-ikinokore-kesshi-no-survival-kunren",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 839,
+      "slug": "boku-no-hero-academia-training-of-the-dead",
+      "title": "Boku no Hero Academia: Training of the Dead",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 1,
+      "total": 1,
+      "type": "Special",
+      "addedAt": "2024-01-16T19:48:54",
+      "key": "oa:boku-no-hero-academia-training-of-the-dead",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16889,
+      "slug": "boku-no-kokoro-no-yabai-yatsu",
+      "title": "Boku no Kokoro no Yabai Yatsu",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 4,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:54",
+      "key": "oa:boku-no-kokoro-no-yabai-yatsu",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 17199,
+      "slug": "boku-no-kokoro-no-yabai-yatsu-2",
+      "title": "Boku no Kokoro no Yabai Yatsu 2",
+      "status": "Dropped",
+      "rawStatus": "Porzucone",
+      "score": 4,
+      "watched": 1,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2024-02-03T18:19:46",
+      "key": "oa:boku-no-kokoro-no-yabai-yatsu-2",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 4329,
+      "slug": "boruto-naruto-next-generations",
+      "title": "Boruto: Naruto Next Generations",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 293,
+      "total": 293,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:54",
+      "key": "oa:boruto-naruto-next-generations",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 7987,
+      "slug": "boruto-naruto-the-movie",
+      "title": "Boruto: Naruto the Movie",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 1,
+      "total": 1,
+      "type": "Movie",
+      "addedAt": "2024-01-16T19:48:54",
+      "key": "oa:boruto-naruto-the-movie",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18296,
+      "slug": "boushoku-no-berserk",
+      "title": "Boushoku no Berserk",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 6,
+      "watched": 6,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-08-29T01:29:13",
+      "key": "oa:boushoku-no-berserk",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 103359,
+      "slug": "buchigire-reijou-wa-houfuku-wo-chikaimashita-madousho-no-chikara-de-sokoku-wo-tatakitsubushimasu",
+      "title": "Buchigire Reijou wa Houfuku wo Chikaimashita. Madousho no Chikara de Sokoku wo Tatakitsubushimasu",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 8,
+      "watched": 8,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-08-18T03:07:20",
+      "key": "oa:buchigire-reijou-wa-houfuku-wo-chikaimashita-madousho-no-chikara-de-sokoku-wo-tatakitsubushimasu",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19771,
+      "slug": "bukiyou-na-senpai",
+      "title": "Bukiyou na Senpai.",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 5,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2025-10-17T18:47:41",
+      "key": "oa:bukiyou-na-senpai",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 8878,
+      "slug": "byousoku-5-centimeter",
+      "title": "Byousoku 5 Centimeter",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 3,
+      "total": 3,
+      "type": "Movie",
+      "addedAt": "2026-01-28T19:20:32",
+      "key": "oa:byousoku-5-centimeter",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 12770,
+      "slug": "charlotte",
+      "title": "Charlotte",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 13,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:54",
+      "key": "oa:charlotte",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15298,
+      "slug": "choujin-koukousei-tachi-wa-isekai-demo-yoyuu-de-ikinuku-you-desu",
+      "title": "Choujin Koukousei-tachi wa Isekai demo Yoyuu de Ikinuku you desu!",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2025-07-25T14:32:07",
+      "key": "oa:choujin-koukousei-tachi-wa-isekai-demo-yoyuu-de-ikinuku-you-desu",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 7953,
+      "slug": "chuunibyou-demo-koi-ga-shitai",
+      "title": "Chuunibyou demo Koi ga Shitai!",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:chuunibyou-demo-koi-ga-shitai",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 5506,
+      "slug": "chuunibyou-demo-koi-ga-shitai-ren",
+      "title": "Chuunibyou demo Koi ga Shitai! Ren",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:chuunibyou-demo-koi-ga-shitai-ren",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 11589,
+      "slug": "clannad",
+      "title": "Clannad",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 9,
+      "watched": 2,
+      "total": 23,
+      "type": "TV",
+      "addedAt": "2024-02-03T18:18:12",
+      "key": "oa:clannad",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19144,
+      "slug": "clevatess-majuu-no-ou-to-akago-to-shikabane-no-yuusha",
+      "title": "Clevatess: Majuu no Ou to Akago to Shikabane no Yuusha",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 5,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2025-07-17T20:21:24",
+      "key": "oa:clevatess-majuu-no-ou-to-akago-to-shikabane-no-yuusha",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 12484,
+      "slug": "code-geass-hangyaku-no-lelouch",
+      "title": "Code Geass: Hangyaku no Lelouch",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 9,
+      "watched": 25,
+      "total": 25,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:code-geass-hangyaku-no-lelouch",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 3979,
+      "slug": "code-geass-hangyaku-no-lelouch-r2",
+      "title": "Code Geass: Hangyaku no Lelouch R2",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 9,
+      "watched": 25,
+      "total": 25,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:code-geass-hangyaku-no-lelouch-r2",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 2555,
+      "slug": "corpse-party-tortured-souls-bougyakusareta-tamashii-no-jukyou",
+      "title": "Corpse Party: Tortured Souls - Bougyakusareta Tamashii no Jukyou",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 3,
+      "watched": 4,
+      "total": 4,
+      "type": "OVA",
+      "addedAt": "2024-02-23T02:02:26",
+      "key": "oa:corpse-party-tortured-souls-bougyakusareta-tamashii-no-jukyou",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18868,
+      "slug": "dandadan",
+      "title": "Dan Da Dan",
+      "status": "Dropped",
+      "rawStatus": "Porzucone",
+      "score": 5,
+      "watched": 4,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-10-08T14:52:45",
+      "key": "oa:dandadan",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 14687,
+      "slug": "danganronpa-3-the-end-of-kibougamine-gakuen-mirai-hen",
+      "title": "Danganronpa 3: The End of Kibougamine Gakuen - Mirai Hen",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:danganronpa-3-the-end-of-kibougamine-gakuen-mirai-hen",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15293,
+      "slug": "danganronpa-3-the-end-of-kibougamine-gakuen-zetsubou-hen",
+      "title": "Danganronpa 3: The End of Kibougamine Gakuen - Zetsubou Hen",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 11,
+      "total": 11,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:danganronpa-3-the-end-of-kibougamine-gakuen-zetsubou-hen",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15237,
+      "slug": "danganronpa-kibou-no-gakuen-to-zetsubou-no-koukousei-the-animation",
+      "title": "Danganronpa: Kibou no Gakuen to Zetsubou no Koukousei The Animation",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 13,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:danganronpa-kibou-no-gakuen-to-zetsubou-no-koukousei-the-animation",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 10722,
+      "slug": "darling-in-the-franxx",
+      "title": "Darling In The FranXX",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 24,
+      "total": 24,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:darling-in-the-franxx",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15292,
+      "slug": "darwins-game",
+      "title": "Darwin`s Game",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 11,
+      "total": 11,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:darwins-game",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15356,
+      "slug": "date-a-bullet-2-nightmare-or-queen",
+      "title": "Date A Bullet 2: Nightmare or Queen",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 1,
+      "total": 1,
+      "type": "Movie",
+      "addedAt": "2024-06-04T18:02:02",
+      "key": "oa:date-a-bullet-2-nightmare-or-queen",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15619,
+      "slug": "date-a-bullet-dead-or-bullet",
+      "title": "Date A Bullet: Dead or Bullet",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 1,
+      "total": 1,
+      "type": "Movie",
+      "addedAt": "2024-06-04T18:01:59",
+      "key": "oa:date-a-bullet-dead-or-bullet",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 4735,
+      "slug": "date-a-live",
+      "title": "Date A Live",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-03-30T00:08:32",
+      "key": "oa:date-a-live",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18018,
+      "slug": "date-a-live-episode-13-date-to-date",
+      "title": "Date A Live Episode 13: Date to Date",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 1,
+      "total": 1,
+      "type": "OVA",
+      "addedAt": "2024-05-31T23:02:38",
+      "key": "oa:date-a-live-episode-13-date-to-date",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 4002,
+      "slug": "date-a-live-ii",
+      "title": "Date A Live II",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 10,
+      "total": 10,
+      "type": "TV",
+      "addedAt": "2024-05-31T23:30:10",
+      "key": "oa:date-a-live-ii",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 778,
+      "slug": "date-a-live-encore-ova",
+      "title": "Date A Live II: Kurumi Star Festival",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 1,
+      "total": 1,
+      "type": "OVA",
+      "addedAt": "2024-06-01T14:22:00",
+      "key": "oa:date-a-live-encore-ova",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 14699,
+      "slug": "date-a-live-3",
+      "title": "Date A Live III",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-06-04T13:59:07",
+      "key": "oa:date-a-live-3",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 14700,
+      "slug": "date-a-live-iv",
+      "title": "Date A Live IV",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-06-04T18:02:06",
+      "key": "oa:date-a-live-iv",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 10495,
+      "slug": "date-a-live-movie-mayuri-judgment",
+      "title": "Date A Live Movie: Mayuri Judgment",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 1,
+      "total": 1,
+      "type": "Movie",
+      "addedAt": "2024-06-04T13:25:37",
+      "key": "oa:date-a-live-movie-mayuri-judgment",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18575,
+      "slug": "date-a-live-v",
+      "title": "Date A Live V",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 14,
+      "total": 14,
+      "type": "TV",
+      "addedAt": "2024-06-05T13:37:35",
+      "key": "oa:date-a-live-v",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 72880,
+      "slug": "dead-account",
+      "title": "Dead Account",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 4,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-01-13T20:54:00",
+      "key": "oa:dead-account",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 5238,
+      "slug": "death-note",
+      "title": "Death Note",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 37,
+      "total": 37,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:death-note",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 4289,
+      "slug": "donten-ni-warau",
+      "title": "Donten ni Warau",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-08-24T01:11:53",
+      "key": "oa:donten-ni-warau",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 10071,
+      "slug": "dororo",
+      "title": "Dororo",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 9,
+      "watched": 24,
+      "total": 24,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:dororo",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 108727,
+      "slug": "doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu",
+      "title": "Doumo, Suki na Hito ni Horegusuri wo Irai sareta Majo desu.",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 9,
+      "watched": 3,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-10-06T20:18:48",
+      "key": "oa:doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16928,
+      "slug": "black-clover-mahou-tei-no-ken",
+      "title": "Eiga Black Clover: Mahou Mikado no Ken",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 1,
+      "total": 1,
+      "type": "Movie",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:black-clover-mahou-tei-no-ken",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16069,
+      "slug": "eiyuuou-bu-wo-kiwameru-tame-tenseisu-soshite-sekai-saikyou-no-minarai-kishi",
+      "title": "Eiyuuou, Bu wo Kiwameru Tame Tenseisu: Soshite, Sekai Saikyou no Minarai Kishi",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 5,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-07-31T17:38:18",
+      "key": "oa:eiyuuou-bu-wo-kiwameru-tame-tenseisu-soshite-sekai-saikyou-no-minarai-kishi",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 5002,
+      "slug": "elfen-lied",
+      "title": "Elfen Lied",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 13,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2024-02-11T21:40:49",
+      "key": "oa:elfen-lied",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 8156,
+      "slug": "enen-no-shouboutai",
+      "title": "Enen no Shouboutai",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 24,
+      "total": 24,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:enen-no-shouboutai",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 14389,
+      "slug": "enen-no-shouboutai-2-ni-no-shou",
+      "title": "Enen no Shouboutai 2: Ni no Shou",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 24,
+      "total": 24,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:enen-no-shouboutai-2-ni-no-shou",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 5061,
+      "slug": "euphoria",
+      "title": "Euphoria",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 2,
+      "watched": 6,
+      "total": 6,
+      "type": "OVA",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:euphoria",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 3106,
+      "slug": "fairy-tail",
+      "title": "Fairy Tail",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 175,
+      "total": 175,
+      "type": "TV",
+      "addedAt": "2024-03-16T10:45:25",
+      "key": "oa:fairy-tail",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 6840,
+      "slug": "fatestay-night",
+      "title": "Fate/Stay Night",
+      "status": "On Hold",
+      "rawStatus": "Wstrzymane",
+      "score": null,
+      "watched": 1,
+      "total": 24,
+      "type": "TV",
+      "addedAt": "2024-06-29T21:44:56",
+      "key": "oa:fatestay-night",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15468,
+      "slug": "fumetsu-no-anata-e",
+      "title": "Fumetsu no Anata e",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 20,
+      "type": "TV",
+      "addedAt": "2026-08-23T01:08:18",
+      "key": "oa:fumetsu-no-anata-e",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 72889,
+      "slug": "futsutsuka-na-akujo-dewa-gozaimasu-ga:-suuguu-chouso-torikae-den",
+      "title": "Futsutsuka na Akujo dewa Gozaimasu ga: Suuguu Chouso Torikae Den",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 8,
+      "watched": 8,
+      "total": 11,
+      "type": "TV",
+      "addedAt": "2026-07-30T03:10:21",
+      "key": "oa:futsutsuka-na-akujo-dewa-gozaimasu-ga:-suuguu-chouso-torikae-den",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 108718,
+      "slug": "fx-senshi-kurumi-chan",
+      "title": "FX Senshi Kurumi-chan",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-10-08T18:26:41",
+      "key": "oa:fx-senshi-kurumi-chan",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19223,
+      "slug": "gachiakuta",
+      "title": "Gachiakuta",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 7,
+      "total": 24,
+      "type": "TV",
+      "addedAt": "2025-07-07T14:24:39",
+      "key": "oa:gachiakuta",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18236,
+      "slug": "gekai-elise",
+      "title": "Gekai Elise",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-08-02T22:34:02",
+      "key": "oa:gekai-elise",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 6294,
+      "slug": "goblin-slayer",
+      "title": "Goblin Slayer",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-05-12T23:00:44",
+      "key": "oa:goblin-slayer",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15403,
+      "slug": "goblin-slayer-2nd-season",
+      "title": "Goblin Slayer 2nd Season",
+      "status": "Completed",
+      "rawStatus": "Nie oglądam",
+      "score": 8,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-05-13T11:29:56",
+      "key": "oa:goblin-slayer-2nd-season",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15308,
+      "slug": "goblin-slayer-goblins-crown",
+      "title": "Goblin Slayer: Goblins Crown",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 8,
+      "watched": 1,
+      "total": 1,
+      "type": "Movie",
+      "addedAt": "2024-05-13T15:32:01",
+      "key": "oa:goblin-slayer-goblins-crown",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 10657,
+      "slug": "gosick",
+      "title": "Gosick",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 9,
+      "watched": 24,
+      "total": 24,
+      "type": "TV",
+      "addedAt": "2026-08-05T23:13:57",
+      "key": "oa:gosick",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 4489,
+      "slug": "grancrest-senki",
+      "title": "Grancrest Senki",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 24,
+      "type": "TV",
+      "addedAt": "2026-01-15T19:25:19",
+      "key": "oa:grancrest-senki",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18614,
+      "slug": "guild-no-uketsukejou-desu-ga-zangyou-wa-iya-nanode-boss-wo-solo-toubatsu-shiyou-to-omoimasu",
+      "title": "Guild no Uketsukejou desu ga, Zangyou wa Iya nanode Boss wo Solo Toubatsu Shiyou to Omoimasu",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2025-07-14T13:28:27",
+      "key": "oa:guild-no-uketsukejou-desu-ga-zangyou-wa-iya-nanode-boss-wo-solo-toubatsu-shiyou-to-omoimasu",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 10185,
+      "slug": "guilty-crown",
+      "title": "Guilty Crown",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 22,
+      "total": 22,
+      "type": "TV",
+      "addedAt": "2024-02-04T19:07:38",
+      "key": "oa:guilty-crown",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18615,
+      "slug": "guimi-zhi-zhu",
+      "title": "Guimi Zhi Zhu: Xiaochou Pian",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 9,
+      "watched": 6,
+      "total": 14,
+      "type": "ONA",
+      "addedAt": "2025-07-03T21:37:56",
+      "key": "oa:guimi-zhi-zhu",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 4045,
+      "slug": "hai-to-gensou-no-grimgar",
+      "title": "Hai to Gensou no Grimgar",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-07-06T01:20:11",
+      "key": "oa:hai-to-gensou-no-grimgar",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16962,
+      "slug": "hametsu-no-oukoku",
+      "title": "Hametsu no Oukoku",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 2,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-08-22T01:56:25",
+      "key": "oa:hametsu-no-oukoku",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 11447,
+      "slug": "hataraku-maou-sama",
+      "title": "Hataraku Maou-sama!",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 13,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:hataraku-maou-sama",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15668,
+      "slug": "hataraku-maou-sama-2nd-season",
+      "title": "Hataraku Maou-sama! 2nd Season",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:hataraku-maou-sama-2nd-season",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16986,
+      "slug": "hataraku-maou-sama-2023",
+      "title": "Hataraku Maou-sama!! (2023)",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:hataraku-maou-sama-2023",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19060,
+      "slug": "hazure-waku-no-joutai-ijou-skill-de-saikyou-ni-natta-ore-ga-subete-o-juurin-suru-made",
+      "title": "Hazure Waku no [Joutai Ijou Skill] de ou ni Natta Ore ga Subete o Juurin Suru made",
+      "status": "On Hold",
+      "rawStatus": "Wstrzymane",
+      "score": null,
+      "watched": 2,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-07-11T23:29:05",
+      "key": "oa:hazure-waku-no-joutai-ijou-skill-de-saikyou-ni-natta-ore-ga-subete-o-juurin-suru-made",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19737,
+      "slug": "hell-mode-yarikomizuki-no-gamer-wa-hai-settei-no-isekai-de-musou-suru",
+      "title": "Hell Mode: Yarikomizuki no Gamer wa Hai Settei no Isekai de Musou Suru",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 4,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-01-16T22:48:49",
+      "key": "oa:hell-mode-yarikomizuki-no-gamer-wa-hai-settei-no-isekai-de-musou-suru",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 91773,
+      "slug": "heroine-seijo-iie-all-works-maid-desu-hokori",
+      "title": "Heroine? Seijo? Iie, All Works Maid desu (Hokori)!",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-08-02T22:32:15",
+      "key": "oa:heroine-seijo-iie-all-works-maid-desu-hokori",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15451,
+      "slug": "hige-wo-soru-soshite-joshikousei-wo-hirou",
+      "title": "Hige wo Soru. Soshite Joshikousei wo Hirou.",
+      "status": "On Hold",
+      "rawStatus": "Wstrzymane",
+      "score": null,
+      "watched": 5,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2024-05-09T10:37:58",
+      "key": "oa:hige-wo-soru-soshite-joshikousei-wo-hirou",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 10791,
+      "slug": "high-school-dxd",
+      "title": "High School DxD",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 4,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:high-school-dxd",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 11373,
+      "slug": "high-school-dxd-born",
+      "title": "High School DxD BorN",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 4,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:high-school-dxd-born",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 7129,
+      "slug": "high-school-dxd-hero",
+      "title": "High School DxD Hero",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 4,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:high-school-dxd-hero",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 6475,
+      "slug": "high-school-dxd-new",
+      "title": "High School DxD New",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 4,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:high-school-dxd-new",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 11597,
+      "slug": "high-school-dxd-new-oppai-tsutsumimasu",
+      "title": "High School DxD New: Oppai, Tsutsumimasu!",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 4,
+      "watched": 1,
+      "total": 1,
+      "type": "OVA",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:high-school-dxd-new-oppai-tsutsumimasu",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 11402,
+      "slug": "high-school-dxd-ova",
+      "title": "High School DxD OVA",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 4,
+      "watched": 2,
+      "total": 2,
+      "type": "OVA",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:high-school-dxd-ova",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 1851,
+      "slug": "higurashi-no-naku-koro-ni",
+      "title": "Higurashi no Naku Koro ni",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 4,
+      "total": 26,
+      "type": "TV",
+      "addedAt": "2026-07-15T01:22:16",
+      "key": "oa:higurashi-no-naku-koro-ni",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19161,
+      "slug": "hikaru-ga-shinda-natsu",
+      "title": "Hikaru ga Shinda Natsu",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2025-07-26T22:30:15",
+      "key": "oa:hikaru-ga-shinda-natsu",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16958,
+      "slug": "hikikomari-kyuuketsuki-no-monmon",
+      "title": "Hikikomari Kyuuketsuki no Monmon",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:hikikomari-kyuuketsuki-no-monmon",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 11121,
+      "slug": "hitsugi-no-chaika",
+      "title": "Hitsugi no Chaika",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-08-20T06:14:33",
+      "key": "oa:hitsugi-no-chaika",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15357,
+      "slug": "hortensia-saga",
+      "title": "Hortensia Saga",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-10-04T15:08:18",
+      "key": "oa:hortensia-saga",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18950,
+      "slug": "hoshi-furu-oukoku-no-nina",
+      "title": "Hoshifuru Oukoku no Nina",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 9,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-07-31T03:12:22",
+      "key": "oa:hoshi-furu-oukoku-no-nina",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 107863,
+      "slug": "hotaru-no-yomeiri",
+      "title": "Hotaru no Yomeiri",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-10-10T16:50:06",
+      "key": "oa:hotaru-no-yomeiri",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 9922,
+      "slug": "houseki-no-kuni-tv",
+      "title": "Houseki no Kuni (TV)",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-08-16T02:44:12",
+      "key": "oa:houseki-no-kuni-tv",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15281,
+      "slug": "hunter-x-hunter-2011",
+      "title": "Hunter X Hunter (2011)",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 148,
+      "total": 148,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:56",
+      "key": "oa:hunter-x-hunter-2011",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 8981,
+      "slug": "hyouka",
+      "title": "Hyouka",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 22,
+      "total": 22,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:56",
+      "key": "oa:hyouka",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16046,
+      "slug": "hyouken-no-majutsushi-ga-sekai-wo-suberu",
+      "title": "Hyouken no Majutsushi ga Sekai wo Suberu",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-09-06T00:09:52",
+      "key": "oa:hyouken-no-majutsushi-ga-sekai-wo-suberu",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18924,
+      "slug": "isekai-shikkaku",
+      "title": "Isekai Shikkaku",
+      "status": "On Hold",
+      "rawStatus": "Wstrzymane",
+      "score": null,
+      "watched": 1,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-07-25T18:41:22",
+      "key": "oa:isekai-shikkaku",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19168,
+      "slug": "isshun-de-chiryou-shiteita-no-ni-yakudatazu-to-tsuihou-sareta-tensai-chiyushi-yami-healer-to-shite-tanoshiku-ikiru",
+      "title": "Isshun de Chiryou shiteita noni Yakutatazu to Tsuihou sareta Tensai Chiyushi, Yami Healer toshite Tanoshiku Ikiru",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2025-07-24T02:02:24",
+      "key": "oa:isshun-de-chiryou-shiteita-no-ni-yakudatazu-to-tsuihou-sareta-tensai-chiyushi-yami-healer-to-shite-tanoshiku-ikiru",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16879,
+      "slug": "jigokuraku",
+      "title": "Jigokuraku",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 6,
+      "watched": 13,
+      "total": 14,
+      "type": "TV",
+      "addedAt": "2026-05-02T16:36:40",
+      "key": "oa:jigokuraku",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18637,
+      "slug": "jigokuraku-2nd-season",
+      "title": "Jigokuraku 2nd Season",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 6,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-05-02T16:36:46",
+      "key": "oa:jigokuraku-2nd-season",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 109134,
+      "slug": "jiyi-guanli-ju-2026",
+      "title": "Jiyi Guanli Ju (2026)",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 7,
+      "type": "ONA",
+      "addedAt": "2026-10-29T21:48:21",
+      "key": "oa:jiyi-guanli-ju-2026",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 14496,
+      "slug": "jujutsu-kaisen-tv",
+      "title": "Jujutsu Kaisen (TV)",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 24,
+      "total": 24,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:56",
+      "key": "oa:jujutsu-kaisen-tv",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15840,
+      "slug": "jujutsu-kaisen-tv-2nd-season",
+      "title": "Jujutsu Kaisen (TV) 2nd Season",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 5,
+      "watched": 17,
+      "total": 23,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:56",
+      "key": "oa:jujutsu-kaisen-tv-2nd-season",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15717,
+      "slug": "jujutsu-kaisen-0-movie",
+      "title": "Jujutsu Kaisen 0 Movie",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 1,
+      "total": 1,
+      "type": "Movie",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:jujutsu-kaisen-0-movie",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15427,
+      "slug": "kage-no-jitsuryokusha-ni-naritakute",
+      "title": "Kage no Jitsuryokusha ni Naritakute!",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 20,
+      "total": 20,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:56",
+      "key": "oa:kage-no-jitsuryokusha-ni-naritakute",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16979,
+      "slug": "kage-no-jitsuryokusha-ni-naritakute-2nd-season",
+      "title": "Kage no Jitsuryokusha ni Naritakute! 2nd Season",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:56",
+      "key": "oa:kage-no-jitsuryokusha-ni-naritakute-2nd-season",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18430,
+      "slug": "kaijuu-8-gou",
+      "title": "Kaijuu 8-gou",
+      "status": "Completed",
+      "rawStatus": "Nie oglądam",
+      "score": 7,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-06-24T12:55:34",
+      "key": "oa:kaijuu-8-gou",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19170,
+      "slug": "kaijuu-8-gou-zokuhen",
+      "title": "Kaijuu 8-gou 2nd Season",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 7,
+      "watched": 11,
+      "total": 11,
+      "type": "TV",
+      "addedAt": "2026-05-02T16:39:38",
+      "key": "oa:kaijuu-8-gou-zokuhen",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19345,
+      "slug": "kaijuu-8-gou-movie",
+      "title": "Kaijuu 8-gou Movie",
+      "status": "Completed",
+      "rawStatus": "Nie oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 1,
+      "type": "Movie",
+      "addedAt": "2025-07-14T23:02:46",
+      "key": "oa:kaijuu-8-gou-movie",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 14546,
+      "slug": "kami-no-tou",
+      "title": "Kami no Tou",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 9,
+      "watched": 13,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:56",
+      "key": "oa:kami-no-tou",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18533,
+      "slug": "kami-no-tou-2nd-season",
+      "title": "Kami no Tou: Ouji no Kikan",
+      "status": "Dropped",
+      "rawStatus": "Porzucone",
+      "score": 5,
+      "watched": 6,
+      "total": 26,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:56",
+      "key": "oa:kami-no-tou-2nd-season",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 14547,
+      "slug": "kamisama-ni-natta-hi",
+      "title": "Kamisama ni Natta Hi",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-08-23T01:07:31",
+      "key": "oa:kamisama-ni-natta-hi",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19351,
+      "slug": "kankin-kuiki-level-x",
+      "title": "Kankin Kuiki Level X",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 0,
+      "total": 6,
+      "type": "TV",
+      "addedAt": "2026-10-10T21:57:35",
+      "key": "oa:kankin-kuiki-level-x",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16892,
+      "slug": "kanojo-ga-koushaku-tei-ni-itta-riyuu",
+      "title": "Kanojo ga Koushaku-tei ni Itta Riyuu",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-08-27T14:38:05",
+      "key": "oa:kanojo-ga-koushaku-tei-ni-itta-riyuu",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19592,
+      "slug": "kanpekisugite-kawaige-ga-nai-to-konyaku-haki-sareta-seijo-wa-ringoku-ni-urareru",
+      "title": "Kanpekisugite Kawaige ga Nai to Konyaku Haki sareta Seijo wa Ringoku ni Urareru",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 6,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-08-17T03:43:45",
+      "key": "oa:kanpekisugite-kawaige-ga-nai-to-konyaku-haki-sareta-seijo-wa-ringoku-ni-urareru",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19464,
+      "slug": "kaoru-hana-wa-rin-to-saku",
+      "title": "Kaoru Hana wa Rin to Saku",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 7,
+      "watched": 1,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2025-07-07T14:24:14",
+      "key": "oa:kaoru-hana-wa-rin-to-saku",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 2899,
+      "slug": "karakai-jouzu-no-takagi-san",
+      "title": "Karakai Jouzu no Takagi-san",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:56",
+      "key": "oa:karakai-jouzu-no-takagi-san",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 13060,
+      "slug": "karakai-jouzu-no-takagi-san-2",
+      "title": "Karakai Jouzu no Takagi-san 2",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:56",
+      "key": "oa:karakai-jouzu-no-takagi-san-2",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15530,
+      "slug": "karakai-jouzu-no-takagi-san-3",
+      "title": "Karakai Jouzu no Takagi-san 3",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:56",
+      "key": "oa:karakai-jouzu-no-takagi-san-3",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15728,
+      "slug": "karakai-jouzu-no-takagi-san-movie",
+      "title": "Karakai Jouzu no Takagi-san Movie",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 1,
+      "total": 1,
+      "type": "Movie",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:karakai-jouzu-no-takagi-san-movie",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18644,
+      "slug": "katsute-mahou-shoujo-to-aku-wa-tekitai-shite-ita",
+      "title": "Katsute Mahou Shoujo to Aku wa Tekitai Shite Ita.",
+      "status": "On Hold",
+      "rawStatus": "Wstrzymane",
+      "score": null,
+      "watched": 1,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-07-11T12:28:26",
+      "key": "oa:katsute-mahou-shoujo-to-aku-wa-tekitai-shite-ita",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15793,
+      "slug": "kawaii-dake-ja-nai-shikimori-san",
+      "title": "Kawaii Dake ja Nai Shikimori-san",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:56",
+      "key": "oa:kawaii-dake-ja-nai-shikimori-san",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18298,
+      "slug": "keikenzumi-na-kimi-to-keiken-zero-na-ore-ga-otsukiai-suru-hanashi",
+      "title": "Keikenzumi na Kimi to, Keiken Zero na Ore ga, Otsukiai suru Hanashi.",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 5,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-01-15T18:54:44",
+      "key": "oa:keikenzumi-na-kimi-to-keiken-zero-na-ore-ga-otsukiai-suru-hanashi",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15372,
+      "slug": "kemono-jihen",
+      "title": "Kemono Jihen",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2025-10-05T11:36:33",
+      "key": "oa:kemono-jihen",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15702,
+      "slug": "kenja-no-deshi-wo-nanoru-kenja",
+      "title": "Kenja no Deshi wo Nanoru Kenja",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-08-03T00:47:20",
+      "key": "oa:kenja-no-deshi-wo-nanoru-kenja",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 8025,
+      "slug": "kimetsu-no-yaiba",
+      "title": "Kimetsu no Yaiba",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 26,
+      "total": 26,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:56",
+      "key": "oa:kimetsu-no-yaiba",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 17200,
+      "slug": "kimetsu-no-yaiba-4-hashira-geiko-hen",
+      "title": "Kimetsu no Yaiba: Hashira Geiko-hen",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 8,
+      "total": 8,
+      "type": "TV",
+      "addedAt": "2024-07-04T17:38:15",
+      "key": "oa:kimetsu-no-yaiba-4-hashira-geiko-hen",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16676,
+      "slug": "kimetsu-no-yaiba-hashira-gou-kaigi-chouyashiki-hen",
+      "title": "Kimetsu no Yaiba: Hashira Gou Kaigi - Chouyashiki Hen",
+      "status": "Completed",
+      "rawStatus": "Nie oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 1,
+      "type": "Movie",
+      "addedAt": "2024-02-27T22:30:47",
+      "key": "oa:kimetsu-no-yaiba-hashira-gou-kaigi-chouyashiki-hen",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15718,
+      "slug": "kimetsu-no-yaiba-3",
+      "title": "Kimetsu no Yaiba: Katanakaji no Sato-hen",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 11,
+      "total": 11,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:56",
+      "key": "oa:kimetsu-no-yaiba-3",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15580,
+      "slug": "kimetsu-no-yaiba-mugen-ressha-hen",
+      "title": "Kimetsu no Yaiba: Mugen Ressha-hen",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 7,
+      "total": 7,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:56",
+      "key": "oa:kimetsu-no-yaiba-mugen-ressha-hen",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15483,
+      "slug": "kimetsu-no-yaiba-yuukaku-hen",
+      "title": "Kimetsu no Yaiba: Yuukaku-hen",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 11,
+      "total": 11,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:57",
+      "key": "oa:kimetsu-no-yaiba-yuukaku-hen",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 20001,
+      "slug": "kimi-ga-shinu-made-koi-wo-shitai",
+      "title": "Kimi ga Shinu made Koi wo Shitai",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 7,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2026-07-14T22:52:45",
+      "key": "oa:kimi-ga-shinu-made-koi-wo-shitai",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 12415,
+      "slug": "kimi-no-na-wa",
+      "title": "Kimi no Na wa.",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 1,
+      "total": 1,
+      "type": "Movie",
+      "addedAt": "2024-01-16T19:48:57",
+      "key": "oa:kimi-no-na-wa",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 633,
+      "slug": "kishuku-gakkou-no-juliet",
+      "title": "Kishuku Gakkou no Juliet",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 7,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-08-04T11:07:50",
+      "key": "oa:kishuku-gakkou-no-juliet",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19873,
+      "slug": "kizoku-tensei-megumareta-umare-kara-saikyou-no-chikara-wo-eru",
+      "title": "Kizoku Tensei: Megumareta Umare kara Saikyou no Chikara wo Eru",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 5,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-01-04T17:14:52",
+      "key": "oa:kizoku-tensei-megumareta-umare-kara-saikyou-no-chikara-wo-eru",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 2466,
+      "slug": "koe-no-katachi",
+      "title": "Koe no Katachi",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 1,
+      "total": 1,
+      "type": "Movie",
+      "addedAt": "2024-01-16T19:48:57",
+      "key": "oa:koe-no-katachi",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 4605,
+      "slug": "kono-subarashii-sekai-ni-shukufuku-wo",
+      "title": "Kono Subarashii Sekai ni Shukufuku wo!",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 10,
+      "total": 10,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:57",
+      "key": "oa:kono-subarashii-sekai-ni-shukufuku-wo",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 13114,
+      "slug": "kono-subarashii-sekai-ni-shukufuku-wo-2",
+      "title": "Kono Subarashii Sekai ni Shukufuku wo! 2",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 10,
+      "total": 10,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:57",
+      "key": "oa:kono-subarashii-sekai-ni-shukufuku-wo-2",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15323,
+      "slug": "kono-subarashii-sekai-ni-shukufuku-wo-kurenai-densetsu",
+      "title": "Kono Subarashii Sekai ni Shukufuku wo!: Kurenai Densetsu",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 1,
+      "total": 1,
+      "type": "Movie",
+      "addedAt": "2024-01-16T19:48:57",
+      "key": "oa:kono-subarashii-sekai-ni-shukufuku-wo-kurenai-densetsu",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 1026,
+      "slug": "koutetsujou-no-kabaneri",
+      "title": "Koutetsujou no Kabaneri",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 9,
+      "watched": 5,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-10-08T19:31:32",
+      "key": "oa:koutetsujou-no-kabaneri",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16071,
+      "slug": "kubo-san-wa-mob-wo-yurusanai",
+      "title": "Kubo-san wa Mob wo Yurusanai",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 0,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-02-21T23:01:24",
+      "key": "oa:kubo-san-wa-mob-wo-yurusanai",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19174,
+      "slug": "kuroiwa-medaka-ni-watashi-no-kawaii-ga-tsuujinai",
+      "title": "Kuroiwa Medaka ni Watashi no Kawaii ga Tsuujinai",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 6,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-01-15T18:53:12",
+      "key": "oa:kuroiwa-medaka-ni-watashi-no-kawaii-ga-tsuujinai",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16552,
+      "slug": "kusuriya-no-hitorigoto",
+      "title": "Kusuriya no Hitorigoto",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 7,
+      "watched": 4,
+      "total": 24,
+      "type": "TV",
+      "addedAt": "2026-08-28T02:41:24",
+      "key": "oa:kusuriya-no-hitorigoto",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 108740,
+      "slug": "kyouran-reijou-nia-liston-byoujaku-reijou-ni-tensei-shita-kamigoroshi-no-bujin-no-karei-naru-musouroku",
+      "title": "Kyouran Reijou Nia Liston: Byoujaku Reijou ni Tensei shita Kamigoroshi no Bujin no Karei Naru Musouroku",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 9,
+      "watched": 3,
+      "total": 25,
+      "type": "TV",
+      "addedAt": "2026-10-06T20:17:36",
+      "key": "oa:kyouran-reijou-nia-liston-byoujaku-reijou-ni-tensei-shita-kamigoroshi-no-bujin-no-karei-naru-musouroku",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15949,
+      "slug": "dragon-raja",
+      "title": "Long Zu",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 16,
+      "type": "ONA",
+      "addedAt": "2026-10-08T19:16:12",
+      "key": "oa:dragon-raja",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18429,
+      "slug": "loop-7-kaime-no-akuyaku-reijou-wa-moto-tekikoku-de-jiyuu-kimama-na-hanayome-seikatsu-wo-mankitsu-suru",
+      "title": "Loop 7-kaime no Akuyaku Reijou wa, Moto Tekikoku de Jiyuu Kimama na Hanayome Seikatsu wo Mankitsu suru",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 5,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-08-02T00:58:50",
+      "key": "oa:loop-7-kaime-no-akuyaku-reijou-wa-moto-tekikoku-de-jiyuu-kimama-na-hanayome-seikatsu-wo-mankitsu-suru",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18669,
+      "slug": "lv2-kara-cheat-datta-motoyuusha-kouho-no-mattari-isekai-life",
+      "title": "Lv2 kara Cheat datta Motoyuusha Kouho no Mattari Isekai Life",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 4,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-05-02T16:36:07",
+      "key": "oa:lv2-kara-cheat-datta-motoyuusha-kouho-no-mattari-isekai-life",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 3009,
+      "slug": "magi-the-kingdom-of-magic",
+      "title": "Magi: The Kingdom of Magic",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 9,
+      "watched": 25,
+      "total": 25,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:57",
+      "key": "oa:magi-the-kingdom-of-magic",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 7635,
+      "slug": "magi-the-labyrinth-of-magic",
+      "title": "Magi: The Labyrinth of Magic",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 9,
+      "watched": 25,
+      "total": 25,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:57",
+      "key": "oa:magi-the-labyrinth-of-magic",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 11537,
+      "slug": "mahou-shoujo-madokamagica",
+      "title": "Mahou Shoujo Madoka★Magica",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 8,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-06-19T22:48:29",
+      "key": "oa:mahou-shoujo-madokamagica",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18477,
+      "slug": "mahou-shoujo-ni-akogarete",
+      "title": "Mahou Shoujo ni Akogarete",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 13,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2024-02-22T00:04:42",
+      "key": "oa:mahou-shoujo-ni-akogarete",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 14403,
+      "slug": "majo-no-tabitabi",
+      "title": "Majo no Tabitabi",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:57",
+      "key": "oa:majo-no-tabitabi",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18312,
+      "slug": "majo-to-yajuu",
+      "title": "Majo to Yajuu",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-10-08T19:13:36",
+      "key": "oa:majo-to-yajuu",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18964,
+      "slug": "make-heroine-ga-oosugiru",
+      "title": "Make Heroine ga Oosugiru!",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-07-16T14:07:22",
+      "key": "oa:make-heroine-ga-oosugiru",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15962,
+      "slug": "maou-gakuin-no-futekigousha-2",
+      "title": "Maou Gakuin no Futekigousha 2",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:57",
+      "key": "oa:maou-gakuin-no-futekigousha-2",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 14343,
+      "slug": "maou-gakuin-no-futekigousha-shijou-saikyou-no-maou-no-shiso-tensei-shite-shison-tachi-no-gakkou-e",
+      "title": "Maou Gakuin no Futekigousha: Shijou Saikyou no Maou no Shiso, Tensei shite Shison-tachi no Gakkou e",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 13,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:57",
+      "key": "oa:maou-gakuin-no-futekigousha-shijou-saikyou-no-maou-no-shiso-tensei-shite-shison-tachi-no-gakkou-e",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18688,
+      "slug": "maou-gakuin-no-futekigousha-shijou-saikyou-no-maou-no-shiso-tensei-shite-shison-tachi-no-gakkou-e-kayou-ii-2-cour",
+      "title": "Maou Gakuin no Futekigousha: Shijou Saikyou no Maou no Shiso, Tensei Shite Shison-tachi no Gakkou e Kayou II (2 Cour)",
+      "status": "Plan to Watch",
+      "rawStatus": "Planuje",
+      "score": null,
+      "watched": 0,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:57",
+      "key": "oa:maou-gakuin-no-futekigousha-shijou-saikyou-no-maou-no-shiso-tensei-shite-shison-tachi-no-gakkou-e-kayou-ii-2-cour",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 9163,
+      "slug": "masamune-kun-no-revenge",
+      "title": "Masamune-kun no Revenge",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:57",
+      "key": "oa:masamune-kun-no-revenge",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15799,
+      "slug": "masamune-kun-no-revenge-2",
+      "title": "Masamune-kun no Revenge 2",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:57",
+      "key": "oa:masamune-kun-no-revenge-2",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16880,
+      "slug": "mashle",
+      "title": "Mashle",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 5,
+      "watched": 12,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2026-05-02T16:37:07",
+      "key": "oa:mashle",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18233,
+      "slug": "mashle-season-2",
+      "title": "Mashle Season 2",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 5,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-05-02T16:36:58",
+      "key": "oa:mashle-season-2",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19875,
+      "slug": "mizu-zokusei-no-mahoutsukai",
+      "title": "Mizu Zokusei no Mahoutsukai",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2025-07-18T09:31:33",
+      "key": "oa:mizu-zokusei-no-mahoutsukai",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18699,
+      "slug": "mofa-gongzhu-de-xiao-fannao",
+      "title": "Mofa Gongzhu De Xiao Fannao",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 6,
+      "watched": 16,
+      "total": 16,
+      "type": "ONA",
+      "addedAt": "2025-10-14T14:41:53",
+      "key": "oa:mofa-gongzhu-de-xiao-fannao",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 31,
+      "slug": "monster",
+      "title": "Monster",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 74,
+      "total": 74,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:57",
+      "key": "oa:monster",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 90,
+      "slug": "motto-to-love-ru",
+      "title": "Motto To LOVE-Ru",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-09-02T00:18:03",
+      "key": "oa:motto-to-love-ru",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 17218,
+      "slug": "mushoku-tensei-ii-isekai-ittara-honki-dasu",
+      "title": "Mushoku Tensei II: Isekai Ittara Honki Dasu",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:57",
+      "key": "oa:mushoku-tensei-ii-isekai-ittara-honki-dasu",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 17220,
+      "slug": "mushoku-tensei-ii-isekai-ittara-honki-dasu-shugo-jutsushi-fitz",
+      "title": "Mushoku Tensei II: Isekai Ittara Honki Dasu - Shugo Jutsushi Fitz",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 1,
+      "total": 1,
+      "type": "Special",
+      "addedAt": "2024-01-16T19:48:57",
+      "key": "oa:mushoku-tensei-ii-isekai-ittara-honki-dasu-shugo-jutsushi-fitz",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 14395,
+      "slug": "mushoku-tensei-isekai-ittara-honki-dasu",
+      "title": "Mushoku Tensei: Isekai Ittara Honki Dasu",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 13,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:57",
+      "key": "oa:mushoku-tensei-isekai-ittara-honki-dasu",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15546,
+      "slug": "mushoku-tensei-isekai-ittara-honki-dasu-part-2",
+      "title": "Mushoku Tensei: Isekai Ittara Honki Dasu part 2",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:57",
+      "key": "oa:mushoku-tensei-isekai-ittara-honki-dasu-part-2",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 14036,
+      "slug": "my-hero-academia-jump-festa-2016-special-rescue-rescue-training",
+      "title": "My Hero Academia Jump Festa 2016 Special, Rescue! Rescue Training!",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 1,
+      "total": 1,
+      "type": "OVA",
+      "addedAt": "2024-01-16T19:48:54",
+      "key": "oa:my-hero-academia-jump-festa-2016-special-rescue-rescue-training",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19237,
+      "slug": "nageki-no-bourei-wa-intai-shitai",
+      "title": "Nageki no Bourei wa Intai shitai",
+      "status": "Dropped",
+      "rawStatus": "Porzucone",
+      "score": 4,
+      "watched": 3,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2025-12-10T20:20:53",
+      "key": "oa:nageki-no-bourei-wa-intai-shitai",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 11654,
+      "slug": "nanatsu-no-taizai",
+      "title": "Nanatsu no Taizai",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 24,
+      "total": 24,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:57",
+      "key": "oa:nanatsu-no-taizai",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 13821,
+      "slug": "nanatsu-no-taizai-3-kamigami-no-gekirin",
+      "title": "Nanatsu no Taizai 3: Kamigami no Gekirin",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 4,
+      "watched": 24,
+      "total": 24,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:57",
+      "key": "oa:nanatsu-no-taizai-3-kamigami-no-gekirin",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15594,
+      "slug": "nanatsu-no-taizai-movie-2-hikari-ni-norowareshi-mono-tachi",
+      "title": "Nanatsu no Taizai Movie 2: Hikari ni Norowareshi Mono-tachi",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 1,
+      "total": 1,
+      "type": "Movie",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:nanatsu-no-taizai-movie-2-hikari-ni-norowareshi-mono-tachi",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 14272,
+      "slug": "nanatsu-no-taizai-fundo-no-shinpan",
+      "title": "Nanatsu no Taizai: Fundo no Shinpan",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 4,
+      "watched": 24,
+      "total": 24,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:57",
+      "key": "oa:nanatsu-no-taizai-fundo-no-shinpan",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 6285,
+      "slug": "nanatsu-no-taizai-imashime-no-fukkatsu",
+      "title": "Nanatsu no Taizai: Imashime no Fukkatsu",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 4,
+      "watched": 24,
+      "total": 24,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:57",
+      "key": "oa:nanatsu-no-taizai-imashime-no-fukkatsu",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 5226,
+      "slug": "nanatsu-no-taizai-seisen-no-shirushi",
+      "title": "Nanatsu no Taizai: Seisen no Shirushi",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 4,
+      "watched": 4,
+      "total": 4,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:57",
+      "key": "oa:nanatsu-no-taizai-seisen-no-shirushi",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 4961,
+      "slug": "naruto",
+      "title": "Naruto",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 220,
+      "total": 220,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:58",
+      "key": "oa:naruto",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 664,
+      "slug": "naruto-shippuuden",
+      "title": "Naruto Shippuuden",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 500,
+      "total": 500,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:59",
+      "key": "oa:naruto-shippuuden",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 3199,
+      "slug": "naruto-shippuuden-movie-1",
+      "title": "Naruto: Shippuuden Movie 1",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 1,
+      "total": 1,
+      "type": "Movie",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:naruto-shippuuden-movie-1",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 998,
+      "slug": "naruto-shippuuden-movie-2-kizuna",
+      "title": "Naruto: Shippuuden Movie 2 - Kizuna",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 1,
+      "total": 1,
+      "type": "Movie",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:naruto-shippuuden-movie-2-kizuna",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 11466,
+      "slug": "naruto-shippuuden-movie-4-the-lost-tower",
+      "title": "Naruto: Shippuuden Movie 4 - The Lost Tower",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 1,
+      "total": 1,
+      "type": "Movie",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:naruto-shippuuden-movie-4-the-lost-tower",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 7903,
+      "slug": "naruto-shippuuden-movie-5-blood-prison",
+      "title": "Naruto: Shippuuden Movie 5 - Blood Prison",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 1,
+      "total": 1,
+      "type": "Movie",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:naruto-shippuuden-movie-5-blood-prison",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 10778,
+      "slug": "naruto-shippuuden-movie-6-road-to-ninja",
+      "title": "Naruto: Shippuuden Movie 6 - Road to Ninja",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 1,
+      "total": 1,
+      "type": "Movie",
+      "addedAt": "2024-01-16T19:49:02",
+      "key": "oa:naruto-shippuuden-movie-6-road-to-ninja",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 12652,
+      "slug": "naruto-shippuuden-movie-7-the-last",
+      "title": "Naruto: Shippuuden Movie 7 - The Last",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 1,
+      "total": 1,
+      "type": "Movie",
+      "addedAt": "2024-01-16T19:48:59",
+      "key": "oa:naruto-shippuuden-movie-7-the-last",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16038,
+      "slug": "natsu-e-no-tunnel-sayonara-no-deguchi",
+      "title": "Natsu e no Tunnel, Sayonara no Deguchi",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 9,
+      "watched": 1,
+      "total": 1,
+      "type": "Movie",
+      "addedAt": "2024-06-28T14:54:18",
+      "key": "oa:natsu-e-no-tunnel-sayonara-no-deguchi",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 107576,
+      "slug": "nigashita-sakana-wa-ookikatta-ga-tsuriageta-sakana-ga-ookisugita-ken",
+      "title": "Nigashita Sakana wa Ookikatta ga Tsuriageta Sakana ga Ookisugita Ken",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 7,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-08-15T00:09:06",
+      "key": "oa:nigashita-sakana-wa-ookikatta-ga-tsuriageta-sakana-ga-ookisugita-ken",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 14953,
+      "slug": "nijuuseiki-denki-mokuroku",
+      "title": "Nijusseiki Denki Mokuroku: Eureka Evrika",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2026-08-16T03:15:28",
+      "key": "oa:nijuuseiki-denki-mokuroku",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18713,
+      "slug": "ninja-kamui",
+      "title": "Ninja Kamui",
+      "status": "Dropped",
+      "rawStatus": "Porzucone",
+      "score": 5,
+      "watched": 8,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2024-02-13T14:19:40",
+      "key": "oa:ninja-kamui",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 615,
+      "slug": "no-game-no-life",
+      "title": "No Game No Life",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:59",
+      "key": "oa:no-game-no-life",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15240,
+      "slug": "no-game-no-life-zero",
+      "title": "No Game No Life: Zero",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 1,
+      "total": 1,
+      "type": "Movie",
+      "addedAt": "2024-01-16T19:48:59",
+      "key": "oa:no-game-no-life-zero",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 1244,
+      "slug": "noragami",
+      "title": "Noragami",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:59",
+      "key": "oa:noragami",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 1316,
+      "slug": "noragami-aragoto",
+      "title": "Noragami Aragoto",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 13,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:59",
+      "key": "oa:noragami-aragoto",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18428,
+      "slug": "nozomanu-fushi-no-boukensha",
+      "title": "Nozomanu Fushi no Boukensha",
+      "status": "On Hold",
+      "rawStatus": "Wstrzymane",
+      "score": null,
+      "watched": 7,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-02-03T18:20:27",
+      "key": "oa:nozomanu-fushi-no-boukensha",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19186,
+      "slug": "nukitashi-the-animation",
+      "title": "Nukitashi THE ANIMATION",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 2,
+      "total": 11,
+      "type": "TV",
+      "addedAt": "2025-07-22T23:54:06",
+      "key": "oa:nukitashi-the-animation",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 90389,
+      "slug": "okiraku-ryoushu-no-tanoshii-ryouchi-bouei-seisankei-majutsu-de-na-mo-naki-mura-wo-saikyou-no-jousai-toshi-ni",
+      "title": "Okiraku Ryoushu no Tanoshii Ryouchi Bouei: Seisankei Majutsu de Na mo Naki Mura wo Saikyou no Jousai Toshi ni",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 4,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-01-14T17:38:14",
+      "key": "oa:okiraku-ryoushu-no-tanoshii-ryouchi-bouei-seisankei-majutsu-de-na-mo-naki-mura-wo-saikyou-no-jousai-toshi-ni",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 12054,
+      "slug": "one-piece",
+      "title": "One Piece",
+      "status": "On Hold",
+      "rawStatus": "Wstrzymane",
+      "score": 7,
+      "watched": 1088,
+      "total": 1193,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:02",
+      "key": "oa:one-piece",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 428,
+      "slug": "one-punch-man",
+      "title": "One Punch Man",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:02",
+      "key": "oa:one-punch-man",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 14971,
+      "slug": "one-punch-man-2nd-season",
+      "title": "One Punch Man 2nd Season",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:02",
+      "key": "oa:one-punch-man-2nd-season",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18719,
+      "slug": "one-punch-man-3",
+      "title": "One Punch Man 3rd Season",
+      "status": "Plan to Watch",
+      "rawStatus": "Planuje",
+      "score": null,
+      "watched": 0,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:02",
+      "key": "oa:one-punch-man-3",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 91829,
+      "slug": "oni-no-hanayome",
+      "title": "Oni no Hanayome",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 5,
+      "watched": 3,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-07-30T00:46:17",
+      "key": "oa:oni-no-hanayome",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16049,
+      "slug": "oniichan-wa-oshimai",
+      "title": "Oniichan wa Oshimai!",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 5,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-05-02T16:31:08",
+      "key": "oa:oniichan-wa-oshimai",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 11615,
+      "slug": "ookami-to-koushinryou",
+      "title": "Ookami to Koushinryou",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 7,
+      "watched": 13,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2026-05-02T16:31:17",
+      "key": "oa:ookami-to-koushinryou",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15872,
+      "slug": "ore-dake-level-up-na-ken",
+      "title": "Ore dake Level Up na Ken",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 13,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:02",
+      "key": "oa:ore-dake-level-up-na-ken",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19188,
+      "slug": "ore-dake-level-up-na-ken-season-2-arise-from-the-shadow",
+      "title": "Ore dake Level Up na Ken Season 2: Arise from the Shadow",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 7,
+      "watched": 0,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2025-01-12T19:42:38",
+      "key": "oa:ore-dake-level-up-na-ken-season-2-arise-from-the-shadow",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18476,
+      "slug": "oroka-na-tenshi-wa-akuma-to-odoru",
+      "title": "Oroka na Tenshi wa Akuma to Odoru",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 0,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-03-27T15:32:44",
+      "key": "oa:oroka-na-tenshi-wa-akuma-to-odoru",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16089,
+      "slug": "oshi-no-ko",
+      "title": "Oshi no Ko",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:48:52",
+      "key": "oa:oshi-no-ko",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 17217,
+      "slug": "oshi-no-ko-2",
+      "title": "Oshi no Ko 2nd Season",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 14,
+      "total": 14,
+      "type": "TV",
+      "addedAt": "2024-07-04T15:48:19",
+      "key": "oa:oshi-no-ko-2",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16055,
+      "slug": "otonari-no-tenshi-sama-ni-itsunomanika-dame-ningen-ni-sareteita-ken",
+      "title": "Otonari no Tenshi-sama ni Itsunomanika Dame Ningen ni Sareteita Ken",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:02",
+      "key": "oa:otonari-no-tenshi-sama-ni-itsunomanika-dame-ningen-ni-sareteita-ken",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 6835,
+      "slug": "planetarian-chiisana-hoshi-no-yume",
+      "title": "Planetarian: Chiisana Hoshi no Yume",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 5,
+      "total": 5,
+      "type": "ONA",
+      "addedAt": "2026-01-28T18:13:46",
+      "key": "oa:planetarian-chiisana-hoshi-no-yume",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 11675,
+      "slug": "plastic-memories",
+      "title": "Plastic Memories",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 13,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:02",
+      "key": "oa:plastic-memories",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 2383,
+      "slug": "plunderer",
+      "title": "Plunderer",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 24,
+      "total": 24,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:02",
+      "key": "oa:plunderer",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 5951,
+      "slug": "psycho-pass",
+      "title": "Psycho-Pass",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 22,
+      "type": "TV",
+      "addedAt": "2026-10-08T20:18:08",
+      "key": "oa:psycho-pass",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 91845,
+      "slug": "pyramid-game",
+      "title": "Pyramid Game",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 9,
+      "type": "ONA",
+      "addedAt": "2025-07-05T18:07:31",
+      "key": "oa:pyramid-game",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 2993,
+      "slug": "ranpo-kitan-game-of-laplace",
+      "title": "Ranpo Kitan: Game of Laplace",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 2,
+      "total": 11,
+      "type": "TV",
+      "addedAt": "2026-08-19T04:19:15",
+      "key": "oa:ranpo-kitan-game-of-laplace",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18737,
+      "slug": "re-monster",
+      "title": "Re:Monster",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 4,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-05-02T16:37:57",
+      "key": "oa:re-monster",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 14086,
+      "slug": "re-zero-kara-hajimeru-isekai-seikatsu-shin-henshuu-ban",
+      "title": "Re:Zero kara Hajimeru Isekai Seikatsu: Shin Henshuu-ban",
+      "status": "On Hold",
+      "rawStatus": "Wstrzymane",
+      "score": null,
+      "watched": 1,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2024-07-05T22:16:59",
+      "key": "oa:re-zero-kara-hajimeru-isekai-seikatsu-shin-henshuu-ban",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 4079,
+      "slug": "rewrite",
+      "title": "Rewrite",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2026-10-02T16:24:50",
+      "key": "oa:rewrite",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19434,
+      "slug": "romelia-senki",
+      "title": "Romelia Senki",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 3,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-10-07T21:39:31",
+      "key": "oa:romelia-senki",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 5123,
+      "slug": "ryuuou-no-oshigoto",
+      "title": "Ryuuou no Oshigoto!",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-09-23T23:53:56",
+      "key": "oa:ryuuou-no-oshigoto",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 108716,
+      "slug": "saijo-no-osewa-takane-no-hanadarake-na-meimonkou-de-gakuin-ichi-no-ojousama-seikatsu-nouryoku-kaimu-wo-kagenagara-osewa-suru-koto-ni-narimashita",
+      "title": "Saijo no Osewa: Takane no Hanadarake na Meimonkou de, Gakuin Ichi no Ojousama (Seikatsu Nouryoku Kaimu) wo Kagenagara Osewa suru Koto ni Narimashita",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 5,
+      "watched": 3,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-08-27T14:36:52",
+      "key": "oa:saijo-no-osewa-takane-no-hanadarake-na-meimonkou-de-gakuin-ichi-no-ojousama-seikatsu-nouryoku-kaimu-wo-kagenagara-osewa-suru-koto-ni-narimashita",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18750,
+      "slug": "saikyou-degarashi-ouji-no-anyaku-teii-arasoi-munou-wo-enjiru-ss-rank-ouji-wa-koui-keishou-sen-wo-kage-kara-shihai-suru",
+      "title": "Saikyou Degarashi Ouji no Anyaku Teii Arasoi: Munou wo Enjiru SS Rank Ouji wa Koui Keishou-sen wo Kage kara Shihai suru",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-08-16T03:11:07",
+      "key": "oa:saikyou-degarashi-ouji-no-anyaku-teii-arasoi-munou-wo-enjiru-ss-rank-ouji-wa-koui-keishou-sen-wo-kage-kara-shihai-suru",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19584,
+      "slug": "saikyou-no-ousama-nidome-no-jinsei-wa-nani-wo-suru",
+      "title": "Saikyou no Ousama, Nidome no Jinsei wa Nani wo Suru?",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 4,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-05-02T16:37:16",
+      "key": "oa:saikyou-no-ousama-nidome-no-jinsei-wa-nani-wo-suru",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19068,
+      "slug": "sakamoto-days",
+      "title": "Sakamoto Days",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 6,
+      "watched": 11,
+      "total": 11,
+      "type": "TV",
+      "addedAt": "2026-05-02T16:38:35",
+      "key": "oa:sakamoto-days",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19663,
+      "slug": "sakamoto-days-part-2",
+      "title": "Sakamoto Days Part 2",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 6,
+      "watched": 11,
+      "total": 11,
+      "type": "TV",
+      "addedAt": "2026-05-02T16:38:40",
+      "key": "oa:sakamoto-days-part-2",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 7404,
+      "slug": "sakurasou-no-pet-na-kanojo",
+      "title": "Sakurasou no Pet na Kanojo",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 9,
+      "watched": 24,
+      "total": 24,
+      "type": "TV",
+      "addedAt": "2024-02-03T18:17:04",
+      "key": "oa:sakurasou-no-pet-na-kanojo",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16969,
+      "slug": "sasayaku-you-ni-koi-o-utau",
+      "title": "Sasayaku You ni Koi o Utau",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 0,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-05-05T00:15:35",
+      "key": "oa:sasayaku-you-ni-koi-o-utau",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19194,
+      "slug": "sayonara-lara",
+      "title": "Sayonara Lara",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-10-08T19:21:15",
+      "key": "oa:sayonara-lara",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 4595,
+      "slug": "sayonara-no-asa-ni-yakusoku-no-hana-wo-kazarou",
+      "title": "Sayonara no Asa ni Yakusoku no Hana wo Kazarou",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 10,
+      "watched": 1,
+      "total": 1,
+      "type": "Movie",
+      "addedAt": "2026-01-28T13:42:29",
+      "key": "oa:sayonara-no-asa-ni-yakusoku-no-hana-wo-kazarou",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15503,
+      "slug": "seirei-gensouki",
+      "title": "Seirei Gensouki",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 4,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-08-10T19:48:28",
+      "key": "oa:seirei-gensouki",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 11966,
+      "slug": "seishun-buta-yarou-wa-bunny-girl-senpai-no-yume-wo-minai",
+      "title": "Seishun Buta Yarou wa Bunny Girl Senpai no Yume wo Minai",
+      "status": "On Hold",
+      "rawStatus": "Wstrzymane",
+      "score": 7,
+      "watched": 4,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:02",
+      "key": "oa:seishun-buta-yarou-wa-bunny-girl-senpai-no-yume-wo-minai",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15575,
+      "slug": "sekai-saikou-no-ansatsusha-isekai-kizoku-ni-tensei-suru",
+      "title": "Sekai Saikou no Ansatsusha, Isekai Kizoku ni Tensei suru",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:02",
+      "key": "oa:sekai-saikou-no-ansatsusha-isekai-kizoku-ni-tensei-suru",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15452,
+      "slug": "sentouin-hakenshimasu",
+      "title": "Sentouin, Hakenshimasu!",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2025-09-29T23:31:55",
+      "key": "oa:sentouin-hakenshimasu",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 8201,
+      "slug": "serial-experiments-lain",
+      "title": "Serial Experiments Lain",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 8,
+      "watched": 13,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2026-01-28T17:59:56",
+      "key": "oa:serial-experiments-lain",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 12752,
+      "slug": "shakugan-no-shana",
+      "title": "Shakugan no Shana",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 24,
+      "type": "TV",
+      "addedAt": "2026-08-22T03:02:40",
+      "key": "oa:shakugan-no-shana",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19433,
+      "slug": "shibou-yuugi-de-meshi-wo-kuu",
+      "title": "Shibou Yuugi de Meshi wo Kuu.",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 11,
+      "type": "TV",
+      "addedAt": "2026-10-10T21:53:26",
+      "key": "oa:shibou-yuugi-de-meshi-wo-kuu",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18968,
+      "slug": "shikanoko-nokonoko-koshitantan",
+      "title": "Shikanoko Nokonoko Koshitantan",
+      "status": "On Hold",
+      "rawStatus": "Wstrzymane",
+      "score": 5,
+      "watched": 2,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-07-06T14:33:20",
+      "key": "oa:shikanoko-nokonoko-koshitantan",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 10404,
+      "slug": "attack-on-titan",
+      "title": "Shingeki no Kyojin",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 25,
+      "total": 25,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:02",
+      "key": "oa:attack-on-titan",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15476,
+      "slug": "shingeki-no-kyojin-4-the-final-season",
+      "title": "Shingeki no Kyojin 4: The Final Season",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 16,
+      "total": 16,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:02",
+      "key": "oa:shingeki-no-kyojin-4-the-final-season",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15691,
+      "slug": "shingeki-no-kyojin-4-the-final-season-part-2",
+      "title": "Shingeki no Kyojin 4: The Final Season Part 2",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:02",
+      "key": "oa:shingeki-no-kyojin-4-the-final-season-part-2",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16149,
+      "slug": "shingeki-no-kyojin-the-final-season-2023",
+      "title": "Shingeki no Kyojin 4: The Final Season Part 3",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 2,
+      "total": 2,
+      "type": "Special",
+      "addedAt": "2024-01-16T19:49:02",
+      "key": "oa:shingeki-no-kyojin-the-final-season-2023",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15046,
+      "slug": "shingeki-no-kyojin-season-2",
+      "title": "Shingeki no Kyojin Season 2",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:02",
+      "key": "oa:shingeki-no-kyojin-season-2",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 2861,
+      "slug": "shingeki-no-kyojin-season-3",
+      "title": "Shingeki no Kyojin Season 3",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:02",
+      "key": "oa:shingeki-no-kyojin-season-3",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 7551,
+      "slug": "shingeki-no-kyojin-season-3-part-2",
+      "title": "Shingeki no Kyojin Season 3: Part 2",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 10,
+      "total": 10,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:02",
+      "key": "oa:shingeki-no-kyojin-season-3-part-2",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19672,
+      "slug": "shinjiteita-nakama-tachi-ni-dungeon-okuchi-de-korosarekaketa-ga-gift-mugen-gacha-de-level-9999-no-nakama-tachi-wo-te-ni-irete-moto-party-member-to-sekai-ni-fukushuu-zamaa-shimasu",
+      "title": "Shinjiteita Nakama-tachi ni Dungeon Okuchi de Korosarekaketa ga Gift [Mugen Gacha] de Level 9999 no Nakama-tachi wo Te ni Irete Moto Party Member to Sekai ni Fukushuu & [Zamaa!] Shimasu!",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 4,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-05-02T16:35:05",
+      "key": "oa:shinjiteita-nakama-tachi-ni-dungeon-okuchi-de-korosarekaketa-ga-gift-mugen-gacha-de-level-9999-no-nakama-tachi-wo-te-ni-irete-moto-party-member-to-sekai-ni-fukushuu-zamaa-shimasu",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18761,
+      "slug": "shinmai-ossan-boukensha-saikyou-party-ni-shinu-hodo-kitaerarete-muteki-ni-naru",
+      "title": "Shinmai Ossan Boukensha, Saikyou Party ni Shinu Hodo Kitaerarete Muteki ni Naru.",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 0,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-07-09T14:55:59",
+      "key": "oa:shinmai-ossan-boukensha-saikyou-party-ni-shinu-hodo-kitaerarete-muteki-ni-naru",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15933,
+      "slug": "shinmai-renkinjutsushi-no-tenpo-keiei",
+      "title": "Shinmai Renkinjutsushi no Tenpo Keiei",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-08-11T01:23:00",
+      "key": "oa:shinmai-renkinjutsushi-no-tenpo-keiei",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 103249,
+      "slug": "shuiro-no-kamen",
+      "title": "Shuiro no Kamen",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-10-10T16:50:22",
+      "key": "oa:shuiro-no-kamen",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 90372,
+      "slug": "shunkashuutou-daikousha-haru-no-mai",
+      "title": "Shunkashuutou Daikousha: Haru no Mai",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 9,
+      "watched": 14,
+      "total": 14,
+      "type": "TV",
+      "addedAt": "2026-07-03T01:38:48",
+      "key": "oa:shunkashuutou-daikousha-haru-no-mai",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15254,
+      "slug": "shuumatsu-nani-shitemasu-ka-isogashii-desu-ka-sukutte-moratte-ii-desu-ka",
+      "title": "Shuumatsu Nani Shitemasu ka? Isogashii desu ka? Sukutte Moratte Ii desu ka",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 9,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:02",
+      "key": "oa:shuumatsu-nani-shitemasu-ka-isogashii-desu-ka-sukutte-moratte-ii-desu-ka",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15855,
+      "slug": "shuumatsu-no-walkure",
+      "title": "Shuumatsu no Walkure",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 12,
+      "total": 12,
+      "type": "ONA",
+      "addedAt": "2024-01-16T19:49:02",
+      "key": "oa:shuumatsu-no-walkure",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16097,
+      "slug": "shuumatsu-no-walkure-2",
+      "title": "Shuumatsu no Walkure II",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 15,
+      "total": 15,
+      "type": "ONA",
+      "addedAt": "2024-01-16T19:49:02",
+      "key": "oa:shuumatsu-no-walkure-2",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19347,
+      "slug": "silent-witch-chinmoku-no-majo-no-kakushigoto",
+      "title": "Silent Witch: Chinmoku no Majo no Kakushigoto",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 9,
+      "watched": 13,
+      "total": 14,
+      "type": "TV",
+      "addedAt": "2025-07-05T18:09:00",
+      "key": "oa:silent-witch-chinmoku-no-majo-no-kakushigoto",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 1173,
+      "slug": "sora-yori-mo-tooi-basho",
+      "title": "Sora yori mo Tooi Basho",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2026-08-16T02:44:55",
+      "key": "oa:sora-yori-mo-tooi-basho",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16959,
+      "slug": "sousou-no-frieren",
+      "title": "Sousou no Frieren",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 28,
+      "total": 28,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:02",
+      "key": "oa:sousou-no-frieren",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16059,
+      "slug": "sugar-apple-fairy-tale",
+      "title": "Sugar Apple Fairy Tale",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 8,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-08-04T20:01:14",
+      "key": "oa:sugar-apple-fairy-tale",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16990,
+      "slug": "sugar-apple-fairy-tale-2023",
+      "title": "Sugar Apple Fairy Tale (2023)",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 8,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-08-05T08:30:04",
+      "key": "oa:sugar-apple-fairy-tale-2023",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16940,
+      "slug": "suki-na-ko-ga-megane-wo-wasureta",
+      "title": "Suki na Ko ga Megane wo Wasureta",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 13,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:02",
+      "key": "oa:suki-na-ko-ga-megane-wo-wasureta",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18773,
+      "slug": "summer-pockets",
+      "title": "Summer Pockets",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 26,
+      "type": "TV",
+      "addedAt": "2026-08-30T01:24:14",
+      "key": "oa:summer-pockets",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 9633,
+      "slug": "sword-art-online",
+      "title": "Sword Art Online",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 25,
+      "total": 25,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:03",
+      "key": "oa:sword-art-online",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 9625,
+      "slug": "sword-art-online-ii",
+      "title": "Sword Art Online II",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 25,
+      "total": 25,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:03",
+      "key": "oa:sword-art-online-ii",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 10846,
+      "slug": "sword-art-online-movie-ordinal-scale",
+      "title": "Sword Art Online Movie: Ordinal Scale",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 1,
+      "total": 1,
+      "type": "Movie",
+      "addedAt": "2024-01-16T19:49:03",
+      "key": "oa:sword-art-online-movie-ordinal-scale",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 1786,
+      "slug": "sword-art-online-alicization",
+      "title": "Sword Art Online: Alicization",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 24,
+      "total": 24,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:03",
+      "key": "oa:sword-art-online-alicization",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 13796,
+      "slug": "sword-art-online-alicization-war-of-underworld",
+      "title": "Sword Art Online: Alicization – War of Underworld",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:03",
+      "key": "oa:sword-art-online-alicization-war-of-underworld",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19767,
+      "slug": "takopii-no-genzai",
+      "title": "Takopii no Genzai",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 0,
+      "total": 6,
+      "type": "ONA",
+      "addedAt": "2025-07-03T22:17:58",
+      "key": "oa:takopii-no-genzai",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15501,
+      "slug": "tantei-wa-mou-shindeiru",
+      "title": "Tantei wa Mou, Shindeiru.",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-10-29T20:48:45",
+      "key": "oa:tantei-wa-mou-shindeiru",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 1935,
+      "slug": "tate-no-yuusha-no-nariagari",
+      "title": "Tate no Yuusha no Nariagari",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 25,
+      "total": 25,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:03",
+      "key": "oa:tate-no-yuusha-no-nariagari",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15094,
+      "slug": "tate-no-yuusha-no-nariagari-2",
+      "title": "Tate no Yuusha no Nariagari 2",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 13,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:03",
+      "key": "oa:tate-no-yuusha-no-nariagari-2",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15095,
+      "slug": "tate-no-yuusha-no-nariagari-3",
+      "title": "Tate no Yuusha no Nariagari 3",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:03",
+      "key": "oa:tate-no-yuusha-no-nariagari-3",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18789,
+      "slug": "tenkou-saki-no-seiso-karen-na-bishoujo-ga-mukashi-danshi-to-omotte-issho-ni-asonda-osananajimi-datta-ken",
+      "title": "Tenkou-saki no Seiso Karen na Bishoujo ga, Mukashi Danshi to Omotte Issho ni Asonda Osananajimi Datta Ken",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 8,
+      "watched": 9,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-08-10T19:54:45",
+      "key": "oa:tenkou-saki-no-seiso-karen-na-bishoujo-ga-mukashi-danshi-to-omotte-issho-ni-asonda-osananajimi-datta-ken",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16035,
+      "slug": "tensei-oujo-to-tensai-reijou-no-mahou-kakumei",
+      "title": "Tensei Oujo to Tensai Reijou no Mahou Kakumei",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 8,
+      "watched": 9,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-08-27T14:36:36",
+      "key": "oa:tensei-oujo-to-tensai-reijou-no-mahou-kakumei",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 20004,
+      "slug": "tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu",
+      "title": "Tensei shita Daiseijo wa, Seijo de Aru Koto wo Hitakakusu",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-10-07T21:40:06",
+      "key": "oa:tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18241,
+      "slug": "tensei-shitara-dainana-ouji-datta-node-kimama-ni-majutsu-wo-kiwamemasu",
+      "title": "Tensei shitara Dainana Ouji Datta node, Kimama ni Majutsu wo Kiwamemasu",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 4,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-05-02T16:37:36",
+      "key": "oa:tensei-shitara-dainana-ouji-datta-node-kimama-ni-majutsu-wo-kiwamemasu",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19201,
+      "slug": "tensei-shitara-dainana-ouji-datta-node-kimama-ni-majutsu-wo-kiwamemasu-2",
+      "title": "Tensei shitara Dainana Ouji Datta node, Kimama ni Majutsu wo Kiwamemasu 2",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 5,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-05-02T16:37:39",
+      "key": "oa:tensei-shitara-dainana-ouji-datta-node-kimama-ni-majutsu-wo-kiwamemasu-2",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15934,
+      "slug": "tensei-shitara-ken-deshita",
+      "title": "Tensei shitara Ken deshita",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-10-29T20:48:35",
+      "key": "oa:tensei-shitara-ken-deshita",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 87,
+      "slug": "tensei-shitara-slime-datta-ken",
+      "title": "Tensei shitara Slime Datta Ken",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 9,
+      "watched": 25,
+      "total": 25,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:03",
+      "key": "oa:tensei-shitara-slime-datta-ken",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 14316,
+      "slug": "tensei-shitara-slime-datta-ken-2nd-season",
+      "title": "Tensei shitara Slime Datta Ken 2nd Season",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 9,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:03",
+      "key": "oa:tensei-shitara-slime-datta-ken-2nd-season",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 14315,
+      "slug": "tensei-shitara-slime-datta-ken-2nd-season-part-2",
+      "title": "Tensei shitara Slime Datta Ken 2nd Season Part 2",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 9,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:03",
+      "key": "oa:tensei-shitara-slime-datta-ken-2nd-season-part-2",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16525,
+      "slug": "tensei-shitara-slime-datta-ken-2nd-season-kanwa-veldora-nikki-2",
+      "title": "Tensei shitara Slime Datta Ken 2nd Season: Kanwa - Veldora Nikki 2",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 1,
+      "total": 1,
+      "type": "Special",
+      "addedAt": "2024-01-16T19:49:03",
+      "key": "oa:tensei-shitara-slime-datta-ken-2nd-season-kanwa-veldora-nikki-2",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16973,
+      "slug": "tensei-shitara-slime-datta-ken-3",
+      "title": "Tensei shitara Slime Datta Ken 3",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 9,
+      "watched": 26,
+      "total": 26,
+      "type": "TV",
+      "addedAt": "2024-03-21T21:36:47",
+      "key": "oa:tensei-shitara-slime-datta-ken-3",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19537,
+      "slug": "tensei-shitara-slime-datta-ken-dai-4-ki",
+      "title": "Tensei shitara Slime Datta Ken 4th Season",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 10,
+      "watched": 15,
+      "total": 24,
+      "type": "TV",
+      "addedAt": "2026-07-30T22:42:39",
+      "key": "oa:tensei-shitara-slime-datta-ken-dai-4-ki",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15553,
+      "slug": "tensei-shitara-slime-datta-ken-movie",
+      "title": "Tensei shitara Slime Datta Ken Movie: Guren no Kizuna-hen",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 1,
+      "total": 1,
+      "type": "Movie",
+      "addedAt": "2024-06-23T23:02:19",
+      "key": "oa:tensei-shitara-slime-datta-ken-movie",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 13092,
+      "slug": "tensei-shitara-slime-datta-ken-ova",
+      "title": "Tensei shitara Slime Datta Ken OVA",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 5,
+      "total": 5,
+      "type": "OVA",
+      "addedAt": "2024-01-16T19:49:03",
+      "key": "oa:tensei-shitara-slime-datta-ken-ova",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18384,
+      "slug": "tensei-shitara-slime-datta-ken-coleus-no-yume",
+      "title": "Tensei shitara Slime Datta Ken: Coleus no Yume",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 3,
+      "total": 3,
+      "type": "ONA",
+      "addedAt": "2024-01-16T19:49:03",
+      "key": "oa:tensei-shitara-slime-datta-ken-coleus-no-yume",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 14323,
+      "slug": "tensei-shitara-slime-datta-ken-kanwa-veldora-nikki",
+      "title": "Tensei shitara Slime Datta Ken: Kanwa - Veldora Nikki",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 1,
+      "total": 1,
+      "type": "Special",
+      "addedAt": "2024-01-16T19:49:03",
+      "key": "oa:tensei-shitara-slime-datta-ken-kanwa-veldora-nikki",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15449,
+      "slug": "tensura-nikki-tensei-shitara-slime-datta-ken",
+      "title": "Tensura Nikki: Tensei shitara Slime Datta Ken",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:03",
+      "key": "oa:tensura-nikki-tensei-shitara-slime-datta-ken",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 14342,
+      "slug": "the-god-of-high-school",
+      "title": "The God of High School",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 13,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:03",
+      "key": "oa:the-god-of-high-school",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18612,
+      "slug": "grimm-web",
+      "title": "The Grimm Variations",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 6,
+      "type": "ONA",
+      "addedAt": "2026-09-11T12:31:22",
+      "key": "oa:grimm-web",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18523,
+      "slug": "tokidoki-bosotto-russia-go-de-dereru-tonari-no-alya-san",
+      "title": "Tokidoki Bosotto Russia-go de Dereru Tonari no Alya-san",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 7,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-03-22T16:12:20",
+      "key": "oa:tokidoki-bosotto-russia-go-de-dereru-tonari-no-alya-san",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 4279,
+      "slug": "tokyo-ghoul",
+      "title": "Tokyo Ghoul",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:03",
+      "key": "oa:tokyo-ghoul",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 12836,
+      "slug": "tokyo-ghoul-a",
+      "title": "Tokyo Ghoul √A",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 4,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:03",
+      "key": "oa:tokyo-ghoul-a",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 1910,
+      "slug": "tokyo-ghoul-re",
+      "title": "Tokyo Ghoul:re",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 4,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:03",
+      "key": "oa:tokyo-ghoul-re",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 8452,
+      "slug": "tokyo-ghoulre-2nd-season",
+      "title": "Tokyo Ghoul:re 2nd Season",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2025-07-15T11:55:45",
+      "key": "oa:tokyo-ghoulre-2nd-season",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15748,
+      "slug": "tomodachi-game",
+      "title": "Tomodachi Game",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:03",
+      "key": "oa:tomodachi-game",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18798,
+      "slug": "tongari-boushi-no-atelier",
+      "title": "Tongari Boushi no Atelier",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 9,
+      "watched": 13,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2026-07-16T18:37:44",
+      "key": "oa:tongari-boushi-no-atelier",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 1711,
+      "slug": "toradora",
+      "title": "Toradora!",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 9,
+      "watched": 25,
+      "total": 25,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:04",
+      "key": "oa:toradora",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 107622,
+      "slug": "toumei-na-yoru-ni-kakeru-kimi-to-me-ni-mienai-koi-wo-shita",
+      "title": "Toumei na Yoru ni Kakeru Kimi to, Me ni Mienai Koi wo Shita.",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 5,
+      "watched": 3,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-08-10T19:54:49",
+      "key": "oa:toumei-na-yoru-ni-kakeru-kimi-to-me-ni-mienai-koi-wo-shita",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16056,
+      "slug": "trigun-stampede",
+      "title": "Trigun Stampede",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:04",
+      "key": "oa:trigun-stampede",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 827,
+      "slug": "trinity-seven",
+      "title": "Trinity Seven",
+      "status": "On Hold",
+      "rawStatus": "Wstrzymane",
+      "score": 7,
+      "watched": 4,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-02-04T19:07:26",
+      "key": "oa:trinity-seven",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18925,
+      "slug": "tsue-to-tsurugi-no-wistoria",
+      "title": "Tsue to Tsurugi no Wistoria",
+      "status": "On Hold",
+      "rawStatus": "Wstrzymane",
+      "score": null,
+      "watched": 3,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-07-08T13:32:34",
+      "key": "oa:tsue-to-tsurugi-no-wistoria",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19355,
+      "slug": "tsuihou-sareta-tensei-juukishi-wa-game-chishiki-de-musou-suru",
+      "title": "Tsuihou sareta Tensei Juukishi wa Game Chishiki de Musou suru",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 26,
+      "type": "TV",
+      "addedAt": "2026-07-30T22:34:07",
+      "key": "oa:tsuihou-sareta-tensei-juukishi-wa-game-chishiki-de-musou-suru",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19776,
+      "slug": "tsuihousha-shokudou-e-youkoso",
+      "title": "Tsuihousha Shokudou e Youkoso!",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-10-10T21:55:23",
+      "key": "oa:tsuihousha-shokudou-e-youkoso",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15517,
+      "slug": "tsuki-ga-michibiku-isekai-douchuu",
+      "title": "Tsuki ga Michibiku Isekai Douchuu",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 5,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-05-02T16:35:40",
+      "key": "oa:tsuki-ga-michibiku-isekai-douchuu",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15555,
+      "slug": "tsuki-ga-michibiku-isekai-douchuu-2",
+      "title": "Tsuki ga Michibiku Isekai Douchuu Dai Maku 2",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 5,
+      "watched": 25,
+      "total": 25,
+      "type": "TV",
+      "addedAt": "2026-05-02T16:35:34",
+      "key": "oa:tsuki-ga-michibiku-isekai-douchuu-2",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18805,
+      "slug": "tu-bian-yingxiong-x",
+      "title": "Tu Bian Yingxiong X",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 24,
+      "type": "ONA",
+      "addedAt": "2025-07-07T17:36:43",
+      "key": "oa:tu-bian-yingxiong-x",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18810,
+      "slug": "uzumaki",
+      "title": "Uzumaki",
+      "status": "Dropped",
+      "rawStatus": "Porzucone",
+      "score": 1,
+      "watched": 1,
+      "total": 4,
+      "type": "TV",
+      "addedAt": "2024-10-08T15:18:31",
+      "key": "oa:uzumaki",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 5653,
+      "slug": "violet-evergarden",
+      "title": "Violet Evergarden",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 9,
+      "watched": 13,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:04",
+      "key": "oa:violet-evergarden",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 14308,
+      "slug": "violet-evergarden-movie",
+      "title": "Violet Evergarden Movie",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 9,
+      "watched": 1,
+      "total": 1,
+      "type": "Movie",
+      "addedAt": "2024-01-16T19:48:55",
+      "key": "oa:violet-evergarden-movie",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 7682,
+      "slug": "vivid-strike",
+      "title": "ViVid Strike!",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:04",
+      "key": "oa:vivid-strike",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18482,
+      "slug": "wind-breaker",
+      "title": "Wind Breaker",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 6,
+      "watched": 13,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2026-05-02T16:35:51",
+      "key": "oa:wind-breaker",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19246,
+      "slug": "wind-breaker-season-2",
+      "title": "Wind Breaker Season 2",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 6,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-05-02T16:35:55",
+      "key": "oa:wind-breaker-season-2",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 5239,
+      "slug": "world-trigger",
+      "title": "World Trigger",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 73,
+      "total": 73,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:04",
+      "key": "oa:world-trigger",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15201,
+      "slug": "world-trigger-2nd-season",
+      "title": "World Trigger 2nd Season",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:04",
+      "key": "oa:world-trigger-2nd-season",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15607,
+      "slug": "world-trigger-3rd-season",
+      "title": "World Trigger 3rd Season",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 14,
+      "total": 14,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:04",
+      "key": "oa:world-trigger-3rd-season",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 14175,
+      "slug": "xian-wang-de-richang-shenghuo",
+      "title": "Xian Wang de Richang Shenghuo",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 15,
+      "total": 15,
+      "type": "ONA",
+      "addedAt": "2024-01-16T19:49:04",
+      "key": "oa:xian-wang-de-richang-shenghuo",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15991,
+      "slug": "xian-wang-de-richang-shenghuo-2",
+      "title": "Xian Wang de Richang Shenghuo 2",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 12,
+      "total": 12,
+      "type": "ONA",
+      "addedAt": "2024-01-16T19:49:04",
+      "key": "oa:xian-wang-de-richang-shenghuo-2",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15990,
+      "slug": "xian-wang-de-richang-shenghuo-3",
+      "title": "Xian Wang de Richang Shenghuo 3",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 12,
+      "total": 12,
+      "type": "ONA",
+      "addedAt": "2024-01-16T19:49:04",
+      "key": "oa:xian-wang-de-richang-shenghuo-3",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18823,
+      "slug": "xian-wang-de-richang-shenghuo-4",
+      "title": "Xian Wang de Richang Shenghuo 4",
+      "status": "Plan to Watch",
+      "rawStatus": "Planuje",
+      "score": null,
+      "watched": 0,
+      "total": 12,
+      "type": "ONA",
+      "addedAt": "2024-01-16T19:49:04",
+      "key": "oa:xian-wang-de-richang-shenghuo-4",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 8742,
+      "slug": "yahari-ore-no-seishun-love-comedy-wa-machigatteiru",
+      "title": "Yahari Ore no Seishun Love Comedy wa Machigatteiru.",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 13,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:04",
+      "key": "oa:yahari-ore-no-seishun-love-comedy-wa-machigatteiru",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 14040,
+      "slug": "yahari-ore-no-seishun-love-comedy-wa-machigatteiru-3",
+      "title": "Yahari Ore no Seishun Love Comedy wa Machigatteiru. Kan",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:04",
+      "key": "oa:yahari-ore-no-seishun-love-comedy-wa-machigatteiru-3",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 8337,
+      "slug": "yahari-ore-no-seishun-love-comedy-wa-machigatteiru-zoku",
+      "title": "Yahari Ore no Seishun Love Comedy wa Machigatteiru. Zoku",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 13,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:04",
+      "key": "oa:yahari-ore-no-seishun-love-comedy-wa-machigatteiru-zoku",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 8457,
+      "slug": "yakusoku-no-neverland",
+      "title": "Yakusoku no Neverland",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 7,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:04",
+      "key": "oa:yakusoku-no-neverland",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 14317,
+      "slug": "yakusoku-no-neverland-2nd-season",
+      "title": "Yakusoku no Neverland 2nd Season",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 4,
+      "watched": 11,
+      "total": 11,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:04",
+      "key": "oa:yakusoku-no-neverland-2nd-season",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16881,
+      "slug": "yamada-kun-to-lv999-no-koi-o-suru",
+      "title": "Yamada-kun to Lv999 no Koi o Suru",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 6,
+      "watched": 13,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:04",
+      "key": "oa:yamada-kun-to-lv999-no-koi-o-suru",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18831,
+      "slug": "yarinaoshi-reijou-wa-ryuutei-heika-o-kouryakuchuu",
+      "title": "Yarinaoshi Reijou wa Ryuutei Heika o Kouryakuchuu",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 7,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-08-02T22:29:55",
+      "key": "oa:yarinaoshi-reijou-wa-ryuutei-heika-o-kouryakuchuu",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 19403,
+      "slug": "yasei-no-last-boss-ga-arawareta",
+      "title": "Yasei no Last Boss ga Arawareta!",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 1,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2025-09-28T22:12:45",
+      "key": "oa:yasei-no-last-boss-ga-arawareta",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 5139,
+      "slug": "yosuga-no-sora-in-solitude-where-we-are-least-alone",
+      "title": "Yosuga no Sora: In Solitude, Where We Are Least Alone.",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 3,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-03-05T21:06:51",
+      "key": "oa:yosuga-no-sora-in-solitude-where-we-are-least-alone",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 4108,
+      "slug": "youjo-senki",
+      "title": "Youjo Senki",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-08-25T00:57:31",
+      "key": "oa:youjo-senki",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15497,
+      "slug": "youjo-senki-2",
+      "title": "Youjo Senki 2",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 2,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-07-14T22:52:50",
+      "key": "oa:youjo-senki-2",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 12712,
+      "slug": "youjo-senki-movie",
+      "title": "Youjo Senki Movie",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": 8,
+      "watched": 1,
+      "total": 1,
+      "type": "Movie",
+      "addedAt": "2024-08-28T16:51:52",
+      "key": "oa:youjo-senki-movie",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 12292,
+      "slug": "youkoso-jitsuryoku-shijou-shugi-no-kyoushitsu-e-tv",
+      "title": "Youkoso Jitsuryoku Shijou Shugi no Kyoushitsu e",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:04",
+      "key": "oa:youkoso-jitsuryoku-shijou-shugi-no-kyoushitsu-e-tv",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15725,
+      "slug": "youkoso-jitsuryoku-shijou-shugi-no-kyoushitsu-e-tv-2nd-season",
+      "title": "Youkoso Jitsuryoku Shijou Shugi no Kyoushitsu e (TV) 2nd Season",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 8,
+      "watched": 13,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:04",
+      "key": "oa:youkoso-jitsuryoku-shijou-shugi-no-kyoushitsu-e-tv-2nd-season",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 15850,
+      "slug": "youkoso-jitsuryoku-shijou-shugi-no-kyoushitsu-e-tv-3rd-season",
+      "title": "Youkoso Jitsuryoku Shijou Shugi no Kyoushitsu e (TV) 3rd Season",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 5,
+      "watched": 13,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:04",
+      "key": "oa:youkoso-jitsuryoku-shijou-shugi-no-kyoushitsu-e-tv-3rd-season",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18839,
+      "slug": "yozakura-san-chi-no-daisakusen",
+      "title": "Yozakura-san Chi no Daisakusen",
+      "status": "On Hold",
+      "rawStatus": "Wstrzymane",
+      "score": null,
+      "watched": 4,
+      "total": 27,
+      "type": "TV",
+      "addedAt": "2024-05-07T11:20:17",
+      "key": "oa:yozakura-san-chi-no-daisakusen",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18237,
+      "slug": "yubisaki-to-renren",
+      "title": "Yubisaki to Renren",
+      "status": "On Hold",
+      "rawStatus": "Wstrzymane",
+      "score": null,
+      "watched": 1,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-27T18:00:22",
+      "key": "oa:yubisaki-to-renren",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 16992,
+      "slug": "yumemiru-danshi-wa-genjitsushugisha",
+      "title": "Yumemiru Danshi wa Genjitsushugisha",
+      "status": "Completed",
+      "rawStatus": "Obejrzane",
+      "score": 4,
+      "watched": 12,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-01-16T19:49:04",
+      "key": "oa:yumemiru-danshi-wa-genjitsushugisha",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 2484,
+      "slug": "yuuki-yuuna-wa-yuusha-de-aru",
+      "title": "Yuuki Yuuna wa Yuusha de Aru",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 0,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2024-02-13T00:39:28",
+      "key": "oa:yuuki-yuuna-wa-yuusha-de-aru",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 103267,
+      "slug": "yuusha-party-ni-kawaii-ko-ga-ita-node-kokuhaku-shitemita",
+      "title": "Yuusha Party ni Kawaii Ko ga Ita node, Kokuhaku shitemita.",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 3,
+      "total": 13,
+      "type": "TV",
+      "addedAt": "2026-01-13T17:45:17",
+      "key": "oa:yuusha-party-ni-kawaii-ko-ga-ita-node-kokuhaku-shitemita",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    },
+    {
+      "oaId": 18841,
+      "slug": "yuusha-kei-ni-shosu-choubatsu-yuusha-9004-tai-keimu-kiroku",
+      "title": "Yuusha-kei ni Shosu: Choubatsu Yuusha 9004-tai Keimu Kiroku",
+      "status": "Watching",
+      "rawStatus": "Oglądam",
+      "score": null,
+      "watched": 3,
+      "total": 12,
+      "type": "TV",
+      "addedAt": "2026-01-03T15:14:20",
+      "key": "oa:yuusha-kei-ni-shosu-choubatsu-yuusha-9004-tai-keimu-kiroku",
+      "mal": null,
+      "match": {
+        "confidence": "none",
+        "score": 0
+      }
+    }
+  ]
+}

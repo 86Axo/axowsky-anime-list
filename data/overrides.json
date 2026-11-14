@@ -1,0 +1,7 @@
+{
+  "_help": "Map an OglądajAnime slug or exact title to a MyAnimeList id. Use null to mark a title as having no MAL entry.",
+  "_example": {
+    "some-oa-slug": 12345,
+    "Some Exact OA Title": 67890
+  }
+}

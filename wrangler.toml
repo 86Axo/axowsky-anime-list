@@ -1,0 +1,15 @@
+# Cloudflare Pages project. Static site in dist/, API in functions/.
+name = "axo86"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-10-01"
+
+# Not secrets: the GitHub account allowed to sign in to /admin (numeric id of 86Axo).
+[vars]
+ADMIN_GITHUB_ID = "177529564"
+
+# D1 database for annotations. Replace database_id after `wrangler d1 create axo86-annotations`.
+[[d1_databases]]
+binding = "DB"
+database_name = "axo86-annotations"
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"

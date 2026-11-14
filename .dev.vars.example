@@ -1,0 +1,13 @@
+# Local secrets for `npm run pages:dev`. Copy to .dev.vars (git-ignored) and fill in.
+# In production these are set as Cloudflare Pages secrets, never committed.
+
+# Random string, at least 32 characters. Signs the admin session cookie.
+SESSION_SECRET=
+
+# GitHub OAuth app (Settings → Developer settings → OAuth Apps).
+GITHUB_CLIENT_ID=
+GITHUB_CLIENT_SECRET=
+
+# Optional alternative to GitHub sign-in: Cloudflare Access.
+# ACCESS_TEAM_DOMAIN=your-team.cloudflareaccess.com
+# ACCESS_AUD=

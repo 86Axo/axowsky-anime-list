@@ -1,0 +1,191 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { SITE } from '../config/site';
+---
+
+<Layout title={`Admin · ${SITE.title}`} description="Private annotation editor." noindex path="/admin">
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="brand" href="/">← {SITE.nickname}</a>
+      <span class="adm-user" id="adm-user"></span>
+      <button class="btn" id="adm-logout" type="button" hidden>Sign out</button>
+      <button class="icon-btn theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme">
+        <svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+        </svg>
+        <svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="wrap adm">
+    <h1 class="section__title">Annotations</h1>
+    <p class="adm-intro">
+      Refined score, review, tags and favorite character per title. Saved changes show up on the public page right away.
+    </p>
+    <p class="adm-banner" id="adm-banner" role="alert" hidden></p>
+
+    <div class="filters adm-filters">
+      <div class="field field--search">
+        <label class="vh" for="adm-search">Search titles</label>
+        <input class="input" id="adm-search" type="search" placeholder="Search titles" autocomplete="off" spellcheck="false" />
+      </div>
+      <label class="adm-check"><input type="checkbox" id="adm-only" /> Annotated only</label>
+      <span class="adm-count" id="adm-count" role="status"></span>
+    </div>
+
+    <ul class="adm-list" id="adm-list"></ul>
+  </main>
+
+  <template id="adm-form">
+    <form class="adm-form">
+      <label class="adm-field adm-field--score">
+        <span>Refined score (1–100)</span>
+        <input class="input" name="refinedScore" type="number" min="1" max="100" step="1" inputmode="numeric" />
+      </label>
+      <label class="adm-field">
+        <span>Tags, comma separated</span>
+        <input class="input" name="tags" type="text" placeholder="made me cry, rewatchable" autocomplete="off" />
+      </label>
+      <label class="adm-field">
+        <span>Favorite character</span>
+        <input class="input" name="favoriteCharacter" type="text" maxlength="80" autocomplete="off" />
+      </label>
+      <label class="adm-field adm-field--wide">
+        <span>Review</span>
+        <textarea class="input" name="review" rows="3" maxlength="2000"></textarea>
+      </label>
+      <div class="adm-actions">
+        <button class="btn btn--primary" type="submit">Save</button>
+        <button class="btn" type="button" data-clear>Clear all</button>
+        <span class="adm-status" role="status"></span>
+      </div>
+    </form>
+  </template>
+
+  <script src="../scripts/admin.ts"></script>
+</Layout>
+
+<style is:global>
+  .adm {
+    padding-block: 3rem 5rem;
+  }
+  .adm-intro {
+    max-inline-size: 60ch;
+    margin-block: 0.5rem 1.5rem;
+    color: var(--text-2);
+  }
+  .adm-user {
+    margin-inline-start: auto;
+    color: var(--text-2);
+    font-size: var(--fs-sm);
+  }
+  .adm-banner {
+    margin-block-end: 1.5rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    background: var(--surface-2);
+  }
+  .adm-filters {
+    margin-block-end: 1rem;
+  }
+  .adm-check {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: var(--fs-sm);
+  }
+  .adm-count {
+    margin-inline-start: auto;
+    color: var(--text-2);
+    font-size: var(--fs-sm);
+  }
+  .adm-list {
+    border-block-start: 1px solid var(--border-strong);
+  }
+  .adm-row {
+    border-block-end: 1px solid var(--border);
+  }
+  .adm-row summary {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    gap: 0.25rem 1rem;
+    align-items: center;
+    padding-block: 0.625rem;
+    cursor: pointer;
+    list-style: none;
+  }
+  .adm-row summary::-webkit-details-marker {
+    display: none;
+  }
+  .adm-row summary:hover .adm-title {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+  .adm-title {
+    font-weight: 500;
+    overflow-wrap: anywhere;
+  }
+  .adm-meta {
+    color: var(--text-2);
+    font-size: var(--fs-sm);
+    white-space: nowrap;
+  }
+  .adm-flag {
+    grid-column: 1 / -1;
+    color: var(--text-2);
+    font-size: var(--fs-xs);
+  }
+  .adm-flag:empty {
+    display: none;
+  }
+  .adm-form {
+    display: grid;
+    grid-template-columns: 11rem minmax(0, 1fr) minmax(0, 1fr);
+    gap: 0.875rem 1rem;
+    padding-block: 0.5rem 1.25rem;
+  }
+  .adm-field {
+    display: grid;
+    gap: 0.25rem;
+    color: var(--text-2);
+    font-size: var(--fs-xs);
+  }
+  .adm-field .input {
+    color: var(--text);
+  }
+  .adm-field--wide,
+  .adm-actions {
+    grid-column: 1 / -1;
+  }
+  .adm-form textarea.input {
+    block-size: auto;
+    padding-block: 0.5rem;
+    line-height: 1.5;
+    resize: vertical;
+  }
+  .adm-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .adm-status {
+    color: var(--text-2);
+    font-size: var(--fs-sm);
+  }
+  @media (max-width: 44rem) {
+    .adm-form {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .adm-row summary {
+      grid-template-columns: minmax(0, 1fr) auto;
+    }
+    .adm-meta {
+      display: none;
+    }
+  }
+</style>

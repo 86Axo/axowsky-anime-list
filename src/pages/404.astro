@@ -1,0 +1,16 @@
+---
+import SpiderLily from '../components/SpiderLily.astro';
+import Layout from '../layouts/Layout.astro';
+import { SITE } from '../config/site';
+---
+
+<Layout title={`Not found · ${SITE.title}`} noindex path="/404">
+  <main class="wrap">
+    <div class="empty" style="min-block-size: 100svh; align-content: center">
+      <SpiderLily />
+      <h1 class="section__title">Nothing here</h1>
+      <p>This site has a single page.</p>
+      <a class="btn" href="/">Back to the list</a>
+    </div>
+  </main>
+</Layout>

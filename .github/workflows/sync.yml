@@ -1,0 +1,55 @@
+name: Sync anime list
+
+# Daily, on demand, and whenever a new CSV export or an override is pushed.
+on:
+  schedule:
+    - cron: '17 4 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'data/import/**'
+      - 'data/overrides.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - run: npm ci
+
+      # Reads the newest CSV, asks OglądajAnime for my public list once (falls back to
+      # the CSV if that is blocked), then fills in MAL data from Jikan through the cache.
+      - name: Sync
+        run: npm run sync
+
+      - name: Unit tests
+        run: npm test
+
+      # The commit is what triggers the Cloudflare Pages rebuild. No change, no commit.
+      - name: Commit if the data changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/anime.json data/mal-cache.json data/unmatched.md data/sync-meta.json data/overrides.json
+          if git diff --cached --quiet; then
+            echo "No changes."
+          else
+            git commit -m "data: sync anime list"
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi

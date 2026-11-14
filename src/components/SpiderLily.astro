@@ -1,0 +1,30 @@
+---
+/**
+ * Empty-state motif, inspired by 86: Eighty Six: a red spider lily reduced to
+ * curled petals and long stamens on a single stem.
+ */
+const cx = 60;
+const cy = 58;
+const rad = (deg: number) => (deg * Math.PI) / 180;
+const point = (deg: number, r: number) => [cx + Math.cos(rad(deg)) * r, cy + Math.sin(rad(deg)) * r] as const;
+const f = (n: number) => n.toFixed(1);
+
+// Petals curl back on themselves; stamens reach further out and end in a dot.
+const petals = [-165, -135, -105, -75, -45, -15].map((deg, i) => {
+  const [ex, ey] = point(deg, 30);
+  const [qx, qy] = point(deg + (i % 2 ? 38 : -38), 26);
+  return `M${cx} ${cy}Q${f(qx)} ${f(qy)} ${f(ex)} ${f(ey)}`;
+});
+const stamens = [-172, -150, -120, -90, -60, -30, -8].map((deg) => {
+  const [ex, ey] = point(deg, 48);
+  const [qx, qy] = point(deg, 30);
+  return { d: `M${cx} ${cy}Q${f(qx)} ${f(qy + 10)} ${f(ex)} ${f(ey)}`, ex: f(ex), ey: f(ey) };
+});
+---
+
+<svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true" focusable="false">
+  <path d={`M${cx} ${cy}V114`} stroke-width="1.2" opacity="0.6"></path>
+  {stamens.map((s) => <path d={s.d} stroke-width="0.8" opacity="0.55" />)}
+  {stamens.map((s) => <circle cx={s.ex} cy={s.ey} r="1.4" fill="currentColor" stroke="none" opacity="0.7" />)}
+  {petals.map((d) => <path d={d} stroke-width="2.2" />)}
+</svg>

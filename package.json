@@ -1,0 +1,36 @@
+{
+  "name": "axowsky-anime-list",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build && tsx scripts/postbuild.ts",
+    "preview": "astro preview",
+    "sync": "tsx scripts/sync.ts",
+    "check": "astro check && tsc --noEmit -p functions/tsconfig.json",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "pages:dev": "wrangler pages dev dist",
+    "db:migrate:local": "wrangler d1 migrations apply DB --local",
+    "db:migrate": "wrangler d1 migrations apply DB --remote"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.3.0",
+    "astro": "^7.3.8"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@axe-core/playwright": "^4.14.0",
+    "@cloudflare/workers-types": "^5.20261114.1",
+    "@playwright/test": "^1.65.1",
+    "@types/node": "^22.20.5",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3",
+    "vitest": "^5.1.0",
+    "wrangler": "^4.162.0"
+  }
+}

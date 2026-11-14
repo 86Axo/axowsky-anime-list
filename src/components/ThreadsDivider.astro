@@ -1,0 +1,36 @@
+---
+/**
+ * Section divider, inspired by Maquia (Sayonara no Asa ni Yakusoku no Hana wo Kazarou):
+ * three threads crossing over and under each other like weaving on a loom.
+ */
+const W = 1200;
+const H = 24;
+const thread = (phase: number, amp: number, waves: number): string => {
+  // Sample the sine sparsely, then smooth it with quadratic curves through the midpoints.
+  const steps = waves * 8;
+  const pts = Array.from({ length: steps + 1 }, (_, i) => {
+    const x = (i / steps) * W;
+    const y = H / 2 + Math.sin((i / steps) * Math.PI * 2 * waves + phase) * amp;
+    return [x, y] as const;
+  });
+  let d = `M${pts[0]![0].toFixed(0)} ${pts[0]![1].toFixed(1)}`;
+  for (let i = 1; i < pts.length - 1; i++) {
+    const [x, y] = pts[i]!;
+    const [nx, ny] = pts[i + 1]!;
+    d += `Q${x.toFixed(0)} ${y.toFixed(1)} ${((x + nx) / 2).toFixed(0)} ${((y + ny) / 2).toFixed(1)}`;
+  }
+  const [lx, ly] = pts.at(-1)!;
+  return d + `L${lx.toFixed(0)} ${ly.toFixed(1)}`;
+};
+const threads = [
+  { d: thread(0, 7, 9), opacity: 0.9 },
+  { d: thread((Math.PI * 2) / 3, 7, 9), opacity: 0.6 },
+  { d: thread((Math.PI * 4) / 3, 7, 9), opacity: 0.35 },
+];
+---
+
+<div class="divider wrap" aria-hidden="true">
+  <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" fill="none" focusable="false">
+    {threads.map((t) => <path d={t.d} stroke="currentColor" stroke-width="1" opacity={t.opacity} vector-effect="non-scaling-stroke" />)}
+  </svg>
+</div>
