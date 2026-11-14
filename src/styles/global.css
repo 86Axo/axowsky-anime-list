@@ -1267,3 +1267,14 @@ textarea {
     text-overflow: ellipsis;
   }
 }
+
+/* ── No MAL scores known yet: drop that column instead of showing a column of dashes ── */
+.list-wrap[data-no-mal] :is(.col-mal, .item__mal) {
+  display: none;
+}
+@container list (min-width: 56.01rem) {
+  .list-wrap[data-no-mal] .list-head,
+  .list-wrap[data-no-mal] .list[data-view='list'] .item {
+    grid-template-columns: 2.5rem minmax(0, 1fr) 7.5rem 4.5rem 12.5rem 5rem;
+  }
+}

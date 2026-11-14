@@ -34,8 +34,12 @@ export const malUrl = (item: Pick<ViewItem, 'malId' | 'title'>): string =>
     ? `https://myanimelist.net/anime/${item.malId}`
     : `https://myanimelist.net/anime.php?q=${encodeURIComponent(item.title)}&cat=anime`;
 
-/** MAL serves a ~425px version of every cover under the same name with an "l" suffix. */
-const largeCover = (url: string): string => url.replace(/(\.\w+)$/, 'l$1');
+/**
+ * Larger version of a cover. MAL serves ~425px under the same name with an "l" suffix;
+ * AniList (the backup source) keeps its sizes in sibling folders.
+ */
+export const largeCover = (url: string): string =>
+  url.includes('anilist.co') ? url.replace('/cover/medium/', '/cover/large/') : url.replace(/(\.\w+)$/, 'l$1');
 
 interface CoverOptions {
   large?: boolean;

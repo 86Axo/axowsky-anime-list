@@ -93,10 +93,15 @@ export function parseDuration(raw: string | null | undefined): number | null {
   return Math.round(total * 100) / 100;
 }
 
+/** Year a Jikan entry started airing (MAL only fills `year` for seasonal shows). */
+export function jikanYear(a: JikanAnime): number | null {
+  const aired = a.aired?.from ? Number(a.aired.from.slice(0, 4)) : null;
+  return a.year ?? (aired !== null && Number.isFinite(aired) ? aired : null);
+}
+
 /** Reduce a Jikan anime object to the fields the site uses. */
 export function toMalInfo(a: JikanAnime): MalInfo {
   const names = (list: { name: string }[] | undefined) => (list ?? []).map((x) => x.name);
-  const airedYear = a.aired?.from ? Number(a.aired.from.slice(0, 4)) : null;
   return {
     id: a.mal_id,
     url: a.url ?? `https://myanimelist.net/anime/${a.mal_id}`,
@@ -111,7 +116,7 @@ export function toMalInfo(a: JikanAnime): MalInfo {
     airStatus: a.status ?? null,
     airing: a.airing ?? false,
     season: a.season ?? null,
-    year: a.year ?? (Number.isFinite(airedYear) ? airedYear : null),
+    year: jikanYear(a),
     score: a.score ?? null,
     genres: names(a.genres),
     themes: names(a.themes),

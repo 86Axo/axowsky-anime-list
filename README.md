@@ -12,7 +12,7 @@ Everything runs on free tiers that need no credit card and do not pause when idl
 data/import/*.csv ─┐
                    ├─► scripts/sync.ts ─► data/anime.json ─► astro build ─► Cloudflare Pages
 OA public list ────┘        │
-                            └─► Jikan (MAL) ⇄ data/mal-cache.json
+                            └─► Jikan (MAL), AniList as backup ⇄ data/mal-cache.json
 
 Browser ─► /api/annotations (Pages Function) ─► D1      refined scores, reviews, tags
 /admin  ─► GitHub sign-in ─► PUT /api/annotations/:key  (owner only)
@@ -20,6 +20,7 @@ Browser ─► /api/annotations (Pages Function) ─► D1      refined scores, 
 
 - **List data** (title, status, score, progress, type, date added) comes only from OglądajAnime: the CSV export, plus one polite request per run for the public list page, which also carries the slug and the date added that the CSV lacks. OA anime pages are never fetched.
 - **Everything else** (covers, genres, studios, episode length, MAL score, links) comes from MyAnimeList through the keyless [Jikan API](https://jikan.moe), cached in `data/mal-cache.json`.
+- **Backup source.** When Jikan is unreachable, the sync asks [AniList](https://anilist.co) instead (also free and keyless). AniList entries carry their MAL id, so titles are still keyed by and linked to MAL. See "When Jikan is down" below.
 - **Annotations** (refined score, review, tags, favorite character) live in a Cloudflare D1 database. The page is built with the annotations that exist at build time and re-checks the API on load, so an edit shows up without a rebuild.
 
 ## Stack
@@ -68,6 +69,17 @@ Status mapping: Oglądam → Watching, Obejrzane → Completed, Planuje → Plan
 ```
 
 Push the file (this starts the sync) or run `npm run sync`. The MAL id is the number in the MAL URL: `myanimelist.net/anime/48569/...`.
+
+## When Jikan is down
+
+Jikan is a volunteer-run service and has outages. The sync then falls back to AniList for every title it still needs:
+
+- Titles are matched with the same rules and keep their MAL id, so links and annotation keys do not change.
+- Covers, genres, studios, episode counts and lengths come from AniList. Its genre list differs a little from MAL's.
+- There is no MAL score in that data, so the MAL score column and the "Sort: MAL score" option are hidden until at least one MAL score is known.
+- On the first run where Jikan answers again, every entry that only has AniList data is replaced with MAL data, and titles AniList could not match confidently are searched again on Jikan. Nothing needs to be done by hand.
+
+`data/unmatched.md` says how many titles currently use backup data.
 
 ## Editing annotations
 
@@ -169,7 +181,8 @@ Limits as published at the time of writing. This site uses a tiny fraction of ea
 | GitHub (public repository) | Code, Actions | Actions minutes are free for public repositories | No | Scheduled workflows are switched off after 60 days without repository activity |
 | GitHub OAuth app | Admin sign-in | Free | No | No |
 | Jikan API | MAL metadata | No key; 3 requests per second, 60 per minute | No | No |
-| MyAnimeList CDN | Cover images | Hot-linked, lazy-loaded | No | No |
+| AniList API | Backup metadata when Jikan is down | No key; 90 requests per minute (30 while AniList runs in its degraded mode) | No | No |
+| MyAnimeList CDN, AniList CDN | Cover images | Hot-linked, lazy-loaded | No | No |
 
 About the 60-day rule: the sync makes a small "heartbeat" commit to `data/sync-meta.json` when nothing else has changed for 30 days, so the schedule stays active on its own.
 
@@ -177,7 +190,7 @@ About the 60-day rule: the sync makes a small "heartbeat" commit to `data/sync-m
 
 ```
 data/            import/ (CSV exports), anime.json, mal-cache.json, overrides.json, unmatched.md, sync-meta.json
-scripts/         sync.ts and its parsers, matcher, Jikan client; postbuild.ts (security headers); screenshot helpers
+scripts/         sync.ts and its parsers, matcher, Jikan and AniList clients; postbuild.ts (security headers); screenshot helpers
 src/config/      rating.ts (tiers), site.ts
 src/lib/         shared model, filtering, HTML templates used by both the build and the browser
 src/pages/       index.astro, admin.astro, 404.astro, data.json.ts

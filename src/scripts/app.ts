@@ -64,6 +64,11 @@ function syncControls(): void {
   if (selGenre.value !== state.genre) state.genre = '';
   if (selType.value !== state.type) state.type = '';
   if (selTier.value !== state.tier) state.tier = '';
+  if (selSort.value !== state.sort) {
+    state.sort = DEFAULT_STATE.sort;
+    state.dir = DEFAULT_DIR[state.sort];
+    selSort.value = state.sort;
+  }
   sortDir.dataset.dir = state.dir;
   sortDir.setAttribute('aria-label', `Sort direction: ${state.dir === 'asc' ? 'ascending' : 'descending'}`);
   list.dataset.view = state.view;

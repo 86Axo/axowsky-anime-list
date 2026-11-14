@@ -5,395 +5,67 @@ and the right MyAnimeList id to `data/overrides.json`, then run the sync again.
 
 | Result | Count |
 | --- | ---: |
-| Exact title match | 0 |
-| High confidence | 0 |
-| Low confidence | 0 |
+| Exact title match | 277 |
+| High confidence | 58 |
+| Low confidence | 19 |
 | Manual override | 0 |
-| Unmatched | 0 |
-| Waiting for Jikan | 368 |
+| Unmatched | 14 |
+| Waiting for a source | 0 |
 | **Total** | **368** |
+
+354 titles currently use backup data from AniList, because Jikan was unreachable. They are matched by the same rules,
+keep their MAL ids and links, and are replaced by MyAnimeList data on the first run where Jikan answers.
+Low-confidence and unmatched titles from AniList are searched again on Jikan at that point.
 
 ## Low confidence
 
-None.
+| OA title | Type | OA slug | Matched MAL entry | Similarity | Runner-up |
+| --- | --- | --- | --- | ---: | --- |
+| Akujiki Reijou to Kyouketsu Koushaku | TV | `akujiki-reijou-to-kyouketsu-koushaku-sono-mamono-watashi-ga-oishiku-itadakimasu` | [Akujiki Reijou to Kyouketsu Koushaku: Sono Mamono, Watashi ga Oishiku Itadakimasu!](https://myanimelist.net/anime/60162) · TV | 0.619 |  |
+| Date A Live Episode 13: Date to Date | OVA | `date-a-live-episode-13-date-to-date` | [Date A Live: DATE TO DATE](https://myanimelist.net/anime/17641) · OVA | 0.807 | [Date A Live II: Kurumi Star Festival](https://myanimelist.net/anime/22961) (0.456) |
+| Enen no Shouboutai 2: Ni no Shou | TV | `enen-no-shouboutai-2-ni-no-shou` | [Enen no Shouboutai: Ni no Shou](https://myanimelist.net/anime/40956) · TV | 0.752 | [Enen no Shouboutai: San no Shou](https://myanimelist.net/anime/51818) (0.466) |
+| Hataraku Maou-sama!! (2023) | TV | `hataraku-maou-sama-2023` | [Hataraku Maou-sama!!](https://myanimelist.net/anime/48413) · TV | 0.9 | [Hataraku Maou-sama!](https://myanimelist.net/anime/15809) (0.9) |
+| Kami no Tou: Ouji no Kikan | TV | `kami-no-tou-2nd-season` | [Kami no Tou: Tower of God 2nd Season](https://myanimelist.net/anime/52635) · TV | 0.763 | [Kami no Tou: Tower of God](https://myanimelist.net/anime/40221) (0.571) |
+| Kimetsu no Yaiba: Hashira Gou Kaigi - Chouyashiki Hen | Movie | `kimetsu-no-yaiba-hashira-gou-kaigi-chouyashiki-hen` | [Kimetsu no Yaiba: Hashira Geiko-hen](https://myanimelist.net/anime/55701) · TV | 0.607 | [Kimetsu no Yaiba: Mugen Ressha-hen](https://myanimelist.net/anime/40456) (0.543) |
+| Mushoku Tensei II: Isekai Ittara Honki Dasu - Shugo Jutsushi Fitz | Special | `mushoku-tensei-ii-isekai-ittara-honki-dasu-shugo-jutsushi-fitz` | [Mushoku Tensei II: Isekai Ittara Honki Dasu](https://myanimelist.net/anime/51179) · TV | 0.704 | [Mushoku Tensei II: Isekai Ittara Honki Dasu Part 2](https://myanimelist.net/anime/55888) (0.439) |
+| My Hero Academia Jump Festa 2016 Special, Rescue! Rescue Training! | OVA | `my-hero-academia-jump-festa-2016-special-rescue-rescue-training` | [Boku no Hero Academia: Sukue! Kyuujo Kunren!](https://myanimelist.net/anime/33929) · OVA | 0.737 | [Boku no Hero Academia No. 170+1: More](https://myanimelist.net/anime/63130) (0.41) |
+| Naruto: Shippuuden Movie 2 - Kizuna | Movie | `naruto-shippuuden-movie-2-kizuna` | [NARUTO: Shippuuden - Kizuna](https://myanimelist.net/anime/4437) · Movie | 0.852 | [NARUTO: Shippuuden Movie](https://myanimelist.net/anime/2472) (0.83) |
+| Naruto: Shippuuden Movie 5 - Blood Prison | Movie | `naruto-shippuuden-movie-5-blood-prison` | [NARUTO: Blood Prison](https://myanimelist.net/anime/10589) · Movie | 0.898 | [NARUTO: Shippuuden Movie](https://myanimelist.net/anime/2472) (0.746) |
+| Naruto: Shippuuden Movie 6 - Road to Ninja | Movie | `naruto-shippuuden-movie-6-road-to-ninja` | [NARUTO: Shippuuden Movie](https://myanimelist.net/anime/2472) · Movie | 0.733 | [ROAD TO NINJA: NARUTO THE MOVIE](https://myanimelist.net/anime/13667) (0.716) |
+| Naruto: Shippuuden Movie 7 - The Last | Movie | `naruto-shippuuden-movie-7-the-last` | [NARUTO: Shippuuden Movie](https://myanimelist.net/anime/2472) · Movie | 0.853 | [NARUTO: Shippuuden - Kizuna](https://myanimelist.net/anime/4437) (0.804) |
+| Re:Zero kara Hajimeru Isekai Seikatsu: Shin Henshuu-ban | TV | `re-zero-kara-hajimeru-isekai-seikatsu-shin-henshuu-ban` | [Re:Zero kara Hajimeru Isekai Seikatsu](https://myanimelist.net/anime/31240) · TV | 0.809 | [Re:Zero kara Hajimeru Isekai Seikatsu 2nd Season](https://myanimelist.net/anime/39587) (0.785) |
+| Shingeki no Kyojin 4: The Final Season Part 2 | TV | `shingeki-no-kyojin-4-the-final-season-part-2` | [Shingeki no Kyojin: The Final Season](https://myanimelist.net/anime/40028) · TV | 0.618 | [Shingeki no Kyojin Season 3 Part 2](https://myanimelist.net/anime/38524) (0.449) |
+| Sugar Apple Fairy Tale (2023) | TV | `sugar-apple-fairy-tale-2023` | [Sugar Apple Fairy Tale](https://myanimelist.net/anime/49980) · TV | 1 | [Sugar Apple Fairy Tale Part 2](https://myanimelist.net/anime/54842) (0.6) |
+| Tensei shitara Slime Datta Ken 2nd Season: Kanwa - Veldora Nikki 2 | Special | `tensei-shitara-slime-datta-ken-2nd-season-kanwa-veldora-nikki-2` | [Tensei Shitara Slime Datta Ken 2nd Season](https://myanimelist.net/anime/39551) · TV | 0.684 | [Tensei Shitara Slime Datta Ken OVA](https://myanimelist.net/anime/38793) (0.347) |
+| Tensei shitara Slime Datta Ken 4th Season | TV | `tensei-shitara-slime-datta-ken-dai-4-ki` | [Tensei Shitara Slime Datta Ken 4th Season Part 1 & 2](https://myanimelist.net/anime/59970) · TV | 0.86 | [Tensei Shitara Slime Datta Ken 4th Season Part 3](https://myanimelist.net/anime/63129) (0.644) |
+| Tensei shitara Slime Datta Ken: Kanwa - Veldora Nikki | Special | `tensei-shitara-slime-datta-ken-kanwa-veldora-nikki` | [Tensei Shitara Slime Datta Ken OVA](https://myanimelist.net/anime/38793) · OVA | 0.732 | [Tensei Shitara Slime Datta Ken: Tensura Nikki](https://myanimelist.net/anime/41488) (0.704) |
+| Tsuki ga Michibiku Isekai Douchuu Dai Maku 2 | TV | `tsuki-ga-michibiku-isekai-douchuu-2` | [Tsuki ga Michibiku Isekai Douchuu 2nd Season](https://myanimelist.net/anime/49889) · TV | 0.791 | [Tsuki ga Michibiku Isekai Douchuu](https://myanimelist.net/anime/43523) (0.469) |
 
 ## Unmatched
 
-None.
-
-## Waiting for Jikan
-
-Jikan was unreachable during the last run. These are looked up on the next run.
-
-- [Omae Gotoki ga Maou ni Kateru to Omouna] to Yuusha Party wo Tsuihou sareta node, Outo de Kimama ni Kurashitai
-- 3-gatsu no Lion
-- 86: Eighty Six
-- 86: Eighty Six Part 2
-- 91 Days
-- Akagami no Shirayuki-hime
-- Akagami no Shirayuki-hime 2nd Season
-- Akatsuki no Yona
-- Akatsuki no Yona Season 2
-- Akudama Drive
-- Akujiki Reijou to Kyouketsu Koushaku
-- Akuyaku Reijou Level 99
-- Amnesia
-- Angel Beats!
-- Another
-- Ansatsusha de Aru Ore no Status ga Yuusha yori mo Akiraka ni Tsuyoi no da ga
-- Arifureta Shokugyou de Sekai Saikyou
-- Arknights: Enshin Shomei
-- Arknights: Fuyukomori Kaerimichi
-- Arknights: Reimei Zensou
-- Assault Lily: Bouquet
-- Atri: My Dear Moments
-- Black Clover (TV)
-- Black Clover 2nd Season
-- Bleach
-- Blue Archive the Animation
-- Blue Lock
-- Blue Lock vs. U-20 Japan
-- Boku dake ga Inai Machi
-- Boku no Hero Academia
-- Boku no Hero Academia 2nd Season
-- Boku no Hero Academia 3rd Season
-- Boku no Hero Academia 4th Season
-- Boku no Hero Academia 5th Season
-- Boku no Hero Academia 6th Season
-- Boku no Hero Academia 7th Season
-- Boku no Hero Academia the Movie 1: Futari no Hero
-- Boku no Hero Academia: Final Season
-- Boku no Hero Academia: Ikinokore! Kesshi no Survival Kunren
-- Boku no Hero Academia: Training of the Dead
-- Boku no Kokoro no Yabai Yatsu
-- Boku no Kokoro no Yabai Yatsu 2
-- Boruto: Naruto Next Generations
-- Boruto: Naruto the Movie
-- Boushoku no Berserk
-- Buchigire Reijou wa Houfuku wo Chikaimashita. Madousho no Chikara de Sokoku wo Tatakitsubushimasu
-- Bukiyou na Senpai.
-- Byousoku 5 Centimeter
-- Charlotte
-- Choujin Koukousei-tachi wa Isekai demo Yoyuu de Ikinuku you desu!
-- Chuunibyou demo Koi ga Shitai!
-- Chuunibyou demo Koi ga Shitai! Ren
-- Clannad
-- Clevatess: Majuu no Ou to Akago to Shikabane no Yuusha
-- Code Geass: Hangyaku no Lelouch
-- Code Geass: Hangyaku no Lelouch R2
-- Corpse Party: Tortured Souls - Bougyakusareta Tamashii no Jukyou
-- Dan Da Dan
-- Danganronpa 3: The End of Kibougamine Gakuen - Mirai Hen
-- Danganronpa 3: The End of Kibougamine Gakuen - Zetsubou Hen
-- Danganronpa: Kibou no Gakuen to Zetsubou no Koukousei The Animation
-- Darling In The FranXX
-- Darwin`s Game
-- Date A Bullet 2: Nightmare or Queen
-- Date A Bullet: Dead or Bullet
-- Date A Live
-- Date A Live Episode 13: Date to Date
-- Date A Live II
-- Date A Live II: Kurumi Star Festival
-- Date A Live III
-- Date A Live IV
-- Date A Live Movie: Mayuri Judgment
-- Date A Live V
-- Dead Account
-- Death Note
-- Donten ni Warau
-- Dororo
-- Doumo, Suki na Hito ni Horegusuri wo Irai sareta Majo desu.
-- Eiga Black Clover: Mahou Mikado no Ken
-- Eiyuuou, Bu wo Kiwameru Tame Tenseisu: Soshite, Sekai Saikyou no Minarai Kishi
-- Elfen Lied
-- Enen no Shouboutai
-- Enen no Shouboutai 2: Ni no Shou
-- Euphoria
-- Fairy Tail
-- Fate/Stay Night
-- Fumetsu no Anata e
-- Futsutsuka na Akujo dewa Gozaimasu ga: Suuguu Chouso Torikae Den
-- FX Senshi Kurumi-chan
-- Gachiakuta
-- Gekai Elise
-- Goblin Slayer
-- Goblin Slayer 2nd Season
-- Goblin Slayer: Goblins Crown
-- Gosick
-- Grancrest Senki
-- Guild no Uketsukejou desu ga, Zangyou wa Iya nanode Boss wo Solo Toubatsu Shiyou to Omoimasu
-- Guilty Crown
-- Guimi Zhi Zhu: Xiaochou Pian
-- Hai to Gensou no Grimgar
-- Hametsu no Oukoku
-- Hataraku Maou-sama!
-- Hataraku Maou-sama! 2nd Season
-- Hataraku Maou-sama!! (2023)
-- Hazure Waku no [Joutai Ijou Skill] de ou ni Natta Ore ga Subete o Juurin Suru made
-- Hell Mode: Yarikomizuki no Gamer wa Hai Settei no Isekai de Musou Suru
-- Heroine? Seijo? Iie, All Works Maid desu (Hokori)!
-- Hige wo Soru. Soshite Joshikousei wo Hirou.
-- High School DxD
-- High School DxD BorN
-- High School DxD Hero
-- High School DxD New
-- High School DxD New: Oppai, Tsutsumimasu!
-- High School DxD OVA
-- Higurashi no Naku Koro ni
-- Hikaru ga Shinda Natsu
-- Hikikomari Kyuuketsuki no Monmon
-- Hitsugi no Chaika
-- Hortensia Saga
-- Hoshifuru Oukoku no Nina
-- Hotaru no Yomeiri
-- Houseki no Kuni (TV)
-- Hunter X Hunter (2011)
-- Hyouka
-- Hyouken no Majutsushi ga Sekai wo Suberu
-- Isekai Shikkaku
-- Isshun de Chiryou shiteita noni Yakutatazu to Tsuihou sareta Tensai Chiyushi, Yami Healer toshite Tanoshiku Ikiru
-- Jigokuraku
-- Jigokuraku 2nd Season
-- Jiyi Guanli Ju (2026)
-- Jujutsu Kaisen (TV)
-- Jujutsu Kaisen (TV) 2nd Season
-- Jujutsu Kaisen 0 Movie
-- Kage no Jitsuryokusha ni Naritakute!
-- Kage no Jitsuryokusha ni Naritakute! 2nd Season
-- Kaijuu 8-gou
-- Kaijuu 8-gou 2nd Season
-- Kaijuu 8-gou Movie
-- Kami no Tou
-- Kami no Tou: Ouji no Kikan
-- Kamisama ni Natta Hi
-- Kankin Kuiki Level X
-- Kanojo ga Koushaku-tei ni Itta Riyuu
-- Kanpekisugite Kawaige ga Nai to Konyaku Haki sareta Seijo wa Ringoku ni Urareru
-- Kaoru Hana wa Rin to Saku
-- Karakai Jouzu no Takagi-san
-- Karakai Jouzu no Takagi-san 2
-- Karakai Jouzu no Takagi-san 3
-- Karakai Jouzu no Takagi-san Movie
-- Katsute Mahou Shoujo to Aku wa Tekitai Shite Ita.
-- Kawaii Dake ja Nai Shikimori-san
-- Keikenzumi na Kimi to, Keiken Zero na Ore ga, Otsukiai suru Hanashi.
-- Kemono Jihen
-- Kenja no Deshi wo Nanoru Kenja
-- Kimetsu no Yaiba
-- Kimetsu no Yaiba: Hashira Geiko-hen
-- Kimetsu no Yaiba: Hashira Gou Kaigi - Chouyashiki Hen
-- Kimetsu no Yaiba: Katanakaji no Sato-hen
-- Kimetsu no Yaiba: Mugen Ressha-hen
-- Kimetsu no Yaiba: Yuukaku-hen
-- Kimi ga Shinu made Koi wo Shitai
-- Kimi no Na wa.
-- Kishuku Gakkou no Juliet
-- Kizoku Tensei: Megumareta Umare kara Saikyou no Chikara wo Eru
-- Koe no Katachi
-- Kono Subarashii Sekai ni Shukufuku wo!
-- Kono Subarashii Sekai ni Shukufuku wo! 2
-- Kono Subarashii Sekai ni Shukufuku wo!: Kurenai Densetsu
-- Koutetsujou no Kabaneri
-- Kubo-san wa Mob wo Yurusanai
-- Kuroiwa Medaka ni Watashi no Kawaii ga Tsuujinai
-- Kusuriya no Hitorigoto
-- Kyouran Reijou Nia Liston: Byoujaku Reijou ni Tensei shita Kamigoroshi no Bujin no Karei Naru Musouroku
-- Long Zu
-- Loop 7-kaime no Akuyaku Reijou wa, Moto Tekikoku de Jiyuu Kimama na Hanayome Seikatsu wo Mankitsu suru
-- Lv2 kara Cheat datta Motoyuusha Kouho no Mattari Isekai Life
-- Magi: The Kingdom of Magic
-- Magi: The Labyrinth of Magic
-- Mahou Shoujo Madoka★Magica
-- Mahou Shoujo ni Akogarete
-- Majo no Tabitabi
-- Majo to Yajuu
-- Make Heroine ga Oosugiru!
-- Maou Gakuin no Futekigousha 2
-- Maou Gakuin no Futekigousha: Shijou Saikyou no Maou no Shiso, Tensei shite Shison-tachi no Gakkou e
-- Maou Gakuin no Futekigousha: Shijou Saikyou no Maou no Shiso, Tensei Shite Shison-tachi no Gakkou e Kayou II (2 Cour)
-- Masamune-kun no Revenge
-- Masamune-kun no Revenge 2
-- Mashle
-- Mashle Season 2
-- Mizu Zokusei no Mahoutsukai
-- Mofa Gongzhu De Xiao Fannao
-- Monster
-- Motto To LOVE-Ru
-- Mushoku Tensei II: Isekai Ittara Honki Dasu
-- Mushoku Tensei II: Isekai Ittara Honki Dasu - Shugo Jutsushi Fitz
-- Mushoku Tensei: Isekai Ittara Honki Dasu
-- Mushoku Tensei: Isekai Ittara Honki Dasu part 2
-- My Hero Academia Jump Festa 2016 Special, Rescue! Rescue Training!
-- Nageki no Bourei wa Intai shitai
-- Nanatsu no Taizai
-- Nanatsu no Taizai 3: Kamigami no Gekirin
-- Nanatsu no Taizai Movie 2: Hikari ni Norowareshi Mono-tachi
-- Nanatsu no Taizai: Fundo no Shinpan
-- Nanatsu no Taizai: Imashime no Fukkatsu
-- Nanatsu no Taizai: Seisen no Shirushi
-- Naruto
-- Naruto Shippuuden
-- Naruto: Shippuuden Movie 1
-- Naruto: Shippuuden Movie 2 - Kizuna
-- Naruto: Shippuuden Movie 4 - The Lost Tower
-- Naruto: Shippuuden Movie 5 - Blood Prison
-- Naruto: Shippuuden Movie 6 - Road to Ninja
-- Naruto: Shippuuden Movie 7 - The Last
-- Natsu e no Tunnel, Sayonara no Deguchi
-- Nigashita Sakana wa Ookikatta ga Tsuriageta Sakana ga Ookisugita Ken
-- Nijusseiki Denki Mokuroku: Eureka Evrika
-- Ninja Kamui
-- No Game No Life
-- No Game No Life: Zero
-- Noragami
-- Noragami Aragoto
-- Nozomanu Fushi no Boukensha
-- Nukitashi THE ANIMATION
-- Okiraku Ryoushu no Tanoshii Ryouchi Bouei: Seisankei Majutsu de Na mo Naki Mura wo Saikyou no Jousai Toshi ni
-- One Piece
-- One Punch Man
-- One Punch Man 2nd Season
-- One Punch Man 3rd Season
-- Oni no Hanayome
-- Oniichan wa Oshimai!
-- Ookami to Koushinryou
-- Ore dake Level Up na Ken
-- Ore dake Level Up na Ken Season 2: Arise from the Shadow
-- Oroka na Tenshi wa Akuma to Odoru
-- Oshi no Ko
-- Oshi no Ko 2nd Season
-- Otonari no Tenshi-sama ni Itsunomanika Dame Ningen ni Sareteita Ken
-- Planetarian: Chiisana Hoshi no Yume
-- Plastic Memories
-- Plunderer
-- Psycho-Pass
-- Pyramid Game
-- Ranpo Kitan: Game of Laplace
-- Re:Monster
-- Re:Zero kara Hajimeru Isekai Seikatsu: Shin Henshuu-ban
-- Rewrite
-- Romelia Senki
-- Ryuuou no Oshigoto!
-- Saijo no Osewa: Takane no Hanadarake na Meimonkou de, Gakuin Ichi no Ojousama (Seikatsu Nouryoku Kaimu) wo Kagenagara Osewa suru Koto ni Narimashita
-- Saikyou Degarashi Ouji no Anyaku Teii Arasoi: Munou wo Enjiru SS Rank Ouji wa Koui Keishou-sen wo Kage kara Shihai suru
-- Saikyou no Ousama, Nidome no Jinsei wa Nani wo Suru?
-- Sakamoto Days
-- Sakamoto Days Part 2
-- Sakurasou no Pet na Kanojo
-- Sasayaku You ni Koi o Utau
-- Sayonara Lara
-- Sayonara no Asa ni Yakusoku no Hana wo Kazarou
-- Seirei Gensouki
-- Seishun Buta Yarou wa Bunny Girl Senpai no Yume wo Minai
-- Sekai Saikou no Ansatsusha, Isekai Kizoku ni Tensei suru
-- Sentouin, Hakenshimasu!
-- Serial Experiments Lain
-- Shakugan no Shana
-- Shibou Yuugi de Meshi wo Kuu.
-- Shikanoko Nokonoko Koshitantan
-- Shingeki no Kyojin
-- Shingeki no Kyojin 4: The Final Season
-- Shingeki no Kyojin 4: The Final Season Part 2
-- Shingeki no Kyojin 4: The Final Season Part 3
-- Shingeki no Kyojin Season 2
-- Shingeki no Kyojin Season 3
-- Shingeki no Kyojin Season 3: Part 2
-- Shinjiteita Nakama-tachi ni Dungeon Okuchi de Korosarekaketa ga Gift [Mugen Gacha] de Level 9999 no Nakama-tachi wo Te ni Irete Moto Party Member to Sekai ni Fukushuu & [Zamaa!] Shimasu!
-- Shinmai Ossan Boukensha, Saikyou Party ni Shinu Hodo Kitaerarete Muteki ni Naru.
-- Shinmai Renkinjutsushi no Tenpo Keiei
-- Shuiro no Kamen
-- Shunkashuutou Daikousha: Haru no Mai
-- Shuumatsu Nani Shitemasu ka? Isogashii desu ka? Sukutte Moratte Ii desu ka
-- Shuumatsu no Walkure
-- Shuumatsu no Walkure II
-- Silent Witch: Chinmoku no Majo no Kakushigoto
-- Sora yori mo Tooi Basho
-- Sousou no Frieren
-- Sugar Apple Fairy Tale
-- Sugar Apple Fairy Tale (2023)
-- Suki na Ko ga Megane wo Wasureta
-- Summer Pockets
-- Sword Art Online
-- Sword Art Online II
-- Sword Art Online Movie: Ordinal Scale
-- Sword Art Online: Alicization
-- Sword Art Online: Alicization – War of Underworld
-- Takopii no Genzai
-- Tantei wa Mou, Shindeiru.
-- Tate no Yuusha no Nariagari
-- Tate no Yuusha no Nariagari 2
-- Tate no Yuusha no Nariagari 3
-- Tenkou-saki no Seiso Karen na Bishoujo ga, Mukashi Danshi to Omotte Issho ni Asonda Osananajimi Datta Ken
-- Tensei Oujo to Tensai Reijou no Mahou Kakumei
-- Tensei shita Daiseijo wa, Seijo de Aru Koto wo Hitakakusu
-- Tensei shitara Dainana Ouji Datta node, Kimama ni Majutsu wo Kiwamemasu
-- Tensei shitara Dainana Ouji Datta node, Kimama ni Majutsu wo Kiwamemasu 2
-- Tensei shitara Ken deshita
-- Tensei shitara Slime Datta Ken
-- Tensei shitara Slime Datta Ken 2nd Season
-- Tensei shitara Slime Datta Ken 2nd Season Part 2
-- Tensei shitara Slime Datta Ken 2nd Season: Kanwa - Veldora Nikki 2
-- Tensei shitara Slime Datta Ken 3
-- Tensei shitara Slime Datta Ken 4th Season
-- Tensei shitara Slime Datta Ken Movie: Guren no Kizuna-hen
-- Tensei shitara Slime Datta Ken OVA
-- Tensei shitara Slime Datta Ken: Coleus no Yume
-- Tensei shitara Slime Datta Ken: Kanwa - Veldora Nikki
-- Tensura Nikki: Tensei shitara Slime Datta Ken
-- The God of High School
-- The Grimm Variations
-- Tokidoki Bosotto Russia-go de Dereru Tonari no Alya-san
-- Tokyo Ghoul
-- Tokyo Ghoul √A
-- Tokyo Ghoul:re
-- Tokyo Ghoul:re 2nd Season
-- Tomodachi Game
-- Tongari Boushi no Atelier
-- Toradora!
-- Toumei na Yoru ni Kakeru Kimi to, Me ni Mienai Koi wo Shita.
-- Trigun Stampede
-- Trinity Seven
-- Tsue to Tsurugi no Wistoria
-- Tsuihou sareta Tensei Juukishi wa Game Chishiki de Musou suru
-- Tsuihousha Shokudou e Youkoso!
-- Tsuki ga Michibiku Isekai Douchuu
-- Tsuki ga Michibiku Isekai Douchuu Dai Maku 2
-- Tu Bian Yingxiong X
-- Uzumaki
-- Violet Evergarden
-- Violet Evergarden Movie
-- ViVid Strike!
-- Wind Breaker
-- Wind Breaker Season 2
-- World Trigger
-- World Trigger 2nd Season
-- World Trigger 3rd Season
-- Xian Wang de Richang Shenghuo
-- Xian Wang de Richang Shenghuo 2
-- Xian Wang de Richang Shenghuo 3
-- Xian Wang de Richang Shenghuo 4
-- Yahari Ore no Seishun Love Comedy wa Machigatteiru.
-- Yahari Ore no Seishun Love Comedy wa Machigatteiru. Kan
-- Yahari Ore no Seishun Love Comedy wa Machigatteiru. Zoku
-- Yakusoku no Neverland
-- Yakusoku no Neverland 2nd Season
-- Yamada-kun to Lv999 no Koi o Suru
-- Yarinaoshi Reijou wa Ryuutei Heika o Kouryakuchuu
-- Yasei no Last Boss ga Arawareta!
-- Yosuga no Sora: In Solitude, Where We Are Least Alone.
-- Youjo Senki
-- Youjo Senki 2
-- Youjo Senki Movie
-- Youkoso Jitsuryoku Shijou Shugi no Kyoushitsu e
-- Youkoso Jitsuryoku Shijou Shugi no Kyoushitsu e (TV) 2nd Season
-- Youkoso Jitsuryoku Shijou Shugi no Kyoushitsu e (TV) 3rd Season
-- Yozakura-san Chi no Daisakusen
-- Yubisaki to Renren
-- Yumemiru Danshi wa Genjitsushugisha
-- Yuuki Yuuna wa Yuusha de Aru
-- Yuusha Party ni Kawaii Ko ga Ita node, Kokuhaku shitemita.
-- Yuusha-kei ni Shosu: Choubatsu Yuusha 9004-tai Keimu Kiroku
+| OA title | Type | OA slug |
+| --- | --- | --- |
+| Akatsuki no Yona Season 2 | TV | `akatsuki-no-yona-zoku-hen` |
+| Akuyaku Reijou Level 99 | TV | `akuyaku-reijou-level-99-watashi-wa-ura-boss-desu-ga-maou-de-wa-arimasen` |
+| Arknights: Fuyukomori Kaerimichi | TV | `arknights-fuyukomori-kaerimichi` |
+| Date A Bullet 2: Nightmare or Queen | Movie | `date-a-bullet-2-nightmare-or-queen` |
+| Eiga Black Clover: Mahou Mikado no Ken | Movie | `black-clover-mahou-tei-no-ken` |
+| Goblin Slayer: Goblins Crown | Movie | `goblin-slayer-goblins-crown` |
+| Hoshifuru Oukoku no Nina | TV | `hoshi-furu-oukoku-no-nina` |
+| Kyouran Reijou Nia Liston: Byoujaku Reijou ni Tensei shita Kamigoroshi no Bujin no Karei Naru Musouroku | TV | `kyouran-reijou-nia-liston-byoujaku-reijou-ni-tensei-shita-kamigoroshi-no-bujin-no-karei-naru-musouroku` |
+| Maou Gakuin no Futekigousha 2 | TV | `maou-gakuin-no-futekigousha-2` |
+| Nanatsu no Taizai 3: Kamigami no Gekirin | TV | `nanatsu-no-taizai-3-kamigami-no-gekirin` |
+| Nanatsu no Taizai Movie 2: Hikari ni Norowareshi Mono-tachi | Movie | `nanatsu-no-taizai-movie-2-hikari-ni-norowareshi-mono-tachi` |
+| Oniichan wa Oshimai! | TV | `oniichan-wa-oshimai` |
+| Shingeki no Kyojin 4: The Final Season Part 3 | Special | `shingeki-no-kyojin-the-final-season-2023` |
+| Tensei shita Daiseijo wa, Seijo de Aru Koto wo Hitakakusu | TV | `tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu` |
 
 ## Same MAL entry matched more than once
 
-None.
+- [Kimetsu no Yaiba: Hashira Geiko-hen](https://myanimelist.net/anime/55701) ← "Kimetsu no Yaiba: Hashira Geiko-hen" (`kimetsu-no-yaiba-4-hashira-geiko-hen`), "Kimetsu no Yaiba: Hashira Gou Kaigi - Chouyashiki Hen" (`kimetsu-no-yaiba-hashira-gou-kaigi-chouyashiki-hen`)
+- [Mushoku Tensei II: Isekai Ittara Honki Dasu](https://myanimelist.net/anime/51179) ← "Mushoku Tensei II: Isekai Ittara Honki Dasu" (`mushoku-tensei-ii-isekai-ittara-honki-dasu`), "Mushoku Tensei II: Isekai Ittara Honki Dasu - Shugo Jutsushi Fitz" (`mushoku-tensei-ii-isekai-ittara-honki-dasu-shugo-jutsushi-fitz`)
+- [NARUTO: Shippuuden Movie](https://myanimelist.net/anime/2472) ← "Naruto: Shippuuden Movie 1" (`naruto-shippuuden-movie-1`), "Naruto: Shippuuden Movie 6 - Road to Ninja" (`naruto-shippuuden-movie-6-road-to-ninja`), "Naruto: Shippuuden Movie 7 - The Last" (`naruto-shippuuden-movie-7-the-last`)
+- [Shingeki no Kyojin: The Final Season](https://myanimelist.net/anime/40028) ← "Shingeki no Kyojin 4: The Final Season" (`shingeki-no-kyojin-4-the-final-season`), "Shingeki no Kyojin 4: The Final Season Part 2" (`shingeki-no-kyojin-4-the-final-season-part-2`)
+- [Sugar Apple Fairy Tale](https://myanimelist.net/anime/49980) ← "Sugar Apple Fairy Tale" (`sugar-apple-fairy-tale`), "Sugar Apple Fairy Tale (2023)" (`sugar-apple-fairy-tale-2023`)
+- [Tensei Shitara Slime Datta Ken 2nd Season](https://myanimelist.net/anime/39551) ← "Tensei shitara Slime Datta Ken 2nd Season" (`tensei-shitara-slime-datta-ken-2nd-season`), "Tensei shitara Slime Datta Ken 2nd Season: Kanwa - Veldora Nikki 2" (`tensei-shitara-slime-datta-ken-2nd-season-kanwa-veldora-nikki-2`)
+- [Tensei Shitara Slime Datta Ken OVA](https://myanimelist.net/anime/38793) ← "Tensei shitara Slime Datta Ken OVA" (`tensei-shitara-slime-datta-ken-ova`), "Tensei shitara Slime Datta Ken: Kanwa - Veldora Nikki" (`tensei-shitara-slime-datta-ken-kanwa-veldora-nikki`)

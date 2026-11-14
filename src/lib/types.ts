@@ -46,6 +46,8 @@ export interface MalInfo {
   themes: string[];
   demographics: string[];
   studios: string[];
+  /** Present when this came from the AniList backup because Jikan was down. Absent means MyAnimeList data. */
+  source?: 'anilist';
 }
 
 export type MatchConfidence = 'override' | 'exact' | 'high' | 'low' | 'none';

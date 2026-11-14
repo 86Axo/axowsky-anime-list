@@ -9,8 +9,10 @@ interface Props {
   description?: string;
   noindex?: boolean;
   path?: string;
+  /** Origins to open a connection to early (the cover image hosts in use). */
+  preconnect?: string[];
 }
-const { title = SITE.title, description = SITE.description, noindex = false, path = '/' } = Astro.props;
+const { title = SITE.title, description = SITE.description, noindex = false, path = '/', preconnect = [] } = Astro.props;
 const canonical = new URL(path, SITE.url).href;
 const ogImage = new URL('/og.png', SITE.url).href;
 ---
@@ -29,7 +31,7 @@ const ogImage = new URL('/og.png', SITE.url).href;
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="preload" href={interLatin} as="font" type="font/woff2" crossorigin />
-    <link rel="preconnect" href="https://cdn.myanimelist.net" />
+    {preconnect.map((origin) => <link rel="preconnect" href={origin} />)}
     {
       !noindex && (
         <>

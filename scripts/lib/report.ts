@@ -10,6 +10,7 @@ const malLink = (id: number, title: string): string => `[${cell(title)}](https:/
  */
 export function renderReport(entries: AnimeEntry[], records: Map<string, MatchRecord>, pending: string[]): string {
   const count = (c: string) => entries.filter((e) => e.match.confidence === c).length;
+  const fromAniList = entries.filter((e) => e.mal?.source === 'anilist').length;
   const pendingSet = new Set(pending);
   const low = entries.filter((e) => e.match.confidence === 'low');
   const none = entries.filter((e) => e.match.confidence === 'none' && !pendingSet.has(e.title));
@@ -36,9 +37,17 @@ export function renderReport(entries: AnimeEntry[], records: Map<string, MatchRe
     `| Low confidence | ${low.length} |`,
     `| Manual override | ${count('override')} |`,
     `| Unmatched | ${none.length} |`,
-    `| Waiting for Jikan | ${waiting.length} |`,
+    `| Waiting for a source | ${waiting.length} |`,
     `| **Total** | **${entries.length}** |`,
     '',
+    ...(fromAniList > 0
+      ? [
+          `${fromAniList} titles currently use backup data from AniList, because Jikan was unreachable. They are matched by the same rules,`,
+          'keep their MAL ids and links, and are replaced by MyAnimeList data on the first run where Jikan answers.',
+          'Low-confidence and unmatched titles from AniList are searched again on Jikan at that point.',
+          '',
+        ]
+      : []),
   ];
 
   lines.push('## Low confidence', '');
@@ -63,7 +72,7 @@ export function renderReport(entries: AnimeEntry[], records: Map<string, MatchRe
   }
 
   if (waiting.length > 0) {
-    lines.push('## Waiting for Jikan', '', 'Jikan was unreachable during the last run. These are looked up on the next run.', '');
+    lines.push('## Waiting for a source', '', 'Neither Jikan nor AniList was reachable during the last run. These are looked up on the next run.', '');
     for (const e of waiting) lines.push(`- ${e.title}`);
     lines.push('');
   }

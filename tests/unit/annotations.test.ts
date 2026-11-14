@@ -9,7 +9,7 @@ import {
 } from '../../src/lib/annotations';
 import { activityByMonth, annotate, computeStats, inProgress, tierCounts, topRated, type ListItem } from '../../src/lib/model';
 import { applyState, DEFAULT_STATE, parseState, stateToQuery } from '../../src/lib/query';
-import { esc, niceMax, renderItem, tierBadge } from '../../src/lib/render';
+import { esc, largeCover, niceMax, renderItem, tierBadge } from '../../src/lib/render';
 
 const item = (title: string, extra: Partial<ListItem> = {}): ListItem => ({
   key: `oa:${title.toLowerCase()}`,
@@ -229,6 +229,13 @@ describe('render', () => {
     const [matched, unmatched] = annotate([item('X', { malId: 6547 }), item('Y & Z')], {});
     expect(renderItem(matched!)).toContain('href="https://myanimelist.net/anime/6547" target="_blank" rel="noopener"');
     expect(renderItem(unmatched!)).toContain('href="https://myanimelist.net/anime.php?q=Y%20%26%20Z&amp;cat=anime"');
+  });
+
+  it('derives the larger cover URL for MAL and AniList images', () => {
+    expect(largeCover('https://cdn.myanimelist.net/images/anime/1/2.webp')).toBe('https://cdn.myanimelist.net/images/anime/1/2l.webp');
+    expect(largeCover('https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx1-a.jpg')).toBe(
+      'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx1-a.jpg',
+    );
   });
 
   it('rounds chart axes to clean numbers', () => {

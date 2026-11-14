@@ -28,7 +28,7 @@ const csp = [
   "default-src 'self'",
   `script-src 'self' ${[...hashes].join(' ')}`.trim(),
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: https://cdn.myanimelist.net",
+  "img-src 'self' data: https://cdn.myanimelist.net https://s4.anilist.co",
   "font-src 'self'",
   "connect-src 'self'",
   "base-uri 'self'",

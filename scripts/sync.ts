@@ -10,9 +10,10 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { SITE } from '../src/config/site';
 import type { AnimeEntry, Dataset, MalInfo, MatchConfidence, OaEntry } from '../src/lib/types';
+import { AniListClient, AniListUnavailableError, aniListToMalInfo, BATCH_SIZE, toCandidate, type AniListMedia } from './lib/anilist';
 import { dateFromCsvName, decodeCsv, parseOaCsv } from './lib/csv';
-import { JikanClient, JikanUnavailableError, toMalInfo, type JikanAnime } from './lib/jikan';
-import { jikanTypeParam, matchKey, normalizeTitle, pickBestMatch, shortenQuery, type MatchResult } from './lib/match';
+import { JikanClient, JikanUnavailableError, jikanYear, toMalInfo, type JikanAnime } from './lib/jikan';
+import { jikanTypeParam, matchKey, normalizeTitle, pickBestMatch, searchQueries, shortenQuery, type MatchResult } from './lib/match';
 import { buildEntries, mergeSources, type ResolvedMatch } from './lib/merge';
 import { fetchOaList } from './lib/oa-html';
 import { renderReport } from './lib/report';
@@ -33,6 +34,8 @@ const REFRESH_AIRING_DAYS = 7;
 const REFRESH_FINISHED_DAYS = 120;
 const RETRY_UNMATCHED_DAYS = 30;
 const MAX_REFRESH_PER_RUN = 60;
+/** Upgrading AniList backup data to MAL data is one request per title; allow a whole list in one run. */
+const MAX_UPGRADE_PER_RUN = 500;
 /** A commit at least this often keeps GitHub from disabling the scheduled workflow. */
 const HEARTBEAT_DAYS = 30;
 
@@ -44,6 +47,8 @@ export interface MatchRecord {
   matchedTitle: string | null;
   runnerUp: MatchResult['runnerUp'];
   checkedAt: string;
+  /** Set when the match came from the AniList backup instead of Jikan. */
+  source?: 'anilist';
 }
 
 interface Cache {
@@ -170,7 +175,7 @@ async function main(): Promise<void> {
     } catch (err) {
       if (!(err instanceof JikanUnavailableError)) throw err;
       jikanDown = true;
-      console.warn(`  Jikan is unavailable (${err.message}). Keeping cached data; the next run will continue.`);
+      console.warn(`  Jikan is unavailable (${err.message}).`);
       return undefined;
     }
   };
@@ -179,49 +184,145 @@ async function main(): Promise<void> {
     const pool = new Map<number, JikanAnime>();
     const run = async (query: string, type: string | null) => {
       for (const a of await client.search(query, type)) pool.set(a.mal_id, a);
-      return pickBestMatch(row.title, row.type, row.total, [...pool.values()]);
+      const candidates = [...pool.values()].map((a) => ({ ...a, year: jikanYear(a) }));
+      return pickBestMatch(row.title, row.type, row.total, candidates);
     };
     const settled = (r: MatchResult) => r.confidence === 'exact' || r.confidence === 'high';
 
-    let result = await run(shortenQuery(row.title, 100), jikanTypeParam(row.type));
-    // Not convincing? Search again without the type filter, then with a shorter query.
-    if (!settled(result) && jikanTypeParam(row.type)) result = await run(shortenQuery(row.title, 100), null);
-    if (!settled(result) && row.title.length > 60) result = await run(shortenQuery(row.title, 60), null);
+    const full = shortenQuery(row.title, 100);
+    let result = await run(full, jikanTypeParam(row.type));
+    // Not convincing? Search again without the type filter, then with progressively looser queries.
+    if (!settled(result) && jikanTypeParam(row.type)) result = await run(full, null);
+    for (const query of searchQueries(row.title)) {
+      if (settled(result)) break;
+      if (query !== full) result = await run(query, null);
+    }
 
     if (result.malId !== null) storeAnime(pool.get(result.malId)!);
     return { title: row.title, ...result, checkedAt: today };
   };
 
-  let searched = 0;
-  const pending: string[] = [];
+  // What needs looking up this run.
+  const todo: OaEntry[] = [];
+  /** Titles whose AniList answer was weak: worth asking Jikan again, but not AniList. */
+  const jikanOnly = new Set<OaEntry>();
+  const overrideIds = new Set<number>();
   for (const row of merged.entries) {
-    const mk = matchKey(row.title, row.type);
     const override = overrideFor(row);
     if (override !== undefined) {
-      if (override !== null && !cache.anime[String(override)]) {
-        const a = await guard(() => client.byId(override));
-        if (a) storeAnime(a);
-        else if (a === null) console.warn(`  overrides.json: MAL id ${override} for "${row.title}" does not exist`);
-      }
+      if (override !== null && !cache.anime[String(override)]) overrideIds.add(override);
       continue;
     }
-    const cached = cache.matches[mk];
-    const retryUnmatched = cached?.malId === null && daysSince(cached.checkedAt) >= RETRY_UNMATCHED_DAYS;
-    if (cached && !retryUnmatched) continue;
-    const record = await guard(() => searchAndMatch(row));
-    if (!record) {
-      if (!cached) pending.push(row.title);
-      continue;
+    const cached = cache.matches[matchKey(row.title, row.type)];
+    if (!cached || (cached.malId === null && daysSince(cached.checkedAt) >= RETRY_UNMATCHED_DAYS)) todo.push(row);
+    else if (cached.source === 'anilist' && (cached.malId === null || cached.confidence === 'low')) {
+      todo.push(row);
+      jikanOnly.add(row);
     }
-    cache.matches[mk] = record;
+  }
+
+  // First choice: Jikan (MyAnimeList data).
+  let searched = 0;
+  const saveRecord = (row: OaEntry, record: MatchRecord) => {
+    cache.matches[matchKey(row.title, row.type)] = record;
     cacheDirty = true;
-    searched++;
-    if (searched % 25 === 0) {
+    if (++searched % 25 === 0) {
       saveCache();
-      console.log(`  matched ${searched} new titles…`);
+      console.log(`  matched ${searched} titles…`);
+    }
+  };
+  const leftoverIds: number[] = [];
+  for (const id of overrideIds) {
+    const a = await guard(() => client.byId(id));
+    if (a) storeAnime(a);
+    else if (a === null) console.warn(`  overrides.json: MAL id ${id} does not exist`);
+    else leftoverIds.push(id);
+  }
+  const leftover: OaEntry[] = [];
+  for (const row of todo) {
+    const record = await guard(() => searchAndMatch(row));
+    if (record) saveRecord(row, record);
+    else if (!jikanOnly.has(row)) leftover.push(row);
+  }
+
+  // Backup: AniList, only for what Jikan could not answer because it is down.
+  const anilist = new AniListClient();
+  let viaAniList = 0;
+  if (!OFFLINE && (leftover.length > 0 || leftoverIds.length > 0)) {
+    console.log(`  Using AniList as a backup for ${leftover.length} titles.`);
+    const storeAniList = (m: AniListMedia) => {
+      const existing = cache.anime[String(m.idMal)];
+      if (existing && existing.data.source !== 'anilist') return; // never replace MAL data with backup data
+      cache.anime[String(m.idMal)] = { fetchedAt: today, data: aniListToMalInfo(m) };
+      cacheDirty = true;
+    };
+    try {
+      for (let i = 0; i < leftoverIds.length; i += 50) {
+        for (const m of await anilist.byMalIds(leftoverIds.slice(i, i + 50))) if (m.idMal !== null) storeAniList(m);
+      }
+
+      const pools = new Map<OaEntry, Map<number, AniListMedia>>(leftover.map((row) => [row, new Map()]));
+      const pick = (row: OaEntry): MatchResult =>
+        pickBestMatch(
+          row.title,
+          row.type,
+          row.total,
+          [...pools.get(row)!.values()].map(toCandidate).filter((c) => c !== null),
+          { lenientTypes: true }, // AniList files many shows under a different format than MAL
+        );
+      const settled = (r: MatchResult) => r.confidence === 'exact' || r.confidence === 'high';
+
+      // Up to four passes with progressively looser queries; each pass only asks about titles still unsettled.
+      const queries = new Map(leftover.map((row) => [row, searchQueries(row.title)]));
+      for (let pass = 0; pass < 4; pass++) {
+        const rows = leftover.filter((row) => queries.get(row)![pass] !== undefined && !settled(pick(row)));
+        for (let i = 0; i < rows.length; i += BATCH_SIZE) {
+          const batch = rows.slice(i, i + BATCH_SIZE);
+          const results = await anilist.searchMany(batch.map((row) => queries.get(row)![pass]!));
+          batch.forEach((row, j) => {
+            for (const m of results[j] ?? []) if (m.idMal !== null) pools.get(row)!.set(m.idMal, m);
+          });
+        }
+      }
+
+      for (const row of leftover) {
+        const result = pick(row);
+        if (result.malId !== null) storeAniList(pools.get(row)!.get(result.malId)!);
+        saveRecord(row, { title: row.title, ...result, checkedAt: today, source: 'anilist' });
+        viaAniList++;
+      }
+    } catch (err) {
+      if (!(err instanceof AniListUnavailableError)) throw err;
+      console.warn(`  AniList is unavailable too (${err.message}). The next run will continue.`);
+    }
+  }
+  // Two list rows must not share one MAL entry. Keep the better-supported claim and
+  // flag the others as low confidence, so they show up in the report for a manual check.
+  const claims = new Map<number, OaEntry[]>();
+  for (const row of merged.entries) {
+    if (overrideFor(row) !== undefined) continue;
+    const rec = cache.matches[matchKey(row.title, row.type)];
+    if (rec && rec.malId !== null) claims.set(rec.malId, [...(claims.get(rec.malId) ?? []), row]);
+  }
+  const rank: Record<MatchConfidence, number> = { override: 4, exact: 3, high: 2, low: 1, none: 0 };
+  for (const [malId, rows] of claims) {
+    if (rows.length < 2) continue;
+    const malTitle = cache.anime[String(malId)]?.data.title.trim().toLowerCase();
+    const strength = (row: OaEntry): number => {
+      const rec = cache.matches[matchKey(row.title, row.type)]!;
+      return (row.title.trim().toLowerCase() === malTitle ? 10 : 0) + rank[rec.confidence] + rec.score;
+    };
+    for (const row of [...rows].sort((a, b) => strength(b) - strength(a)).slice(1)) {
+      const rec = cache.matches[matchKey(row.title, row.type)]!;
+      if (rec.confidence !== 'low') {
+        rec.confidence = 'low';
+        cacheDirty = true;
+      }
     }
   }
   saveCache();
+
+  const pending = todo.filter((row) => !cache.matches[matchKey(row.title, row.type)]).map((row) => row.title);
 
   const resolveMatch = (row: OaEntry): ResolvedMatch => {
     const override = overrideFor(row);
@@ -240,14 +341,18 @@ async function main(): Promise<void> {
     const mal = resolveMatch(row).mal;
     if (mal) inUse.add(mal.id);
   }
-  const stale = [...inUse]
-    .map((id) => cache.anime[String(id)]!)
+  const cachedInUse = [...inUse].map((id) => cache.anime[String(id)]!);
+  // Entries that only have AniList backup data are upgraded to MAL data as soon as Jikan answers.
+  const upgrades = cachedInUse.filter(({ data }) => data.source === 'anilist').slice(0, MAX_UPGRADE_PER_RUN);
+  const aged = cachedInUse
     .filter(({ fetchedAt, data }) => {
+      if (data.source === 'anilist') return false;
       const limit = data.airing || data.airStatus === 'Not yet aired' ? REFRESH_AIRING_DAYS : REFRESH_FINISHED_DAYS;
       return daysSince(fetchedAt) >= limit;
     })
     .sort((a, b) => a.fetchedAt.localeCompare(b.fetchedAt))
     .slice(0, MAX_REFRESH_PER_RUN);
+  const stale = [...upgrades, ...aged];
   let refreshed = 0;
   for (const item of stale) {
     const a = await guard(() => client.byId(item.data.id));
@@ -299,8 +404,10 @@ async function main(): Promise<void> {
       `  low:          ${by('low')}   (see data/unmatched.md)`,
       `  override:     ${by('override')}`,
       `  unmatched:    ${by('none') - pending.length}`,
-      `  pending:      ${pending.length}${pending.length ? '   (Jikan unavailable; will retry next run)' : ''}`,
-      `Jikan requests: ${client.requests} (${searched} titles searched, ${refreshed} refreshed)`,
+      `  pending:      ${pending.length}${pending.length ? '   (no source reachable; will retry next run)' : ''}`,
+      `  from AniList: ${entries.filter((e) => e.mal?.source === 'anilist').length}   (backup data; replaced by MAL data once Jikan answers)`,
+      `Jikan requests: ${client.requests} (${searched - viaAniList} titles matched, ${refreshed} refreshed)`,
+      `AniList requests: ${anilist.requests} (${viaAniList} titles matched)`,
       `Dataset:        ${changed ? 'updated' : 'unchanged'}`,
     ].join('\n'),
   );

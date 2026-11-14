@@ -39,6 +39,11 @@ const firstPage = applyState(items, DEFAULT_STATE).slice(0, PAGE_SIZE);
 const allGenres = [...new Set(items.flatMap((i) => i.genres))].sort();
 const usedTypes = ANIME_TYPES.filter((t) => items.some((i) => i.type === t));
 const started = items.filter((i) => i.status !== 'Plan to Watch').length;
+// Cover hosts actually used on the first screenful, most used first.
+const imageOrigins = [...new Set(items.flatMap((i) => (i.image ? [new URL(i.image).origin] : [])))].slice(0, 2);
+// MAL scores only come from Jikan. While none are known, the column and the sort option are left out.
+const hasMalScores = items.some((i) => i.malScore !== null);
+const usesAniList = (dataset.entries as AnimeEntry[]).some((e) => e.mal?.source === 'anilist');
 const updated = new Date(`${syncMeta.lastChange}T00:00:00Z`).toLocaleDateString('en-GB', {
   day: 'numeric',
   month: 'long',
@@ -48,7 +53,7 @@ const updated = new Date(`${syncMeta.lastChange}T00:00:00Z`).toLocaleDateString(
 
 ---
 
-<Layout>
+<Layout preconnect={imageOrigins}>
   <a class="skip" href="#list">Skip to the list</a>
 
   <header class="topbar">
@@ -169,7 +174,7 @@ const updated = new Date(`${syncMeta.lastChange}T00:00:00Z`).toLocaleDateString(
                 <option value="score">Sort: my score</option>
                 <option value="title">Sort: title</option>
                 <option value="added">Sort: date added</option>
-                <option value="mal">Sort: MAL score</option>
+                {hasMalScores && <option value="mal">Sort: MAL score</option>}
               </select>
             </div>
             <button class="icon-btn" id="sort-dir" type="button" data-dir="desc" aria-label="Sort direction: descending">
@@ -201,7 +206,7 @@ const updated = new Date(`${syncMeta.lastChange}T00:00:00Z`).toLocaleDateString(
         </p>
       </div>
 
-      <div class="list-wrap" id="list-wrap" data-view="list">
+      <div class="list-wrap" id="list-wrap" data-view="list" data-no-mal={hasMalScores ? undefined : ''}>
         <div class="list-head" aria-hidden="true">
           <span>Title</span>
           <span>Status</span>
@@ -274,7 +279,13 @@ const updated = new Date(`${syncMeta.lastChange}T00:00:00Z`).toLocaleDateString(
     <div class="wrap footer__inner">
       <p>
         Data updated {updated}. List from <a href={SITE.oa.listUrl} target="_blank" rel="noopener">OglądajAnime</a>, metadata and covers from{' '}
-        <a href="https://myanimelist.net" target="_blank" rel="noopener">MyAnimeList</a> via <a href="https://jikan.moe" target="_blank" rel="noopener">Jikan</a>.
+        <a href="https://myanimelist.net" target="_blank" rel="noopener">MyAnimeList</a> via <a href="https://jikan.moe" target="_blank" rel="noopener">Jikan</a>{
+          usesAniList && (
+            <>
+              , with <a href="https://anilist.co" target="_blank" rel="noopener">AniList</a> as a backup
+            </>
+          )
+        }.
       </p>
       <p><a href={SITE.repoUrl} target="_blank" rel="noopener">Source</a></p>
     </div>
