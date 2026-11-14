@@ -107,3 +107,40 @@ test('/admin is gated on the server', async ({ request }) => {
   const me = await (await request.get('/api/auth/me')).json();
   expect(me).toMatchObject({ authenticated: false, mode: 'github' });
 });
+
+test('the admin page edits an annotation inline', async ({ browser, request }) => {
+  const cookie = await sessionCookie(E2E.adminGithubId);
+  // The session cookie is Secure and __Host- prefixed; sending it as a header works on plain-http localhost.
+  const context = await browser.newContext({ extraHTTPHeaders: { Cookie: cookie } });
+  const page = await context.newPage();
+  await page.goto('/admin/');
+  await expect(page.locator('#adm-user')).toHaveText('Signed in as e2e-admin');
+
+  await page.locator('#adm-search').fill('angel beats');
+  const row = page.locator('.adm-row:visible');
+  await expect(row).toHaveCount(1);
+  await row.locator('summary').click();
+  await row.locator('[name="refinedScore"]').fill('96');
+  await row.locator('[name="tags"]').fill('made me cry, rewatchable');
+  await row.locator('[name="review"]').fill('Admin e2e review.');
+  await row.getByRole('button', { name: 'Save' }).click();
+  await expect(row.locator('.adm-status')).toHaveText('Saved.');
+  await expect(row.locator('.tier__num')).toHaveText('96');
+  await expect(row.locator('.adm-flag')).toContainText('refined 96');
+  await page.screenshot({ path: 'test-results/admin.png' });
+
+  const stored = Object.values((await (await request.get('/api/annotations')).json()).annotations) as { review: string | null }[];
+  expect(stored.some((a) => a.review === 'Admin e2e review.')).toBe(true);
+
+  // An out-of-range score is refused by the script too, not only by the input's own max attribute.
+  await row.locator('[name="refinedScore"]').fill('140');
+  await row.locator('[name="refinedScore"]').evaluate((el: HTMLInputElement) => el.removeAttribute('max'));
+  await row.getByRole('button', { name: 'Save' }).click();
+  await expect(row.locator('.adm-status')).toContainText('must be a whole number');
+
+  await row.getByRole('button', { name: 'Clear all' }).click();
+  await expect(row.locator('.adm-status')).toHaveText('Cleared.');
+  const after = Object.values((await (await request.get('/api/annotations')).json()).annotations) as { review: string | null }[];
+  expect(after.some((a) => a.review === 'Admin e2e review.')).toBe(false);
+  await context.close();
+});
