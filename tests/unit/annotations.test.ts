@@ -9,7 +9,7 @@ import {
 } from '../../src/lib/annotations';
 import { activityByMonth, annotate, computeStats, inProgress, tierCounts, topRated, type ListItem } from '../../src/lib/model';
 import { applyState, DEFAULT_STATE, parseState, stateToQuery } from '../../src/lib/query';
-import { esc, largeCover, niceMax, renderItem, tierBadge } from '../../src/lib/render';
+import { cover, esc, largeCover, niceMax, renderItem, tierBadge } from '../../src/lib/render';
 
 const item = (title: string, extra: Partial<ListItem> = {}): ListItem => ({
   key: `oa:${title.toLowerCase()}`,
@@ -240,5 +240,42 @@ describe('render', () => {
 
   it('rounds chart axes to clean numbers', () => {
     expect([3, 17, 40, 41, 169].map(niceMax)).toEqual([4, 20, 40, 50, 200]);
+  });
+});
+
+describe('cover images', () => {
+  const [mal, anilist, none] = annotate(
+    [
+      item('Mal', { image: 'https://cdn.myanimelist.net/images/anime/1/2.webp' }),
+      item('Ani', { image: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx1-a.jpg' }),
+      item('[Bracketed] title'),
+    ],
+    {},
+  );
+
+  it('keeps a fixed box, lazy loading and alt text', () => {
+    const html = cover(mal!);
+    expect(html).toContain('width="225" height="318"');
+    expect(html).toContain('loading="lazy"');
+    expect(html).toContain('alt="Mal cover"');
+    expect(html).not.toContain('srcset');
+  });
+
+  it('offers the small AniList variant for thumbnails and lets the browser choose by rendered size', () => {
+    const html = cover(anilist!);
+    expect(html).toContain('/cover/small/bx1-a.jpg 100w');
+    expect(html).toContain('/cover/medium/bx1-a.jpg 230w');
+    expect(html).toContain('sizes="auto"');
+  });
+
+  it('loads priority covers eagerly without a srcset that needs lazy loading', () => {
+    const html = cover(anilist!, { eager: true, priority: true });
+    expect(html).toContain('loading="eager"');
+    expect(html).toContain('fetchpriority="high"');
+    expect(html).not.toContain('sizes="auto"');
+  });
+
+  it('shows the first letter or digit of the title when there is no cover', () => {
+    expect(cover(none!)).toContain('>B</span>');
   });
 });

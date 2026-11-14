@@ -41,21 +41,33 @@ export const malUrl = (item: Pick<ViewItem, 'malId' | 'title'>): string =>
 export const largeCover = (url: string): string =>
   url.includes('anilist.co') ? url.replace('/cover/medium/', '/cover/large/') : url.replace(/(\.\w+)$/, 'l$1');
 
+/** AniList also serves a ~100px version, enough for the small thumbnails. MAL has no useful equivalent. */
+export const smallCover = (url: string): string | null =>
+  url.includes('anilist.co') && url.includes('/cover/medium/') ? url.replace('/cover/medium/', '/cover/small/') : null;
+
 interface CoverOptions {
+  /** Offer the ~425px version too (for the featured cover). */
   large?: boolean;
+  /** Load right away instead of lazily (covers near the top of the page). */
   eager?: boolean;
+  /** Ask the browser to fetch this one first (the likely largest image on first paint). */
+  priority?: boolean;
   sizes?: string;
 }
 
 /** Cover image with a fixed 225:318 box so nothing shifts while it loads. */
-export function cover(item: ViewItem, { large = false, eager = false, sizes }: CoverOptions = {}): string {
+export function cover(item: ViewItem, { large = false, eager = false, priority = false, sizes }: CoverOptions = {}): string {
   if (!item.image) {
     return `<span class="cover cover--empty" aria-hidden="true">${esc(item.title.replace(/[^\p{L}\p{N}]/gu, '').slice(0, 1).toUpperCase())}</span>`;
   }
-  const srcset = large ? ` srcset="${esc(item.image)} 225w, ${esc(largeCover(item.image))} 425w" sizes="${esc(sizes ?? '225px')}"` : '';
+  const small = smallCover(item.image);
+  let srcset = '';
+  if (large) srcset = ` srcset="${esc(item.image)} 225w, ${esc(largeCover(item.image))} 425w" sizes="${esc(sizes ?? '225px')}"`;
+  // sizes="auto" lets the browser pick by the rendered width, which differs between list and grid view.
+  else if (small && !eager) srcset = ` srcset="${esc(small)} 100w, ${esc(item.image)} 230w" sizes="auto"`;
   return (
     `<img class="cover" src="${esc(item.image)}"${srcset} width="225" height="318" alt="${esc(item.title)} cover"` +
-    ` loading="${eager ? 'eager' : 'lazy'}" decoding="async"${eager ? ' fetchpriority="high"' : ''}>`
+    ` loading="${eager ? 'eager' : 'lazy'}" decoding="async"${priority ? ' fetchpriority="high"' : ''}>`
   );
 }
 
@@ -100,10 +112,11 @@ export function renderStats(s: Stats): string {
 
 export function renderWatching(shown: ViewItem[], totalWatching: number): string {
   if (shown.length === 0) return `<li class="watch-empty">Nothing in progress right now.</li>`;
+  // The first cards are on screen (or nearly) at load: fetch them right away, the very first with priority.
   const cards = shown.map(
-    (item) =>
+    (item, idx) =>
       `<li class="watch-card">` +
-      `<div class="watch-card__cover">${cover(item)}</div>` +
+      `<div class="watch-card__cover">${cover(item, { eager: idx < 3, priority: idx === 0 })}</div>` +
       titleLink(item, 'watch-card__title cover-link') +
       progressBar(item) +
       (item.final === null ? '' : tierBadge(item.final, true)) +
