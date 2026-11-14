@@ -52,7 +52,7 @@ npm run sync -- --no-oa    # do not contact OglądajAnime, use the CSV
 npm run sync -- --offline  # no network at all
 ```
 
-The sync commits `data/anime.json` only when something changed, and that commit triggers the redeploy.
+The sync commits `data/anime.json` only when something changed, and then starts the deploy.
 
 Status mapping: Oglądam → Watching, Obejrzane → Completed, Planuje → Plan to Watch, Wstrzymane → On Hold, Porzucone → Dropped. OA's "Nie oglądam" (progress without a list status) becomes Completed when every episode is watched, otherwise On Hold.
 
@@ -128,10 +128,15 @@ For `/admin` locally, copy `.dev.vars.example` to `.dev.vars` and fill it in.
 One-time setup:
 
 1. **D1 database**: `npx wrangler login`, then `npx wrangler d1 create axo86-annotations`. Copy the printed `database_id` into `wrangler.toml`, then `npm run db:migrate`.
-2. **Pages project**: Cloudflare dashboard → Workers & Pages → Create → Pages → Connect to Git → pick this repository. Project name `axo86`, build command `npm run build`, output directory `dist`. The D1 binding and `ADMIN_GITHUB_ID` are read from `wrangler.toml`.
-3. **Admin sign-in**: see the next section.
+2. **Pages project**: Cloudflare dashboard → Workers & Pages → Create → at the bottom, "Looking to deploy Pages? Get started" → Import an existing Git repository → pick this repository. Project name `axo86`, build command `npm run build`, output directory `dist`. The D1 binding and `ADMIN_GITHUB_ID` are read from `wrangler.toml`.
+3. **Deploy token**: the `Deploy` workflow builds the site in GitHub Actions and uploads it with wrangler, on every push to `main` and after every sync that changed the data. It needs two repository secrets:
+   - `CLOUDFLARE_API_TOKEN`: Cloudflare dashboard → My Profile → API Tokens → Create Token → Custom token → permission *Account · Cloudflare Pages · Edit*.
+   - `CLOUDFLARE_ACCOUNT_ID`: the account id shown on the Workers & Pages overview.
 
-After that, every push to `main` deploys.
+   Set them with `gh secret set CLOUDFLARE_API_TOKEN` and `gh secret set CLOUDFLARE_ACCOUNT_ID` (each prompts for the value). Until they are set the workflow only prints a warning.
+4. **Admin sign-in**: see the next section.
+
+After that, every push to `main` and every data change deploys. Cloudflare's own Git-triggered builds are not relied on: in this project they did not start on push, and the workflow makes the deploy visible next to the sync that caused it.
 
 ### Admin setup (GitHub sign-in)
 
@@ -163,11 +168,13 @@ If you prefer Cloudflare Access (Zero Trust), create an Access application cover
 | `GITHUB_CLIENT_ID` | Pages secret | no, but kept with the others | GitHub OAuth app id |
 | `GITHUB_CLIENT_SECRET` | Pages secret | yes | GitHub OAuth app secret |
 | `ADMIN_GITHUB_ID` | `wrangler.toml` `[vars]` | no | Numeric id of the GitHub account allowed to sign in |
+| `CLOUDFLARE_API_TOKEN` | GitHub repository secret | yes | Lets the Deploy workflow upload to Cloudflare Pages (Pages: Edit only) |
+| `CLOUDFLARE_ACCOUNT_ID` | GitHub repository secret | no, but kept out of the public repo | Which Cloudflare account to deploy to |
 | `ACCESS_TEAM_DOMAIN`, `ACCESS_AUD` | Pages variables | no | Only for the Cloudflare Access alternative |
 | `BAKE_ANNOTATIONS` | build environment | no | Set to `0` to build without fetching annotations (used by the tests) |
 | `DB` | `wrangler.toml` D1 binding | no | The annotations database |
 
-The sync workflow needs no secrets: it uses the built-in `GITHUB_TOKEN` to commit. No secret is ever committed; `.dev.vars` and `.env*` are git-ignored.
+The sync itself needs no secrets: it uses the built-in `GITHUB_TOKEN` to commit. No secret is ever committed; `.dev.vars` and `.env*` are git-ignored.
 
 ## Free tiers used
 
