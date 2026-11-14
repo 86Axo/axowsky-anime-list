@@ -7,9 +7,9 @@ compatibility_date = "2026-10-01"
 [vars]
 ADMIN_GITHUB_ID = "177529564"
 
-# D1 database for annotations. Replace database_id after `wrangler d1 create axo86-annotations`.
+# D1 database for annotations (created with `wrangler d1 create axo86-annotations`). The id is not a secret.
 [[d1_databases]]
 binding = "DB"
 database_name = "axo86-annotations"
-database_id = "00000000-0000-0000-0000-000000000000"
+database_id = "f3f5818c-cf34-4323-8f72-12af4876aada"
 migrations_dir = "migrations"
