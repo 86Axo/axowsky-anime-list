@@ -164,7 +164,13 @@ export function renderItem(item: ViewItem): string {
     item.review || item.favoriteCharacter
       ? `<details class="note"><summary>${item.review ? 'Review' : 'Favorite character'}</summary><div class="note__body">` +
         (item.review ? `<p>${esc(item.review)}</p>` : '') +
-        (item.favoriteCharacter ? `<p class="note__fav">Favorite character: ${esc(item.favoriteCharacter)}</p>` : '') +
+        (item.favoriteCharacter
+          ? `<p class="note__fav">` +
+            (item.favoriteCharacterImage
+              ? `<img class="note__avatar" src="${esc(item.favoriteCharacterImage)}" width="40" height="40" alt="" loading="lazy" decoding="async">`
+              : '') +
+            `<span>Favorite character: <strong>${esc(item.favoriteCharacter)}</strong></span></p>`
+          : '') +
         `</div></details>`
       : '';
   const added = item.added

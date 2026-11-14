@@ -51,8 +51,11 @@ import { SITE } from '../config/site';
         <input class="input" name="tags" type="text" placeholder="made me cry, rewatchable" autocomplete="off" />
       </label>
       <label class="adm-field">
-        <span>Favorite character</span>
-        <input class="input" name="favoriteCharacter" type="text" maxlength="80" autocomplete="off" />
+        <span>Favorite character (the picture is found from the name when you save)</span>
+        <span class="adm-char">
+          <img class="note__avatar" data-avatar width="40" height="40" alt="" hidden />
+          <input class="input" name="favoriteCharacter" type="text" maxlength="80" autocomplete="off" />
+        </span>
       </label>
       <label class="adm-field adm-field--wide">
         <span>Review</span>
@@ -157,6 +160,11 @@ import { SITE } from '../config/site';
   }
   .adm-field .input {
     color: var(--text);
+  }
+  .adm-char {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
   .adm-field--wide,
   .adm-actions {

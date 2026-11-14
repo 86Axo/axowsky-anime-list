@@ -49,6 +49,8 @@ export interface MatchRecord {
   checkedAt: string;
   /** Set when the match came from the AniList backup instead of Jikan. */
   source?: 'anilist';
+  /** Set when another list row has the stronger claim to the same MAL entry; the match is then not used. */
+  duplicate?: boolean;
 }
 
 interface Cache {
@@ -296,28 +298,38 @@ async function main(): Promise<void> {
       console.warn(`  AniList is unavailable too (${err.message}). The next run will continue.`);
     }
   }
-  // Two list rows must not share one MAL entry. Keep the better-supported claim and
-  // flag the others as low confidence, so they show up in the report for a manual check.
+  // Two list rows must not share one MAL entry. A manual override always keeps its entry;
+  // otherwise the better-supported claim wins. Losing rows are flagged: they show no cover
+  // or link (a wrong one is worse than none) and are listed in the report for a manual check.
+  const takenByOverride = new Set<number>();
   const claims = new Map<number, OaEntry[]>();
   for (const row of merged.entries) {
-    if (overrideFor(row) !== undefined) continue;
+    const override = overrideFor(row);
+    if (override !== undefined) {
+      if (override !== null) takenByOverride.add(override);
+      continue;
+    }
     const rec = cache.matches[matchKey(row.title, row.type)];
     if (rec && rec.malId !== null) claims.set(rec.malId, [...(claims.get(rec.malId) ?? []), row]);
   }
   const rank: Record<MatchConfidence, number> = { override: 4, exact: 3, high: 2, low: 1, none: 0 };
   for (const [malId, rows] of claims) {
-    if (rows.length < 2) continue;
     const malTitle = cache.anime[String(malId)]?.data.title.trim().toLowerCase();
     const strength = (row: OaEntry): number => {
       const rec = cache.matches[matchKey(row.title, row.type)]!;
       return (row.title.trim().toLowerCase() === malTitle ? 10 : 0) + rank[rec.confidence] + rec.score;
     };
-    for (const row of [...rows].sort((a, b) => strength(b) - strength(a)).slice(1)) {
+    const ordered = [...rows].sort((a, b) => strength(b) - strength(a));
+    const losers = new Set(takenByOverride.has(malId) ? ordered : ordered.slice(1));
+    for (const row of rows) {
       const rec = cache.matches[matchKey(row.title, row.type)]!;
-      if (rec.confidence !== 'low') {
-        rec.confidence = 'low';
-        cacheDirty = true;
+      const duplicate = losers.has(row);
+      if (duplicate && rec.confidence !== 'low') rec.confidence = 'low';
+      if (Boolean(rec.duplicate) !== duplicate) {
+        if (duplicate) rec.duplicate = true;
+        else delete rec.duplicate;
       }
+      cacheDirty = true;
     }
   }
   saveCache();
@@ -332,6 +344,7 @@ async function main(): Promise<void> {
     }
     const rec = cache.matches[matchKey(row.title, row.type)];
     if (!rec || rec.malId === null) return { mal: null, confidence: 'none', score: rec?.score ?? 0 };
+    if (rec.duplicate) return { mal: null, confidence: 'low', score: rec.score };
     return { mal: cache.anime[String(rec.malId)]?.data ?? null, confidence: rec.confidence, score: rec.score };
   };
 

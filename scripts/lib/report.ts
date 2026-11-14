@@ -57,7 +57,11 @@ export function renderReport(entries: AnimeEntry[], records: Map<string, MatchRe
     for (const e of low) {
       const rec = records.get(e.key);
       const runner = rec?.runnerUp ? `${malLink(rec.runnerUp.malId, rec.runnerUp.title)} (${rec.runnerUp.score})` : '';
-      const matched = e.mal ? `${malLink(e.mal.id, e.mal.title)} · ${e.mal.type ?? '?'}` : '';
+      const matched = e.mal
+        ? `${malLink(e.mal.id, e.mal.title)} · ${e.mal.type ?? '?'}`
+        : rec?.malId
+          ? `not used, another title already has ${malLink(rec.malId, rec.matchedTitle ?? String(rec.malId))}`
+          : '';
       lines.push(`| ${cell(e.title)} | ${e.type} | \`${e.slug ?? ''}\` | ${matched} | ${e.match.score} | ${runner} |`);
     }
     lines.push('');

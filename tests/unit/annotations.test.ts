@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { newSessionPayload, readCookie, signSession, verifySession } from '../../server/auth';
+import { lookupCharacterImage, pickCharacter, type CharacterInfo } from '../../server/characters';
 import {
   annotationsFingerprint,
   isEmptyAnnotation,
@@ -39,6 +40,7 @@ describe('sanitizeAnnotation', () => {
       review: 'great',
       tags: ['a', 'b'],
       favoriteCharacter: 'Yona',
+      favoriteCharacterImage: null,
     });
   });
 
@@ -117,7 +119,7 @@ describe('model', () => {
   ];
 
   it('applies refined scores by key and by the OA fallback key', () => {
-    const view = annotate(items, { 'oa:a': { refinedScore: 96, review: null, tags: ['x'], favoriteCharacter: null }, 'oa:f': { refinedScore: 55, review: 'ok', tags: [], favoriteCharacter: null } });
+    const view = annotate(items, { 'oa:a': { refinedScore: 96, review: null, tags: ['x'], favoriteCharacter: null, favoriteCharacterImage: null }, 'oa:f': { refinedScore: 55, review: 'ok', tags: [], favoriteCharacter: null, favoriteCharacterImage: null } });
     expect(view.find((i) => i.title === 'A')).toMatchObject({ final: 96, tierId: 'sp', tags: ['x'] });
     expect(view.find((i) => i.title === 'B')).toMatchObject({ final: 100, tierId: 'sp' });
     expect(view.find((i) => i.title === 'F')).toMatchObject({ final: 55, tierId: 'd', review: 'ok' });
@@ -212,7 +214,7 @@ describe('list state', () => {
 describe('render', () => {
   it('escapes data in HTML', () => {
     expect(esc(`<img src=x onerror="alert('x')">&`)).toBe('&lt;img src=x onerror=&quot;alert(&#39;x&#39;)&quot;&gt;&amp;');
-    const html = renderItem(annotate([item('<b>Evil</b>')], { 'oa:<b>evil</b>': { refinedScore: null, review: '<script>x</script>', tags: ['<i>'], favoriteCharacter: null } })[0]!);
+    const html = renderItem(annotate([item('<b>Evil</b>')], { 'oa:<b>evil</b>': { refinedScore: null, review: '<script>x</script>', tags: ['<i>'], favoriteCharacter: null, favoriteCharacterImage: null } })[0]!);
     expect(html).not.toContain('<b>Evil</b>');
     expect(html).not.toContain('<script>');
     expect(html).toContain('&lt;b&gt;Evil&lt;/b&gt;');
@@ -277,5 +279,78 @@ describe('cover images', () => {
 
   it('shows the first letter or digit of the title when there is no cover', () => {
     expect(cover(none!)).toContain('>B</span>');
+  });
+});
+
+describe('favorite character picture', () => {
+  const cast: CharacterInfo[] = [
+    { names: ['Shinei Nouzen', 'シンエイ・ノウゼン', 'Shin', 'Undertaker'], image: 'https://s4.anilist.co/file/anilistcdn/character/medium/shin.png' },
+    { names: ['Vladilena Milizé', 'ヴラディレーナ・ミリーゼ', 'Lena', 'Handler One'], image: 'https://s4.anilist.co/file/anilistcdn/character/medium/lena.png' },
+    { names: ['Raiden Shuga'], image: null },
+  ];
+
+  it('finds a character by full name, ignoring accents, case and name order', () => {
+    expect(pickCharacter('Vladilena Milize', cast)?.names[0]).toBe('Vladilena Milizé');
+    expect(pickCharacter('milize vladilena', cast)?.names[0]).toBe('Vladilena Milizé');
+    expect(pickCharacter('SHINEI NOUZEN', cast)?.names[0]).toBe('Shinei Nouzen');
+  });
+
+  it('accepts a first name, a nickname or a small typo', () => {
+    expect(pickCharacter('Lena', cast)?.names[0]).toBe('Vladilena Milizé');
+    expect(pickCharacter('Shinei', cast)?.names[0]).toBe('Shinei Nouzen');
+    expect(pickCharacter('Undertaker', cast)?.names[0]).toBe('Shinei Nouzen');
+    expect(pickCharacter('Raiden Shugo', cast)?.names[0]).toBe('Raiden Shuga');
+  });
+
+  it('returns nothing rather than a wrong character', () => {
+    expect(pickCharacter('Naruto Uzumaki', cast)).toBeNull();
+    expect(pickCharacter('', cast)).toBeNull();
+    expect(pickCharacter('Lena', [])).toBeNull();
+  });
+
+  it('looks the picture up by MAL id and survives a failing API', async () => {
+    const calls: unknown[] = [];
+    const ok = (async (_url: unknown, init?: { body?: unknown }) => {
+      calls.push(JSON.parse(String(init?.body)).variables);
+      return new Response(
+        JSON.stringify({
+          data: {
+            Media: {
+              characters: {
+                pageInfo: { hasNextPage: false },
+                nodes: [{ name: { full: 'Vladilena Milizé', native: null, alternative: ['Lena'] }, image: { medium: 'https://s4.anilist.co/file/anilistcdn/character/medium/lena.png' } }],
+              },
+            },
+          },
+        }),
+        { status: 200 },
+      );
+    }) as typeof fetch;
+    expect(await lookupCharacterImage(41457, 'Vladilena Milize', ok)).toBe('https://s4.anilist.co/file/anilistcdn/character/medium/lena.png');
+    expect(calls).toEqual([{ id: 41457, page: 1 }]);
+    expect(await lookupCharacterImage(41457, 'Somebody Else', ok)).toBeNull();
+    const down = (async () => {
+      throw new Error('network down');
+    }) as typeof fetch;
+    expect(await lookupCharacterImage(41457, 'Vladilena Milize', down)).toBeNull();
+  });
+
+  it('only accepts https pictures from the allowed image hosts, and only next to a name', () => {
+    const img = 'https://s4.anilist.co/file/anilistcdn/character/medium/lena.png';
+    expect(sanitizeAnnotation({ favoriteCharacter: 'Lena', favoriteCharacterImage: img }).favoriteCharacterImage).toBe(img);
+    expect(sanitizeAnnotation({ favoriteCharacterImage: img }).favoriteCharacterImage).toBeNull();
+    for (const bad of ['http://s4.anilist.co/x.png', 'https://evil.example/x.png', 'javascript:alert(1)', 'not a url', 42]) {
+      expect(sanitizeAnnotation({ favoriteCharacter: 'Lena', favoriteCharacterImage: bad }).favoriteCharacterImage).toBeNull();
+    }
+  });
+
+  it('shows the picture next to the name in the expandable note', () => {
+    const img = 'https://s4.anilist.co/file/anilistcdn/character/medium/lena.png';
+    const withPicture = annotate([item('X')], { 'oa:x': { refinedScore: null, review: null, tags: [], favoriteCharacter: 'Lena', favoriteCharacterImage: img } })[0]!;
+    const html = renderItem(withPicture);
+    expect(html).toContain(`<img class="note__avatar" src="${img}" width="40" height="40" alt="" loading="lazy"`);
+    expect(html).toContain('Favorite character: <strong>Lena</strong>');
+    const withoutPicture = annotate([item('X')], { 'oa:x': { refinedScore: null, review: null, tags: [], favoriteCharacter: 'Lena', favoriteCharacterImage: null } })[0]!;
+    expect(renderItem(withoutPicture)).not.toContain('note__avatar');
   });
 });

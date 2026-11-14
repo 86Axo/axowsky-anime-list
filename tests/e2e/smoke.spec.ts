@@ -20,8 +20,8 @@ test('loads the profile page with every section', async ({ page }) => {
   });
   await ready(page);
 
-  await expect(page).toHaveTitle("Axowsky's Anime List");
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText("Axowsky's Anime List");
+  await expect(page).toHaveTitle("Axo86's Anime List");
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText("Axo86's Anime List");
   for (const name of ['Currently watching', 'Top 10', 'Full list', 'Charts']) {
     await expect(page.getByRole('heading', { level: 2, name })).toBeVisible();
   }

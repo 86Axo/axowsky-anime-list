@@ -5,15 +5,15 @@ and the right MyAnimeList id to `data/overrides.json`, then run the sync again.
 
 | Result | Count |
 | --- | ---: |
-| Exact title match | 277 |
+| Exact title match | 276 |
 | High confidence | 58 |
-| Low confidence | 19 |
-| Manual override | 0 |
-| Unmatched | 14 |
+| Low confidence | 5 |
+| Manual override | 29 |
+| Unmatched | 0 |
 | Waiting for a source | 0 |
 | **Total** | **368** |
 
-354 titles currently use backup data from AniList, because Jikan was unreachable. They are matched by the same rules,
+364 titles currently use backup data from AniList, because Jikan was unreachable. They are matched by the same rules,
 keep their MAL ids and links, and are replaced by MyAnimeList data on the first run where Jikan answers.
 Low-confidence and unmatched titles from AniList are searched again on Jikan at that point.
 
@@ -21,51 +21,16 @@ Low-confidence and unmatched titles from AniList are searched again on Jikan at 
 
 | OA title | Type | OA slug | Matched MAL entry | Similarity | Runner-up |
 | --- | --- | --- | --- | ---: | --- |
-| Akujiki Reijou to Kyouketsu Koushaku | TV | `akujiki-reijou-to-kyouketsu-koushaku-sono-mamono-watashi-ga-oishiku-itadakimasu` | [Akujiki Reijou to Kyouketsu Koushaku: Sono Mamono, Watashi ga Oishiku Itadakimasu!](https://myanimelist.net/anime/60162) · TV | 0.619 |  |
-| Date A Live Episode 13: Date to Date | OVA | `date-a-live-episode-13-date-to-date` | [Date A Live: DATE TO DATE](https://myanimelist.net/anime/17641) · OVA | 0.807 | [Date A Live II: Kurumi Star Festival](https://myanimelist.net/anime/22961) (0.456) |
-| Enen no Shouboutai 2: Ni no Shou | TV | `enen-no-shouboutai-2-ni-no-shou` | [Enen no Shouboutai: Ni no Shou](https://myanimelist.net/anime/40956) · TV | 0.752 | [Enen no Shouboutai: San no Shou](https://myanimelist.net/anime/51818) (0.466) |
-| Hataraku Maou-sama!! (2023) | TV | `hataraku-maou-sama-2023` | [Hataraku Maou-sama!!](https://myanimelist.net/anime/48413) · TV | 0.9 | [Hataraku Maou-sama!](https://myanimelist.net/anime/15809) (0.9) |
-| Kami no Tou: Ouji no Kikan | TV | `kami-no-tou-2nd-season` | [Kami no Tou: Tower of God 2nd Season](https://myanimelist.net/anime/52635) · TV | 0.763 | [Kami no Tou: Tower of God](https://myanimelist.net/anime/40221) (0.571) |
-| Kimetsu no Yaiba: Hashira Gou Kaigi - Chouyashiki Hen | Movie | `kimetsu-no-yaiba-hashira-gou-kaigi-chouyashiki-hen` | [Kimetsu no Yaiba: Hashira Geiko-hen](https://myanimelist.net/anime/55701) · TV | 0.607 | [Kimetsu no Yaiba: Mugen Ressha-hen](https://myanimelist.net/anime/40456) (0.543) |
-| Mushoku Tensei II: Isekai Ittara Honki Dasu - Shugo Jutsushi Fitz | Special | `mushoku-tensei-ii-isekai-ittara-honki-dasu-shugo-jutsushi-fitz` | [Mushoku Tensei II: Isekai Ittara Honki Dasu](https://myanimelist.net/anime/51179) · TV | 0.704 | [Mushoku Tensei II: Isekai Ittara Honki Dasu Part 2](https://myanimelist.net/anime/55888) (0.439) |
-| My Hero Academia Jump Festa 2016 Special, Rescue! Rescue Training! | OVA | `my-hero-academia-jump-festa-2016-special-rescue-rescue-training` | [Boku no Hero Academia: Sukue! Kyuujo Kunren!](https://myanimelist.net/anime/33929) · OVA | 0.737 | [Boku no Hero Academia No. 170+1: More](https://myanimelist.net/anime/63130) (0.41) |
-| Naruto: Shippuuden Movie 2 - Kizuna | Movie | `naruto-shippuuden-movie-2-kizuna` | [NARUTO: Shippuuden - Kizuna](https://myanimelist.net/anime/4437) · Movie | 0.852 | [NARUTO: Shippuuden Movie](https://myanimelist.net/anime/2472) (0.83) |
-| Naruto: Shippuuden Movie 5 - Blood Prison | Movie | `naruto-shippuuden-movie-5-blood-prison` | [NARUTO: Blood Prison](https://myanimelist.net/anime/10589) · Movie | 0.898 | [NARUTO: Shippuuden Movie](https://myanimelist.net/anime/2472) (0.746) |
-| Naruto: Shippuuden Movie 6 - Road to Ninja | Movie | `naruto-shippuuden-movie-6-road-to-ninja` | [NARUTO: Shippuuden Movie](https://myanimelist.net/anime/2472) · Movie | 0.733 | [ROAD TO NINJA: NARUTO THE MOVIE](https://myanimelist.net/anime/13667) (0.716) |
-| Naruto: Shippuuden Movie 7 - The Last | Movie | `naruto-shippuuden-movie-7-the-last` | [NARUTO: Shippuuden Movie](https://myanimelist.net/anime/2472) · Movie | 0.853 | [NARUTO: Shippuuden - Kizuna](https://myanimelist.net/anime/4437) (0.804) |
+| Kimetsu no Yaiba: Hashira Gou Kaigi - Chouyashiki Hen | Movie | `kimetsu-no-yaiba-hashira-gou-kaigi-chouyashiki-hen` | not used, another title already has [Kimetsu no Yaiba: Hashira Geiko-hen](https://myanimelist.net/anime/55701) | 0.607 | [Kimetsu no Yaiba: Mugen Ressha-hen](https://myanimelist.net/anime/40456) (0.543) |
+| Mushoku Tensei II: Isekai Ittara Honki Dasu - Shugo Jutsushi Fitz | Special | `mushoku-tensei-ii-isekai-ittara-honki-dasu-shugo-jutsushi-fitz` | not used, another title already has [Mushoku Tensei II: Isekai Ittara Honki Dasu](https://myanimelist.net/anime/51179) | 0.704 | [Mushoku Tensei II: Isekai Ittara Honki Dasu Part 2](https://myanimelist.net/anime/55888) (0.439) |
 | Re:Zero kara Hajimeru Isekai Seikatsu: Shin Henshuu-ban | TV | `re-zero-kara-hajimeru-isekai-seikatsu-shin-henshuu-ban` | [Re:Zero kara Hajimeru Isekai Seikatsu](https://myanimelist.net/anime/31240) · TV | 0.809 | [Re:Zero kara Hajimeru Isekai Seikatsu 2nd Season](https://myanimelist.net/anime/39587) (0.785) |
-| Shingeki no Kyojin 4: The Final Season Part 2 | TV | `shingeki-no-kyojin-4-the-final-season-part-2` | [Shingeki no Kyojin: The Final Season](https://myanimelist.net/anime/40028) · TV | 0.618 | [Shingeki no Kyojin Season 3 Part 2](https://myanimelist.net/anime/38524) (0.449) |
-| Sugar Apple Fairy Tale (2023) | TV | `sugar-apple-fairy-tale-2023` | [Sugar Apple Fairy Tale](https://myanimelist.net/anime/49980) · TV | 1 | [Sugar Apple Fairy Tale Part 2](https://myanimelist.net/anime/54842) (0.6) |
-| Tensei shitara Slime Datta Ken 2nd Season: Kanwa - Veldora Nikki 2 | Special | `tensei-shitara-slime-datta-ken-2nd-season-kanwa-veldora-nikki-2` | [Tensei Shitara Slime Datta Ken 2nd Season](https://myanimelist.net/anime/39551) · TV | 0.684 | [Tensei Shitara Slime Datta Ken OVA](https://myanimelist.net/anime/38793) (0.347) |
-| Tensei shitara Slime Datta Ken 4th Season | TV | `tensei-shitara-slime-datta-ken-dai-4-ki` | [Tensei Shitara Slime Datta Ken 4th Season Part 1 & 2](https://myanimelist.net/anime/59970) · TV | 0.86 | [Tensei Shitara Slime Datta Ken 4th Season Part 3](https://myanimelist.net/anime/63129) (0.644) |
-| Tensei shitara Slime Datta Ken: Kanwa - Veldora Nikki | Special | `tensei-shitara-slime-datta-ken-kanwa-veldora-nikki` | [Tensei Shitara Slime Datta Ken OVA](https://myanimelist.net/anime/38793) · OVA | 0.732 | [Tensei Shitara Slime Datta Ken: Tensura Nikki](https://myanimelist.net/anime/41488) (0.704) |
-| Tsuki ga Michibiku Isekai Douchuu Dai Maku 2 | TV | `tsuki-ga-michibiku-isekai-douchuu-2` | [Tsuki ga Michibiku Isekai Douchuu 2nd Season](https://myanimelist.net/anime/49889) · TV | 0.791 | [Tsuki ga Michibiku Isekai Douchuu](https://myanimelist.net/anime/43523) (0.469) |
+| Tensei shitara Slime Datta Ken 2nd Season: Kanwa - Veldora Nikki 2 | Special | `tensei-shitara-slime-datta-ken-2nd-season-kanwa-veldora-nikki-2` | not used, another title already has [Tensei Shitara Slime Datta Ken 2nd Season](https://myanimelist.net/anime/39551) | 0.684 | [Tensei Shitara Slime Datta Ken OVA](https://myanimelist.net/anime/38793) (0.347) |
+| Tensei shitara Slime Datta Ken: Kanwa - Veldora Nikki | Special | `tensei-shitara-slime-datta-ken-kanwa-veldora-nikki` | not used, another title already has [Tensei Shitara Slime Datta Ken OVA](https://myanimelist.net/anime/38793) | 0.732 | [Tensei Shitara Slime Datta Ken: Tensura Nikki](https://myanimelist.net/anime/41488) (0.704) |
 
 ## Unmatched
 
-| OA title | Type | OA slug |
-| --- | --- | --- |
-| Akatsuki no Yona Season 2 | TV | `akatsuki-no-yona-zoku-hen` |
-| Akuyaku Reijou Level 99 | TV | `akuyaku-reijou-level-99-watashi-wa-ura-boss-desu-ga-maou-de-wa-arimasen` |
-| Arknights: Fuyukomori Kaerimichi | TV | `arknights-fuyukomori-kaerimichi` |
-| Date A Bullet 2: Nightmare or Queen | Movie | `date-a-bullet-2-nightmare-or-queen` |
-| Eiga Black Clover: Mahou Mikado no Ken | Movie | `black-clover-mahou-tei-no-ken` |
-| Goblin Slayer: Goblins Crown | Movie | `goblin-slayer-goblins-crown` |
-| Hoshifuru Oukoku no Nina | TV | `hoshi-furu-oukoku-no-nina` |
-| Kyouran Reijou Nia Liston: Byoujaku Reijou ni Tensei shita Kamigoroshi no Bujin no Karei Naru Musouroku | TV | `kyouran-reijou-nia-liston-byoujaku-reijou-ni-tensei-shita-kamigoroshi-no-bujin-no-karei-naru-musouroku` |
-| Maou Gakuin no Futekigousha 2 | TV | `maou-gakuin-no-futekigousha-2` |
-| Nanatsu no Taizai 3: Kamigami no Gekirin | TV | `nanatsu-no-taizai-3-kamigami-no-gekirin` |
-| Nanatsu no Taizai Movie 2: Hikari ni Norowareshi Mono-tachi | Movie | `nanatsu-no-taizai-movie-2-hikari-ni-norowareshi-mono-tachi` |
-| Oniichan wa Oshimai! | TV | `oniichan-wa-oshimai` |
-| Shingeki no Kyojin 4: The Final Season Part 3 | Special | `shingeki-no-kyojin-the-final-season-2023` |
-| Tensei shita Daiseijo wa, Seijo de Aru Koto wo Hitakakusu | TV | `tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu` |
+None.
 
 ## Same MAL entry matched more than once
 
-- [Kimetsu no Yaiba: Hashira Geiko-hen](https://myanimelist.net/anime/55701) ← "Kimetsu no Yaiba: Hashira Geiko-hen" (`kimetsu-no-yaiba-4-hashira-geiko-hen`), "Kimetsu no Yaiba: Hashira Gou Kaigi - Chouyashiki Hen" (`kimetsu-no-yaiba-hashira-gou-kaigi-chouyashiki-hen`)
-- [Mushoku Tensei II: Isekai Ittara Honki Dasu](https://myanimelist.net/anime/51179) ← "Mushoku Tensei II: Isekai Ittara Honki Dasu" (`mushoku-tensei-ii-isekai-ittara-honki-dasu`), "Mushoku Tensei II: Isekai Ittara Honki Dasu - Shugo Jutsushi Fitz" (`mushoku-tensei-ii-isekai-ittara-honki-dasu-shugo-jutsushi-fitz`)
-- [NARUTO: Shippuuden Movie](https://myanimelist.net/anime/2472) ← "Naruto: Shippuuden Movie 1" (`naruto-shippuuden-movie-1`), "Naruto: Shippuuden Movie 6 - Road to Ninja" (`naruto-shippuuden-movie-6-road-to-ninja`), "Naruto: Shippuuden Movie 7 - The Last" (`naruto-shippuuden-movie-7-the-last`)
-- [Shingeki no Kyojin: The Final Season](https://myanimelist.net/anime/40028) ← "Shingeki no Kyojin 4: The Final Season" (`shingeki-no-kyojin-4-the-final-season`), "Shingeki no Kyojin 4: The Final Season Part 2" (`shingeki-no-kyojin-4-the-final-season-part-2`)
-- [Sugar Apple Fairy Tale](https://myanimelist.net/anime/49980) ← "Sugar Apple Fairy Tale" (`sugar-apple-fairy-tale`), "Sugar Apple Fairy Tale (2023)" (`sugar-apple-fairy-tale-2023`)
-- [Tensei Shitara Slime Datta Ken 2nd Season](https://myanimelist.net/anime/39551) ← "Tensei shitara Slime Datta Ken 2nd Season" (`tensei-shitara-slime-datta-ken-2nd-season`), "Tensei shitara Slime Datta Ken 2nd Season: Kanwa - Veldora Nikki 2" (`tensei-shitara-slime-datta-ken-2nd-season-kanwa-veldora-nikki-2`)
-- [Tensei Shitara Slime Datta Ken OVA](https://myanimelist.net/anime/38793) ← "Tensei shitara Slime Datta Ken OVA" (`tensei-shitara-slime-datta-ken-ova`), "Tensei shitara Slime Datta Ken: Kanwa - Veldora Nikki" (`tensei-shitara-slime-datta-ken-kanwa-veldora-nikki`)
+None.

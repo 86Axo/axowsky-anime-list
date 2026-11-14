@@ -70,6 +70,8 @@ export interface Annotation {
   review: string | null;
   tags: string[];
   favoriteCharacter: string | null;
+  /** Picture of the favorite character, looked up by the write API. Never set by hand. */
+  favoriteCharacterImage: string | null;
   updatedAt?: string;
 }
 export type AnnotationMap = Record<string, Annotation>;

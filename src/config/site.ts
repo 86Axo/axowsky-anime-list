@@ -1,9 +1,9 @@
 /** Site-wide constants. Nothing secret lives here. */
 export const SITE = {
-  title: "Axowsky's Anime List",
-  nickname: 'Axowsky',
+  title: "Axo86's Anime List",
+  nickname: 'Axo86',
   description:
-    "Axowsky's personal anime list: ratings, tiers, progress and stats. Synced from OglądajAnime, enriched with MyAnimeList data.",
+    "Axo86's personal anime list: ratings, tiers, progress and stats. Synced from OglądajAnime, enriched with MyAnimeList data.",
   url: 'https://axo86.pages.dev',
   oa: {
     userId: 194074,

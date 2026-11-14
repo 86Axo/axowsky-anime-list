@@ -1,7 +1,32 @@
 {
   "_help": "Map an OglądajAnime slug or exact title to a MyAnimeList id. Use null to mark a title as having no MAL entry.",
-  "_example": {
-    "some-oa-slug": 12345,
-    "Some Exact OA Title": 67890
-  }
+  "akatsuki-no-yona-zoku-hen": 63120,
+  "akuyaku-reijou-level-99-watashi-wa-ura-boss-desu-ga-maou-de-wa-arimasen": 54837,
+  "arknights-fuyukomori-kaerimichi": 53881,
+  "date-a-bullet-2-nightmare-or-queen": 42423,
+  "black-clover-mahou-tei-no-ken": 48585,
+  "goblin-slayer-goblins-crown": 39576,
+  "hoshi-furu-oukoku-no-nina": 57362,
+  "kyouran-reijou-nia-liston-byoujaku-reijou-ni-tensei-shita-kamigoroshi-no-bujin-no-karei-naru-musouroku": 63382,
+  "maou-gakuin-no-futekigousha-2": 48417,
+  "nanatsu-no-taizai-3-kamigami-no-gekirin": 39701,
+  "nanatsu-no-taizai-movie-2-hikari-ni-norowareshi-mono-tachi": 46420,
+  "oniichan-wa-oshimai": 51678,
+  "shingeki-no-kyojin-the-final-season-2023": 51535,
+  "tensei-shita-daiseijo-wa-seijo-de-aru-koto-wo-hitakakusu": 61153,
+  "akujiki-reijou-to-kyouketsu-koushaku-sono-mamono-watashi-ga-oishiku-itadakimasu": 60162,
+  "date-a-live-episode-13-date-to-date": 17641,
+  "enen-no-shouboutai-2-ni-no-shou": 40956,
+  "hataraku-maou-sama-2nd-season": 48413,
+  "hataraku-maou-sama-2023": 53200,
+  "kami-no-tou-2nd-season": 52635,
+  "my-hero-academia-jump-festa-2016-special-rescue-rescue-training": 33929,
+  "naruto-shippuuden-movie-2-kizuna": 4437,
+  "naruto-shippuuden-movie-5-blood-prison": 10589,
+  "naruto-shippuuden-movie-6-road-to-ninja": 13667,
+  "naruto-shippuuden-movie-7-the-last": 16870,
+  "shingeki-no-kyojin-4-the-final-season-part-2": 48583,
+  "sugar-apple-fairy-tale-2023": 54842,
+  "tensei-shitara-slime-datta-ken-dai-4-ki": 59970,
+  "tsuki-ga-michibiku-isekai-douchuu-2": 49889
 }

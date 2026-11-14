@@ -1857,7 +1857,8 @@
         "score": 0.543
       },
       "checkedAt": "2026-11-14",
-      "source": "anilist"
+      "source": "anilist",
+      "duplicate": true
     },
     "kimetsu no yaiba katanakaji no sato hen|TV": {
       "title": "Kimetsu no Yaiba: Katanakaji no Sato-hen",
@@ -2335,7 +2336,8 @@
         "score": 0.439
       },
       "checkedAt": "2026-11-14",
-      "source": "anilist"
+      "source": "anilist",
+      "duplicate": true
     },
     "mushoku tensei ii isekai ittara honki dasu|TV": {
       "title": "Mushoku Tensei II: Isekai Ittara Honki Dasu",
@@ -3709,7 +3711,8 @@
         "score": 0.347
       },
       "checkedAt": "2026-11-14",
-      "source": "anilist"
+      "source": "anilist",
+      "duplicate": true
     },
     "tensei shitara slime datta ken 2nd season part 2|TV": {
       "title": "Tensei shitara Slime Datta Ken 2nd Season Part 2",
@@ -3789,7 +3792,8 @@
         "score": 0.704
       },
       "checkedAt": "2026-11-14",
-      "source": "anilist"
+      "source": "anilist",
+      "duplicate": true
     },
     "tensei shitara slime datta ken movie guren no kizuna hen|Movie": {
       "title": "Tensei shitara Slime Datta Ken Movie: Guren no Kizuna-hen",
@@ -5650,6 +5654,36 @@
         "source": "anilist"
       }
     },
+    "13667": {
+      "fetchedAt": "2026-11-14",
+      "data": {
+        "id": 13667,
+        "url": "https://myanimelist.net/anime/13667",
+        "title": "ROAD TO NINJA: NARUTO THE MOVIE",
+        "titleEnglish": "Road to Ninja: Naruto the Movie",
+        "titleJapanese": "ROAD TO NINJA -NARUTO THE MOVIE-",
+        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx13667-gAKuIXI2avRq.jpg",
+        "imageLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx13667-gAKuIXI2avRq.jpg",
+        "type": "Movie",
+        "episodes": 1,
+        "durationMin": 109,
+        "airStatus": "Finished Airing",
+        "airing": false,
+        "season": "summer",
+        "year": 2012,
+        "score": null,
+        "genres": [
+          "Action",
+          "Adventure"
+        ],
+        "themes": [],
+        "demographics": [],
+        "studios": [
+          "Studio Pierrot"
+        ],
+        "source": "anilist"
+      }
+    },
     "13759": {
       "fetchedAt": "2026-11-14",
       "data": {
@@ -6000,6 +6034,40 @@
         "demographics": [],
         "studios": [
           "Lerche"
+        ],
+        "source": "anilist"
+      }
+    },
+    "16870": {
+      "fetchedAt": "2026-11-14",
+      "data": {
+        "id": 16870,
+        "url": "https://myanimelist.net/anime/16870",
+        "title": "THE LAST: NARUTO THE MOVIE",
+        "titleEnglish": "The Last: Naruto the Movie",
+        "titleJapanese": "THE LAST -NARUTO THE MOVIE-",
+        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx16870-BD4K9rzlhCP4.jpg",
+        "imageLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx16870-BD4K9rzlhCP4.jpg",
+        "type": "Movie",
+        "episodes": 1,
+        "durationMin": 112,
+        "airStatus": "Finished Airing",
+        "airing": false,
+        "season": "fall",
+        "year": 2014,
+        "score": null,
+        "genres": [
+          "Action",
+          "Adventure",
+          "Drama",
+          "Fantasy",
+          "Romance",
+          "Supernatural"
+        ],
+        "themes": [],
+        "demographics": [],
+        "studios": [
+          "Studio Pierrot"
         ],
         "source": "anilist"
       }
@@ -9194,6 +9262,37 @@
         "source": "anilist"
       }
     },
+    "39576": {
+      "fetchedAt": "2026-11-14",
+      "data": {
+        "id": 39576,
+        "url": "https://myanimelist.net/anime/39576",
+        "title": "Goblin Slayer: GOBLIN'S CROWN",
+        "titleEnglish": "GOBLIN SLAYER -GOBLIN’S CROWN-",
+        "titleJapanese": "ゴブリンスレイヤー -GOBLIN'S CROWN-",
+        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx108623-pREPeutedpc2.jpg",
+        "imageLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx108623-pREPeutedpc2.jpg",
+        "type": "Movie",
+        "episodes": 1,
+        "durationMin": 60,
+        "airStatus": "Finished Airing",
+        "airing": false,
+        "season": "winter",
+        "year": 2020,
+        "score": null,
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy"
+        ],
+        "themes": [],
+        "demographics": [],
+        "studios": [
+          "WHITE FOX"
+        ],
+        "source": "anilist"
+      }
+    },
     "39597": {
       "fetchedAt": "2026-11-14",
       "data": {
@@ -9258,6 +9357,41 @@
         "demographics": [],
         "studios": [
           "CloverWorks"
+        ],
+        "source": "anilist"
+      }
+    },
+    "39701": {
+      "fetchedAt": "2026-11-14",
+      "data": {
+        "id": 39701,
+        "url": "https://myanimelist.net/anime/39701",
+        "title": "Nanatsu no Taizai: Kamigami no Gekirin",
+        "titleEnglish": "The Seven Deadly Sins: Imperial Wrath of the Gods",
+        "titleJapanese": "七つの大罪 神々の逆鱗",
+        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx108928-DuyUzi0JyPIr.jpg",
+        "imageLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx108928-DuyUzi0JyPIr.jpg",
+        "type": "TV",
+        "episodes": 24,
+        "durationMin": 24,
+        "airStatus": "Finished Airing",
+        "airing": false,
+        "season": "fall",
+        "year": 2019,
+        "score": null,
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy",
+          "Ecchi",
+          "Fantasy",
+          "Supernatural"
+        ],
+        "themes": [],
+        "demographics": [],
+        "studios": [
+          "Studio DEEN",
+          "Marvy Jack"
         ],
         "source": "anilist"
       }
@@ -10154,6 +10288,35 @@
         "source": "anilist"
       }
     },
+    "42423": {
+      "fetchedAt": "2026-11-14",
+      "data": {
+        "id": 42423,
+        "url": "https://myanimelist.net/anime/42423",
+        "title": "Date A Bullet: Nightmare or Queen",
+        "titleEnglish": "Date A Bullet: Dead or Bullet & Nightmare or Queen",
+        "titleJapanese": "デート・ア・バレット ナイトメア・オア・クイーン",
+        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx121034-tdLiWDs07tOi.jpg",
+        "imageLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx121034-tdLiWDs07tOi.jpg",
+        "type": "Movie",
+        "episodes": 1,
+        "durationMin": 29,
+        "airStatus": "Finished Airing",
+        "airing": false,
+        "season": "fall",
+        "year": 2020,
+        "score": null,
+        "genres": [
+          "Sci-Fi"
+        ],
+        "themes": [],
+        "demographics": [],
+        "studios": [
+          "GEEKTOYS"
+        ],
+        "source": "anilist"
+      }
+    },
     "42603": {
       "fetchedAt": "2026-11-14",
       "data": {
@@ -10437,6 +10600,39 @@
         "source": "anilist"
       }
     },
+    "46420": {
+      "fetchedAt": "2026-11-14",
+      "data": {
+        "id": 46420,
+        "url": "https://myanimelist.net/anime/46420",
+        "title": "Nanatsu no Taizai: Hikari ni Norowareshi Mono-tachi",
+        "titleEnglish": "The Seven Deadly Sins: Cursed by Light",
+        "titleJapanese": "七つの大罪 光に呪われし者たち",
+        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx128740-xpjfCO2kpFdz.png",
+        "imageLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx128740-xpjfCO2kpFdz.png",
+        "type": "Movie",
+        "episodes": 1,
+        "durationMin": 80,
+        "airStatus": "Finished Airing",
+        "airing": false,
+        "season": "summer",
+        "year": 2021,
+        "score": null,
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy",
+          "Ecchi",
+          "Fantasy"
+        ],
+        "themes": [],
+        "demographics": [],
+        "studios": [
+          "Studio DEEN"
+        ],
+        "source": "anilist"
+      }
+    },
     "46471": {
       "fetchedAt": "2026-11-14",
       "data": {
@@ -10663,6 +10859,36 @@
         "source": "anilist"
       }
     },
+    "48417": {
+      "fetchedAt": "2026-11-14",
+      "data": {
+        "id": 48417,
+        "url": "https://myanimelist.net/anime/48417",
+        "title": "Maou Gakuin no Futekigousha: Shijou Saikyou no Maou no Shiso, Tensei shite Shison-tachi no Gakkou e Kayou II",
+        "titleEnglish": "The Misfit of Demon King Academy Ⅱ: History's Strongest Demon King Reincarnates and Goes to School with His Descendants",
+        "titleJapanese": "魔王学院の不適合者 ～史上最強の魔王の始祖、転生して子孫たちの学校へ通う～ Ⅱ",
+        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx130588-zYz8Gp2kZfTm.jpg",
+        "imageLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx130588-zYz8Gp2kZfTm.jpg",
+        "type": "TV",
+        "episodes": 12,
+        "durationMin": 24,
+        "airStatus": "Finished Airing",
+        "airing": false,
+        "season": "winter",
+        "year": 2023,
+        "score": null,
+        "genres": [
+          "Action",
+          "Fantasy"
+        ],
+        "themes": [],
+        "demographics": [],
+        "studios": [
+          "SILVER LINK."
+        ],
+        "source": "anilist"
+      }
+    },
     "48418": {
       "fetchedAt": "2026-11-14",
       "data": {
@@ -10751,6 +10977,70 @@
         "demographics": [],
         "studios": [
           "A-1 Pictures"
+        ],
+        "source": "anilist"
+      }
+    },
+    "48583": {
+      "fetchedAt": "2026-11-14",
+      "data": {
+        "id": 48583,
+        "url": "https://myanimelist.net/anime/48583",
+        "title": "Shingeki no Kyojin: The Final Season Part 2",
+        "titleEnglish": "Attack on Titan Final Season Part 2",
+        "titleJapanese": "進撃の巨人 The Final Season Part 2",
+        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx131681-5ooUqvqNtee1.jpg",
+        "imageLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx131681-5ooUqvqNtee1.jpg",
+        "type": "TV",
+        "episodes": 12,
+        "durationMin": 24,
+        "airStatus": "Finished Airing",
+        "airing": false,
+        "season": "winter",
+        "year": 2022,
+        "score": null,
+        "genres": [
+          "Action",
+          "Drama",
+          "Fantasy",
+          "Mystery",
+          "Psychological"
+        ],
+        "themes": [],
+        "demographics": [],
+        "studios": [
+          "MAPPA"
+        ],
+        "source": "anilist"
+      }
+    },
+    "48585": {
+      "fetchedAt": "2026-11-14",
+      "data": {
+        "id": 48585,
+        "url": "https://myanimelist.net/anime/48585",
+        "title": "Black Clover: Mahou Tei no Ken",
+        "titleEnglish": "Black Clover: Sword of the Wizard King",
+        "titleJapanese": "ブラッククローバー 魔法帝の剣",
+        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx131680-gjs8mMQPmkOQ.png",
+        "imageLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx131680-gjs8mMQPmkOQ.png",
+        "type": "Movie",
+        "episodes": 1,
+        "durationMin": 113,
+        "airStatus": "Finished Airing",
+        "airing": false,
+        "season": "spring",
+        "year": 2023,
+        "score": null,
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy"
+        ],
+        "themes": [],
+        "demographics": [],
+        "studios": [
+          "Studio Pierrot"
         ],
         "source": "anilist"
       }
@@ -11605,6 +11895,39 @@
         "source": "anilist"
       }
     },
+    "51535": {
+      "fetchedAt": "2026-11-14",
+      "data": {
+        "id": 51535,
+        "url": "https://myanimelist.net/anime/51535",
+        "title": "Shingeki no Kyojin: The Final Season - Kanketsu-hen Zenpen",
+        "titleEnglish": "Attack on Titan Final Season THE FINAL CHAPTERS Special 1",
+        "titleJapanese": "進撃の巨人 The Final Season完結編 前編",
+        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx146984-GXrLeT6vQqyP.jpg",
+        "imageLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx146984-GXrLeT6vQqyP.jpg",
+        "type": "Special",
+        "episodes": 1,
+        "durationMin": 61,
+        "airStatus": "Finished Airing",
+        "airing": false,
+        "season": "winter",
+        "year": 2023,
+        "score": null,
+        "genres": [
+          "Action",
+          "Drama",
+          "Fantasy",
+          "Mystery",
+          "Psychological"
+        ],
+        "themes": [],
+        "demographics": [],
+        "studios": [
+          "MAPPA"
+        ],
+        "source": "anilist"
+      }
+    },
     "51553": {
       "fetchedAt": "2026-11-14",
       "data": {
@@ -11663,6 +11986,37 @@
         "demographics": [],
         "studios": [
           "CONNECT"
+        ],
+        "source": "anilist"
+      }
+    },
+    "51678": {
+      "fetchedAt": "2026-11-14",
+      "data": {
+        "id": 51678,
+        "url": "https://myanimelist.net/anime/51678",
+        "title": "Onii-chan wa Oshimai!",
+        "titleEnglish": "ONIMAI: I'm Now Your Sister!",
+        "titleJapanese": "お兄ちゃんはおしまい！",
+        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx147864-EBt29GeJ6G2P.png",
+        "imageLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx147864-EBt29GeJ6G2P.png",
+        "type": "TV",
+        "episodes": 12,
+        "durationMin": 24,
+        "airStatus": "Finished Airing",
+        "airing": false,
+        "season": "winter",
+        "year": 2023,
+        "score": null,
+        "genres": [
+          "Comedy",
+          "Ecchi",
+          "Slice of Life"
+        ],
+        "themes": [],
+        "demographics": [],
+        "studios": [
+          "Studio Bind"
         ],
         "source": "anilist"
       }
@@ -12519,6 +12873,38 @@
         "source": "anilist"
       }
     },
+    "53881": {
+      "fetchedAt": "2026-11-14",
+      "data": {
+        "id": 53881,
+        "url": "https://myanimelist.net/anime/53881",
+        "title": "Arknights: Touin Kiro",
+        "titleEnglish": "Arknights: PERISH IN FROST",
+        "titleJapanese": "アークナイツ 冬隠帰路",
+        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx158895-QPy3ElZBKziT.jpg",
+        "imageLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx158895-QPy3ElZBKziT.jpg",
+        "type": "TV",
+        "episodes": 8,
+        "durationMin": 24,
+        "airStatus": "Finished Airing",
+        "airing": false,
+        "season": "fall",
+        "year": 2023,
+        "score": null,
+        "genres": [
+          "Action",
+          "Drama",
+          "Fantasy",
+          "Sci-Fi"
+        ],
+        "themes": [],
+        "demographics": [],
+        "studios": [
+          "Yostar Pictures"
+        ],
+        "source": "anilist"
+      }
+    },
     "54103": {
       "fetchedAt": "2026-11-14",
       "data": {
@@ -12890,6 +13276,68 @@
         "demographics": [],
         "studios": [
           "bones"
+        ],
+        "source": "anilist"
+      }
+    },
+    "54837": {
+      "fetchedAt": "2026-11-14",
+      "data": {
+        "id": 54837,
+        "url": "https://myanimelist.net/anime/54837",
+        "title": "Akuyaku Reijou Level 99: Watashi wa Ura Boss desu ga Maou de wa Arimasen",
+        "titleEnglish": "Villainess Level 99: I May Be the Hidden Boss but I'm Not the Demon Lord",
+        "titleJapanese": "悪役令嬢レベル99 ～私は裏ボスですが魔王ではありません～",
+        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx163076-5wQKtU3FoMxd.jpg",
+        "imageLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx163076-5wQKtU3FoMxd.jpg",
+        "type": "TV",
+        "episodes": 12,
+        "durationMin": 24,
+        "airStatus": "Finished Airing",
+        "airing": false,
+        "season": "winter",
+        "year": 2024,
+        "score": null,
+        "genres": [
+          "Comedy",
+          "Fantasy",
+          "Romance"
+        ],
+        "themes": [],
+        "demographics": [],
+        "studios": [
+          "Jumondou"
+        ],
+        "source": "anilist"
+      }
+    },
+    "54842": {
+      "fetchedAt": "2026-11-14",
+      "data": {
+        "id": 54842,
+        "url": "https://myanimelist.net/anime/54842",
+        "title": "Sugar Apple Fairy Tale Part 2",
+        "titleEnglish": "Sugar Apple Fairy Tale Season 2",
+        "titleJapanese": "シュガーアップル・フェアリーテイル 第2クール",
+        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx163079-DaSvbq0mdtVf.png",
+        "imageLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx163079-DaSvbq0mdtVf.png",
+        "type": "TV",
+        "episodes": 12,
+        "durationMin": 23,
+        "airStatus": "Finished Airing",
+        "airing": false,
+        "season": "summer",
+        "year": 2023,
+        "score": null,
+        "genres": [
+          "Adventure",
+          "Fantasy",
+          "Romance"
+        ],
+        "themes": [],
+        "demographics": [],
+        "studios": [
+          "J.C.STAFF"
         ],
         "source": "anilist"
       }
@@ -13583,6 +14031,37 @@
         "demographics": [],
         "studios": [
           "Colored Pencil Animation"
+        ],
+        "source": "anilist"
+      }
+    },
+    "57362": {
+      "fetchedAt": "2026-11-14",
+      "data": {
+        "id": 57362,
+        "url": "https://myanimelist.net/anime/57362",
+        "title": "Hoshi Furu Oukoku no Nina",
+        "titleEnglish": "Nina the Starry Bride",
+        "titleJapanese": "星降る王国のニナ",
+        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx171038-lSjQqiSk1mQC.jpg",
+        "imageLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx171038-lSjQqiSk1mQC.jpg",
+        "type": "TV",
+        "episodes": 12,
+        "durationMin": 24,
+        "airStatus": "Finished Airing",
+        "airing": false,
+        "season": "fall",
+        "year": 2024,
+        "score": null,
+        "genres": [
+          "Drama",
+          "Fantasy",
+          "Romance"
+        ],
+        "themes": [],
+        "demographics": [],
+        "studios": [
+          "Signal.MD"
         ],
         "source": "anilist"
       }
@@ -14896,6 +15375,37 @@
         "source": "anilist"
       }
     },
+    "61153": {
+      "fetchedAt": "2026-11-14",
+      "data": {
+        "id": 61153,
+        "url": "https://myanimelist.net/anime/61153",
+        "title": "Tensei shita Dai Seijo wa, Seijo de Aru Koto wo Hita Kakusu",
+        "titleEnglish": "A Tale of the Secret Saint",
+        "titleJapanese": "転生した大聖女は、聖女であることをひた隠す",
+        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx187402-ReKkLwFmMV3q.jpg",
+        "imageLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx187402-ReKkLwFmMV3q.jpg",
+        "type": "ONA",
+        "episodes": null,
+        "durationMin": 24,
+        "airStatus": "Currently Airing",
+        "airing": true,
+        "season": "fall",
+        "year": 2026,
+        "score": null,
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy"
+        ],
+        "themes": [],
+        "demographics": [],
+        "studios": [
+          "Felix Film"
+        ],
+        "source": "anilist"
+      }
+    },
     "61196": {
       "fetchedAt": "2026-11-14",
       "data": {
@@ -15389,6 +15899,40 @@
         "source": "anilist"
       }
     },
+    "63120": {
+      "fetchedAt": "2026-11-14",
+      "data": {
+        "id": 63120,
+        "url": "https://myanimelist.net/anime/63120",
+        "title": "Akatsuki no Yona (Zoku-hen)",
+        "titleEnglish": null,
+        "titleJapanese": "暁のヨナ (続編)",
+        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx204293-tDdl9wfAJH1T.jpg",
+        "imageLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx204293-tDdl9wfAJH1T.jpg",
+        "type": null,
+        "episodes": null,
+        "durationMin": null,
+        "airStatus": "Not yet aired",
+        "airing": false,
+        "season": null,
+        "year": null,
+        "score": null,
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy",
+          "Drama",
+          "Fantasy",
+          "Romance"
+        ],
+        "themes": [],
+        "demographics": [],
+        "studios": [
+          "PIERROT FILMS"
+        ],
+        "source": "anilist"
+      }
+    },
     "63293": {
       "fetchedAt": "2026-11-14",
       "data": {
@@ -15445,6 +15989,36 @@
         "demographics": [],
         "studios": [
           "Passione"
+        ],
+        "source": "anilist"
+      }
+    },
+    "63382": {
+      "fetchedAt": "2026-11-14",
+      "data": {
+        "id": 63382,
+        "url": "https://myanimelist.net/anime/63382",
+        "title": "Kyouran Reijou Nia Liston",
+        "titleEnglish": "Nia Liston: The Merciless Maiden",
+        "titleJapanese": "凶乱令嬢ニア・リストン",
+        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx206949-4HYI3YuP0eLI.png",
+        "imageLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx206949-4HYI3YuP0eLI.png",
+        "type": "TV",
+        "episodes": 25,
+        "durationMin": 24,
+        "airStatus": "Currently Airing",
+        "airing": true,
+        "season": "fall",
+        "year": 2026,
+        "score": null,
+        "genres": [
+          "Action",
+          "Fantasy"
+        ],
+        "themes": [],
+        "demographics": [],
+        "studios": [
+          "KONAMI animation"
         ],
         "source": "anilist"
       }

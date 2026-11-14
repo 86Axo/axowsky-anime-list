@@ -33,6 +33,7 @@ export interface ViewItem extends ListItem {
   tags: string[];
   review: string | null;
   favoriteCharacter: string | null;
+  favoriteCharacterImage: string | null;
 }
 
 const sameTitle = (a: string, b: string): boolean =>
@@ -79,6 +80,7 @@ export function annotate(items: ListItem[], annotations: AnnotationMap): ViewIte
       tags: a?.tags ?? [],
       review: a?.review || null,
       favoriteCharacter: a?.favoriteCharacter || null,
+      favoriteCharacterImage: (a?.favoriteCharacter && a.favoriteCharacterImage) || null,
     };
   });
 }

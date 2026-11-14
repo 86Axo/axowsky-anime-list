@@ -90,6 +90,10 @@ function fillForm(form: HTMLFormElement, item: ListItem): void {
   score.placeholder = item.score !== null ? `${finalScore(item.score, null)} (from ${item.score}/10)` : 'not rated';
   field('tags').value = a?.tags.join(', ') ?? '';
   field('favoriteCharacter').value = a?.favoriteCharacter ?? '';
+  const avatar = form.querySelector<HTMLImageElement>('[data-avatar]')!;
+  avatar.hidden = !a?.favoriteCharacterImage;
+  if (a?.favoriteCharacterImage) avatar.src = a.favoriteCharacterImage;
+  else avatar.removeAttribute('src');
   field('review').value = a?.review ?? '';
 }
 
@@ -114,7 +118,8 @@ async function save(item: ListItem, form: HTMLFormElement, clear: boolean): Prom
     const res = await fetch(`/api/annotations/${encodeURIComponent(item.key)}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(next),
+      // malId lets the server find the character's picture even when the key is an `oa:` one.
+      body: JSON.stringify({ ...next, malId: item.malId }),
     });
     if (!res.ok) {
       const err = (await res.json().catch(() => null)) as { error?: string } | null;
@@ -127,11 +132,17 @@ async function save(item: ListItem, form: HTMLFormElement, clear: boolean): Prom
       await fetch(`/api/annotations/${encodeURIComponent(old)}`, { method: 'DELETE' });
       delete annotations[old];
     }
-    if (isEmptyAnnotation(next)) delete annotations[item.key];
-    else annotations[item.key] = next;
+    // Keep what the server stored: it adds the favorite character's picture.
+    const saved = sanitizeAnnotation(((await res.json()) as { annotation?: unknown }).annotation);
+    if (isEmptyAnnotation(saved)) delete annotations[item.key];
+    else annotations[item.key] = saved;
     fillForm(form, item);
     updateSummary(item, rows.get(item.key)!);
-    status.textContent = isEmptyAnnotation(next) ? 'Cleared.' : 'Saved.';
+    status.textContent = isEmptyAnnotation(saved)
+      ? 'Cleared.'
+      : saved.favoriteCharacter && !saved.favoriteCharacterImage
+        ? 'Saved. No picture found for that character name.'
+        : 'Saved.';
     applyFilter();
   } catch {
     status.textContent = 'Not saved: network error.';

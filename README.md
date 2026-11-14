@@ -1,4 +1,4 @@
-# Axowsky's Anime List
+# Axo86's Anime List
 
 A one-page personal anime profile: my list from [OglądajAnime](https://ogladajanime.pl/anime_list/194074), enriched with [MyAnimeList](https://myanimelist.net) data, with my own tier-based rating system on top.
 
@@ -58,7 +58,7 @@ Status mapping: Oglądam → Watching, Obejrzane → Completed, Planuje → Plan
 
 ## Fixing a wrong MAL match
 
-`data/unmatched.md` lists every title that was matched with low confidence or not at all, with the runner-up candidate. To fix one, add its OglądajAnime slug (or exact title) and the right MAL id to `data/overrides.json`:
+`data/unmatched.md` lists every title that was matched with low confidence or not at all, with the runner-up candidate. A title without a match still links to MyAnimeList, but to a search for its name instead of its page. To fix one, add its OglądajAnime slug (or exact title) and the right MAL id to `data/overrides.json`:
 
 ```json
 {
@@ -88,7 +88,7 @@ Open `/admin`, sign in with GitHub, find the title, open its row and edit:
 - **Refined score** (1–100): replaces the converted OA score.
 - **Tags**: comma separated, shown as chips.
 - **Review**: shown inline on the list as an expandable line.
-- **Favorite character**: free text.
+- **Favorite character**: type the name. When you save, the server looks the character up in that anime's cast on AniList and stores its picture, which is then shown next to the name on the public page. A first name or nickname is enough ("Lena"). If no picture is found the name is shown on its own.
 
 Annotations are keyed by MAL id (`mal:123`), falling back to the OA slug (`oa:some-slug`), so they survive title changes and removals on OglądajAnime.
 
@@ -172,6 +172,7 @@ If you prefer Cloudflare Access (Zero Trust), create an Access application cover
 | `CLOUDFLARE_ACCOUNT_ID` | GitHub repository secret | no, but kept out of the public repo | Which Cloudflare account to deploy to |
 | `ACCESS_TEAM_DOMAIN`, `ACCESS_AUD` | Pages variables | no | Only for the Cloudflare Access alternative |
 | `BAKE_ANNOTATIONS` | build environment | no | Set to `0` to build without fetching annotations (used by the tests) |
+| `CHARACTER_LOOKUP` | Pages variable | no | Set to `off` to skip the favorite character picture lookup (used by the tests) |
 | `DB` | `wrangler.toml` D1 binding | no | The annotations database |
 
 The sync itself needs no secrets: it uses the built-in `GITHUB_TOKEN` to commit. No secret is ever committed; `.dev.vars` and `.env*` are git-ignored.
@@ -188,7 +189,7 @@ Limits as published at the time of writing. This site uses a tiny fraction of ea
 | GitHub (public repository) | Code, Actions | Actions minutes are free for public repositories | No | Scheduled workflows are switched off after 60 days without repository activity |
 | GitHub OAuth app | Admin sign-in | Free | No | No |
 | Jikan API | MAL metadata | No key; 3 requests per second, 60 per minute | No | No |
-| AniList API | Backup metadata when Jikan is down | No key; 90 requests per minute (30 while AniList runs in its degraded mode) | No | No |
+| AniList API | Backup metadata when Jikan is down; favorite character pictures | No key; 90 requests per minute (30 while AniList runs in its degraded mode) | No | No |
 | MyAnimeList CDN, AniList CDN | Cover images | Hot-linked, lazy-loaded | No | No |
 
 About the 60-day rule: the sync makes a small "heartbeat" commit to `data/sync-meta.json` when nothing else has changed for 30 days, so the schedule stays active on its own.

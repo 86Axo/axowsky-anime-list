@@ -1278,3 +1278,23 @@ textarea {
     grid-template-columns: 2.5rem minmax(0, 1fr) 7.5rem 4.5rem 12.5rem 5rem;
   }
 }
+
+/* ── Favorite character with its picture ──────────────────────────────────── */
+.note__fav {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+.note__fav strong {
+  color: var(--text);
+  font-weight: 550;
+}
+.note__avatar {
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
+  flex: none;
+  border-radius: 50%;
+  background: var(--surface-2);
+  object-fit: cover;
+  object-position: 50% 15%;
+}
