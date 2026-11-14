@@ -37,10 +37,11 @@ Browser ─► /api/annotations (Pages Function) ─► D1      refined scores, 
 
 ## Updating the list
 
-Either way works:
+Three ways, most reliable first:
 
-1. **Wait.** The `Sync anime list` workflow runs every day. It asks OglądajAnime for the public list once; if a bot check answers instead, it logs that and keeps the last known data. It never tries to get around a block.
-2. **Export a CSV.** On OglądajAnime open your list, press the export button, put the file in `data/import/` and push. The newest file (by the date in its name) is used. Pushing a CSV starts the sync right away.
+1. **Export a CSV.** On OglądajAnime open your list, press the export button, put the file in `data/import/` and push. The newest file (by the date in its name) is used. Pushing a CSV starts the sync right away.
+2. **Run the sync on your own computer** (`npm run sync`, then commit and push `data/`). From a home connection the public list page loads fine, and it also carries the date added, which the CSV does not have.
+3. **Wait for the daily run.** The `Sync anime list` workflow runs every day and asks OglądajAnime for the public list once. At the time of writing OglądajAnime answers GitHub's servers with HTTP 403, so the scheduled run keeps the last known list and only refreshes MAL data. It logs the refusal and never tries to get around it. If OglądajAnime stops refusing, list changes will be picked up daily with no further work.
 
 You can also run it by hand: GitHub → Actions → *Sync anime list* → *Run workflow*, or locally:
 

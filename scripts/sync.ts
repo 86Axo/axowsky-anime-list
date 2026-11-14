@@ -120,7 +120,7 @@ async function main(): Promise<void> {
     if (res.ok) {
       htmlRows = res.entries;
       console.log(`Live list: ${htmlRows.length} rows`);
-    } else console.log(`Live list: not used (${res.reason}); falling back to the CSV`);
+    } else console.log(`Live list: not used (${res.reason}); using the CSV or the last known list instead`);
   }
 
   const previousRows: OaEntry[] | null = previous
