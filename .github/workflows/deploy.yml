@@ -38,6 +38,31 @@ jobs:
             echo "ready=true" >> "$GITHUB_OUTPUT"
           fi
 
+      # Fails early, with a plain explanation, when the token or the account id is wrong.
+      # Only yes/no answers and Cloudflare's own error messages are printed, never a secret.
+      - name: Check Cloudflare access
+        if: steps.token.outputs.ready == 'true'
+        run: |
+          api() { curl -sS -m 20 -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" "https://api.cloudflare.com/client/v4$1"; }
+          if ! printf '%s' "$CLOUDFLARE_ACCOUNT_ID" | grep -Eq '^[0-9a-f]{32}$'; then
+            echo "::error::CLOUDFLARE_ACCOUNT_ID is not a 32-character account id (it has ${#CLOUDFLARE_ACCOUNT_ID} characters). Copy the id from 'npx wrangler whoami'."
+            exit 1
+          fi
+          verify=$(api /user/tokens/verify)
+          echo "Token check: $(echo "$verify" | jq -c '{success, status: .result.status, errors: [.errors[]?.message]}')"
+          accounts=$(api /accounts)
+          echo "Accounts the token can see: $(echo "$accounts" | jq -c --arg id "$CLOUDFLARE_ACCOUNT_ID" '{count: (.result // [] | length), configured_account_among_them: ([.result[]?.id] | index($id) != null)}')"
+          project=$(api "/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/axo86")
+          echo "Project access: $(echo "$project" | jq -c '{success, errors: [.errors[]? | {code, message}]}')"
+          if [ "$(echo "$verify" | jq -r .success)" != "true" ]; then
+            echo "::error::Cloudflare does not accept CLOUDFLARE_API_TOKEN. Set the secret again with the complete token value."
+            exit 1
+          fi
+          if [ "$(echo "$project" | jq -r .success)" != "true" ]; then
+            echo "::error::The token is valid but cannot open the Pages project axo86. It needs the permission Account / Cloudflare Pages / Edit, for the account that owns the project."
+            exit 1
+          fi
+
       # Always the newest main, so a deploy started by the sync includes the commit it just pushed.
       - uses: actions/checkout@v7
         if: steps.token.outputs.ready == 'true'
