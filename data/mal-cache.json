@@ -607,20 +607,6 @@
       "checkedAt": "2026-11-14",
       "source": "anilist"
     },
-    "clannad|TV": {
-      "title": "Clannad",
-      "malId": 2167,
-      "confidence": "exact",
-      "score": 1,
-      "matchedTitle": "CLANNAD",
-      "runnerUp": {
-        "malId": 4059,
-        "title": "CLANNAD: Mou Hitotsu no Sekai, Tomoyo-hen",
-        "score": 0.628
-      },
-      "checkedAt": "2026-11-14",
-      "source": "anilist"
-    },
     "clevatess majuu no ou to akago to shikabane no yuusha|TV": {
       "title": "Clevatess: Majuu no Ou to Akago to Shikabane no Yuusha",
       "malId": 59205,

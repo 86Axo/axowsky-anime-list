@@ -50,8 +50,6 @@ jobs:
           fi
           verify=$(api /user/tokens/verify)
           echo "Token check: $(echo "$verify" | jq -c '{success, status: .result.status, errors: [.errors[]?.message]}')"
-          accounts=$(api /accounts)
-          echo "Accounts the token can see: $(echo "$accounts" | jq -c --arg id "$CLOUDFLARE_ACCOUNT_ID" '{count: (.result // [] | length), configured_account_among_them: ([.result[]?.id] | index($id) != null)}')"
           project=$(api "/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/axo86")
           echo "Project access: $(echo "$project" | jq -c '{success, errors: [.errors[]? | {code, message}]}')"
           if [ "$(echo "$verify" | jq -r .success)" != "true" ]; then
