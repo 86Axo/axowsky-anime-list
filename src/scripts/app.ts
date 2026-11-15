@@ -153,10 +153,29 @@ clearBtn.addEventListener('click', clearFilters);
 $('empty-clear').addEventListener('click', clearFilters);
 $('show-more').addEventListener('click', showMore);
 
-// Load the next page shortly before the "Show more" button scrolls into view.
+// Load the next rows shortly before the "Show more" button scrolls into view from below.
+// Two things keep jumps to a section below the list (such as Charts) exact:
+// - the margin only reaches downwards, so being *past* the list never loads more rows;
+// - while an in-page link is scrolling the page, loading is paused, because rows added
+//   mid-scroll would push the target further down.
+let jumping = false;
 if ('IntersectionObserver' in window) {
-  new IntersectionObserver((entries) => entries.some((e) => e.isIntersecting) && showMore(), { rootMargin: '600px 0px' }).observe(more);
+  new IntersectionObserver((entries) => !jumping && entries.some((e) => e.isIntersecting) && showMore(), {
+    rootMargin: '0px 0px 600px 0px',
+  }).observe(more);
 }
+document.addEventListener('click', (e) => {
+  const link = (e.target as Element).closest<HTMLAnchorElement>('a[href^="#"]');
+  if (!link) return;
+  jumping = true;
+  const done = () => {
+    jumping = false;
+    window.removeEventListener('scrollend', done);
+    clearTimeout(timer);
+  };
+  const timer = setTimeout(done, 1500);
+  window.addEventListener('scrollend', done);
+});
 
 // "/" focuses the search box, unless the user is already typing somewhere.
 document.addEventListener('keydown', (e) => {
@@ -225,7 +244,8 @@ function renderAnnotated(): void {
 
 async function refreshAnnotations(): Promise<void> {
   try {
-    const res = await fetch('/api/annotations', { headers: { Accept: 'application/json' } });
+    // Always ask the server: an edit made in the admin panel should show on the very next page view.
+    const res = await fetch('/api/annotations', { headers: { Accept: 'application/json' }, cache: 'no-store' });
     if (!res.ok || !(res.headers.get('content-type') ?? '').includes('json')) return;
     const fresh = sanitizeAnnotationMap(((await res.json()) as { annotations?: unknown }).annotations);
     if (annotationsFingerprint(fresh) === annotationsFingerprint(annotations)) return;

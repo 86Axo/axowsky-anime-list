@@ -83,12 +83,18 @@ Jikan is a volunteer-run service and has outages. The sync then falls back to An
 
 ## Editing annotations
 
-Open `/admin`, sign in with GitHub, find the title, open its row and edit:
+Open `/admin` and sign in with GitHub. The panel has two tabs.
 
-- **Refined score** (1–100): replaces the converted OA score.
-- **Tags**: comma separated, shown as chips.
-- **Review**: shown inline on the list as an expandable line.
-- **Favorite character**: type the name. When you save, the server looks the character up in that anime's cast on AniList and stores its picture, which is then shown next to the name on the public page. A first name or nickname is enough ("Lena"). If no picture is found the name is shown on its own.
+**Notes and scores.** Search or filter the list, click a title and edit:
+
+- **My score** (1–100): type a number or drag the slider; the tier badge next to it updates as you go. Leave it empty to keep the OglądajAnime score × 10.
+- **Favorite character**: pick one from the cast shown under the field, or type a name (a first name or nickname is enough). On save the server looks the character up in that anime’s cast on AniList and stores its picture. The public page shows the picture and the name directly on the row.
+- **Tags**: type and press Enter; tags you have used before are offered as one-click suggestions.
+- **Review**: shown on the public page as an expandable line.
+
+Save is enabled only when something changed (Ctrl+Enter also saves). "Remove all notes" asks for a second click.
+
+**Top 10 order.** The Top 10 is sorted by final score. Where several titles share a score, this tab lets you put them in order with the arrow buttons and save. A title can never be moved above a higher score; change its score for that. "Back to automatic order" removes the manual positions, and ties fall back to date added.
 
 Annotations are keyed by MAL id (`mal:123`), falling back to the OA slug (`oa:some-slug`), so they survive title changes and removals on OglądajAnime.
 

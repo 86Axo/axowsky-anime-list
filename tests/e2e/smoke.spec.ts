@@ -120,9 +120,12 @@ test('a shared URL restores filters and sorting', async ({ page }) => {
   expect(shown).toEqual(sorted);
 });
 
-test('every title links to MyAnimeList in a new tab', async ({ page }) => {
+test('every title has a MAL button that opens MyAnimeList in a new tab', async ({ page }) => {
   await ready(page);
-  const links = page.locator('#anime-list .item__title, #top-list .top-item__title, #watch-row .watch-card__title');
+  // One button per title, and the title itself is plain text.
+  expect(await page.locator('#anime-list .item .mal-link').count()).toBe(await titles(page).count());
+  expect(await page.locator('#anime-list .item__title a, #anime-list a.item__title').count()).toBe(0);
+  const links = page.locator('#anime-list .mal-link, #top-list .mal-link, #watch-row .mal-link');
   const count = await links.count();
   expect(count).toBeGreaterThan(30);
   for (const link of await links.all()) {
@@ -130,6 +133,18 @@ test('every title links to MyAnimeList in a new tab', async ({ page }) => {
     expect(await link.getAttribute('target')).toBe('_blank');
     expect(await link.getAttribute('rel')).toContain('noopener');
   }
+});
+
+test('the Charts link jumps straight to the charts without loading more of the list', async ({ page, isMobile }) => {
+  test.skip(isMobile, 'the section links are hidden on narrow screens');
+  await ready(page);
+  const before = await titles(page).count();
+  await page.locator('.nav a[href="#charts"]').click();
+  await expect(page.locator('#charts-title')).toBeInViewport();
+  // Give a wrongly triggered load time to happen, then make sure it did not.
+  await page.waitForTimeout(800);
+  await expect(page.locator('#charts-title')).toBeInViewport();
+  expect(await titles(page).count()).toBe(before);
 });
 
 test('more rows are rendered on demand', async ({ page }) => {

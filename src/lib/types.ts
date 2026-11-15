@@ -72,6 +72,8 @@ export interface Annotation {
   favoriteCharacter: string | null;
   /** Picture of the favorite character, looked up by the write API. Never set by hand. */
   favoriteCharacterImage: string | null;
+  /** Manual position among titles with the same final score; lower comes first. Decides ties in the Top 10. */
+  topOrder: number | null;
   updatedAt?: string;
 }
 export type AnnotationMap = Record<string, Annotation>;

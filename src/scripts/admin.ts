@@ -1,6 +1,6 @@
 import { finalScore } from '../config/rating';
-import { isEmptyAnnotation, sanitizeAnnotation, sanitizeAnnotationMap } from '../lib/annotations';
-import type { ListItem } from '../lib/model';
+import { isEmptyAnnotation, LIMITS, sanitizeAnnotation, sanitizeAnnotationMap } from '../lib/annotations';
+import { annotate, rankRated, type ListItem, type ViewItem } from '../lib/model';
 import { tierBadge } from '../lib/render';
 import type { Annotation, AnnotationMap } from '../lib/types';
 import { initThemeToggle } from './theme';
@@ -8,13 +8,14 @@ import { initThemeToggle } from './theme';
 initThemeToggle();
 
 const $ = <T extends HTMLElement>(id: string): T => document.getElementById(id) as T;
-const banner = $('adm-banner');
-const list = $<HTMLUListElement>('adm-list');
-const search = $<HTMLInputElement>('adm-search');
-const onlyAnnotated = $<HTMLInputElement>('adm-only');
-const count = $('adm-count');
-const template = $<HTMLTemplateElement>('adm-form');
+const el = <K extends keyof HTMLElementTagNameMap>(tag: K, className = '', text = ''): HTMLElementTagNameMap[K] => {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (text) node.textContent = text;
+  return node;
+};
 
+const banner = $('adm-banner');
 function showBanner(message: string): void {
   banner.textContent = message;
   banner.hidden = false;
@@ -38,8 +39,10 @@ const [data, me, annRes] = await Promise.all([
 
 const items = data?.items ?? [];
 const annotations: AnnotationMap = sanitizeAnnotationMap(annRes?.annotations);
+const EMPTY: Annotation = sanitizeAnnotation({});
 
-if (!me) showBanner('The API is not reachable here (it only runs on Cloudflare Pages or `npm run pages:dev`). Saving is disabled.');
+if (items.length === 0) showBanner('Could not load the list data.');
+else if (!me) showBanner('The API is not reachable here (it only runs on Cloudflare Pages or `npm run pages:dev`). Saving is disabled.');
 else if (!me.authenticated) showBanner('You are not signed in. Saving is disabled.');
 else {
   $('adm-user').textContent = `Signed in as ${me.user ?? 'admin'}`;
@@ -54,159 +57,555 @@ else {
 }
 const canSave = me?.authenticated === true;
 
+// ── Annotation store ─────────────────────────────────────────────────────────
+
 /** The key an existing annotation is stored under: the main key, or the OA-slug fallback. */
 const storedKey = (item: ListItem): string | null =>
   annotations[item.key] ? item.key : item.altKey && annotations[item.altKey] ? item.altKey : null;
-const current = (item: ListItem): Annotation | undefined => {
+const current = (item: ListItem): Annotation => {
   const key = storedKey(item);
-  return key ? annotations[key] : undefined;
+  return key ? annotations[key]! : EMPTY;
 };
 
-function summarize(item: ListItem): string {
-  const a = current(item);
-  if (!a) return '';
-  return [
-    a.refinedScore !== null ? `refined ${a.refinedScore}` : '',
-    a.tags.length ? `${a.tags.length} tag${a.tags.length > 1 ? 's' : ''}` : '',
-    a.review ? 'review' : '',
-    a.favoriteCharacter ? `fav: ${a.favoriteCharacter}` : '',
-  ]
-    .filter(Boolean)
-    .join(' · ');
+/** Save one annotation. Returns what the server stored, or throws with a readable message. */
+async function putAnnotation(item: ListItem, next: Annotation): Promise<Annotation> {
+  const res = await fetch(`/api/annotations/${encodeURIComponent(item.key)}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    // malId lets the server find the character's picture even when the key is an `oa:` one.
+    body: JSON.stringify({ ...next, malId: item.malId }),
+  });
+  if (!res.ok) {
+    const err = (await res.json().catch(() => null)) as { error?: string } | null;
+    throw new Error(err?.error ?? `HTTP ${res.status}`);
+  }
+  const saved = sanitizeAnnotation(((await res.json()) as { annotation?: unknown }).annotation);
+  // An annotation stored under the old OA-slug key moves to the main key.
+  const old = storedKey(item);
+  if (old && old !== item.key) {
+    await fetch(`/api/annotations/${encodeURIComponent(old)}`, { method: 'DELETE' });
+    delete annotations[old];
+  }
+  if (isEmptyAnnotation(saved)) delete annotations[item.key];
+  else annotations[item.key] = saved;
+  return saved;
 }
+
+function setStatus(node: HTMLElement, text: string, kind: 'ok' | 'error' | 'dirty' | '' = ''): void {
+  node.textContent = text;
+  if (kind) node.dataset.kind = kind;
+  else delete node.dataset.kind;
+}
+
+// ── Tabs ─────────────────────────────────────────────────────────────────────
+
+const tabButtons = [...document.querySelectorAll<HTMLButtonElement>('.adm-tabs .tab')];
+function showPanel(name: string): void {
+  for (const b of tabButtons) b.setAttribute('aria-pressed', String(b.dataset.panel === name));
+  $('panel-notes').hidden = name !== 'notes';
+  $('panel-top').hidden = name !== 'top';
+  if (name === 'top') {
+    if (touched.size === 0) loadGroups(); // pick up scores changed in the other tab
+    renderTopPanel();
+  }
+}
+for (const b of tabButtons) b.addEventListener('click', () => showPanel(b.dataset.panel ?? 'notes'));
+
+// ── Notes and scores ─────────────────────────────────────────────────────────
+
+const list = $<HTMLUListElement>('adm-list');
+const search = $<HTMLInputElement>('adm-search');
+const statusFilter = $<HTMLSelectElement>('adm-status');
+const sortSelect = $<HTMLSelectElement>('adm-sort');
+const onlyAnnotated = $<HTMLInputElement>('adm-only');
+const template = $<HTMLTemplateElement>('adm-editor');
+
+/** Notes worth showing on a row: everything except a bare Top 10 position. */
+const hasNotes = (a: Annotation): boolean =>
+  a.refinedScore !== null || a.review !== null || a.tags.length > 0 || a.favoriteCharacter !== null;
 
 const rows = new Map<string, HTMLLIElement>();
 
-function updateSummary(item: ListItem, row: HTMLLIElement): void {
-  row.querySelector('.adm-badge')!.innerHTML = tierBadge(finalScore(item.score, current(item)?.refinedScore));
-  row.querySelector('.adm-flag')!.textContent = summarize(item);
-}
-
-function fillForm(form: HTMLFormElement, item: ListItem): void {
+function updateHead(item: ListItem): void {
+  const row = rows.get(item.key)!;
   const a = current(item);
-  const field = (name: string) => form.elements.namedItem(name) as HTMLInputElement | HTMLTextAreaElement;
-  const score = field('refinedScore') as HTMLInputElement;
-  score.value = a?.refinedScore != null ? String(a.refinedScore) : '';
-  score.placeholder = item.score !== null ? `${finalScore(item.score, null)} (from ${item.score}/10)` : 'not rated';
-  field('tags').value = a?.tags.join(', ') ?? '';
-  field('favoriteCharacter').value = a?.favoriteCharacter ?? '';
-  const avatar = form.querySelector<HTMLImageElement>('[data-avatar]')!;
-  avatar.hidden = !a?.favoriteCharacterImage;
-  if (a?.favoriteCharacterImage) avatar.src = a.favoriteCharacterImage;
-  else avatar.removeAttribute('src');
-  field('review').value = a?.review ?? '';
+  const marks = row.querySelector<HTMLElement>('.adm-row__marks')!;
+  marks.replaceChildren();
+  const badge = el('span');
+  badge.innerHTML = tierBadge(finalScore(item.score, a.refinedScore));
+  marks.append(badge);
+  const add = (text: string) => marks.append(el('span', 'adm-mark', text));
+  if (a.refinedScore !== null) add('own score');
+  if (a.favoriteCharacter) add(a.favoriteCharacter);
+  if (a.tags.length) add(`${a.tags.length} tag${a.tags.length > 1 ? 's' : ''}`);
+  if (a.review) add('review');
 }
 
-async function save(item: ListItem, form: HTMLFormElement, clear: boolean): Promise<void> {
-  const status = form.querySelector<HTMLElement>('.adm-status')!;
-  const fd = new FormData(form);
-  const scoreRaw = String(fd.get('refinedScore') ?? '').trim();
-  const next = clear
-    ? sanitizeAnnotation({})
-    : sanitizeAnnotation({
-        refinedScore: scoreRaw === '' ? null : Number(scoreRaw),
-        tags: String(fd.get('tags') ?? '').split(','),
-        favoriteCharacter: fd.get('favoriteCharacter'),
-        review: fd.get('review'),
-      });
-  if (!clear && scoreRaw !== '' && next.refinedScore === null) {
-    status.textContent = 'The refined score must be a whole number from 1 to 100.';
-    return;
-  }
-  status.textContent = 'Saving…';
-  try {
-    const res = await fetch(`/api/annotations/${encodeURIComponent(item.key)}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      // malId lets the server find the character's picture even when the key is an `oa:` one.
-      body: JSON.stringify({ ...next, malId: item.malId }),
+/** Every tag in use, most used first: offered as one-click suggestions. */
+function knownTags(): string[] {
+  const counts = new Map<string, number>();
+  for (const a of Object.values(annotations)) for (const t of a.tags) counts.set(t, (counts.get(t) ?? 0) + 1);
+  return [...counts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).map(([t]) => t);
+}
+
+function buildEditor(item: ListItem, row: HTMLLIElement): HTMLFormElement {
+  const form = (template.content.cloneNode(true) as DocumentFragment).querySelector('form')!;
+  const q = <T extends HTMLElement>(sel: string) => form.querySelector<T>(sel)!;
+  const score = q<HTMLInputElement>('[name="refinedScore"]');
+  const range = q<HTMLInputElement>('[data-range]');
+  const preview = q<HTMLElement>('[data-preview]');
+  const character = q<HTMLInputElement>('[name="favoriteCharacter"]');
+  const avatar = q<HTMLImageElement>('[data-avatar]');
+  const castBox = q<HTMLElement>('[data-cast]');
+  const tagList = q<HTMLUListElement>('[data-tags]');
+  const tagInput = q<HTMLInputElement>('[name="tags"]');
+  const suggestBox = q<HTMLElement>('[data-suggest]');
+  const review = q<HTMLTextAreaElement>('[name="review"]');
+  const counter = q<HTMLElement>('[data-count]');
+  const saveBtn = q<HTMLButtonElement>('[data-save]');
+  const discardBtn = q<HTMLButtonElement>('[data-discard]');
+  const clearBtn = q<HTMLButtonElement>('[data-clear]');
+  const status = q<HTMLElement>('.adm-status');
+
+  const base = finalScore(item.score, null);
+  q<HTMLElement>('[data-score-hint]').textContent =
+    item.score !== null
+      ? `Your OglądajAnime score is ${item.score}/10, shown as ${base}. Leave the box empty to keep that.`
+      : 'Not rated on OglądajAnime. Leave the box empty to keep it unrated.';
+
+  let tags: string[] = [];
+  let cast: { name: string; image: string | null }[] = [];
+
+  const parseTags = (raw: string): string[] => sanitizeAnnotation({ tags: raw.split(',') }).tags;
+  /** The annotation as the form currently describes it. */
+  const read = (): Annotation => {
+    const raw = score.value.trim();
+    return sanitizeAnnotation({
+      refinedScore: raw === '' ? null : Number(raw),
+      tags: [...tags, ...parseTags(tagInput.value)],
+      favoriteCharacter: character.value,
+      review: review.value,
+      topOrder: current(item).topOrder,
     });
-    if (!res.ok) {
-      const err = (await res.json().catch(() => null)) as { error?: string } | null;
-      status.textContent = `Not saved: ${err?.error ?? `HTTP ${res.status}`}`;
+  };
+  const scoreInvalid = (): boolean => score.value.trim() !== '' && read().refinedScore === null;
+  const dirty = (): boolean => {
+    const a = current(item);
+    const n = read();
+    return (
+      scoreInvalid() ||
+      n.refinedScore !== a.refinedScore ||
+      n.review !== a.review ||
+      n.favoriteCharacter !== a.favoriteCharacter ||
+      n.tags.join('\n') !== a.tags.join('\n')
+    );
+  };
+
+  function renderTags(): void {
+    tagList.replaceChildren(
+      ...tags.map((t) => {
+        const li = el('li');
+        const b = el('button', 'adm-pill adm-pill--text', `${t} ×`);
+        b.type = 'button';
+        b.setAttribute('aria-label', `Remove tag ${t}`);
+        b.addEventListener('click', () => {
+          tags = tags.filter((x) => x !== t);
+          renderTags();
+          refresh();
+        });
+        li.append(b);
+        return li;
+      }),
+    );
+    const suggestions = knownTags()
+      .filter((t) => !tags.includes(t))
+      .slice(0, 10);
+    suggestBox.hidden = suggestions.length === 0;
+    suggestBox.replaceChildren(
+      ...suggestions.map((t) => {
+        const b = el('button', 'adm-pill adm-pill--text', `+ ${t}`);
+        b.type = 'button';
+        b.addEventListener('click', () => {
+          tags = sanitizeAnnotation({ tags: [...tags, t] }).tags;
+          renderTags();
+          refresh();
+        });
+        return b;
+      }),
+    );
+  }
+
+  function commitTagInput(): void {
+    const added = parseTags(tagInput.value);
+    if (added.length === 0) return;
+    tags = sanitizeAnnotation({ tags: [...tags, ...added] }).tags;
+    tagInput.value = '';
+    renderTags();
+  }
+
+  function renderCast(): void {
+    castBox.hidden = cast.length === 0;
+    const chosen = character.value.trim().toLowerCase();
+    castBox.replaceChildren(
+      ...cast.map((c) => {
+        const b = el('button', 'adm-pill');
+        b.type = 'button';
+        b.setAttribute('aria-pressed', String(c.name.toLowerCase() === chosen));
+        if (c.image) {
+          const img = el('img');
+          img.src = c.image;
+          img.alt = '';
+          img.width = 24;
+          img.height = 24;
+          img.loading = 'lazy';
+          b.append(img);
+        } else b.classList.add('adm-pill--text');
+        b.append(c.name);
+        b.addEventListener('click', () => {
+          character.value = c.name.toLowerCase() === chosen ? '' : c.name;
+          refresh();
+        });
+        return b;
+      }),
+    );
+  }
+
+  /** Re-derive everything that depends on the current field values. */
+  function refresh(): void {
+    const n = read();
+    preview.innerHTML = tierBadge(finalScore(item.score, n.refinedScore));
+    range.value = String(n.refinedScore ?? base ?? 50);
+    counter.textContent = `${review.value.length} / ${LIMITS.review}`;
+
+    const typed = character.value.trim().toLowerCase();
+    const saved = current(item);
+    const picture =
+      cast.find((c) => c.name.toLowerCase() === typed)?.image ??
+      (saved.favoriteCharacter?.toLowerCase() === typed ? saved.favoriteCharacterImage : null);
+    avatar.hidden = !picture;
+    if (picture) avatar.src = picture;
+    else avatar.removeAttribute('src');
+    renderCast();
+
+    const isDirty = dirty();
+    saveBtn.disabled = !canSave || !isDirty;
+    discardBtn.disabled = !isDirty;
+    clearBtn.disabled = !canSave || storedKey(item) === null;
+    if (scoreInvalid()) setStatus(status, 'The score must be a whole number from 1 to 100.', 'error');
+    else if (isDirty) setStatus(status, 'Unsaved changes', 'dirty');
+    else if (status.dataset.kind !== 'ok') setStatus(status, '');
+    row.toggleAttribute('data-dirty', isDirty);
+  }
+
+  function fill(): void {
+    const a = current(item);
+    score.value = a.refinedScore !== null ? String(a.refinedScore) : '';
+    score.placeholder = base !== null ? String(base) : '–';
+    character.value = a.favoriteCharacter ?? '';
+    review.value = a.review ?? '';
+    tagInput.value = '';
+    tags = [...a.tags];
+    renderTags();
+    setStatus(status, '');
+    refresh();
+  }
+
+  async function save(next: Annotation, done: string): Promise<void> {
+    setStatus(status, 'Saving…');
+    saveBtn.disabled = true;
+    try {
+      const saved = await putAnnotation(item, next);
+      fill();
+      updateHead(item);
+      applyFilter();
+      setStatus(
+        status,
+        saved.favoriteCharacter && !saved.favoriteCharacterImage ? `${done} No picture was found for that character name.` : done,
+        'ok',
+      );
+    } catch (err) {
+      setStatus(status, `Not saved: ${(err as Error).message}`, 'error');
+      refresh();
+    }
+  }
+
+  score.addEventListener('input', () => {
+    delete status.dataset.kind;
+    refresh();
+  });
+  range.addEventListener('input', () => {
+    score.value = range.value;
+    delete status.dataset.kind;
+    refresh();
+  });
+  for (const field of [character, review]) {
+    field.addEventListener('input', () => {
+      delete status.dataset.kind;
+      refresh();
+    });
+  }
+  tagInput.addEventListener('input', () => {
+    if (tagInput.value.includes(',')) commitTagInput();
+    delete status.dataset.kind;
+    refresh();
+  });
+  tagInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault(); // Enter adds the tag; it must not submit the form
+      commitTagInput();
+      refresh();
+    } else if (e.key === 'Backspace' && tagInput.value === '' && tags.length > 0) {
+      tags = tags.slice(0, -1);
+      renderTags();
+      refresh();
+    }
+  });
+  form.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey) && !saveBtn.disabled) form.requestSubmit();
+  });
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (scoreInvalid()) return refresh();
+    commitTagInput();
+    void save(read(), 'Saved.');
+  });
+  discardBtn.addEventListener('click', fill);
+
+  // Removing everything asks for a second click instead of opening a dialog.
+  let armed: ReturnType<typeof setTimeout> | undefined;
+  clearBtn.addEventListener('click', () => {
+    if (armed === undefined) {
+      clearBtn.textContent = 'Click again to remove';
+      armed = setTimeout(() => {
+        armed = undefined;
+        clearBtn.textContent = 'Remove all notes';
+      }, 4000);
       return;
     }
-    // An annotation stored under the old OA-slug key moves to the main key.
-    const old = storedKey(item);
-    if (old && old !== item.key) {
-      await fetch(`/api/annotations/${encodeURIComponent(old)}`, { method: 'DELETE' });
-      delete annotations[old];
-    }
-    // Keep what the server stored: it adds the favorite character's picture.
-    const saved = sanitizeAnnotation(((await res.json()) as { annotation?: unknown }).annotation);
-    if (isEmptyAnnotation(saved)) delete annotations[item.key];
-    else annotations[item.key] = saved;
-    fillForm(form, item);
-    updateSummary(item, rows.get(item.key)!);
-    status.textContent = isEmptyAnnotation(saved)
-      ? 'Cleared.'
-      : saved.favoriteCharacter && !saved.favoriteCharacterImage
-        ? 'Saved. No picture found for that character name.'
-        : 'Saved.';
-    applyFilter();
-  } catch {
-    status.textContent = 'Not saved: network error.';
+    clearTimeout(armed);
+    armed = undefined;
+    clearBtn.textContent = 'Remove all notes';
+    // The Top 10 position is not a note; it stays.
+    void save(sanitizeAnnotation({ topOrder: current(item).topOrder }), 'Removed.');
+  });
+
+  fill();
+  if (canSave && item.malId !== null) {
+    void getJson<{ characters: { name: string; image: string | null }[] }>(`/api/characters/${item.malId}`).then((res) => {
+      cast = res?.characters ?? [];
+      refresh();
+    });
   }
+  return form;
 }
 
 function buildRow(item: ListItem): HTMLLIElement {
-  const li = document.createElement('li');
-  li.className = 'adm-row';
-  const details = document.createElement('details');
-  const summary = document.createElement('summary');
-  const title = document.createElement('span');
-  title.className = 'adm-title';
-  title.textContent = item.title;
-  const meta = document.createElement('span');
-  meta.className = 'adm-meta';
-  meta.textContent = `${item.status} · ${item.type}`;
-  const badge = document.createElement('span');
-  badge.className = 'adm-badge';
-  const flag = document.createElement('span');
-  flag.className = 'adm-flag';
-  summary.append(title, meta, badge, flag);
-  details.append(summary);
-  li.append(details);
-  updateSummary(item, li);
+  const li = el('li', 'adm-row');
+  const head = el('button', 'adm-row__head');
+  head.type = 'button';
+  head.setAttribute('aria-expanded', 'false');
 
-  // The form is only built when a row is first opened.
-  details.addEventListener('toggle', () => {
-    if (!details.open || details.querySelector('form')) return;
-    const form = (template.content.cloneNode(true) as DocumentFragment).querySelector('form')!;
-    fillForm(form, item);
-    if (!canSave) for (const el of form.querySelectorAll<HTMLButtonElement>('button')) el.disabled = true;
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      void save(item, form, false);
-    });
-    form.querySelector('[data-clear]')!.addEventListener('click', () => void save(item, form, true));
-    details.append(form);
+  const thumb = el('span');
+  if (item.image) {
+    const img = el('img', 'cover');
+    img.src = item.image;
+    img.alt = '';
+    img.width = 225;
+    img.height = 318;
+    img.loading = 'lazy';
+    thumb.append(img);
+  } else thumb.append(el('span', 'cover cover--empty', item.title.slice(0, 1).toUpperCase()));
+
+  const text = el('span');
+  text.append(el('span', 'adm-row__title', item.title));
+  text.append(el('span', 'adm-row__meta', [item.status, item.type, item.year].filter(Boolean).join(' · ')));
+  head.append(thumb, text, el('span', 'adm-row__marks'), el('span', 'adm-row__chevron'));
+  li.append(head);
+
+  head.addEventListener('click', () => {
+    const open = li.toggleAttribute('data-open');
+    head.setAttribute('aria-expanded', String(open));
+    let form = li.querySelector('form');
+    if (open && !form) {
+      form = buildEditor(item, li); // built on first open only
+      li.append(form);
+    }
+    if (form) form.hidden = !open;
   });
   return li;
 }
 
 function applyFilter(): void {
   const tokens = search.value.toLowerCase().split(/\s+/).filter(Boolean);
+  const status = statusFilter.value;
+  const view = new Map(annotate(items, annotations).map((v) => [v.key, v]));
+  const byTitle = (a: ListItem, b: ListItem) => a.title.localeCompare(b.title);
+  const sorted = [...items].sort(
+    sortSelect.value === 'score'
+      ? (a, b) => (view.get(b.key)!.final ?? -1) - (view.get(a.key)!.final ?? -1) || byTitle(a, b)
+      : sortSelect.value === 'added'
+        ? (a, b) => (b.added ?? '').localeCompare(a.added ?? '') || byTitle(a, b)
+        : byTitle,
+  );
   let visible = 0;
-  for (const item of items) {
+  for (const item of sorted) {
     const row = rows.get(item.key)!;
     const hay = `${item.title} ${item.titleEn ?? ''}`.toLowerCase();
-    const show = tokens.every((t) => hay.includes(t)) && (!onlyAnnotated.checked || current(item) !== undefined);
+    // A row with unsaved changes stays visible whatever the filters say.
+    const show =
+      row.hasAttribute('data-dirty') ||
+      (tokens.every((t) => hay.includes(t)) && (!status || item.status === status) && (!onlyAnnotated.checked || hasNotes(current(item))));
     row.hidden = !show;
     if (show) visible++;
+    list.append(row); // re-appending moves the row into the sorted position
   }
-  const annotated = items.filter((i) => current(i) !== undefined).length;
-  count.textContent = `${visible} shown · ${annotated} annotated`;
+  $('adm-none').hidden = visible > 0;
+  $('adm-count').textContent = `${visible} of ${items.length} shown`;
+  const noted = items.filter((i) => hasNotes(current(i))).length;
+  $('adm-summary').textContent = `${items.length} titles · ${noted} with notes`;
 }
 
-if (items.length === 0) showBanner('Could not load the list data.');
-const fragment = document.createDocumentFragment();
-for (const item of [...items].sort((a, b) => a.title.localeCompare(b.title))) {
+for (const item of items) {
   const row = buildRow(item);
   rows.set(item.key, row);
-  fragment.append(row);
+  updateHead(item);
 }
-list.append(fragment);
 search.addEventListener('input', applyFilter);
+statusFilter.addEventListener('change', applyFilter);
+sortSelect.addEventListener('change', applyFilter);
 onlyAnnotated.addEventListener('change', applyFilter);
 applyFilter();
+
+// ── Top 10 order ─────────────────────────────────────────────────────────────
+
+const topGroups = $('top-groups');
+const topSave = $<HTMLButtonElement>('top-save');
+const topReset = $<HTMLButtonElement>('top-reset');
+const topStatus = $('top-status');
+
+/** Working order per score: keys in the order I want them. Only groups I touched are saved. */
+let groups: { score: number; keys: string[] }[] = [];
+const touched = new Set<number>();
+const byKey = new Map(items.map((i) => [i.key, i]));
+
+/** Score groups from the top down, up to and including the group the 10th place falls into. */
+function loadGroups(): void {
+  const ranked: ViewItem[] = rankRated(annotate(items, annotations));
+  groups = [];
+  let count = 0;
+  for (const v of ranked) {
+    const last = groups.at(-1);
+    if (last && last.score === v.final) last.keys.push(v.key);
+    else if (count >= 10) break;
+    else groups.push({ score: v.final!, keys: [v.key] });
+    count++;
+  }
+  touched.clear();
+}
+
+const arrow = (up: boolean): string =>
+  `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${up ? 'M12 19V5M6 11l6-6 6 6' : 'M12 5v14M6 13l6 6 6-6'}"/></svg>`;
+
+function renderTopPanel(focus?: { key: string; up: boolean }): void {
+  topGroups.replaceChildren();
+  let rank = 0;
+  for (const group of groups) {
+    const section = el('section', 'top-group');
+    const head = el('div', 'top-group__head');
+    const badge = el('span');
+    badge.innerHTML = tierBadge(group.score);
+    head.append(badge, el('span', '', group.keys.length === 1 ? '1 title' : `${group.keys.length} titles share this score`));
+    const ol = el('ol');
+    group.keys.forEach((key, idx) => {
+      rank++;
+      const item = byKey.get(key)!;
+      const li = el('li', 'top-row');
+      if (rank <= 10) li.setAttribute('data-in-top', '');
+      if (rank === 10) li.setAttribute('data-cut', '');
+      const thumb = el('span');
+      if (item.image) {
+        const img = el('img', 'cover');
+        img.src = item.image;
+        img.alt = '';
+        img.width = 225;
+        img.height = 318;
+        img.loading = 'lazy';
+        thumb.append(img);
+      }
+      const moves = el('span', 'top-row__moves');
+      for (const up of [true, false]) {
+        const b = el('button', 'icon-btn');
+        b.type = 'button';
+        b.innerHTML = arrow(up);
+        b.setAttribute('aria-label', `Move ${item.title} ${up ? 'up' : 'down'}`);
+        b.disabled = !canSave || (up ? idx === 0 : idx === group.keys.length - 1);
+        b.dataset.key = key;
+        b.dataset.up = String(up);
+        b.addEventListener('click', () => {
+          const to = up ? idx - 1 : idx + 1;
+          [group.keys[idx], group.keys[to]] = [group.keys[to]!, group.keys[idx]!];
+          touched.add(group.score);
+          topSave.disabled = false;
+          setStatus(topStatus, 'Unsaved order', 'dirty');
+          renderTopPanel({ key, up });
+        });
+        moves.append(b);
+      }
+      li.append(el('span', 'top-row__rank', String(rank)), thumb, el('span', 'top-row__title', item.title), moves);
+      ol.append(li);
+      if (rank === 10 && idx < group.keys.length - 1) {
+        const note = el('li', 'top-cutnote', 'The Top 10 ends here');
+        ol.append(note);
+      }
+    });
+    section.append(head, ol);
+    topGroups.append(section);
+  }
+  if (groups.length === 0) topGroups.append(el('p', 'adm-none', 'No rated titles yet.'));
+  // Keep the keyboard on the title that just moved, on the same arrow when it is still usable.
+  if (focus) {
+    const buttons = [...topGroups.querySelectorAll<HTMLButtonElement>(`button[data-key="${CSS.escape(focus.key)}"]`)];
+    (buttons.find((b) => b.dataset.up === String(focus.up) && !b.disabled) ?? buttons.find((b) => !b.disabled))?.focus();
+  }
+}
+
+/** Write the given position (or none) for every title of the listed groups whose stored value differs. */
+async function saveOrder(scores: number[], position: (index: number) => number | null, done: string): Promise<void> {
+  const jobs: { item: ListItem; next: Annotation }[] = [];
+  for (const group of groups.filter((g) => scores.includes(g.score))) {
+    group.keys.forEach((key, idx) => {
+      const item = byKey.get(key)!;
+      const a = current(item);
+      const topOrder = position(idx);
+      if (a.topOrder !== topOrder) jobs.push({ item, next: { ...a, topOrder } });
+    });
+  }
+  topSave.disabled = true;
+  topReset.disabled = true;
+  try {
+    let n = 0;
+    for (const job of jobs) {
+      setStatus(topStatus, `Saving ${++n} of ${jobs.length}…`);
+      await putAnnotation(job.item, job.next);
+    }
+    loadGroups();
+    renderTopPanel();
+    setStatus(topStatus, done, 'ok');
+  } catch (err) {
+    setStatus(topStatus, `Not saved: ${(err as Error).message}`, 'error');
+    topSave.disabled = touched.size === 0;
+  } finally {
+    topReset.disabled = !canSave;
+  }
+}
+
+topSave.addEventListener('click', () => void saveOrder([...touched], (idx) => idx + 1, 'Order saved.'));
+topReset.addEventListener('click', () =>
+  void saveOrder(
+    groups.map((g) => g.score),
+    () => null,
+    'Back to automatic order.',
+  ),
+);
+topReset.disabled = !canSave;
+loadGroups();

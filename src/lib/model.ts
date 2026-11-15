@@ -34,6 +34,8 @@ export interface ViewItem extends ListItem {
   review: string | null;
   favoriteCharacter: string | null;
   favoriteCharacterImage: string | null;
+  /** Manual position among titles with the same final score (lower first); null = automatic. */
+  topOrder: number | null;
 }
 
 const sameTitle = (a: string, b: string): boolean =>
@@ -81,6 +83,7 @@ export function annotate(items: ListItem[], annotations: AnnotationMap): ViewIte
       review: a?.review || null,
       favoriteCharacter: a?.favoriteCharacter || null,
       favoriteCharacterImage: (a?.favoriteCharacter && a.favoriteCharacterImage) || null,
+      topOrder: a?.topOrder ?? null,
     };
   });
 }
@@ -155,13 +158,23 @@ export function tierCounts(items: ViewItem[]): { id: string; name: string; label
 
 const cmpAddedDesc = (a: ViewItem, b: ViewItem): number => (b.added ?? '').localeCompare(a.added ?? '');
 
-/** Highest final score first; ties go to the most recently added, then by title. */
-export function topRated(items: ViewItem[], n = 10): ViewItem[] {
+/**
+ * Rated titles, best first. Within one final score the manual order decides (titles I placed
+ * by hand come first, in that order), then the most recently added, then the title.
+ */
+export function rankRated(items: ViewItem[]): ViewItem[] {
   return items
     .filter(isRated)
-    .sort((a, b) => b.final! - a.final! || cmpAddedDesc(a, b) || a.title.localeCompare(b.title))
-    .slice(0, n);
+    .sort(
+      (a, b) =>
+        b.final! - a.final! ||
+        (a.topOrder ?? Infinity) - (b.topOrder ?? Infinity) ||
+        cmpAddedDesc(a, b) ||
+        a.title.localeCompare(b.title),
+    );
 }
+
+export const topRated = (items: ViewItem[], n = 10): ViewItem[] => rankRated(items).slice(0, n);
 
 /** Shows I am part-way through, most recently added first. */
 export function inProgress(items: ViewItem[], n = 18): { shown: ViewItem[]; totalWatching: number } {

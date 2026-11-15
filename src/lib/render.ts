@@ -71,8 +71,11 @@ export function cover(item: ViewItem, { large = false, eager = false, priority =
   );
 }
 
-const titleLink = (item: ViewItem, cls: string): string =>
-  `<a class="${cls}" href="${esc(malUrl(item))}" target="_blank" rel="noopener">${esc(item.title)}</a>`;
+/** Small "MAL" button next to a title. It opens the title's MyAnimeList page in a new tab. */
+export const malButton = (item: ViewItem): string =>
+  `<a class="mal-link" href="${esc(malUrl(item))}" target="_blank" rel="noopener" aria-label="MAL page of ${esc(item.title)}, opens in a new tab">MAL` +
+  `<svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">` +
+  `<path d="M4.5 2.5h5v5M9.5 2.5l-7 7"/></svg></a>`;
 
 const progressText = (item: ViewItem): string => `${item.watched} / ${item.total ?? '?'}`;
 
@@ -117,9 +120,9 @@ export function renderWatching(shown: ViewItem[], totalWatching: number): string
     (item, idx) =>
       `<li class="watch-card">` +
       `<div class="watch-card__cover">${cover(item, { eager: idx < 3, priority: idx === 0 })}</div>` +
-      titleLink(item, 'watch-card__title cover-link') +
+      `<span class="watch-card__title">${esc(item.title)}</span>` +
       progressBar(item) +
-      (item.final === null ? '' : tierBadge(item.final, true)) +
+      `<span class="card-foot">${item.final === null ? '' : tierBadge(item.final, true)}${malButton(item)}</span>` +
       `</li>`,
   );
   if (totalWatching > shown.length) {
@@ -143,8 +146,8 @@ export function renderTop(items: ViewItem[]): string {
         `<li class="top-item${rank === 1 ? ' top-item--first' : ''}">` +
         `<span class="top-item__rank" aria-hidden="true">${String(rank).padStart(2, '0')}</span>` +
         `<div class="top-item__cover">${cover(item, rank === 1 ? { large: true, sizes: '(min-width: 720px) 220px, 120px' } : {})}</div>` +
-        `<div class="top-item__body"><span class="vh">Rank ${rank}: </span>` +
-        titleLink(item, 'top-item__title cover-link') +
+        `<div class="top-item__body">` +
+        `<p class="title-line"><span class="vh">Rank ${rank}: </span><span class="top-item__title">${esc(item.title)}</span>${malButton(item)}</p>` +
         (meta ? `<p class="top-item__meta">${meta}</p>` : '') +
         tierBadge(item.final) +
         `</div></li>`
@@ -160,27 +163,27 @@ export function renderItem(item: ViewItem): string {
   const chips = item.tags.length
     ? `<ul class="chips" aria-label="Tags">${item.tags.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>`
     : '';
-  const note =
-    item.review || item.favoriteCharacter
-      ? `<details class="note"><summary>${item.review ? 'Review' : 'Favorite character'}</summary><div class="note__body">` +
-        (item.review ? `<p>${esc(item.review)}</p>` : '') +
-        (item.favoriteCharacter
-          ? `<p class="note__fav">` +
-            (item.favoriteCharacterImage
-              ? `<img class="note__avatar" src="${esc(item.favoriteCharacterImage)}" width="40" height="40" alt="" loading="lazy" decoding="async">`
-              : '') +
-            `<span>Favorite character: <strong>${esc(item.favoriteCharacter)}</strong></span></p>`
-          : '') +
-        `</div></details>`
-      : '';
+  // The favorite character is always visible; only the longer review sits behind an expandable line.
+  const favorite = item.favoriteCharacter
+    ? `<p class="fav">` +
+      (item.favoriteCharacterImage
+        ? `<img class="fav__avatar" src="${esc(item.favoriteCharacterImage)}" width="28" height="28" alt="" loading="lazy" decoding="async">`
+        : '') +
+      `<span class="fav__label">Favorite character</span><span class="fav__name">${esc(item.favoriteCharacter)}</span></p>`
+    : '';
+  const note = item.review
+    ? `<details class="note"><summary>Review</summary><div class="note__body"><p>${esc(item.review)}</p></div></details>`
+    : '';
   const added = item.added
     ? `<time datetime="${esc(item.added)}" title="${esc(item.added.replace('T', ' '))}">${monthLabel(item.added)}</time>`
     : '–';
   return (
     `<li class="item" data-key="${esc(item.key)}">` +
     `<div class="item__cover">${cover(item)}</div>` +
-    `<div class="item__body">${titleLink(item, 'item__title cover-link')}` +
+    `<div class="item__body">` +
+    `<p class="title-line"><span class="item__title">${esc(item.title)}</span>${malButton(item)}</p>` +
     (meta ? `<p class="item__meta">${meta}</p>` : '') +
+    favorite +
     chips +
     note +
     `</div>` +

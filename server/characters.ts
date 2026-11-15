@@ -13,7 +13,6 @@ export interface CharacterInfo {
 }
 
 const ENDPOINT = 'https://graphql.anilist.co';
-const MAX_PAGES = 3;
 
 const QUERY = `query ($id: Int, $page: Int) {
   Media(idMal: $id, type: ANIME) {
@@ -35,10 +34,10 @@ interface CharactersResponse {
   };
 }
 
-/** The cast of an anime, main characters first. */
-export async function fetchCharacters(malId: number, fetchImpl: typeof fetch = fetch): Promise<CharacterInfo[]> {
+/** The cast of an anime, main characters first. Each page holds 50 characters. */
+export async function fetchCharacters(malId: number, fetchImpl: typeof fetch = fetch, maxPages = 3): Promise<CharacterInfo[]> {
   const out: CharacterInfo[] = [];
-  for (let page = 1; page <= MAX_PAGES; page++) {
+  for (let page = 1; page <= maxPages; page++) {
     const res = await fetchImpl(ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },

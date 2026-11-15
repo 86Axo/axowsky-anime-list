@@ -70,12 +70,19 @@ test('a signed-in admin can save, and the public page shows the result', async (
   const target = data.items.find((i: { status: string; score: number | null }) => i.status === 'Dropped' && i.score !== null);
   const targetUrl = `/api/annotations/${encodeURIComponent(target.key)}`;
   try {
-    await request.put(targetUrl, { data: { refinedScore: 97, tags: ['e2e-tag'], review: 'Shown inline.' }, headers });
+    await request.put(targetUrl, {
+      data: { refinedScore: 97, tags: ['e2e-tag'], review: 'Shown inline.', favoriteCharacter: 'E2E Hero' },
+      headers,
+    });
     await page.goto('/?status=dropped');
     const row = page.locator(`#anime-list .item[data-key="${target.key}"]`);
     await expect(row.locator('.tier__num')).toHaveText('97');
     await expect(row.locator('.tier__name')).toHaveText('S+');
     await expect(row.locator('.chips li')).toHaveText('e2e-tag');
+    // The favorite character needs no click; the review does.
+    await expect(row.locator('.fav__name')).toBeVisible();
+    await expect(row.locator('.fav__name')).toHaveText('E2E Hero');
+    await expect(row.locator('.note__body')).toBeHidden();
     await row.locator('.note summary').click();
     await expect(row.locator('.note__body')).toContainText('Shown inline.');
   } finally {
@@ -102,45 +109,112 @@ test('/admin is gated on the server', async ({ request }) => {
   }
   expect(admin.status()).toBe(200);
   expect(admin.headers()['cache-control']).toContain('no-store');
-  expect(await admin.text()).toContain('Annotations');
+  expect(await admin.text()).toContain('Notes and scores');
 
   const me = await (await request.get('/api/auth/me')).json();
   expect(me).toMatchObject({ authenticated: false, mode: 'github' });
 });
 
-test('the admin page edits an annotation inline', async ({ browser, request }) => {
+test('a manual position decides the Top 10 order between titles with the same score', async ({ request, page }) => {
+  const headers = { Origin: origin, Cookie: await sessionCookie(E2E.adminGithubId) };
+  await page.goto('/');
+  const topTitles = page.locator('#top-list .top-item__title');
+  await expect(topTitles).toHaveCount(10);
+  const [first, second] = await topTitles.allInnerTexts();
+  const data = await (await request.get('/data.json')).json();
+  const find = (title: string) => data.items.find((i: { title: string }) => i.title === title);
+  const a = find(first!);
+  const b = find(second!);
+  test.skip(a.score !== b.score, 'the two best titles do not share a score in this dataset');
+  const urlOf = (key: string) => `/api/annotations/${encodeURIComponent(key)}`;
+  try {
+    expect((await request.put(urlOf(b.key), { data: { topOrder: 1 }, headers })).status()).toBe(200);
+    expect((await request.put(urlOf(a.key), { data: { topOrder: 2 }, headers })).status()).toBe(200);
+    await page.reload();
+    await expect(topTitles.nth(0)).toHaveText(second!);
+    await expect(topTitles.nth(1)).toHaveText(first!);
+  } finally {
+    await request.delete(urlOf(a.key), { headers });
+    await request.delete(urlOf(b.key), { headers });
+  }
+});
+
+test('the admin panel edits notes and reorders the Top 10', async ({ browser, request }) => {
   const cookie = await sessionCookie(E2E.adminGithubId);
   // The session cookie is Secure and __Host- prefixed; sending it as a header works on plain-http localhost.
-  const context = await browser.newContext({ extraHTTPHeaders: { Cookie: cookie } });
+  const context = await browser.newContext({ extraHTTPHeaders: { Cookie: cookie }, viewport: { width: 1280, height: 900 } });
   const page = await context.newPage();
+  const stored = async () =>
+    Object.values((await (await request.get('/api/annotations')).json()).annotations) as { review: string | null; topOrder: number | null }[];
   await page.goto('/admin/');
   await expect(page.locator('#adm-user')).toHaveText('Signed in as e2e-admin');
 
+  // Notes and scores
   await page.locator('#adm-search').fill('angel beats');
   const row = page.locator('.adm-row:visible');
   await expect(row).toHaveCount(1);
-  await row.locator('summary').click();
-  await row.locator('[name="refinedScore"]').fill('96');
-  await row.locator('[name="tags"]').fill('made me cry, rewatchable');
-  await row.locator('[name="review"]').fill('Admin e2e review.');
-  await row.getByRole('button', { name: 'Save' }).click();
-  await expect(row.locator('.adm-status')).toHaveText('Saved.');
-  await expect(row.locator('.tier__num')).toHaveText('96');
-  await expect(row.locator('.adm-flag')).toContainText('refined 96');
-  await page.screenshot({ path: 'test-results/admin.png' });
+  await row.locator('.adm-row__head').click();
+  const save = row.getByRole('button', { name: 'Save', exact: true });
+  await expect(save).toBeDisabled();
 
-  const stored = Object.values((await (await request.get('/api/annotations')).json()).annotations) as { review: string | null }[];
-  expect(stored.some((a) => a.review === 'Admin e2e review.')).toBe(true);
+  await row.locator('[name="refinedScore"]').fill('96');
+  await expect(row.locator('[data-preview] .tier__num')).toHaveText('96'); // live preview before saving
+  await expect(row.locator('.adm-status')).toHaveText('Unsaved changes');
+  await row.locator('[name="tags"]').fill('made me cry');
+  await row.locator('[name="tags"]').press('Enter');
+  await row.locator('[name="tags"]').fill('rewatchable');
+  await row.locator('[name="tags"]').press('Enter');
+  await expect(row.locator('[data-tags] li')).toHaveCount(2);
+  await row.locator('[name="favoriteCharacter"]').fill('Kanade');
+  await row.locator('[name="review"]').fill('Admin e2e review.');
+  await save.click();
+  await expect(row.locator('.adm-status')).toContainText('Saved.');
+  await expect(save).toBeDisabled();
+  await expect(row.locator('.adm-row__marks .tier__num')).toHaveText('96');
+  await expect(row.locator('.adm-row__marks')).toContainText('own score');
+  await expect(row.locator('.adm-row__marks')).toContainText('2 tags');
+  await expect(row.locator('.adm-row__marks')).toContainText('review');
+  await page.screenshot({ path: 'test-results/admin.png' });
+  expect((await stored()).some((a) => a.review === 'Admin e2e review.')).toBe(true);
 
   // An out-of-range score is refused by the script too, not only by the input's own max attribute.
-  await row.locator('[name="refinedScore"]').fill('140');
   await row.locator('[name="refinedScore"]').evaluate((el: HTMLInputElement) => el.removeAttribute('max'));
-  await row.getByRole('button', { name: 'Save' }).click();
+  await row.locator('[name="refinedScore"]').fill('140');
   await expect(row.locator('.adm-status')).toContainText('must be a whole number');
+  await row.getByRole('button', { name: 'Discard changes' }).click();
+  await expect(row.locator('[name="refinedScore"]')).toHaveValue('96');
 
-  await row.getByRole('button', { name: 'Clear all' }).click();
-  await expect(row.locator('.adm-status')).toHaveText('Cleared.');
-  const after = Object.values((await (await request.get('/api/annotations')).json()).annotations) as { review: string | null }[];
-  expect(after.some((a) => a.review === 'Admin e2e review.')).toBe(false);
+  // Removing everything takes two clicks.
+  await row.locator('[data-clear]').click();
+  await expect(row.locator('[data-clear]')).toHaveText('Click again to remove');
+  await row.locator('[data-clear]').click();
+  await expect(row.locator('.adm-status')).toHaveText('Removed.');
+  expect((await stored()).some((a) => a.review === 'Admin e2e review.')).toBe(false);
+
+  // Top 10 order
+  await page.locator('.adm-tabs [data-panel="top"]').click();
+  const topRows = page.locator('#top-groups .top-row');
+  expect(await topRows.count()).toBeGreaterThanOrEqual(10);
+  const titleAt = (n: number) => topRows.nth(n).locator('.top-row__title').innerText();
+  const [one, two] = [await titleAt(0), await titleAt(1)];
+  await expect(page.locator('#top-save')).toBeDisabled();
+  await topRows.nth(0).getByRole('button', { name: /down$/ }).click();
+  expect(await titleAt(0)).toBe(two);
+  expect(await titleAt(1)).toBe(one);
+  await page.screenshot({ path: 'test-results/admin-top.png' });
+  await page.locator('#top-save').click();
+  await expect(page.locator('#top-status')).toHaveText('Order saved.');
+  expect((await stored()).filter((a) => a.topOrder !== null).length).toBeGreaterThan(1);
+
+  // The public page follows the saved order.
+  const publicPage = await context.newPage();
+  await publicPage.goto('/');
+  await expect(publicPage.locator('#top-list .top-item__title').first()).toHaveText(two);
+  await publicPage.close();
+
+  await page.locator('#top-reset').click();
+  await expect(page.locator('#top-status')).toHaveText('Back to automatic order.');
+  expect((await stored()).filter((a) => a.topOrder !== null)).toHaveLength(0);
+  expect(await titleAt(0)).toBe(one);
   await context.close();
 });

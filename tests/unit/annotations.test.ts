@@ -41,6 +41,7 @@ describe('sanitizeAnnotation', () => {
       tags: ['a', 'b'],
       favoriteCharacter: 'Yona',
       favoriteCharacterImage: null,
+      topOrder: null,
     });
   });
 
@@ -119,7 +120,7 @@ describe('model', () => {
   ];
 
   it('applies refined scores by key and by the OA fallback key', () => {
-    const view = annotate(items, { 'oa:a': { refinedScore: 96, review: null, tags: ['x'], favoriteCharacter: null, favoriteCharacterImage: null }, 'oa:f': { refinedScore: 55, review: 'ok', tags: [], favoriteCharacter: null, favoriteCharacterImage: null } });
+    const view = annotate(items, { 'oa:a': { refinedScore: 96, review: null, tags: ['x'], favoriteCharacter: null, favoriteCharacterImage: null, topOrder: null }, 'oa:f': { refinedScore: 55, review: 'ok', tags: [], favoriteCharacter: null, favoriteCharacterImage: null, topOrder: null } });
     expect(view.find((i) => i.title === 'A')).toMatchObject({ final: 96, tierId: 'sp', tags: ['x'] });
     expect(view.find((i) => i.title === 'B')).toMatchObject({ final: 100, tierId: 'sp' });
     expect(view.find((i) => i.title === 'F')).toMatchObject({ final: 55, tierId: 'd', review: 'ok' });
@@ -129,6 +130,29 @@ describe('model', () => {
   it('ranks the top list by score, then by most recently added, and skips plan-to-watch', () => {
     const top = topRated(annotate(items, {}));
     expect(top.map((i) => i.title)).toEqual(['B', 'A', 'C', 'F']);
+  });
+
+  it('lets a manual order decide between titles with the same score, and never across scores', () => {
+    const note = (topOrder: number | null) => ({
+      refinedScore: null,
+      review: null,
+      tags: [],
+      favoriteCharacter: null,
+      favoriteCharacterImage: null,
+      topOrder,
+    });
+    // A and B both score 100; by date B comes first. Placing A first by hand flips them.
+    expect(topRated(annotate(items, { 'oa:a': note(1), 'oa:b': note(2) })).map((i) => i.title)).toEqual(['A', 'B', 'C', 'F']);
+    // A placed title comes before unplaced ones of the same score.
+    expect(topRated(annotate(items, { 'oa:a': note(5) })).map((i) => i.title)).toEqual(['A', 'B', 'C', 'F']);
+    // A low-scored title cannot be moved above a higher score.
+    expect(topRated(annotate(items, { 'mal:6': note(1) })).map((i) => i.title)).toEqual(['B', 'A', 'C', 'F']);
+  });
+
+  it('keeps a Top 10 position on its own as a stored annotation, within limits', () => {
+    expect(isEmptyAnnotation(sanitizeAnnotation({ topOrder: 3 }))).toBe(false);
+    expect(sanitizeAnnotation({ topOrder: 3 }).topOrder).toBe(3);
+    for (const bad of [0, -1, 1.5, 1000, '2', null]) expect(sanitizeAnnotation({ topOrder: bad }).topOrder).toBeNull();
   });
 
   it('computes stats without counting plan-to-watch scores', () => {
@@ -214,7 +238,7 @@ describe('list state', () => {
 describe('render', () => {
   it('escapes data in HTML', () => {
     expect(esc(`<img src=x onerror="alert('x')">&`)).toBe('&lt;img src=x onerror=&quot;alert(&#39;x&#39;)&quot;&gt;&amp;');
-    const html = renderItem(annotate([item('<b>Evil</b>')], { 'oa:<b>evil</b>': { refinedScore: null, review: '<script>x</script>', tags: ['<i>'], favoriteCharacter: null, favoriteCharacterImage: null } })[0]!);
+    const html = renderItem(annotate([item('<b>Evil</b>')], { 'oa:<b>evil</b>': { refinedScore: null, review: '<script>x</script>', tags: ['<i>'], favoriteCharacter: null, favoriteCharacterImage: null, topOrder: null } })[0]!);
     expect(html).not.toContain('<b>Evil</b>');
     expect(html).not.toContain('<script>');
     expect(html).toContain('&lt;b&gt;Evil&lt;/b&gt;');
@@ -337,20 +361,36 @@ describe('favorite character picture', () => {
 
   it('only accepts https pictures from the allowed image hosts, and only next to a name', () => {
     const img = 'https://s4.anilist.co/file/anilistcdn/character/medium/lena.png';
-    expect(sanitizeAnnotation({ favoriteCharacter: 'Lena', favoriteCharacterImage: img }).favoriteCharacterImage).toBe(img);
-    expect(sanitizeAnnotation({ favoriteCharacterImage: img }).favoriteCharacterImage).toBeNull();
+    expect(sanitizeAnnotation({ favoriteCharacter: 'Lena', favoriteCharacterImage: img, topOrder: null }).favoriteCharacterImage).toBe(img);
+    expect(sanitizeAnnotation({ favoriteCharacterImage: img, topOrder: null }).favoriteCharacterImage).toBeNull();
     for (const bad of ['http://s4.anilist.co/x.png', 'https://evil.example/x.png', 'javascript:alert(1)', 'not a url', 42]) {
       expect(sanitizeAnnotation({ favoriteCharacter: 'Lena', favoriteCharacterImage: bad }).favoriteCharacterImage).toBeNull();
     }
   });
 
-  it('shows the picture next to the name in the expandable note', () => {
+  it('shows the favorite character with its picture without any click, and keeps the review expandable', () => {
     const img = 'https://s4.anilist.co/file/anilistcdn/character/medium/lena.png';
-    const withPicture = annotate([item('X')], { 'oa:x': { refinedScore: null, review: null, tags: [], favoriteCharacter: 'Lena', favoriteCharacterImage: img } })[0]!;
+    const withPicture = annotate([item('X')], {
+      'oa:x': { refinedScore: null, review: 'Long thoughts.', tags: [], favoriteCharacter: 'Lena', favoriteCharacterImage: img, topOrder: null },
+    })[0]!;
     const html = renderItem(withPicture);
-    expect(html).toContain(`<img class="note__avatar" src="${img}" width="40" height="40" alt="" loading="lazy"`);
-    expect(html).toContain('Favorite character: <strong>Lena</strong>');
-    const withoutPicture = annotate([item('X')], { 'oa:x': { refinedScore: null, review: null, tags: [], favoriteCharacter: 'Lena', favoriteCharacterImage: null } })[0]!;
-    expect(renderItem(withoutPicture)).not.toContain('note__avatar');
+    expect(html).toContain(`<img class="fav__avatar" src="${img}" width="28" height="28" alt="" loading="lazy"`);
+    expect(html).toContain('<span class="fav__name">Lena</span>');
+    // The character sits outside the expandable block; only the review is inside it.
+    const details = html.slice(html.indexOf('<details'), html.indexOf('</details>'));
+    expect(details).toContain('Long thoughts.');
+    expect(details).not.toContain('Lena');
+    const withoutPicture = annotate([item('X')], {
+      'oa:x': { refinedScore: null, review: null, tags: [], favoriteCharacter: 'Lena', favoriteCharacterImage: null, topOrder: null },
+    })[0]!;
+    expect(renderItem(withoutPicture)).not.toContain('fav__avatar');
+    expect(renderItem(withoutPicture)).not.toContain('<details');
+  });
+
+  it('puts the MAL link on a small button, not on the title or the whole card', () => {
+    const html = renderItem(annotate([item('X', { malId: 6547 })], {})[0]!);
+    expect(html).toContain('<span class="item__title">X</span><a class="mal-link" href="https://myanimelist.net/anime/6547"');
+    expect(html).toContain('aria-label="MAL page of X, opens in a new tab"');
+    expect(html.match(/<a /g)).toHaveLength(1);
   });
 });
