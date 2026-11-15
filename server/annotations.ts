@@ -9,6 +9,7 @@ interface Row {
   favorite_character: string | null;
   favorite_character_image: string | null;
   top_order: number | null;
+  /** The highlight flag. The column keeps its first name; any non-empty value means "highlighted". */
   distinction: string | null;
   updated_at: string;
 }
@@ -27,7 +28,7 @@ function fromRow(row: Row): Annotation {
     favoriteCharacter: row.favorite_character,
     favoriteCharacterImage: row.favorite_character_image,
     topOrder: row.top_order,
-    distinction: row.distinction,
+    highlight: row.distinction !== null && row.distinction !== '',
     updatedAt: row.updated_at,
   });
 }
@@ -75,7 +76,7 @@ export async function saveAnnotation(db: D1Database, key: string, input: unknown
          distinction = excluded.distinction,
          updated_at = excluded.updated_at`,
     )
-    .bind(key, a.refinedScore, a.review, JSON.stringify(a.tags), a.favoriteCharacter, a.favoriteCharacterImage, a.topOrder, a.distinction, updatedAt)
+    .bind(key, a.refinedScore, a.review, JSON.stringify(a.tags), a.favoriteCharacter, a.favoriteCharacterImage, a.topOrder, a.highlight ? '1' : null, updatedAt)
     .run();
   return { ...a, updatedAt };
 }

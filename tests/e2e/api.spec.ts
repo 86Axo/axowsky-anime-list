@@ -71,19 +71,29 @@ test('a signed-in admin can save, and the public page shows the result', async (
   const targetUrl = `/api/annotations/${encodeURIComponent(target.key)}`;
   try {
     await request.put(targetUrl, {
-      data: { refinedScore: 97, tags: ['e2e-tag'], review: 'Shown inline.', favoriteCharacter: 'E2E Hero', distinction: 'E2E pick' },
+      data: { refinedScore: 97, tags: ['e2e-tag'], review: 'Shown inline.', favoriteCharacter: 'E2E Hero' },
       headers,
     });
     await page.goto('/?status=dropped');
     const row = page.locator(`#anime-list .item[data-key="${target.key}"]`);
     await expect(row.locator('.tier__num')).toHaveText('97');
     await expect(row.locator('.tier__name')).toHaveText('S+');
-    // S+ gets its special look; the distinction shows as a chip and in its own section.
+    // S+ gets its special look.
     await expect(row).toHaveClass(/item--top/);
     await expect(row.locator('.tier')).toHaveClass(/tier--top/);
-    await expect(row.locator('.honor')).toContainText('E2E pick');
-    await expect(page.locator('#honors')).toBeVisible();
-    await expect(page.locator('#honors-list .honor-item__title')).toHaveText(target.title);
+
+    // A highlighted title below S+ gets the quieter look, with no extra text.
+    await request.put(targetUrl, {
+      data: { refinedScore: 72, highlight: true, tags: ['e2e-tag'], review: 'Shown inline.', favoriteCharacter: 'E2E Hero' },
+      headers,
+    });
+    await page.reload();
+    await expect(row).toHaveClass(/item--highlight/);
+    await expect(row).not.toHaveClass(/item--top/);
+    await expect(row.locator('.tier')).toHaveClass(/tier--highlight/);
+    await expect(row.locator('.tier')).toHaveText(/^B\s*72\s*Good$/);
+    await page.locator('#filter-tier').selectOption('highlighted');
+    await expect(page.locator('#anime-list .item')).toHaveCount(1);
     await expect(row.locator('.chips li')).toHaveText('e2e-tag');
     // The favorite character needs no click; the review does.
     await expect(row.locator('.fav__name')).toBeVisible();
@@ -187,8 +197,8 @@ test('the admin panel edits notes and reorders the Top 10', async ({ browser, re
   const save = row.getByRole('button', { name: 'Save', exact: true });
   await expect(save).toBeDisabled();
 
-  await row.locator('[name="refinedScore"]').fill('96');
-  await expect(row.locator('[data-preview] .tier__num')).toHaveText('96'); // live preview before saving
+  await row.locator('[name="refinedScore"]').fill('88');
+  await expect(row.locator('[data-preview] .tier__num')).toHaveText('88'); // live preview before saving
   await expect(row.locator('.adm-status')).toHaveText('Unsaved changes');
   await row.locator('[name="tags"]').fill('made me cry');
   await row.locator('[name="tags"]').press('Enter');
@@ -202,16 +212,15 @@ test('the admin panel edits notes and reorders the Top 10', async ({ browser, re
   await row.locator('[data-cast] .adm-pill', { hasText: 'Kanade Tachibana' }).click();
   await expect(row.locator('[name="favoriteCharacter"]')).toHaveValue('Kanade Tachibana');
   await row.locator('[name="review"]').fill('Admin e2e review.');
-  // A distinction without a label of its own gets the default one.
-  await expect(row.locator('[name="distinction"]')).toBeDisabled();
-  await row.locator('[data-honor]').check();
-  await expect(row.locator('[name="distinction"]')).toBeEnabled();
+  // Highlighting is a single checkbox; the preview badge shows the look straight away.
+  await row.locator('[data-highlight]').check();
+  await expect(row.locator('[data-preview] .tier')).toHaveClass(/tier--highlight/);
   await save.click();
   await expect(row.locator('.adm-status')).toHaveText('Saved.');
-  await expect(row.locator('.adm-row__marks')).toContainText('★ Honorable mention');
+  await expect(row.locator('.adm-row__marks')).toContainText('★ highlighted');
   expect((await stored()).find((a) => a.favoriteCharacter === 'Kanade Tachibana')?.favoriteCharacterImage).toBe(kanade);
   await expect(save).toBeDisabled();
-  await expect(row.locator('.adm-row__marks .tier__num')).toHaveText('96');
+  await expect(row.locator('.adm-row__marks .tier__num')).toHaveText('88');
   await expect(row.locator('.adm-row__marks')).toContainText('own score');
   await expect(row.locator('.adm-row__marks')).toContainText('2 tags');
   await expect(row.locator('.adm-row__marks')).toContainText('review');
@@ -223,7 +232,7 @@ test('the admin panel edits notes and reorders the Top 10', async ({ browser, re
   await row.locator('[name="refinedScore"]').fill('140');
   await expect(row.locator('.adm-status')).toContainText('must be a whole number');
   await row.getByRole('button', { name: 'Discard changes' }).click();
-  await expect(row.locator('[name="refinedScore"]')).toHaveValue('96');
+  await expect(row.locator('[name="refinedScore"]')).toHaveValue('88');
 
   // Removing everything takes two clicks.
   await row.locator('[data-clear]').click();

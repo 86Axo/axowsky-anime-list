@@ -1,6 +1,6 @@
 import type { Annotation, AnnotationMap } from './types';
 
-export const LIMITS = { review: 2000, tag: 32, tags: 12, favoriteCharacter: 80, key: 200, topOrder: 999, distinction: 40 } as const;
+export const LIMITS = { review: 2000, tag: 32, tags: 12, favoriteCharacter: 80, key: 200, topOrder: 999 } as const;
 
 const text = (v: unknown, max: number): string | null => {
   if (typeof v !== 'string') return null;
@@ -44,14 +44,14 @@ export function sanitizeAnnotation(raw: unknown): Annotation {
       typeof r.topOrder === 'number' && Number.isInteger(r.topOrder) && r.topOrder >= 1 && r.topOrder <= LIMITS.topOrder
         ? r.topOrder
         : null,
-    distinction: text(r.distinction, LIMITS.distinction),
+    highlight: r.highlight === true,
   };
   if (typeof r.updatedAt === 'string') out.updatedAt = r.updatedAt;
   return out;
 }
 
 export const isEmptyAnnotation = (a: Annotation): boolean =>
-  a.refinedScore === null && a.review === null && a.tags.length === 0 && a.favoriteCharacter === null && a.topOrder === null && a.distinction === null;
+  a.refinedScore === null && a.review === null && a.tags.length === 0 && a.favoriteCharacter === null && a.topOrder === null && !a.highlight;
 
 export function sanitizeAnnotationMap(raw: unknown): AnnotationMap {
   const out: AnnotationMap = {};
@@ -72,6 +72,6 @@ export function annotationsFingerprint(map: AnnotationMap): string {
   return JSON.stringify(
     Object.keys(map)
       .sort()
-      .map((k) => [k, map[k]!.refinedScore, map[k]!.review, map[k]!.tags, map[k]!.favoriteCharacter, map[k]!.favoriteCharacterImage, map[k]!.topOrder, map[k]!.distinction]),
+      .map((k) => [k, map[k]!.refinedScore, map[k]!.review, map[k]!.tags, map[k]!.favoriteCharacter, map[k]!.favoriteCharacterImage, map[k]!.topOrder, map[k]!.highlight]),
   );
 }

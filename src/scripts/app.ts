@@ -1,5 +1,5 @@
 import { annotationsFingerprint, sanitizeAnnotationMap } from '../lib/annotations';
-import { annotate, computeStats, honored, inProgress, tierCounts, topRated, type ListItem, type ViewItem } from '../lib/model';
+import { annotate, computeStats, inProgress, tierCounts, topRated, type ListItem, type ViewItem } from '../lib/model';
 import {
   applyState,
   DEFAULT_DIR,
@@ -11,7 +11,7 @@ import {
   type ListState,
   type SortKey,
 } from '../lib/query';
-import { renderHonors, renderItems, renderStats, renderTierChart, renderTop, renderWatching } from '../lib/render';
+import { renderHeroCovers, renderItems, renderStats, renderTierChart, renderTop, renderWatching } from '../lib/render';
 import type { AnnotationMap } from '../lib/types';
 import { initThemeToggle } from './theme';
 
@@ -237,10 +237,9 @@ function renderAnnotated(): void {
   $('stats').innerHTML = renderStats(computeStats(items));
   const watching = inProgress(items);
   $('watch-row').innerHTML = renderWatching(watching.shown, watching.totalWatching);
-  $('top-list').innerHTML = renderTop(topRated(items));
-  const mentions = honored(items);
-  $('honors-list').innerHTML = renderHonors(mentions);
-  $('honors').hidden = mentions.length === 0;
+  const top = topRated(items);
+  $('top-list').innerHTML = renderTop(top);
+  $('hero-covers').innerHTML = renderHeroCovers(top);
   $('tier-chart').innerHTML = renderTierChart(tierCounts(items));
   renderList();
 }

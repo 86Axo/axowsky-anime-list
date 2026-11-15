@@ -36,8 +36,8 @@ export interface ViewItem extends ListItem {
   favoriteCharacterImage: string | null;
   /** Manual position among titles with the same final score (lower first); null = automatic. */
   topOrder: number | null;
-  /** Label of a distinction I gave this title; null = none. */
-  distinction: string | null;
+  /** Singled out by hand: shown with a quieter version of the S+ look. */
+  highlight: boolean;
 }
 
 const sameTitle = (a: string, b: string): boolean =>
@@ -86,7 +86,7 @@ export function annotate(items: ListItem[], annotations: AnnotationMap): ViewIte
       favoriteCharacter: a?.favoriteCharacter || null,
       favoriteCharacterImage: (a?.favoriteCharacter && a.favoriteCharacterImage) || null,
       topOrder: a?.topOrder ?? null,
-      distinction: a?.distinction ?? null,
+      highlight: a?.highlight ?? false,
     };
   });
 }
@@ -178,13 +178,6 @@ export function rankRated(items: ViewItem[]): ViewItem[] {
 }
 
 export const topRated = (items: ViewItem[], n = 10): ViewItem[] => rankRated(items).slice(0, n);
-
-/** Titles I gave a distinction to, best score first. They do not have to be rated. */
-export function honored(items: ViewItem[]): ViewItem[] {
-  return items
-    .filter((i) => i.distinction !== null)
-    .sort((a, b) => (b.final ?? 0) - (a.final ?? 0) || a.title.localeCompare(b.title));
-}
 
 /** Shows I am part-way through, most recently added first. */
 export function inProgress(items: ViewItem[], n = 18): { shown: ViewItem[]; totalWatching: number } {

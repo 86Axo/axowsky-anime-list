@@ -36,7 +36,7 @@ import { STATUSES } from '../lib/types';
 
     <!-- Notes and scores -->
     <section id="panel-notes" aria-label="Notes and scores">
-      <p class="adm-help">Pick a title to set your own score, a distinction, tags, favorite character and review. Changes appear on the public page as soon as you save.</p>
+      <p class="adm-help">Pick a title to set your own score, a highlight, tags, favorite character and review. Changes appear on the public page as soon as you save.</p>
       <div class="filters adm-filters">
         <div class="field field--search">
           <label class="vh" for="adm-search">Search titles</label>
@@ -102,10 +102,9 @@ import { STATUSES } from '../lib/types';
       </fieldset>
 
       <fieldset class="adm-block">
-        <legend>Distinction</legend>
-        <label class="adm-check"><input type="checkbox" data-honor /> Single this title out</label>
-        <input class="input" name="distinction" type="text" maxlength="40" autocomplete="off" placeholder="Honorable mention" aria-label="Distinction label" disabled />
-        <p class="adm-hint">For a title that earned a mention without being a top score. The label is shown on the page, for example “Best soundtrack”.</p>
+        <legend>Highlight</legend>
+        <label class="adm-check"><input type="checkbox" data-highlight /> Highlight this title</label>
+        <p class="adm-hint">For a title that deserves to stand out without being S+. It gets a quieter version of the S+ look: a soft tint, a ring around the cover and a mark on its badge.</p>
       </fieldset>
 
       <fieldset class="adm-block">

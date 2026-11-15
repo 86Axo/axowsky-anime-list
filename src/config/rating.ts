@@ -19,23 +19,25 @@ export interface Tier {
   label: string;
 }
 
-// Twelve tiers in steps of five from 50 up. I rate strictly, so the middle of the scale
-// (50–70) is where most titles land and needs the finest distinctions.
-// An OglądajAnime score lands on the lower half of a letter (8/10 → 80 → A); the "+" tiers
-// are reached with a refined score (86 → A+).
+// I rate strictly: 50 already means "OK", and most titles land between 50 and 70.
+// So the scale is finest in the middle and at the bottom, and coarse at the top:
+// half-steps from 50 to 79, and a separate tier for each low score instead of one "bad" bucket.
+// Every OglądajAnime score (1–10) lands in a tier of its own; the "+" tiers in between
+// are reached with a refined score (65 → C+).
 export const TIERS: readonly Tier[] = [
   { id: 'sp', name: 'S+', min: 95, label: 'Masterpiece' },
   { id: 's', name: 'S', min: 90, label: 'Exceptional' },
-  { id: 'ap', name: 'A+', min: 85, label: 'Excellent' },
   { id: 'a', name: 'A', min: 80, label: 'Great' },
   { id: 'bp', name: 'B+', min: 75, label: 'Very good' },
   { id: 'b', name: 'B', min: 70, label: 'Good' },
-  { id: 'cp', name: 'C+', min: 65, label: 'Solid' },
+  { id: 'cp', name: 'C+', min: 65, label: 'Enjoyable' },
   { id: 'c', name: 'C', min: 60, label: 'Decent' },
-  { id: 'dp', name: 'D+', min: 55, label: 'Passable' },
-  { id: 'd', name: 'D', min: 50, label: 'Mediocre' },
+  { id: 'dp', name: 'D+', min: 55, label: 'Fine' },
+  { id: 'd', name: 'D', min: 50, label: 'OK' },
   { id: 'e', name: 'E', min: 40, label: 'Weak' },
-  { id: 'f', name: 'F', min: 1, label: 'Bad' },
+  { id: 'fp', name: 'F+', min: 30, label: 'Poor' },
+  { id: 'f', name: 'F', min: 20, label: 'Bad' },
+  { id: 'fm', name: 'F−', min: 1, label: 'Awful' },
 ];
 
 /** The top tier gets a special look on the page. */

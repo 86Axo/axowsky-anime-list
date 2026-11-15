@@ -184,24 +184,6 @@ textarea {
   padding-block: clamp(3rem, 8vw, 6rem) clamp(2.5rem, 6vw, 4rem);
   border-block-end: 1px solid var(--border);
 }
-/* The stats sit under a small sunrise: the motif stands on the rule above them. */
-.stats-wrap {
-  position: relative;
-  margin-block-start: clamp(2.5rem, 6vw, 4rem);
-}
-.hero__motif {
-  position: absolute;
-  inset-block-end: 100%;
-  inset-inline-end: 0;
-  block-size: clamp(2rem, 9vw, 7.5rem);
-  inline-size: auto;
-  aspect-ratio: 2 / 1;
-  color: var(--border-strong);
-  pointer-events: none;
-}
-.hero__sun {
-  fill: var(--accent);
-}
 .hero__inner {
   position: relative;
 }
@@ -246,6 +228,7 @@ textarea {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 1.5rem 2rem;
+  margin-block-start: clamp(2.5rem, 6vw, 4rem);
 }
 .stat {
   display: flex;
@@ -378,7 +361,6 @@ textarea {
 }
 [data-tier='sp'] { --tier-bg: var(--tier-sp-bg); --tier-fg: var(--tier-sp-fg); --tier-solid: var(--tier-sp-solid); }
 [data-tier='s'] { --tier-bg: var(--tier-s-bg); --tier-fg: var(--tier-s-fg); --tier-solid: var(--tier-s-solid); }
-[data-tier='ap'] { --tier-bg: var(--tier-ap-bg); --tier-fg: var(--tier-ap-fg); --tier-solid: var(--tier-ap-solid); }
 [data-tier='a'] { --tier-bg: var(--tier-a-bg); --tier-fg: var(--tier-a-fg); --tier-solid: var(--tier-a-solid); }
 [data-tier='bp'] { --tier-bg: var(--tier-bp-bg); --tier-fg: var(--tier-bp-fg); --tier-solid: var(--tier-bp-solid); }
 [data-tier='b'] { --tier-bg: var(--tier-b-bg); --tier-fg: var(--tier-b-fg); --tier-solid: var(--tier-b-solid); }
@@ -387,7 +369,9 @@ textarea {
 [data-tier='dp'] { --tier-bg: var(--tier-dp-bg); --tier-fg: var(--tier-dp-fg); --tier-solid: var(--tier-dp-solid); }
 [data-tier='d'] { --tier-bg: var(--tier-d-bg); --tier-fg: var(--tier-d-fg); --tier-solid: var(--tier-d-solid); }
 [data-tier='e'] { --tier-bg: var(--tier-e-bg); --tier-fg: var(--tier-e-fg); --tier-solid: var(--tier-e-solid); }
+[data-tier='fp'] { --tier-bg: var(--tier-fp-bg); --tier-fg: var(--tier-fp-fg); --tier-solid: var(--tier-fp-solid); }
 [data-tier='f'] { --tier-bg: var(--tier-f-bg); --tier-fg: var(--tier-f-fg); --tier-solid: var(--tier-f-solid); }
+[data-tier='fm'] { --tier-bg: var(--tier-fm-bg); --tier-fg: var(--tier-fm-fg); --tier-solid: var(--tier-fm-solid); }
 
 .chips {
   display: flex;
@@ -1338,6 +1322,66 @@ textarea {
   display: none !important;
 }
 
+
+/* ── Header backdrop: my best-rated covers, faded ─────────────────────────── */
+.hero__covers {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: 0;
+  display: none;
+  flex-direction: row-reverse; /* #1 sits at the far right, where the strip is most visible */
+  align-items: flex-start;
+  gap: 0.75rem;
+  inline-size: min(62%, 50rem);
+  padding-block-start: clamp(1.5rem, 3vw, 2.5rem);
+  padding-inline-end: max(var(--gutter), calc((100vw - var(--page)) / 2));
+  overflow: hidden;
+  opacity: 0.55;
+  filter: saturate(0.85);
+  /* Fades out towards the title on the left and towards the stats below. */
+  mask-image: linear-gradient(to right, transparent 0%, #000 60%), linear-gradient(to bottom, #000 30%, transparent 66%);
+  mask-composite: intersect;
+  -webkit-mask-composite: source-in;
+  pointer-events: none;
+}
+.hero__covers img {
+  flex: none;
+  inline-size: clamp(5.5rem, 9vw, 8rem);
+  block-size: auto;
+  aspect-ratio: 225 / 318;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}
+/* Narrow screens have no free space beside the title, so the strip is left out (and never downloaded). */
+@media (min-width: 52rem) {
+  .hero__covers {
+    display: flex;
+  }
+}
+
+/* ── List rows: room around the cover, so rings and tints are never cut off ── */
+.list-head,
+.list[data-view='list'] .item {
+  padding-inline: 0.625rem;
+}
+.list-wrap[data-view='list'] :is(.list-head, .list) {
+  margin-inline: -0.625rem;
+}
+.item__score {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.375rem;
+}
+/* The tint is a rounded band behind the row, inset from the row's edges. */
+.list[data-view='list'] :is(.item--top, .item--highlight)::before {
+  content: '';
+  position: absolute;
+  inset: 3px 0;
+  z-index: -1;
+  border-radius: var(--radius);
+}
+
 /* ── S+: the top tier gets its own look ───────────────────────────────────── */
 .tier--top {
   position: relative;
@@ -1346,11 +1390,14 @@ textarea {
   color: var(--tier-bg);
   box-shadow: 0 2px 10px -3px color-mix(in oklch, var(--tier-solid) 70%, transparent);
 }
-.tier--top .tier__name {
-  /* A row, so the sparkle sits beside the letter instead of pushing it out of the chip. */
+.tier--top .tier__name,
+.tier--highlight .tier__name {
+  /* A row, so the mark sits beside the letter instead of pushing it out of the chip. */
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+.tier--top .tier__name {
   background: var(--tier-bg);
   color: var(--tier-fg);
 }
@@ -1380,73 +1427,39 @@ textarea {
     transform: translateX(130%);
   }
 }
-:is(.item--top, .top-item--top, .watch-card--top) .cover {
+/* The ring goes on the cover's box, not the image: some of those boxes clip their content. */
+:is(.item--top .item__cover, .top-item--top .top-item__cover, .watch-card--top .watch-card__cover) {
+  border-radius: var(--radius-sm);
   outline: 2px solid var(--tier-sp-solid);
   outline-offset: 2px;
 }
 :is(.item--top .item__title, .top-item--top .top-item__title) {
   font-weight: 650;
 }
-.list[data-view='list'] .item--top {
-  background: linear-gradient(90deg, color-mix(in oklch, var(--tier-sp-bg) 75%, transparent), transparent 55%);
+.list[data-view='list'] .item--top::before {
+  background: linear-gradient(90deg, color-mix(in oklch, var(--tier-sp-bg) 85%, transparent), transparent 60%);
 }
 .top-item--top .top-item__rank {
   color: var(--tier-sp-solid);
 }
 
-/* ── Distinction: singled out without being a top score ───────────────────── */
-.honor {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  max-inline-size: 100%;
-  padding: 0.125rem 0.5rem;
-  border: 1px solid var(--tier-a-solid);
-  border-radius: 999px;
-  background: var(--tier-a-bg);
-  color: var(--tier-a-fg);
-  font-size: var(--fs-xs);
-  font-weight: 550;
-  line-height: 1.5;
+/* ── Highlight: a quieter relative of the S+ look, set by hand ────────────── */
+.tier--highlight {
+  box-shadow: 0 0 0 1.5px var(--hl-solid);
 }
-.honor svg {
-  flex: none;
+.tier--highlight .tier__name::before {
+  content: '✧';
+  margin-inline-end: 0.2em;
+  font-size: 0.75em;
 }
-:is(.item--honored, .top-item--honored, .watch-card--honored):not(.item--top, .top-item--top, .watch-card--top) .cover {
-  outline: 2px solid var(--tier-a-solid);
+:is(.item--highlight:not(.item--top) .item__cover, .top-item--highlight:not(.top-item--top) .top-item__cover, .watch-card--highlight:not(.watch-card--top) .watch-card__cover) {
+  border-radius: var(--radius-sm);
+  outline: 1.5px solid var(--hl-solid);
   outline-offset: 2px;
 }
-.badge-row,
-.item__score {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.375rem;
+:is(.item--highlight .item__title, .top-item--highlight .top-item__title) {
+  font-weight: 600;
 }
-.honors {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
-  gap: 0 2.5rem;
-}
-.honor-item {
-  display: grid;
-  grid-template-columns: 3rem minmax(0, 1fr);
-  gap: 1rem;
-  align-items: center;
-  padding-block: 0.875rem;
-  border-block-start: 1px solid var(--border);
-}
-.honor-item__cover .cover {
-  outline: 2px solid var(--tier-a-solid);
-  outline-offset: 2px;
-}
-.honor-item__body {
-  display: grid;
-  gap: 0.375rem;
-  min-inline-size: 0;
-}
-.honor-item__title {
-  font-weight: 550;
-  line-height: 1.3;
-  overflow-wrap: anywhere;
+.list[data-view='list'] .item--highlight:not(.item--top)::before {
+  background: linear-gradient(90deg, color-mix(in oklch, var(--hl-bg) 80%, transparent), transparent 42%);
 }

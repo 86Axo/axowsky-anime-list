@@ -89,7 +89,7 @@ Open `/admin` and sign in with GitHub. The panel has two tabs.
 
 - **My score** (1–100): type a number or drag the slider; the tier badge next to it updates as you go. Leave it empty to keep the OglądajAnime score × 10.
 - **Favorite character**: pick one from the cast shown under the field, or type a name (a first name or nickname is enough). The panel gets the cast from AniList in your browser and saves the picture of the character you chose. (It cannot be done on the server: AniList refuses requests from Cloudflare Workers.) The public page shows the picture and the name directly on the row.
-- **Distinction**: single a title out, with an optional label (see "Changing the rating system").
+- **Highlight**: a checkbox that gives the title a quieter version of the S+ look (see "Changing the rating system").
 - **Tags**: type and press Enter; tags you have used before are offered as one-click suggestions.
 - **Review**: shown on the public page as an expandable line.
 
@@ -103,26 +103,29 @@ Annotations are keyed by MAL id (`mal:123`), falling back to the OA slug (`oa:so
 
 Thresholds, tier names and labels are in [`src/config/rating.ts`](src/config/rating.ts). Tier colors are in [`src/styles/tokens.css`](src/styles/tokens.css) as `--tier-<id>-bg`, `-fg` and `-solid`, each defined once for both themes with `light-dark()`. A unit test computes the contrast of every tier in both themes, so a color that is too faint fails the build.
 
+I rate strictly: 50 already means "OK" and most titles land between 50 and 70. So the scale is finest in the middle and at the bottom, and coarse at the top.
+
 | Score | Tier | Label |
 | --- | --- | --- |
 | 95–100 | S+ | Masterpiece |
 | 90–94 | S | Exceptional |
-| 85–89 | A+ | Excellent |
-| 80–84 | A | Great |
+| 80–89 | A | Great |
 | 75–79 | B+ | Very good |
 | 70–74 | B | Good |
-| 65–69 | C+ | Solid |
+| 65–69 | C+ | Enjoyable |
 | 60–64 | C | Decent |
-| 55–59 | D+ | Passable |
-| 50–54 | D | Mediocre |
+| 55–59 | D+ | Fine |
+| 50–54 | D | OK |
 | 40–49 | E | Weak |
-| 1–39 | F | Bad |
+| 30–39 | F+ | Poor |
+| 20–29 | F | Bad |
+| 1–19 | F− | Awful |
 
-The final score is the refined score when set, otherwise the OA score × 10. An OglądajAnime score always lands on the lower half of a letter (8/10 → 80 → A); the "+" tiers are reached with a refined score (86 → A+). A score on a Plan to Watch entry is shown in the list but left out of the Top 10, the mean score and the tier chart.
+The final score is the refined score when set, otherwise the OA score × 10. Every OglądajAnime score from 1 to 10 lands in a tier of its own; the "+" tiers in between are reached with a refined score (65 → C+). A score on a Plan to Watch entry is shown in the list but left out of the Top 10, the mean score and the tier chart.
 
 **S+** has its own look: a solid badge with a sparkle and a slow sheen, a ring around the cover and a tinted row.
 
-**Distinctions** are for titles that earned a mention without being a top score. In the admin panel tick "Single this title out" and, if you like, type a label such as "Best soundtrack" (the default is "Honorable mention"). The title then gets a star chip, appears in the "Honorable mentions" section under the Top 10, and can be filtered with "★ With a distinction".
+**Highlight** is for a title that deserves to stand out without being S+. Tick "Highlight this title" in the admin panel and it gets a quieter version of the S+ look, in gold: a soft tint on its row, a thin ring around the cover and a mark on its badge. There is no caption; it is purely a look. Highlighted titles can be filtered with "★ Highlighted".
 
 ## Local development
 
@@ -228,8 +231,8 @@ tests/           unit/ (Vitest), e2e/ (Playwright)
 
 Three original, abstract SVG motifs, each drawn from simple geometry and themed through `currentColor`:
 
-- **Sunrise** on the rule above the header stats, and as the logo and favicon, after *Akatsuki no Yona*.
+- **Sunrise** as the logo and favicon, after *Akatsuki no Yona*.
 - **Woven threads** as section dividers, after *Maquia*.
 - **Spider lily** for empty states, after *86: Eighty Six*.
 
-No character likenesses, logos or official artwork are used.
+The motifs use no character likenesses, logos or official artwork. Separately, the header shows a faded strip of the covers of my best-rated titles; those are the same MAL / AniList cover images used in the list.

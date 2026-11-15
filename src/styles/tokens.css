@@ -22,6 +22,10 @@
   --chart: light-dark(oklch(0.56 0.17 18), oklch(0.7 0.15 18));
   --focus: light-dark(oklch(0.5 0.2 262), oklch(0.78 0.14 262));
 
+  /* Highlight: titles singled out by hand. Gold, so it never reads as the crimson of S+. */
+  --hl-bg: light-dark(oklch(0.95 0.055 85), oklch(0.3 0.05 85));
+  --hl-solid: light-dark(oklch(0.6 0.13 80), oklch(0.78 0.13 85));
+
   /* Status dots */
   --st-watching: light-dark(oklch(0.58 0.15 150), oklch(0.74 0.15 150));
   --st-completed: light-dark(oklch(0.55 0.15 255), oklch(0.72 0.13 255));
@@ -30,8 +34,8 @@
   --st-plan-to-watch: light-dark(oklch(0.62 0.01 275), oklch(0.66 0.01 275));
 
   /*
-   * Tier colors: one hue per tier, running through the spectrum from S+ (crimson) to E (violet),
-   * with F in neutral gray. Every tier uses the same lightness steps, so they read as one family.
+   * Tier colors: one hue per tier, running through the spectrum from S+ (crimson) to E (violet).
+   * The three lowest tiers step out of the spectrum into a muted mauve and two grays.
    * -bg / -fg are the badge (text contrast ≥ 4.5:1), -solid is the chart bar (≥ 3:1 on the page).
    * Tier ids come from src/config/rating.ts; tests/unit/rating.test.ts checks the contrast of every tier.
    */
@@ -39,49 +43,53 @@
   --tier-sp-fg: light-dark(oklch(0.42 0.16 15), oklch(0.87 0.08 15));
   --tier-sp-solid: light-dark(oklch(0.58 0.2 15), oklch(0.72 0.17 15));
 
-  --tier-s-bg: light-dark(oklch(0.945 0.045 38), oklch(0.31 0.065 38));
-  --tier-s-fg: light-dark(oklch(0.42 0.14 38), oklch(0.87 0.085 38));
-  --tier-s-solid: light-dark(oklch(0.58 0.18 38), oklch(0.72 0.16 38));
+  --tier-s-bg: light-dark(oklch(0.945 0.045 42), oklch(0.31 0.065 42));
+  --tier-s-fg: light-dark(oklch(0.42 0.14 42), oklch(0.87 0.085 42));
+  --tier-s-solid: light-dark(oklch(0.58 0.18 42), oklch(0.72 0.16 42));
 
-  --tier-ap-bg: light-dark(oklch(0.945 0.05 60), oklch(0.31 0.06 60));
-  --tier-ap-fg: light-dark(oklch(0.42 0.11 60), oklch(0.87 0.09 60));
-  --tier-ap-solid: light-dark(oklch(0.58 0.16 60), oklch(0.72 0.15 60));
+  --tier-a-bg: light-dark(oklch(0.945 0.06 78), oklch(0.31 0.05 78));
+  --tier-a-fg: light-dark(oklch(0.42 0.09 78), oklch(0.87 0.1 78));
+  --tier-a-solid: light-dark(oklch(0.58 0.14 78), oklch(0.72 0.14 78));
 
-  --tier-a-bg: light-dark(oklch(0.945 0.06 85), oklch(0.31 0.05 85));
-  --tier-a-fg: light-dark(oklch(0.42 0.09 85), oklch(0.87 0.1 85));
-  --tier-a-solid: light-dark(oklch(0.58 0.14 85), oklch(0.72 0.14 85));
+  --tier-bp-bg: light-dark(oklch(0.945 0.06 112), oklch(0.31 0.05 112));
+  --tier-bp-fg: light-dark(oklch(0.42 0.1 112), oklch(0.87 0.11 112));
+  --tier-bp-solid: light-dark(oklch(0.58 0.15 112), oklch(0.72 0.15 112));
 
-  --tier-bp-bg: light-dark(oklch(0.945 0.06 118), oklch(0.31 0.05 118));
-  --tier-bp-fg: light-dark(oklch(0.42 0.1 118), oklch(0.87 0.11 118));
-  --tier-bp-solid: light-dark(oklch(0.58 0.15 118), oklch(0.72 0.15 118));
+  --tier-b-bg: light-dark(oklch(0.945 0.045 148), oklch(0.31 0.05 148));
+  --tier-b-fg: light-dark(oklch(0.42 0.1 148), oklch(0.87 0.1 148));
+  --tier-b-solid: light-dark(oklch(0.58 0.15 148), oklch(0.72 0.15 148));
 
-  --tier-b-bg: light-dark(oklch(0.945 0.045 150), oklch(0.31 0.05 150));
-  --tier-b-fg: light-dark(oklch(0.42 0.1 150), oklch(0.87 0.1 150));
-  --tier-b-solid: light-dark(oklch(0.58 0.15 150), oklch(0.72 0.15 150));
+  --tier-cp-bg: light-dark(oklch(0.945 0.04 178), oklch(0.31 0.045 178));
+  --tier-cp-fg: light-dark(oklch(0.42 0.08 178), oklch(0.87 0.09 178));
+  --tier-cp-solid: light-dark(oklch(0.58 0.11 178), oklch(0.72 0.11 178));
 
-  --tier-cp-bg: light-dark(oklch(0.945 0.04 180), oklch(0.31 0.045 180));
-  --tier-cp-fg: light-dark(oklch(0.42 0.08 180), oklch(0.87 0.09 180));
-  --tier-cp-solid: light-dark(oklch(0.58 0.11 180), oklch(0.72 0.11 180));
+  --tier-c-bg: light-dark(oklch(0.945 0.035 208), oklch(0.31 0.045 208));
+  --tier-c-fg: light-dark(oklch(0.42 0.08 208), oklch(0.87 0.08 208));
+  --tier-c-solid: light-dark(oklch(0.58 0.11 208), oklch(0.72 0.11 208));
 
-  --tier-c-bg: light-dark(oklch(0.945 0.035 212), oklch(0.31 0.045 212));
-  --tier-c-fg: light-dark(oklch(0.42 0.08 212), oklch(0.87 0.08 212));
-  --tier-c-solid: light-dark(oklch(0.58 0.11 212), oklch(0.72 0.11 212));
+  --tier-dp-bg: light-dark(oklch(0.945 0.03 238), oklch(0.31 0.055 238));
+  --tier-dp-fg: light-dark(oklch(0.42 0.12 238), oklch(0.87 0.075 238));
+  --tier-dp-solid: light-dark(oklch(0.58 0.14 238), oklch(0.72 0.12 238));
 
-  --tier-dp-bg: light-dark(oklch(0.945 0.03 245), oklch(0.31 0.055 245));
-  --tier-dp-fg: light-dark(oklch(0.42 0.12 245), oklch(0.87 0.075 245));
-  --tier-dp-solid: light-dark(oklch(0.58 0.14 245), oklch(0.72 0.12 245));
+  --tier-d-bg: light-dark(oklch(0.945 0.03 268), oklch(0.31 0.06 268));
+  --tier-d-fg: light-dark(oklch(0.42 0.13 268), oklch(0.87 0.07 268));
+  --tier-d-solid: light-dark(oklch(0.58 0.16 268), oklch(0.72 0.13 268));
 
-  --tier-d-bg: light-dark(oklch(0.945 0.03 275), oklch(0.31 0.06 275));
-  --tier-d-fg: light-dark(oklch(0.42 0.13 275), oklch(0.87 0.07 275));
-  --tier-d-solid: light-dark(oklch(0.58 0.16 275), oklch(0.72 0.13 275));
+  --tier-e-bg: light-dark(oklch(0.945 0.035 300), oklch(0.31 0.06 300));
+  --tier-e-fg: light-dark(oklch(0.42 0.13 300), oklch(0.87 0.08 300));
+  --tier-e-solid: light-dark(oklch(0.58 0.16 300), oklch(0.72 0.14 300));
 
-  --tier-e-bg: light-dark(oklch(0.945 0.035 315), oklch(0.31 0.06 315));
-  --tier-e-fg: light-dark(oklch(0.42 0.13 315), oklch(0.87 0.08 315));
-  --tier-e-solid: light-dark(oklch(0.58 0.16 315), oklch(0.72 0.14 315));
+  --tier-fp-bg: light-dark(oklch(0.945 0.02 335), oklch(0.31 0.03 335));
+  --tier-fp-fg: light-dark(oklch(0.42 0.06 335), oklch(0.87 0.04 335));
+  --tier-fp-solid: light-dark(oklch(0.58 0.07 335), oklch(0.72 0.06 335));
 
   --tier-f-bg: light-dark(oklch(0.945 0.004 275), oklch(0.31 0.008 275));
   --tier-f-fg: light-dark(oklch(0.42 0.008 275), oklch(0.87 0.008 275));
   --tier-f-solid: light-dark(oklch(0.58 0.01 275), oklch(0.72 0.01 275));
+
+  --tier-fm-bg: light-dark(oklch(0.9 0.004 275), oklch(0.25 0.006 275));
+  --tier-fm-fg: light-dark(oklch(0.3 0.006 275), oklch(0.78 0.006 275));
+  --tier-fm-solid: light-dark(oklch(0.44 0.008 275), oklch(0.56 0.008 275));
 
   /* Type: one family, small steps */
   --font: 'Inter Variable', 'Inter Fallback', system-ui, -apple-system, 'Segoe UI', sans-serif;

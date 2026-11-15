@@ -42,7 +42,7 @@ describe('sanitizeAnnotation', () => {
       favoriteCharacter: 'Yona',
       favoriteCharacterImage: null,
       topOrder: null,
-      distinction: null,
+      highlight: false,
     });
   });
 
@@ -121,7 +121,7 @@ describe('model', () => {
   ];
 
   it('applies refined scores by key and by the OA fallback key', () => {
-    const view = annotate(items, { 'oa:a': { refinedScore: 96, review: null, tags: ['x'], favoriteCharacter: null, favoriteCharacterImage: null, topOrder: null, distinction: null }, 'oa:f': { refinedScore: 55, review: 'ok', tags: [], favoriteCharacter: null, favoriteCharacterImage: null, topOrder: null, distinction: null } });
+    const view = annotate(items, { 'oa:a': { refinedScore: 96, review: null, tags: ['x'], favoriteCharacter: null, favoriteCharacterImage: null, topOrder: null, highlight: false }, 'oa:f': { refinedScore: 55, review: 'ok', tags: [], favoriteCharacter: null, favoriteCharacterImage: null, topOrder: null, highlight: false } });
     expect(view.find((i) => i.title === 'A')).toMatchObject({ final: 96, tierId: 'sp', tags: ['x'] });
     expect(view.find((i) => i.title === 'B')).toMatchObject({ final: 100, tierId: 'sp' });
     expect(view.find((i) => i.title === 'F')).toMatchObject({ final: 55, tierId: 'dp', review: 'ok' });
@@ -141,7 +141,7 @@ describe('model', () => {
       favoriteCharacter: null,
       favoriteCharacterImage: null,
       topOrder,
-      distinction: null,
+      highlight: false,
     });
     // A and B both score 100; by date B comes first. Placing A first by hand flips them.
     expect(topRated(annotate(items, { 'oa:a': note(1), 'oa:b': note(2) })).map((i) => i.title)).toEqual(['A', 'B', 'C', 'F']);
@@ -172,8 +172,8 @@ describe('model', () => {
 
   it('counts tiers in order, including empty ones', () => {
     const counts = tierCounts(annotate(items, {}));
-    expect(counts.map((c) => c.name)).toEqual(['S+', 'S', 'A+', 'A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'E', 'F']);
-    expect(counts.map((c) => c.count)).toEqual([2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]);
+    expect(counts.map((c) => c.name)).toEqual(['S+', 'S', 'A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'E', 'F+', 'F', 'F−']);
+    expect(counts.map((c) => c.count)).toEqual([2, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0]);
   });
 
   it('fills month gaps and reports a bulk import separately', () => {
@@ -240,7 +240,7 @@ describe('list state', () => {
 describe('render', () => {
   it('escapes data in HTML', () => {
     expect(esc(`<img src=x onerror="alert('x')">&`)).toBe('&lt;img src=x onerror=&quot;alert(&#39;x&#39;)&quot;&gt;&amp;');
-    const html = renderItem(annotate([item('<b>Evil</b>')], { 'oa:<b>evil</b>': { refinedScore: null, review: '<script>x</script>', tags: ['<i>'], favoriteCharacter: null, favoriteCharacterImage: null, topOrder: null, distinction: null } })[0]!);
+    const html = renderItem(annotate([item('<b>Evil</b>')], { 'oa:<b>evil</b>': { refinedScore: null, review: '<script>x</script>', tags: ['<i>'], favoriteCharacter: null, favoriteCharacterImage: null, topOrder: null, highlight: false } })[0]!);
     expect(html).not.toContain('<b>Evil</b>');
     expect(html).not.toContain('<script>');
     expect(html).toContain('&lt;b&gt;Evil&lt;/b&gt;');
@@ -363,8 +363,8 @@ describe('favorite character picture', () => {
 
   it('only accepts https pictures from the allowed image hosts, and only next to a name', () => {
     const img = 'https://s4.anilist.co/file/anilistcdn/character/medium/lena.png';
-    expect(sanitizeAnnotation({ favoriteCharacter: 'Lena', favoriteCharacterImage: img, topOrder: null, distinction: null }).favoriteCharacterImage).toBe(img);
-    expect(sanitizeAnnotation({ favoriteCharacterImage: img, topOrder: null, distinction: null }).favoriteCharacterImage).toBeNull();
+    expect(sanitizeAnnotation({ favoriteCharacter: 'Lena', favoriteCharacterImage: img, topOrder: null, highlight: false }).favoriteCharacterImage).toBe(img);
+    expect(sanitizeAnnotation({ favoriteCharacterImage: img, topOrder: null, highlight: false }).favoriteCharacterImage).toBeNull();
     for (const bad of ['http://s4.anilist.co/x.png', 'https://evil.example/x.png', 'javascript:alert(1)', 'not a url', 42]) {
       expect(sanitizeAnnotation({ favoriteCharacter: 'Lena', favoriteCharacterImage: bad }).favoriteCharacterImage).toBeNull();
     }
@@ -373,7 +373,7 @@ describe('favorite character picture', () => {
   it('shows the favorite character with its picture without any click, and keeps the review expandable', () => {
     const img = 'https://s4.anilist.co/file/anilistcdn/character/medium/lena.png';
     const withPicture = annotate([item('X')], {
-      'oa:x': { refinedScore: null, review: 'Long thoughts.', tags: [], favoriteCharacter: 'Lena', favoriteCharacterImage: img, topOrder: null, distinction: null },
+      'oa:x': { refinedScore: null, review: 'Long thoughts.', tags: [], favoriteCharacter: 'Lena', favoriteCharacterImage: img, topOrder: null, highlight: false },
     })[0]!;
     const html = renderItem(withPicture);
     expect(html).toContain(`<img class="fav__avatar" src="${img}" width="28" height="28" alt="" loading="lazy"`);
@@ -383,7 +383,7 @@ describe('favorite character picture', () => {
     expect(details).toContain('Long thoughts.');
     expect(details).not.toContain('Lena');
     const withoutPicture = annotate([item('X')], {
-      'oa:x': { refinedScore: null, review: null, tags: [], favoriteCharacter: 'Lena', favoriteCharacterImage: null, topOrder: null, distinction: null },
+      'oa:x': { refinedScore: null, review: null, tags: [], favoriteCharacter: 'Lena', favoriteCharacterImage: null, topOrder: null, highlight: false },
     })[0]!;
     expect(renderItem(withoutPicture)).not.toContain('fav__avatar');
     expect(renderItem(withoutPicture)).not.toContain('<details');

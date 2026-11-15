@@ -37,36 +37,47 @@ describe('tierFor', () => {
     [95, 'S+', 'Masterpiece'],
     [94, 'S', 'Exceptional'],
     [90, 'S', 'Exceptional'],
-    [89, 'A+', 'Excellent'],
-    [85, 'A+', 'Excellent'],
-    [84, 'A', 'Great'],
+    [89, 'A', 'Great'],
     [80, 'A', 'Great'],
     [79, 'B+', 'Very good'],
     [75, 'B+', 'Very good'],
     [74, 'B', 'Good'],
     [70, 'B', 'Good'],
-    [69, 'C+', 'Solid'],
-    [65, 'C+', 'Solid'],
+    [69, 'C+', 'Enjoyable'],
+    [65, 'C+', 'Enjoyable'],
     [64, 'C', 'Decent'],
     [60, 'C', 'Decent'],
-    [59, 'D+', 'Passable'],
-    [55, 'D+', 'Passable'],
-    [54, 'D', 'Mediocre'],
-    [50, 'D', 'Mediocre'],
+    [59, 'D+', 'Fine'],
+    [55, 'D+', 'Fine'],
+    [54, 'D', 'OK'],
+    [50, 'D', 'OK'],
     [49, 'E', 'Weak'],
     [40, 'E', 'Weak'],
-    [39, 'F', 'Bad'],
-    [1, 'F', 'Bad'],
+    [39, 'F+', 'Poor'],
+    [30, 'F+', 'Poor'],
+    [29, 'F', 'Bad'],
+    [20, 'F', 'Bad'],
+    [19, 'F−', 'Awful'],
+    [1, 'F−', 'Awful'],
   ])('%i → %s · %s', (score, name, label) => {
     const tier = tierFor(score)!;
     expect(tier.name).toBe(name);
     expect(tier.label).toBe(label);
   });
 
-  it('puts every OglądajAnime score from 4 to 10 in its own tier', () => {
-    const names = [4, 5, 6, 7, 8, 9, 10].map((s) => tierFor(convertScore(s))!.name);
-    expect(names).toEqual(['E', 'D', 'C', 'B', 'A', 'S', 'S+']);
-    expect(new Set([1, 2, 3].map((s) => tierFor(convertScore(s))!.name))).toEqual(new Set(['F']));
+  it('puts every OglądajAnime score, 1 to 10, in a tier of its own', () => {
+    const names = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((s) => tierFor(convertScore(s))!.name);
+    expect(names).toEqual(['F−', 'F', 'F+', 'E', 'D', 'C', 'B', 'A', 'S', 'S+']);
+  });
+
+  it('is finest in the middle of the scale: half-steps from 50 to 79, none above', () => {
+    const width = (name: string) => {
+      const i = TIERS.findIndex((t) => t.name === name);
+      return (TIERS[i - 1]?.min ?? 101) - TIERS[i]!.min;
+    };
+    for (const name of ['B+', 'B', 'C+', 'C', 'D+', 'D']) expect(width(name)).toBe(5);
+    expect(width('A')).toBe(10);
+    expect(tierFor(50)!.label).toBe('OK');
   });
 
   it('has no tier for a missing score', () => {
@@ -140,8 +151,16 @@ describe('tier colors', () => {
     expect(contrast(solid.dark, page.dark)).toBeGreaterThanOrEqual(3);
   });
 
-  it('gives neighbouring tiers clearly different hues', () => {
-    const hues = TIERS.filter((t) => t.id !== 'f').map((t) => token(`tier-${t.id}-solid`).light[2]);
-    for (let i = 1; i < hues.length; i++) expect(Math.abs(hues[i]! - hues[i - 1]!)).toBeGreaterThanOrEqual(20);
+  it('keeps neighbouring tiers apart: by hue where they are colorful, by lightness where they are gray', () => {
+    const solids = TIERS.map((t) => token(`tier-${t.id}-solid`).light);
+    for (let i = 1; i < solids.length; i++) {
+      const [l1, c1, h1] = solids[i - 1]!;
+      const [l2, c2, h2] = solids[i]!;
+      const colorful = c1 >= 0.09 && c2 >= 0.09;
+      if (colorful) expect(Math.abs(h2 - h1)).toBeGreaterThanOrEqual(20);
+      // A gray next to a color differs by its lack of color; two grays must differ in lightness.
+      else if (c1 < 0.03 && c2 < 0.03) expect(Math.abs(l2 - l1)).toBeGreaterThanOrEqual(0.1);
+      else expect(Math.abs(c2 - c1)).toBeGreaterThanOrEqual(0.05);
+    }
   });
 });

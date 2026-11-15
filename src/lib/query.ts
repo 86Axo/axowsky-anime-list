@@ -12,7 +12,7 @@ export interface ListState {
   q: string;
   genre: string;
   type: string;
-  /** Tier id, `none` for unrated, `honored` for titles with a distinction, or empty for any. */
+  /** Tier id, `none` for unrated, `highlighted` for titles I singled out, or empty for any. */
   tier: string;
   sort: SortKey;
   dir: SortDir;
@@ -104,7 +104,7 @@ export function applyState(items: ViewItem[], state: ListState): ViewItem[] {
       (!state.genre || i.genres.includes(state.genre)) &&
       (!state.type || i.type === state.type) &&
       (!state.tier ||
-        (state.tier === 'none' ? i.tierId === null : state.tier === 'honored' ? i.distinction !== null : i.tierId === state.tier)) &&
+        (state.tier === 'none' ? i.tierId === null : state.tier === 'highlighted' ? i.highlight : i.tierId === state.tier)) &&
       matchesSearch(i, tokens),
   );
   const byTitle = (a: ViewItem, b: ViewItem) => a.title.localeCompare(b.title, 'en', { sensitivity: 'base' });
