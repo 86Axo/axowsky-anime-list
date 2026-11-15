@@ -19,15 +19,27 @@ export interface Tier {
   label: string;
 }
 
+// Twelve tiers in steps of five from 50 up. I rate strictly, so the middle of the scale
+// (50–70) is where most titles land and needs the finest distinctions.
+// An OglądajAnime score lands on the lower half of a letter (8/10 → 80 → A); the "+" tiers
+// are reached with a refined score (86 → A+).
 export const TIERS: readonly Tier[] = [
   { id: 'sp', name: 'S+', min: 95, label: 'Masterpiece' },
   { id: 's', name: 'S', min: 90, label: 'Exceptional' },
+  { id: 'ap', name: 'A+', min: 85, label: 'Excellent' },
   { id: 'a', name: 'A', min: 80, label: 'Great' },
+  { id: 'bp', name: 'B+', min: 75, label: 'Very good' },
   { id: 'b', name: 'B', min: 70, label: 'Good' },
+  { id: 'cp', name: 'C+', min: 65, label: 'Solid' },
   { id: 'c', name: 'C', min: 60, label: 'Decent' },
+  { id: 'dp', name: 'D+', min: 55, label: 'Passable' },
   { id: 'd', name: 'D', min: 50, label: 'Mediocre' },
+  { id: 'e', name: 'E', min: 40, label: 'Weak' },
   { id: 'f', name: 'F', min: 1, label: 'Bad' },
 ];
+
+/** The top tier gets a special look on the page. */
+export const TOP_TIER_ID = 'sp';
 
 /** OA score (1–10) → 1–100. */
 export function convertScore(oaScore: number | null): number | null {

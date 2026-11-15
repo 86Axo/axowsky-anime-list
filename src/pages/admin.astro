@@ -36,7 +36,7 @@ import { STATUSES } from '../lib/types';
 
     <!-- Notes and scores -->
     <section id="panel-notes" aria-label="Notes and scores">
-      <p class="adm-help">Pick a title to set your own score, tags, favorite character and review. Changes appear on the public page as soon as you save.</p>
+      <p class="adm-help">Pick a title to set your own score, a distinction, tags, favorite character and review. Changes appear on the public page as soon as you save.</p>
       <div class="filters adm-filters">
         <div class="field field--search">
           <label class="vh" for="adm-search">Search titles</label>
@@ -101,7 +101,14 @@ import { STATUSES } from '../lib/types';
         <p class="adm-hint">Pick a character to get its picture, or type a name: a first name or nickname is enough.</p>
       </fieldset>
 
-      <fieldset class="adm-block adm-block--wide">
+      <fieldset class="adm-block">
+        <legend>Distinction</legend>
+        <label class="adm-check"><input type="checkbox" data-honor /> Single this title out</label>
+        <input class="input" name="distinction" type="text" maxlength="40" autocomplete="off" placeholder="Honorable mention" aria-label="Distinction label" disabled />
+        <p class="adm-hint">For a title that earned a mention without being a top score. The label is shown on the page, for example “Best soundtrack”.</p>
+      </fieldset>
+
+      <fieldset class="adm-block">
         <legend>Tags</legend>
         <div class="adm-tags">
           <ul class="adm-tags__list" data-tags aria-label="Tags on this title"></ul>

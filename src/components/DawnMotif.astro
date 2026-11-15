@@ -1,20 +1,25 @@
 ---
 /**
- * Header motif, inspired by Akatsuki no Yona ("Yona of the Dawn"):
- * a sun rising over a horizon, drawn as plain concentric arcs.
- * Abstract geometry only; it takes the accent color through currentColor.
+ * Header motif, inspired by Akatsuki no Yona ("Yona of the Dawn"): a sun rising
+ * over a horizon. It is the brand mark from the top bar, drawn larger, and it sits
+ * on the rule above the stats so that the rule itself is the horizon.
+ *
+ * Built from the same parts as the rest of the page: hairlines in the neutral rule
+ * color, with the accent color only on the sun.
  */
-const cx = 300;
-const horizon = 300;
-const radii = Array.from({ length: 11 }, (_, i) => 46 + i * 24);
-const arc = (r: number) => `M${cx - r} ${horizon}A${r} ${r} 0 0 1 ${cx + r} ${horizon}`;
+const W = 240;
+const H = 120;
+const cx = W / 2;
+const radii = [34, 52, 72, 94, 118];
+const arc = (r: number) => `M${cx - r} ${H}A${r} ${r} 0 0 1 ${cx + r} ${H}`;
 ---
 
-<svg class="hero__motif" viewBox="0 0 600 300" fill="none" aria-hidden="true" focusable="false">
-  <path d={`M${cx - 22} ${horizon}A22 22 0 0 1 ${cx + 22} ${horizon}Z`} fill="currentColor" opacity="0.5"></path>
+<svg class="hero__motif" viewBox={`0 0 ${W} ${H}`} fill="none" aria-hidden="true" focusable="false">
   {
     radii.map((r, i) => (
-      <path d={arc(r)} stroke="currentColor" stroke-width="1" opacity={(0.55 * (1 - i / radii.length) ** 1.4).toFixed(3)} />
+      <path d={arc(r)} stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke" opacity={(1 - i * 0.16).toFixed(2)} />
     ))
   }
+  <path d={`M${cx - 18} ${H}A18 18 0 0 1 ${cx + 18} ${H}Z`} class="hero__sun"></path>
+  <path d={`M0 ${H - 0.5}H${W}`} stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"></path>
 </svg>

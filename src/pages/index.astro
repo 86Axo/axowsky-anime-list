@@ -13,6 +13,7 @@ import {
   annotate,
   computeStats,
   genreCounts,
+  honored,
   inProgress,
   statusCounts,
   tierCounts,
@@ -21,7 +22,7 @@ import {
   typeCounts,
 } from '../lib/model';
 import { applyState, DEFAULT_STATE, PAGE_SIZE, statusSlug } from '../lib/query';
-import { barList, renderActivity, renderItems, renderStats, renderTierChart, renderTop, renderWatching } from '../lib/render';
+import { barList, renderActivity, renderHonors, renderItems, renderStats, renderTierChart, renderTop, renderWatching } from '../lib/render';
 import { ANIME_TYPES, STATUSES, type AnimeEntry } from '../lib/types';
 
 const listItems = toListItems(dataset.entries as AnimeEntry[]);
@@ -31,6 +32,7 @@ const items = annotate(listItems, annotations);
 const stats = computeStats(items);
 const watching = inProgress(items);
 const top = topRated(items);
+const mentions = honored(items);
 const counts = statusCounts(items);
 const genres = genreCounts(items);
 const types = typeCounts(items);
@@ -86,7 +88,6 @@ const updated = new Date(`${syncMeta.lastChange}T00:00:00Z`).toLocaleDateString(
 
   <main>
     <section class="hero" aria-labelledby="profile-name">
-      <DawnMotif />
       <div class="wrap hero__inner">
         <div class="profile">
           <span class="avatar" aria-hidden="true">{SITE.nickname.slice(0, 1)}</span>
@@ -99,7 +100,10 @@ const updated = new Date(`${syncMeta.lastChange}T00:00:00Z`).toLocaleDateString(
             </p>
           </div>
         </div>
-        <dl class="stats" id="stats" set:html={renderStats(stats)} />
+        <div class="stats-wrap">
+          <DawnMotif />
+          <dl class="stats" id="stats" set:html={renderStats(stats)} />
+        </div>
       </div>
     </section>
 
@@ -117,6 +121,14 @@ const updated = new Date(`${syncMeta.lastChange}T00:00:00Z`).toLocaleDateString(
         <p class="section__note">Highest rated</p>
       </div>
       <ol class="top" id="top-list" set:html={renderTop(top)} />
+    </section>
+
+    <section class="section wrap" id="honors" aria-labelledby="honors-title" hidden={mentions.length === 0}>
+      <div class="section__head">
+        <h2 class="section__title" id="honors-title">Honorable mentions</h2>
+        <p class="section__note">Not my highest scores, but each earned a mention</p>
+      </div>
+      <ul class="honors" id="honors-list" set:html={renderHonors(mentions)} />
     </section>
 
     <ThreadsDivider />
@@ -165,6 +177,7 @@ const updated = new Date(`${syncMeta.lastChange}T00:00:00Z`).toLocaleDateString(
               <option value="">All tiers</option>
               {TIERS.map((t) => <option value={t.id}>{`${t.name} · ${t.label}`}</option>)}
               <option value="none">Not rated</option>
+              <option value="honored">★ With a distinction</option>
             </select>
           </div>
           <div class="filters__end">

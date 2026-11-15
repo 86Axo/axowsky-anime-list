@@ -74,6 +74,11 @@ export interface Annotation {
   favoriteCharacterImage: string | null;
   /** Manual position among titles with the same final score; lower comes first. Decides ties in the Top 10. */
   topOrder: number | null;
+  /**
+   * A distinction for a title that deserves to be singled out without being a top score.
+   * The text is the label shown on the page (for example "Best soundtrack"); null = none.
+   */
+  distinction: string | null;
   updatedAt?: string;
 }
 export type AnnotationMap = Record<string, Annotation>;

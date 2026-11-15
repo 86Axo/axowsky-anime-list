@@ -184,14 +184,23 @@ textarea {
   padding-block: clamp(3rem, 8vw, 6rem) clamp(2.5rem, 6vw, 4rem);
   border-block-end: 1px solid var(--border);
 }
+/* The stats sit under a small sunrise: the motif stands on the rule above them. */
+.stats-wrap {
+  position: relative;
+  margin-block-start: clamp(2.5rem, 6vw, 4rem);
+}
 .hero__motif {
   position: absolute;
-  inset-block-end: 0;
-  inset-inline-end: max(-6rem, calc((100vw - var(--page)) / 2 - 8rem));
-  inline-size: clamp(22rem, 52vw, 44rem);
-  color: var(--accent);
-  opacity: 0.5;
+  inset-block-end: 100%;
+  inset-inline-end: 0;
+  block-size: clamp(2rem, 9vw, 7.5rem);
+  inline-size: auto;
+  aspect-ratio: 2 / 1;
+  color: var(--border-strong);
   pointer-events: none;
+}
+.hero__sun {
+  fill: var(--accent);
 }
 .hero__inner {
   position: relative;
@@ -237,7 +246,6 @@ textarea {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 1.5rem 2rem;
-  margin-block-start: clamp(2.5rem, 6vw, 4rem);
 }
 .stat {
   display: flex;
@@ -370,10 +378,15 @@ textarea {
 }
 [data-tier='sp'] { --tier-bg: var(--tier-sp-bg); --tier-fg: var(--tier-sp-fg); --tier-solid: var(--tier-sp-solid); }
 [data-tier='s'] { --tier-bg: var(--tier-s-bg); --tier-fg: var(--tier-s-fg); --tier-solid: var(--tier-s-solid); }
+[data-tier='ap'] { --tier-bg: var(--tier-ap-bg); --tier-fg: var(--tier-ap-fg); --tier-solid: var(--tier-ap-solid); }
 [data-tier='a'] { --tier-bg: var(--tier-a-bg); --tier-fg: var(--tier-a-fg); --tier-solid: var(--tier-a-solid); }
+[data-tier='bp'] { --tier-bg: var(--tier-bp-bg); --tier-fg: var(--tier-bp-fg); --tier-solid: var(--tier-bp-solid); }
 [data-tier='b'] { --tier-bg: var(--tier-b-bg); --tier-fg: var(--tier-b-fg); --tier-solid: var(--tier-b-solid); }
+[data-tier='cp'] { --tier-bg: var(--tier-cp-bg); --tier-fg: var(--tier-cp-fg); --tier-solid: var(--tier-cp-solid); }
 [data-tier='c'] { --tier-bg: var(--tier-c-bg); --tier-fg: var(--tier-c-fg); --tier-solid: var(--tier-c-solid); }
+[data-tier='dp'] { --tier-bg: var(--tier-dp-bg); --tier-fg: var(--tier-dp-fg); --tier-solid: var(--tier-dp-solid); }
 [data-tier='d'] { --tier-bg: var(--tier-d-bg); --tier-fg: var(--tier-d-fg); --tier-solid: var(--tier-d-solid); }
+[data-tier='e'] { --tier-bg: var(--tier-e-bg); --tier-fg: var(--tier-e-fg); --tier-solid: var(--tier-e-solid); }
 [data-tier='f'] { --tier-bg: var(--tier-f-bg); --tier-fg: var(--tier-f-fg); --tier-solid: var(--tier-f-solid); }
 
 .chips {
@@ -1323,4 +1336,117 @@ textarea {
 /* The hidden attribute must win over any display rule above (for example `img { display: block }`). */
 [hidden] {
   display: none !important;
+}
+
+/* ── S+: the top tier gets its own look ───────────────────────────────────── */
+.tier--top {
+  position: relative;
+  overflow: hidden;
+  background: var(--tier-fg);
+  color: var(--tier-bg);
+  box-shadow: 0 2px 10px -3px color-mix(in oklch, var(--tier-solid) 70%, transparent);
+}
+.tier--top .tier__name {
+  /* A row, so the sparkle sits beside the letter instead of pushing it out of the chip. */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--tier-bg);
+  color: var(--tier-fg);
+}
+.tier--top .tier__name::before {
+  content: '✦';
+  margin-inline-end: 0.2em;
+  font-size: 0.7em;
+}
+/* A slow sheen crosses the badge every few seconds. */
+@media (prefers-reduced-motion: no-preference) {
+  .tier--top::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 38%, oklch(1 0 0 / 0.32) 50%, transparent 62%);
+    transform: translateX(-130%);
+    animation: sheen 6s var(--ease) infinite;
+    pointer-events: none;
+  }
+}
+@keyframes sheen {
+  0%,
+  70% {
+    transform: translateX(-130%);
+  }
+  100% {
+    transform: translateX(130%);
+  }
+}
+:is(.item--top, .top-item--top, .watch-card--top) .cover {
+  outline: 2px solid var(--tier-sp-solid);
+  outline-offset: 2px;
+}
+:is(.item--top .item__title, .top-item--top .top-item__title) {
+  font-weight: 650;
+}
+.list[data-view='list'] .item--top {
+  background: linear-gradient(90deg, color-mix(in oklch, var(--tier-sp-bg) 75%, transparent), transparent 55%);
+}
+.top-item--top .top-item__rank {
+  color: var(--tier-sp-solid);
+}
+
+/* ── Distinction: singled out without being a top score ───────────────────── */
+.honor {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  max-inline-size: 100%;
+  padding: 0.125rem 0.5rem;
+  border: 1px solid var(--tier-a-solid);
+  border-radius: 999px;
+  background: var(--tier-a-bg);
+  color: var(--tier-a-fg);
+  font-size: var(--fs-xs);
+  font-weight: 550;
+  line-height: 1.5;
+}
+.honor svg {
+  flex: none;
+}
+:is(.item--honored, .top-item--honored, .watch-card--honored):not(.item--top, .top-item--top, .watch-card--top) .cover {
+  outline: 2px solid var(--tier-a-solid);
+  outline-offset: 2px;
+}
+.badge-row,
+.item__score {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.375rem;
+}
+.honors {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  gap: 0 2.5rem;
+}
+.honor-item {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+  padding-block: 0.875rem;
+  border-block-start: 1px solid var(--border);
+}
+.honor-item__cover .cover {
+  outline: 2px solid var(--tier-a-solid);
+  outline-offset: 2px;
+}
+.honor-item__body {
+  display: grid;
+  gap: 0.375rem;
+  min-inline-size: 0;
+}
+.honor-item__title {
+  font-weight: 550;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
 }

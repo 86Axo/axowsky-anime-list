@@ -9,6 +9,7 @@ interface Row {
   favorite_character: string | null;
   favorite_character_image: string | null;
   top_order: number | null;
+  distinction: string | null;
   updated_at: string;
 }
 
@@ -26,6 +27,7 @@ function fromRow(row: Row): Annotation {
     favoriteCharacter: row.favorite_character,
     favoriteCharacterImage: row.favorite_character_image,
     topOrder: row.top_order,
+    distinction: row.distinction,
     updatedAt: row.updated_at,
   });
 }
@@ -61,8 +63,8 @@ export async function saveAnnotation(db: D1Database, key: string, input: unknown
   const updatedAt = new Date().toISOString();
   await db
     .prepare(
-      `INSERT INTO annotations (key, refined_score, review, tags, favorite_character, favorite_character_image, top_order, updated_at)
-       VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)
+      `INSERT INTO annotations (key, refined_score, review, tags, favorite_character, favorite_character_image, top_order, distinction, updated_at)
+       VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)
        ON CONFLICT (key) DO UPDATE SET
          refined_score = excluded.refined_score,
          review = excluded.review,
@@ -70,9 +72,10 @@ export async function saveAnnotation(db: D1Database, key: string, input: unknown
          favorite_character = excluded.favorite_character,
          favorite_character_image = excluded.favorite_character_image,
          top_order = excluded.top_order,
+         distinction = excluded.distinction,
          updated_at = excluded.updated_at`,
     )
-    .bind(key, a.refinedScore, a.review, JSON.stringify(a.tags), a.favoriteCharacter, a.favoriteCharacterImage, a.topOrder, updatedAt)
+    .bind(key, a.refinedScore, a.review, JSON.stringify(a.tags), a.favoriteCharacter, a.favoriteCharacterImage, a.topOrder, a.distinction, updatedAt)
     .run();
   return { ...a, updatedAt };
 }

@@ -71,13 +71,19 @@ test('a signed-in admin can save, and the public page shows the result', async (
   const targetUrl = `/api/annotations/${encodeURIComponent(target.key)}`;
   try {
     await request.put(targetUrl, {
-      data: { refinedScore: 97, tags: ['e2e-tag'], review: 'Shown inline.', favoriteCharacter: 'E2E Hero' },
+      data: { refinedScore: 97, tags: ['e2e-tag'], review: 'Shown inline.', favoriteCharacter: 'E2E Hero', distinction: 'E2E pick' },
       headers,
     });
     await page.goto('/?status=dropped');
     const row = page.locator(`#anime-list .item[data-key="${target.key}"]`);
     await expect(row.locator('.tier__num')).toHaveText('97');
     await expect(row.locator('.tier__name')).toHaveText('S+');
+    // S+ gets its special look; the distinction shows as a chip and in its own section.
+    await expect(row).toHaveClass(/item--top/);
+    await expect(row.locator('.tier')).toHaveClass(/tier--top/);
+    await expect(row.locator('.honor')).toContainText('E2E pick');
+    await expect(page.locator('#honors')).toBeVisible();
+    await expect(page.locator('#honors-list .honor-item__title')).toHaveText(target.title);
     await expect(row.locator('.chips li')).toHaveText('e2e-tag');
     // The favorite character needs no click; the review does.
     await expect(row.locator('.fav__name')).toBeVisible();
@@ -196,8 +202,13 @@ test('the admin panel edits notes and reorders the Top 10', async ({ browser, re
   await row.locator('[data-cast] .adm-pill', { hasText: 'Kanade Tachibana' }).click();
   await expect(row.locator('[name="favoriteCharacter"]')).toHaveValue('Kanade Tachibana');
   await row.locator('[name="review"]').fill('Admin e2e review.');
+  // A distinction without a label of its own gets the default one.
+  await expect(row.locator('[name="distinction"]')).toBeDisabled();
+  await row.locator('[data-honor]').check();
+  await expect(row.locator('[name="distinction"]')).toBeEnabled();
   await save.click();
   await expect(row.locator('.adm-status')).toHaveText('Saved.');
+  await expect(row.locator('.adm-row__marks')).toContainText('★ Honorable mention');
   expect((await stored()).find((a) => a.favoriteCharacter === 'Kanade Tachibana')?.favoriteCharacterImage).toBe(kanade);
   await expect(save).toBeDisabled();
   await expect(row.locator('.adm-row__marks .tier__num')).toHaveText('96');

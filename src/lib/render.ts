@@ -4,7 +4,7 @@
  * when filters change or fresh annotations arrive, so both always agree.
  * Every value that comes from data goes through esc().
  */
-import { tierById, tierFor } from '../config/rating';
+import { tierById, tierFor, TOP_TIER_ID } from '../config/rating';
 import type { Activity, Stats, ViewItem } from './model';
 import { statusSlug } from './query';
 
@@ -20,13 +20,25 @@ export function tierBadge(score: number | null, compact = false): string {
   const tier = tierFor(score);
   if (!tier || score === null) return `<span class="tier tier--none">${compact ? '–' : 'Not rated'}</span>`;
   return (
-    `<span class="tier" data-tier="${tier.id}" title="${esc(`${tier.name} · ${score} · ${tier.label}`)}">` +
+    `<span class="tier${tier.id === TOP_TIER_ID ? ' tier--top' : ''}" data-tier="${tier.id}" title="${esc(`${tier.name} · ${score} · ${tier.label}`)}">` +
     `<span class="tier__name">${esc(tier.name)}</span>` +
     `<span class="tier__num">${score}</span>` +
     (compact ? `<span class="vh"> ${esc(tier.label)}</span>` : `<span class="tier__label">${esc(tier.label)}</span>`) +
     `</span>`
   );
 }
+
+/** Chip for a distinction: a star and the label I gave it. */
+export const honorChip = (item: Pick<ViewItem, 'distinction'>): string =>
+  item.distinction === null
+    ? ''
+    : `<span class="honor"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">` +
+      `<path d="M12 2.5l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.5l-5.9 3.2 1.2-6.6L2.5 9.5l6.6-.9z"/></svg>` +
+      `<span class="vh">Distinction: </span>${esc(item.distinction)}</span>`;
+
+/** Extra class names for a card: the top tier and titles with a distinction get their own look. */
+const marks = (item: ViewItem, base: string): string =>
+  base + (item.tierId === TOP_TIER_ID ? ` ${base}--top` : '') + (item.distinction !== null ? ` ${base}--honored` : '');
 
 /** MAL page for a title. Unmatched titles link to a MAL search instead. */
 export const malUrl = (item: Pick<ViewItem, 'malId' | 'title'>): string =>
@@ -118,7 +130,7 @@ export function renderWatching(shown: ViewItem[], totalWatching: number): string
   // The first cards are on screen (or nearly) at load: fetch them right away, the very first with priority.
   const cards = shown.map(
     (item, idx) =>
-      `<li class="watch-card">` +
+      `<li class="${marks(item, 'watch-card')}">` +
       `<div class="watch-card__cover">${cover(item, { eager: idx < 3, priority: idx === 0 })}</div>` +
       `<span class="watch-card__title">${esc(item.title)}</span>` +
       progressBar(item) +
@@ -143,13 +155,13 @@ export function renderTop(items: ViewItem[]): string {
       const rank = idx + 1;
       const meta = [item.titleEn, item.type, item.year, item.studio].filter(Boolean).map(esc).join(' · ');
       return (
-        `<li class="top-item${rank === 1 ? ' top-item--first' : ''}">` +
+        `<li class="${marks(item, 'top-item')}${rank === 1 ? ' top-item--first' : ''}">` +
         `<span class="top-item__rank" aria-hidden="true">${String(rank).padStart(2, '0')}</span>` +
         `<div class="top-item__cover">${cover(item, rank === 1 ? { large: true, sizes: '(min-width: 720px) 220px, 120px' } : {})}</div>` +
         `<div class="top-item__body">` +
         `<p class="title-line"><span class="vh">Rank ${rank}: </span><span class="top-item__title">${esc(item.title)}</span>${malButton(item)}</p>` +
         (meta ? `<p class="top-item__meta">${meta}</p>` : '') +
-        tierBadge(item.final) +
+        `<span class="badge-row">${tierBadge(item.final)}${honorChip(item)}</span>` +
         `</div></li>`
       );
     })
@@ -178,7 +190,7 @@ export function renderItem(item: ViewItem): string {
     ? `<time datetime="${esc(item.added)}" title="${esc(item.added.replace('T', ' '))}">${monthLabel(item.added)}</time>`
     : '–';
   return (
-    `<li class="item" data-key="${esc(item.key)}">` +
+    `<li class="${marks(item, 'item')}" data-key="${esc(item.key)}">` +
     `<div class="item__cover">${cover(item)}</div>` +
     `<div class="item__body">` +
     `<p class="title-line"><span class="item__title">${esc(item.title)}</span>${malButton(item)}</p>` +
@@ -189,7 +201,7 @@ export function renderItem(item: ViewItem): string {
     `</div>` +
     `<span class="item__status"><span class="dot dot--${statusSlug(item.status)}" aria-hidden="true"></span>${esc(item.status)}</span>` +
     `<span class="item__progress"><span class="vh">Progress </span>${esc(progressText(item))}</span>` +
-    `<span class="item__score">${tierBadge(item.final)}</span>` +
+    `<span class="item__score">${tierBadge(item.final)}${honorChip(item)}</span>` +
     `<span class="item__mal"><span class="vh">MAL score </span>${item.malScore === null ? '–' : item.malScore.toFixed(2)}</span>` +
     `<span class="item__added"><span class="vh">Added </span>${added}</span>` +
     `</li>`
@@ -197,6 +209,22 @@ export function renderItem(item: ViewItem): string {
 }
 
 export const renderItems = (items: ViewItem[]): string => items.map(renderItem).join('');
+
+// ── Honorable mentions ───────────────────────────────────────────────────────
+
+export function renderHonors(items: ViewItem[]): string {
+  return items
+    .map(
+      (item) =>
+        `<li class="honor-item">` +
+        `<div class="honor-item__cover">${cover(item)}</div>` +
+        `<div class="honor-item__body">` +
+        `<p class="title-line"><span class="honor-item__title">${esc(item.title)}</span>${malButton(item)}</p>` +
+        `<span class="badge-row">${honorChip(item)}${tierBadge(item.final, true)}</span>` +
+        `</div></li>`,
+    )
+    .join('');
+}
 
 // ── Charts ───────────────────────────────────────────────────────────────────
 

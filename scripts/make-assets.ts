@@ -8,26 +8,26 @@ import { chromium } from '@playwright/test';
 import { SITE } from '../src/config/site';
 
 const font = readFileSync('node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2').toString('base64');
-const arcs = (cx: number, y: number, count: number, first: number, step: number, color: string, fade = 1.4): string =>
+const arcs = (cx: number, y: number, count: number, first: number, step: number, color: string, fade = 0.7): string =>
   Array.from({ length: count }, (_, i) => {
     const r = first + i * step;
-    const opacity = (0.75 * (1 - i / count) ** fade).toFixed(3);
-    return `<path d="M${cx - r} ${y}A${r} ${r} 0 0 1 ${cx + r} ${y}" stroke="${color}" stroke-width="1.5" fill="none" opacity="${opacity}"/>`;
+    const opacity = (1 - (i / count) * fade).toFixed(3);
+    return `<path d="M${cx - r} ${y}A${r} ${r} 0 0 1 ${cx + r} ${y}" stroke="${color}" stroke-width="1.25" fill="none" opacity="${opacity}"/>`;
   }).join('');
 
 const og = `<!doctype html><html><head><style>
 @font-face{font-family:Inter;src:url(data:font/woff2;base64,${font}) format('woff2');font-weight:100 900}
 *{margin:0;box-sizing:border-box}
 body{width:1200px;height:630px;background:#fbfaf8;color:#1d1b19;font-family:Inter,sans-serif;position:relative;overflow:hidden}
-svg{position:absolute;right:-60px;bottom:0}
+svg{position:absolute;right:88px;bottom:0}
 .t{position:absolute;left:88px;top:196px}
 .a{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:#1d1b19;color:#fbfaf8;font-size:36px;font-weight:600;margin-bottom:36px}
 h1{font-size:76px;font-weight:650;letter-spacing:-0.035em;line-height:1.05}
 p{margin-top:20px;font-size:28px;color:#5b5752}
 .r{position:absolute;left:0;right:0;bottom:0;height:1px;background:#d9d6d2}
 </style></head><body>
-<svg width="900" height="450" viewBox="0 0 900 450">
-<path d="M417 450A33 33 0 0 1 483 450Z" fill="#b8233c" opacity=".55"/>${arcs(450, 450, 11, 70, 36, '#b8233c')}</svg>
+<svg width="560" height="280" viewBox="0 0 560 280">
+${arcs(280, 280, 5, 80, 44, '#8f8b85')}<path d="M238 280A42 42 0 0 1 322 280Z" fill="#b8233c"/></svg>
 <div class="t"><div class="a">${SITE.nickname.slice(0, 1)}</div><h1>${SITE.title.replace(/'/g, '&#39;')}</h1><p>Ratings, tiers and stats for everything I have watched</p></div>
 <div class="r"></div></body></html>`;
 

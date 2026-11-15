@@ -41,6 +41,8 @@ const [data, me, annRes] = await Promise.all([
 const items = data?.items ?? [];
 const annotations: AnnotationMap = sanitizeAnnotationMap(annRes?.annotations);
 const EMPTY: Annotation = sanitizeAnnotation({});
+/** Label used when a title is singled out without a reason of its own. */
+const DEFAULT_DISTINCTION = 'Honorable mention';
 
 if (items.length === 0) showBanner('Could not load the list data.');
 else if (!me) showBanner('The API is not reachable here (it only runs on Cloudflare Pages or `npm run pages:dev`). Saving is disabled.');
@@ -122,7 +124,7 @@ const template = $<HTMLTemplateElement>('adm-editor');
 
 /** Notes worth showing on a row: everything except a bare Top 10 position. */
 const hasNotes = (a: Annotation): boolean =>
-  a.refinedScore !== null || a.review !== null || a.tags.length > 0 || a.favoriteCharacter !== null;
+  a.refinedScore !== null || a.review !== null || a.tags.length > 0 || a.favoriteCharacter !== null || a.distinction !== null;
 
 const rows = new Map<string, HTMLLIElement>();
 
@@ -135,6 +137,7 @@ function updateHead(item: ListItem): void {
   badge.innerHTML = tierBadge(finalScore(item.score, a.refinedScore));
   marks.append(badge);
   const add = (text: string) => marks.append(el('span', 'adm-mark', text));
+  if (a.distinction !== null) add(`★ ${a.distinction}`);
   if (a.refinedScore !== null) add('own score');
   if (a.favoriteCharacter) add(a.favoriteCharacter);
   if (a.tags.length) add(`${a.tags.length} tag${a.tags.length > 1 ? 's' : ''}`);
@@ -157,6 +160,8 @@ function buildEditor(item: ListItem, row: HTMLLIElement): HTMLFormElement {
   const character = q<HTMLInputElement>('[name="favoriteCharacter"]');
   const avatar = q<HTMLImageElement>('[data-avatar]');
   const castBox = q<HTMLElement>('[data-cast]');
+  const honorBox = q<HTMLInputElement>('[data-honor]');
+  const honorLabel = q<HTMLInputElement>('[name="distinction"]');
   const tagList = q<HTMLUListElement>('[data-tags]');
   const tagInput = q<HTMLInputElement>('[name="tags"]');
   const suggestBox = q<HTMLElement>('[data-suggest]');
@@ -197,6 +202,7 @@ function buildEditor(item: ListItem, row: HTMLLIElement): HTMLFormElement {
       favoriteCharacter: character.value,
       favoriteCharacterImage: pictureFor(character.value),
       review: review.value,
+      distinction: honorBox.checked ? honorLabel.value.trim() || DEFAULT_DISTINCTION : null,
       topOrder: current(item).topOrder,
     });
   };
@@ -211,6 +217,7 @@ function buildEditor(item: ListItem, row: HTMLLIElement): HTMLFormElement {
       n.favoriteCharacter !== a.favoriteCharacter ||
       // A picture that became available for an unchanged name is worth saving too.
       (n.favoriteCharacterImage !== null && n.favoriteCharacterImage !== a.favoriteCharacterImage) ||
+      n.distinction !== a.distinction ||
       n.tags.join('\n') !== a.tags.join('\n')
     );
   };
@@ -292,6 +299,7 @@ function buildEditor(item: ListItem, row: HTMLLIElement): HTMLFormElement {
     preview.innerHTML = tierBadge(finalScore(item.score, n.refinedScore));
     range.value = String(n.refinedScore ?? base ?? 50);
     counter.textContent = `${review.value.length} / ${LIMITS.review}`;
+    honorLabel.disabled = !honorBox.checked;
 
     const picture = n.favoriteCharacterImage;
     avatar.hidden = !picture;
@@ -315,6 +323,8 @@ function buildEditor(item: ListItem, row: HTMLLIElement): HTMLFormElement {
     score.placeholder = base !== null ? String(base) : '–';
     character.value = a.favoriteCharacter ?? '';
     review.value = a.review ?? '';
+    honorBox.checked = a.distinction !== null;
+    honorLabel.value = a.distinction !== null && a.distinction !== DEFAULT_DISTINCTION ? a.distinction : '';
     tagInput.value = '';
     tags = [...a.tags];
     renderTags();
@@ -350,7 +360,12 @@ function buildEditor(item: ListItem, row: HTMLLIElement): HTMLFormElement {
     delete status.dataset.kind;
     refresh();
   });
-  for (const field of [character, review]) {
+  honorBox.addEventListener('change', () => {
+    delete status.dataset.kind;
+    refresh();
+    if (honorBox.checked) honorLabel.focus();
+  });
+  for (const field of [character, review, honorLabel]) {
     field.addEventListener('input', () => {
       delete status.dataset.kind;
       refresh();
