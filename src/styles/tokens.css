@@ -25,6 +25,7 @@
   /* Highlight: titles singled out by hand. Gold, so it never reads as the crimson of S+. */
   --hl-bg: light-dark(oklch(0.95 0.055 85), oklch(0.3 0.05 85));
   --hl-solid: light-dark(oklch(0.6 0.13 80), oklch(0.78 0.13 85));
+  --hl-fg: light-dark(oklch(0.42 0.09 85), oklch(0.88 0.1 90));
 
   /* Status dots */
   --st-watching: light-dark(oklch(0.58 0.15 150), oklch(0.74 0.15 150));

@@ -89,7 +89,7 @@ Open `/admin` and sign in with GitHub. The panel has two tabs.
 
 - **My score** (1–100): type a number or drag the slider; the tier badge next to it updates as you go. Leave it empty to keep the OglądajAnime score × 10.
 - **Favorite character**: pick one from the cast shown under the field, or type a name (a first name or nickname is enough). The panel gets the cast from AniList in your browser and saves the picture of the character you chose. (It cannot be done on the server: AniList refuses requests from Cloudflare Workers.) The public page shows the picture and the name directly on the row.
-- **Highlight**: a checkbox that gives the title a quieter version of the S+ look (see "Changing the rating system").
+- **Honorable mention**: a checkbox that gives the title a quieter version of the S+ look and a caption (see "Changing the rating system").
 - **Tags**: type and press Enter; tags you have used before are offered as one-click suggestions.
 - **Review**: shown on the public page as an expandable line.
 
@@ -125,7 +125,7 @@ The final score is the refined score when set, otherwise the OA score × 10. Eve
 
 **S+** has its own look: a solid badge with a sparkle and a slow sheen, a ring around the cover and a tinted row.
 
-**Highlight** is for a title that deserves to stand out without being S+. Tick "Highlight this title" in the admin panel and it gets a quieter version of the S+ look, in gold: a soft tint on its row, a thin ring around the cover and a mark on its badge. There is no caption; it is purely a look. Highlighted titles can be filtered with "★ Highlighted".
+**Honorable mention** is for a title that deserves to stand out without being S+. Tick "Give this title an honorable mention" in the admin panel and it gets a quieter version of the S+ look, in gold: a soft tint on its row, a thin ring around the cover, a mark on its badge, and the caption "Honorable mention" next to the score, so the highlight is never unexplained. They can be filtered with "✧ Honorable mentions".
 
 ## Local development
 
@@ -235,4 +235,4 @@ Three original, abstract SVG motifs, each drawn from simple geometry and themed 
 - **Woven threads** as section dividers, after *Maquia*.
 - **Spider lily** for empty states, after *86: Eighty Six*.
 
-The motifs use no character likenesses, logos or official artwork. Separately, the header shows a faded strip of the covers of my best-rated titles; those are the same MAL / AniList cover images used in the list.
+The motifs use no character likenesses, logos or official artwork. Separately, the header has a faint backdrop of my Top 10 covers drifting slowly from left to right in a seamless loop (the same MAL / AniList cover images used in the list). It stands still when the system asks for reduced motion, and is left out on narrow screens.

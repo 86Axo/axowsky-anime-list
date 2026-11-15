@@ -135,7 +135,7 @@ function updateHead(item: ListItem): void {
   badge.innerHTML = tierBadge(finalScore(item.score, a.refinedScore));
   marks.append(badge);
   const add = (text: string) => marks.append(el('span', 'adm-mark', text));
-  if (a.highlight) add('★ highlighted');
+  if (a.highlight) add('✧ honorable mention');
   if (a.refinedScore !== null) add('own score');
   if (a.favoriteCharacter) add(a.favoriteCharacter);
   if (a.tags.length) add(`${a.tags.length} tag${a.tags.length > 1 ? 's' : ''}`);

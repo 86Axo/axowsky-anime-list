@@ -82,7 +82,7 @@ test('a signed-in admin can save, and the public page shows the result', async (
     await expect(row).toHaveClass(/item--top/);
     await expect(row.locator('.tier')).toHaveClass(/tier--top/);
 
-    // A highlighted title below S+ gets the quieter look, with no extra text.
+    // A title with an honorable mention gets the quieter look and a caption that says why.
     await request.put(targetUrl, {
       data: { refinedScore: 72, highlight: true, tags: ['e2e-tag'], review: 'Shown inline.', favoriteCharacter: 'E2E Hero' },
       headers,
@@ -92,6 +92,7 @@ test('a signed-in admin can save, and the public page shows the result', async (
     await expect(row).not.toHaveClass(/item--top/);
     await expect(row.locator('.tier')).toHaveClass(/tier--highlight/);
     await expect(row.locator('.tier')).toHaveText(/^B\s*72\s*Good$/);
+    await expect(row.locator('.mention')).toHaveText('✧Honorable mention');
     await page.locator('#filter-tier').selectOption('highlighted');
     await expect(page.locator('#anime-list .item')).toHaveCount(1);
     await expect(row.locator('.chips li')).toHaveText('e2e-tag');
@@ -217,7 +218,7 @@ test('the admin panel edits notes and reorders the Top 10', async ({ browser, re
   await expect(row.locator('[data-preview] .tier')).toHaveClass(/tier--highlight/);
   await save.click();
   await expect(row.locator('.adm-status')).toHaveText('Saved.');
-  await expect(row.locator('.adm-row__marks')).toContainText('★ highlighted');
+  await expect(row.locator('.adm-row__marks')).toContainText('✧ honorable mention');
   expect((await stored()).find((a) => a.favoriteCharacter === 'Kanade Tachibana')?.favoriteCharacterImage).toBe(kanade);
   await expect(save).toBeDisabled();
   await expect(row.locator('.adm-row__marks .tier__num')).toHaveText('88');

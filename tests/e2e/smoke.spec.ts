@@ -74,6 +74,29 @@ test('follows the system theme when no choice was made', async ({ page }) => {
   expect(lightness).toBeLessThan(200);
 });
 
+test('the header backdrop drifts in a seamless loop, and stands still when motion is reduced', async ({ page, isMobile }) => {
+  test.skip(isMobile, 'narrow screens have no backdrop');
+  await ready(page);
+  const track = page.locator('#hero-covers .hero__track');
+  await expect(page.locator('#hero-covers')).toBeVisible();
+  expect(await track.evaluate((el) => getComputedStyle(el).animationName)).toBe('hero-drift');
+  // It really moves, and to the right.
+  const x = () => track.evaluate((el) => el.getBoundingClientRect().left);
+  const before = await x();
+  await page.waitForTimeout(700);
+  expect(await x()).toBeGreaterThan(before);
+  // Two identical halves: sliding by half the width shows the same covers again.
+  const sources = await track.locator('img').evaluateAll((imgs) => imgs.map((i) => (i as HTMLImageElement).src));
+  expect(sources.length % 2).toBe(0);
+  expect(sources.slice(0, sources.length / 2)).toEqual(sources.slice(sources.length / 2));
+  // The track is wider than twice the window, so no gap ever shows.
+  const width = await track.evaluate((el) => el.getBoundingClientRect().width);
+  expect(width / 2).toBeGreaterThan(page.viewportSize()!.width);
+
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  expect(await track.evaluate((el) => getComputedStyle(el).animationName)).toBe('none');
+});
+
 test('status tabs, search and view toggle filter the list and update the URL', async ({ page }) => {
   await ready(page);
 

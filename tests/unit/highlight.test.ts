@@ -47,20 +47,25 @@ describe('highlight', () => {
     expect(names).toEqual(['Mid', 'Low']);
   });
 
-  it('marks the card and its badge, without adding any caption', () => {
+  it('marks the card and its badge, and says why with a caption', () => {
     const html = renderItem(get('Mid'));
     expect(html).toContain('<li class="item item--highlight"');
     expect(html).toContain('class="tier tier--highlight" data-tier="c"');
-    // Same text as an ordinary row: the highlight is a look, not a label.
-    const text = (h: string) => h.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
-    expect(text(html)).toBe(text(renderItem({ ...get('Mid'), highlight: false })));
-    expect(renderItem(get('Plain'))).not.toContain('highlight');
+    // The caption sits right after the score badge, so the tint never comes from nowhere.
+    expect(html).toContain('</span><span class="mention"><span aria-hidden="true">✧</span>Honorable mention</span></span>');
+    const plain = renderItem(get('Plain'));
+    expect(plain).not.toContain('highlight');
+    expect(plain).not.toContain('Honorable mention');
   });
 
-  it('applies in the Top 10 and on the watching cards too', () => {
-    expect(renderTop([get('Mid')])).toContain('class="top-item top-item--highlight top-item--first"');
+  it('applies in the Top 10 and on the watching cards too, each with the caption', () => {
+    const top = renderTop([get('Mid')]);
+    expect(top).toContain('class="top-item top-item--highlight top-item--first"');
+    expect(top).toContain('Honorable mention');
     const watching = { ...get('Mid'), status: 'Watching' as const, watched: 3 };
-    expect(renderWatching([watching], 1)).toContain('<li class="watch-card watch-card--highlight">');
+    const card = renderWatching([watching], 1);
+    expect(card).toContain('<li class="watch-card watch-card--highlight">');
+    expect(card).toContain('Honorable mention');
   });
 });
 
@@ -91,20 +96,38 @@ describe('the top tier look', () => {
   });
 });
 
-describe('header cover strip', () => {
-  it('shows up to six covers of the best titles, as decoration only', () => {
-    const many = annotate(
-      Array.from({ length: 8 }, (_, i) => item(`T${i}`, { image: `https://cdn.myanimelist.net/images/anime/1/${i}.webp` })),
+describe('header cover backdrop', () => {
+  const withCovers = (n: number) =>
+    annotate(
+      Array.from({ length: n }, (_, i) => item(`T${i}`, { image: `https://cdn.myanimelist.net/images/anime/1/${i}.webp` })),
       {},
     );
-    const html = renderHeroCovers(many);
-    expect(html.match(/<img /g)).toHaveLength(6);
-    expect(html).toContain('alt=""');
-    expect(html).toContain('loading="lazy"');
-    expect(html).not.toContain('<a ');
+  const sources = (html: string) => [...html.matchAll(/src="([^"]+)"/g)].map((m) => m[1]!);
+
+  it('puts up to ten covers on one track, twice, so the loop has no seam', () => {
+    const html = renderHeroCovers(withCovers(12));
+    expect(html.startsWith('<div class="hero__track">')).toBe(true);
+    const src = sources(html);
+    // 10 covers repeated to at least 12 per run, and the run appears twice.
+    expect(src).toHaveLength(40);
+    expect(new Set(src).size).toBe(10);
+    expect(src.slice(0, 20)).toEqual(src.slice(20));
   });
 
-  it('skips titles without a cover', () => {
+  it('repeats a short Top 10 so a run is still wider than the screen', () => {
+    const src = sources(renderHeroCovers(withCovers(3)));
+    expect(src.length / 2).toBeGreaterThanOrEqual(12);
+    expect(src.slice(0, src.length / 2)).toEqual(src.slice(src.length / 2));
+  });
+
+  it('is decoration only: no alt text, no links, loaded lazily', () => {
+    const html = renderHeroCovers(withCovers(4));
+    expect(html).not.toContain('<a ');
+    expect(html.match(/alt=""/g)).toHaveLength(html.match(/<img /g)!.length);
+    expect(html.match(/loading="lazy"/g)).toHaveLength(html.match(/<img /g)!.length);
+  });
+
+  it('renders nothing when no title has a cover', () => {
     expect(renderHeroCovers(annotate([item('No cover')], {}))).toBe('');
   });
 });

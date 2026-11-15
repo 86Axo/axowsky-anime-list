@@ -1323,40 +1323,83 @@ textarea {
 }
 
 
-/* ── Header backdrop: my best-rated covers, faded ─────────────────────────── */
+/* ── Header backdrop: my Top 10 covers drifting past, faint ───────────────── */
 .hero__covers {
   position: absolute;
-  inset-block: 0;
-  inset-inline-end: 0;
+  inset: 0;
   display: none;
-  flex-direction: row-reverse; /* #1 sits at the far right, where the strip is most visible */
-  align-items: flex-start;
-  gap: 0.75rem;
-  inline-size: min(62%, 50rem);
-  padding-block-start: clamp(1.5rem, 3vw, 2.5rem);
-  padding-inline-end: max(var(--gutter), calc((100vw - var(--page)) / 2));
+  align-items: center;
   overflow: hidden;
-  opacity: 0.55;
+  opacity: 0.3;
   filter: saturate(0.85);
-  /* Fades out towards the title on the left and towards the stats below. */
-  mask-image: linear-gradient(to right, transparent 0%, #000 60%), linear-gradient(to bottom, #000 30%, transparent 66%);
+  /* Soft edges all round. Fainter on the left half, where the title and its small subtitle sit,
+     and gone before the stats, so small text always has a calm background (worst case stays
+     above 4.5:1 for the subtitle). */
+  mask-image: linear-gradient(to right, transparent 0%, oklch(0 0 0 / 0.4) 10%, oklch(0 0 0 / 0.55) 50%, #000 72%, #000 92%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, #000 14%, #000 46%, transparent 82%);
   mask-composite: intersect;
   -webkit-mask-composite: source-in;
   pointer-events: none;
 }
-.hero__covers img {
+/* The track holds the covers twice. Sliding it by exactly half its width, left to right,
+   lands on an identical picture, so the loop has no seam. */
+.hero__track {
+  display: flex;
   flex: none;
-  inline-size: clamp(5.5rem, 9vw, 8rem);
-  block-size: auto;
+  inline-size: max-content;
+  animation: hero-drift 110s linear infinite;
+  will-change: transform;
+}
+.hero__track img {
+  flex: none;
+  inline-size: auto;
+  block-size: clamp(11rem, 22vw, 16rem);
   aspect-ratio: 225 / 318;
+  margin-inline-end: 0.75rem;
   object-fit: cover;
   border-radius: var(--radius-sm);
 }
-/* Narrow screens have no free space beside the title, so the strip is left out (and never downloaded). */
+@keyframes hero-drift {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+/* Narrow screens have no room for a backdrop behind the title, so it is left out (and never downloaded). */
 @media (min-width: 52rem) {
   .hero__covers {
     display: flex;
   }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__track {
+    animation: none;
+    transform: translateX(-25%);
+  }
+}
+
+/* ── Honorable mention: the caption that explains a highlighted title ─────── */
+.mention {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.0625rem 0.5rem;
+  border: 1px solid var(--hl-solid);
+  border-radius: 999px;
+  background: var(--hl-bg);
+  color: var(--hl-fg);
+  font-size: var(--fs-xs);
+  font-weight: 550;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.375rem;
 }
 
 /* ── List rows: room around the cover, so rings and tints are never cut off ── */

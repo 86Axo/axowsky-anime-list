@@ -35,14 +35,23 @@ export function tierBadge(score: number | null, compact = false, highlight = fal
 const marks = (item: ViewItem, base: string): string =>
   base + (item.tierId === TOP_TIER_ID ? ` ${base}--top` : '') + (item.highlight ? ` ${base}--highlight` : '');
 
-/** Cover strip behind the header: the best-rated titles, #1 first. Purely decorative. */
+/**
+ * Backdrop of the header: the covers of the best-rated titles on a track that drifts from
+ * left to right and loops. The track holds the same run of covers twice, so that sliding it
+ * by half its width shows exactly the same picture again. Purely decorative.
+ */
 export function renderHeroCovers(items: ViewItem[]): string {
-  return items
-    .filter((i) => i.image)
-    .slice(0, 6)
-    .map((i) => `<img src="${esc(i.image)}" width="225" height="318" alt="" loading="lazy" decoding="async">`)
-    .join('');
+  const covers = items.filter((i) => i.image).slice(0, 10);
+  if (covers.length === 0) return '';
+  // A short Top 10 is repeated, so one run is always wider than the screen.
+  const run = Array.from({ length: Math.ceil(12 / covers.length) }, () => covers).flat();
+  const imgs = run.map((i) => `<img src="${esc(i.image)}" width="225" height="318" alt="" loading="lazy" decoding="async">`).join('');
+  return `<div class="hero__track">${imgs}${imgs}</div>`;
 }
+
+/** Caption for a title I gave an honorable mention, so its highlight is never left unexplained. */
+export const mentionChip = (item: Pick<ViewItem, 'highlight'>): string =>
+  item.highlight ? `<span class="mention"><span aria-hidden="true">✧</span>Honorable mention</span>` : '';
 
 /** MAL page for a title. Unmatched titles link to a MAL search instead. */
 export const malUrl = (item: Pick<ViewItem, 'malId' | 'title'>): string =>
@@ -138,7 +147,7 @@ export function renderWatching(shown: ViewItem[], totalWatching: number): string
       `<div class="watch-card__cover">${cover(item, { eager: idx < 3, priority: idx === 0 })}</div>` +
       `<span class="watch-card__title">${esc(item.title)}</span>` +
       progressBar(item) +
-      `<span class="card-foot">${item.final === null ? '' : tierBadge(item.final, true, item.highlight)}${malButton(item)}</span>` +
+      `<span class="card-foot">${item.final === null ? '' : tierBadge(item.final, true, item.highlight)}${malButton(item)}${mentionChip(item)}</span>` +
       `</li>`,
   );
   if (totalWatching > shown.length) {
@@ -165,7 +174,7 @@ export function renderTop(items: ViewItem[]): string {
         `<div class="top-item__body">` +
         `<p class="title-line"><span class="vh">Rank ${rank}: </span><span class="top-item__title">${esc(item.title)}</span>${malButton(item)}</p>` +
         (meta ? `<p class="top-item__meta">${meta}</p>` : '') +
-        tierBadge(item.final, false, item.highlight) +
+        `<span class="badge-row">${tierBadge(item.final, false, item.highlight)}${mentionChip(item)}</span>` +
         `</div></li>`
       );
     })
@@ -205,7 +214,7 @@ export function renderItem(item: ViewItem): string {
     `</div>` +
     `<span class="item__status"><span class="dot dot--${statusSlug(item.status)}" aria-hidden="true"></span>${esc(item.status)}</span>` +
     `<span class="item__progress"><span class="vh">Progress </span>${esc(progressText(item))}</span>` +
-    `<span class="item__score">${tierBadge(item.final, false, item.highlight)}</span>` +
+    `<span class="item__score">${tierBadge(item.final, false, item.highlight)}${mentionChip(item)}</span>` +
     `<span class="item__mal"><span class="vh">MAL score </span>${item.malScore === null ? '–' : item.malScore.toFixed(2)}</span>` +
     `<span class="item__added"><span class="vh">Added </span>${added}</span>` +
     `</li>`
