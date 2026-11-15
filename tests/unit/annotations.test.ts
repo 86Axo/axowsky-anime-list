@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { newSessionPayload, readCookie, signSession, verifySession } from '../../server/auth';
-import { lookupCharacterImage, pickCharacter, type CharacterInfo } from '../../server/characters';
+import { lookupCharacterImage, pickCharacter, type CharacterInfo } from '../../src/lib/characters';
 import {
   annotationsFingerprint,
   isEmptyAnnotation,

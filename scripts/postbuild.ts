@@ -30,7 +30,8 @@ const csp = [
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: https://cdn.myanimelist.net https://s4.anilist.co",
   "font-src 'self'",
-  "connect-src 'self'",
+  // The admin panel asks AniList for an anime's cast, straight from the browser.
+  "connect-src 'self' https://graphql.anilist.co",
   "base-uri 'self'",
   "form-action 'self'",
   "frame-ancestors 'none'",

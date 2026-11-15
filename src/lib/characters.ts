@@ -1,10 +1,13 @@
 /**
  * Finds a picture for a favorite character.
  *
- * The admin only types a name. When an annotation is saved, the write API asks
- * AniList for the cast of that anime (by MAL id), picks the character whose name
- * matches best and stores the picture URL next to the name. The public page then
- * shows it without any lookup of its own.
+ * This runs in the admin panel, in my own browser: it asks AniList for the cast of
+ * the anime (by MAL id), offers the characters to pick from, and matches a typed
+ * name to one of them. The chosen picture URL is saved with the annotation, so the
+ * public page shows it without any lookup of its own.
+ *
+ * It cannot run on the server: AniList refuses requests that come from Cloudflare
+ * Workers, and that refusal is respected rather than worked around.
  */
 export interface CharacterInfo {
   /** Every name the character is known by: full, native, nicknames. */

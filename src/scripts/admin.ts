@@ -1,5 +1,6 @@
 import { finalScore } from '../config/rating';
 import { isEmptyAnnotation, LIMITS, sanitizeAnnotation, sanitizeAnnotationMap } from '../lib/annotations';
+import { fetchCharacters, pickCharacter, type CharacterInfo } from '../lib/characters';
 import { annotate, rankRated, type ListItem, type ViewItem } from '../lib/model';
 import { tierBadge } from '../lib/render';
 import type { Annotation, AnnotationMap } from '../lib/types';
@@ -72,8 +73,7 @@ async function putAnnotation(item: ListItem, next: Annotation): Promise<Annotati
   const res = await fetch(`/api/annotations/${encodeURIComponent(item.key)}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
-    // malId lets the server find the character's picture even when the key is an `oa:` one.
-    body: JSON.stringify({ ...next, malId: item.malId }),
+    body: JSON.stringify(next),
   });
   if (!res.ok) {
     const err = (await res.json().catch(() => null)) as { error?: string } | null;
@@ -174,9 +174,20 @@ function buildEditor(item: ListItem, row: HTMLLIElement): HTMLFormElement {
       : 'Not rated on OglądajAnime. Leave the box empty to keep it unrated.';
 
   let tags: string[] = [];
-  let cast: { name: string; image: string | null }[] = [];
+  let cast: CharacterInfo[] = [];
 
   const parseTags = (raw: string): string[] => sanitizeAnnotation({ tags: raw.split(',') }).tags;
+  /** Picture for the typed name: the matching cast member, else the stored one if the name is unchanged. */
+  const pictureFor = (name: string): string | null => {
+    const typed = name.trim().toLowerCase();
+    if (!typed) return null;
+    const saved = current(item);
+    return (
+      cast.find((c) => c.names[0]!.toLowerCase() === typed)?.image ??
+      pickCharacter(name, cast)?.image ??
+      (saved.favoriteCharacter?.toLowerCase() === typed ? saved.favoriteCharacterImage : null)
+    );
+  };
   /** The annotation as the form currently describes it. */
   const read = (): Annotation => {
     const raw = score.value.trim();
@@ -184,6 +195,7 @@ function buildEditor(item: ListItem, row: HTMLLIElement): HTMLFormElement {
       refinedScore: raw === '' ? null : Number(raw),
       tags: [...tags, ...parseTags(tagInput.value)],
       favoriteCharacter: character.value,
+      favoriteCharacterImage: pictureFor(character.value),
       review: review.value,
       topOrder: current(item).topOrder,
     });
@@ -197,6 +209,8 @@ function buildEditor(item: ListItem, row: HTMLLIElement): HTMLFormElement {
       n.refinedScore !== a.refinedScore ||
       n.review !== a.review ||
       n.favoriteCharacter !== a.favoriteCharacter ||
+      // A picture that became available for an unchanged name is worth saving too.
+      (n.favoriteCharacterImage !== null && n.favoriteCharacterImage !== a.favoriteCharacterImage) ||
       n.tags.join('\n') !== a.tags.join('\n')
     );
   };
@@ -247,10 +261,11 @@ function buildEditor(item: ListItem, row: HTMLLIElement): HTMLFormElement {
     castBox.hidden = cast.length === 0;
     const chosen = character.value.trim().toLowerCase();
     castBox.replaceChildren(
-      ...cast.map((c) => {
+      ...cast.slice(0, 40).map((c) => {
+        const name = c.names[0]!;
         const b = el('button', 'adm-pill');
         b.type = 'button';
-        b.setAttribute('aria-pressed', String(c.name.toLowerCase() === chosen));
+        b.setAttribute('aria-pressed', String(name.toLowerCase() === chosen));
         if (c.image) {
           const img = el('img');
           img.src = c.image;
@@ -260,9 +275,10 @@ function buildEditor(item: ListItem, row: HTMLLIElement): HTMLFormElement {
           img.loading = 'lazy';
           b.append(img);
         } else b.classList.add('adm-pill--text');
-        b.append(c.name);
+        b.append(name);
         b.addEventListener('click', () => {
-          character.value = c.name.toLowerCase() === chosen ? '' : c.name;
+          character.value = name.toLowerCase() === chosen ? '' : name;
+          delete status.dataset.kind;
           refresh();
         });
         return b;
@@ -277,11 +293,7 @@ function buildEditor(item: ListItem, row: HTMLLIElement): HTMLFormElement {
     range.value = String(n.refinedScore ?? base ?? 50);
     counter.textContent = `${review.value.length} / ${LIMITS.review}`;
 
-    const typed = character.value.trim().toLowerCase();
-    const saved = current(item);
-    const picture =
-      cast.find((c) => c.name.toLowerCase() === typed)?.image ??
-      (saved.favoriteCharacter?.toLowerCase() === typed ? saved.favoriteCharacterImage : null);
+    const picture = n.favoriteCharacterImage;
     avatar.hidden = !picture;
     if (picture) avatar.src = picture;
     else avatar.removeAttribute('src');
@@ -390,11 +402,14 @@ function buildEditor(item: ListItem, row: HTMLLIElement): HTMLFormElement {
   });
 
   fill();
-  if (canSave && item.malId !== null) {
-    void getJson<{ characters: { name: string; image: string | null }[] }>(`/api/characters/${item.malId}`).then((res) => {
-      cast = res?.characters ?? [];
-      refresh();
-    });
+  // The cast comes straight from AniList. If that fails, typing a name still works; it just has no picture.
+  if (item.malId !== null) {
+    void fetchCharacters(item.malId, fetch, 2)
+      .then((characters) => {
+        cast = characters;
+        refresh();
+      })
+      .catch(() => undefined);
   }
   return form;
 }

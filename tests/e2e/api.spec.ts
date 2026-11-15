@@ -143,9 +143,33 @@ test('the admin panel edits notes and reorders the Top 10', async ({ browser, re
   const cookie = await sessionCookie(E2E.adminGithubId);
   // The session cookie is Secure and __Host- prefixed; sending it as a header works on plain-http localhost.
   const context = await browser.newContext({ extraHTTPHeaders: { Cookie: cookie }, viewport: { width: 1280, height: 900 } });
+  // The panel asks AniList for the cast from the browser. Answer for it here, so the test needs no outside network.
+  const kanade = 'https://s4.anilist.co/file/anilistcdn/character/medium/e2e-kanade.png';
+  await context.route('https://graphql.anilist.co/**', (route) =>
+    route.fulfill({
+      json: {
+        data: {
+          Media: {
+            characters: {
+              pageInfo: { hasNextPage: false },
+              nodes: [
+                { name: { full: 'Yuzuru Otonashi', native: null, alternative: [] }, image: { medium: null } },
+                { name: { full: 'Kanade Tachibana', native: null, alternative: ['Tenshi'] }, image: { medium: kanade } },
+              ],
+            },
+          },
+        },
+      },
+    }),
+  );
   const page = await context.newPage();
   const stored = async () =>
-    Object.values((await (await request.get('/api/annotations')).json()).annotations) as { review: string | null; topOrder: number | null }[];
+    Object.values((await (await request.get('/api/annotations')).json()).annotations) as {
+      review: string | null;
+      topOrder: number | null;
+      favoriteCharacter: string | null;
+      favoriteCharacterImage: string | null;
+    }[];
   await page.goto('/admin/');
   await expect(page.locator('#adm-user')).toHaveText('Signed in as e2e-admin');
 
@@ -165,10 +189,16 @@ test('the admin panel edits notes and reorders the Top 10', async ({ browser, re
   await row.locator('[name="tags"]').fill('rewatchable');
   await row.locator('[name="tags"]').press('Enter');
   await expect(row.locator('[data-tags] li')).toHaveCount(2);
+  // The cast is offered to pick from; a typed first name finds the same character and its picture.
+  await expect(row.locator('[data-cast] .adm-pill')).toHaveCount(2);
   await row.locator('[name="favoriteCharacter"]').fill('Kanade');
+  await expect(row.locator('[data-avatar]')).toBeVisible();
+  await row.locator('[data-cast] .adm-pill', { hasText: 'Kanade Tachibana' }).click();
+  await expect(row.locator('[name="favoriteCharacter"]')).toHaveValue('Kanade Tachibana');
   await row.locator('[name="review"]').fill('Admin e2e review.');
   await save.click();
-  await expect(row.locator('.adm-status')).toContainText('Saved.');
+  await expect(row.locator('.adm-status')).toHaveText('Saved.');
+  expect((await stored()).find((a) => a.favoriteCharacter === 'Kanade Tachibana')?.favoriteCharacterImage).toBe(kanade);
   await expect(save).toBeDisabled();
   await expect(row.locator('.adm-row__marks .tier__num')).toHaveText('96');
   await expect(row.locator('.adm-row__marks')).toContainText('own score');

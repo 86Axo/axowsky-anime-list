@@ -17,8 +17,6 @@ export interface Env {
   ADMIN_GITHUB_ID?: string;
   ACCESS_TEAM_DOMAIN?: string;
   ACCESS_AUD?: string;
-  /** Set to `off` to skip the favorite-character picture lookup (used by the tests). */
-  CHARACTER_LOOKUP?: string;
 }
 
 export interface AdminUser {

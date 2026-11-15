@@ -15,8 +15,6 @@ const bindings = [
   `SESSION_SECRET=${E2E.sessionSecret}`,
   'GITHUB_CLIENT_ID=e2e-client-id',
   'GITHUB_CLIENT_SECRET=e2e-client-secret',
-  // Tests must not depend on a third-party API being up.
-  'CHARACTER_LOOKUP=off',
 ]
   .map((b) => `-b ${b}`)
   .join(' ');

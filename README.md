@@ -88,7 +88,7 @@ Open `/admin` and sign in with GitHub. The panel has two tabs.
 **Notes and scores.** Search or filter the list, click a title and edit:
 
 - **My score** (1–100): type a number or drag the slider; the tier badge next to it updates as you go. Leave it empty to keep the OglądajAnime score × 10.
-- **Favorite character**: pick one from the cast shown under the field, or type a name (a first name or nickname is enough). On save the server looks the character up in that anime’s cast on AniList and stores its picture. The public page shows the picture and the name directly on the row.
+- **Favorite character**: pick one from the cast shown under the field, or type a name (a first name or nickname is enough). The panel gets the cast from AniList in your browser and saves the picture of the character you chose. (It cannot be done on the server: AniList refuses requests from Cloudflare Workers.) The public page shows the picture and the name directly on the row.
 - **Tags**: type and press Enter; tags you have used before are offered as one-click suggestions.
 - **Review**: shown on the public page as an expandable line.
 
@@ -178,7 +178,6 @@ If you prefer Cloudflare Access (Zero Trust), create an Access application cover
 | `CLOUDFLARE_ACCOUNT_ID` | GitHub repository secret | no, but kept out of the public repo | Which Cloudflare account to deploy to |
 | `ACCESS_TEAM_DOMAIN`, `ACCESS_AUD` | Pages variables | no | Only for the Cloudflare Access alternative |
 | `BAKE_ANNOTATIONS` | build environment | no | Set to `0` to build without fetching annotations (used by the tests) |
-| `CHARACTER_LOOKUP` | Pages variable | no | Set to `off` to skip the favorite character picture lookup (used by the tests) |
 | `DB` | `wrangler.toml` D1 binding | no | The annotations database |
 
 The sync itself needs no secrets: it uses the built-in `GITHUB_TOKEN` to commit. No secret is ever committed; `.dev.vars` and `.env*` are git-ignored.
