@@ -186,3 +186,13 @@ for (const scheme of ['light', 'dark'] as const) {
     expect(summary).toEqual([]);
   });
 }
+
+test('a perfect 100 wears a crown and its own label', async ({ page }) => {
+  await ready(page);
+  const perfect = page.locator('#anime-list .item--perfect').first();
+  await expect(perfect).toBeVisible();
+  await expect(perfect.locator('.tier')).toHaveClass(/tier--perfect/);
+  await expect(perfect.locator('.tier__crown')).toBeVisible();
+  await expect(perfect.locator('.tier__label')).toHaveText('Perfect');
+  await expect(perfect.locator('.tier__num')).toHaveText('100');
+});

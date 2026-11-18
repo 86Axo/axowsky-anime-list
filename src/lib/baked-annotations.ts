@@ -1,6 +1,22 @@
 import { SITE } from '../config/site';
 import { sanitizeAnnotationMap } from './annotations';
+import { sanitizeEntries, type ManualEntry } from './entries';
 import type { AnnotationMap } from './types';
+
+/** GET a JSON field from the live read-only API, or undefined on any failure. */
+async function fromLiveApi(path: string, field: string): Promise<unknown> {
+  if (import.meta.env.DEV || process.env.BAKE_ANNOTATIONS === '0') return undefined;
+  try {
+    const res = await fetch(new URL(path, SITE.url), {
+      headers: { Accept: 'application/json' },
+      signal: AbortSignal.timeout(5000),
+    });
+    if (!res.ok || !(res.headers.get('content-type') ?? '').includes('json')) return undefined;
+    return ((await res.json()) as Record<string, unknown>)[field];
+  } catch {
+    return undefined;
+  }
+}
 
 /**
  * Annotations as they are at build time, read from the live read-only API.
@@ -9,16 +25,10 @@ import type { AnnotationMap } from './types';
  * Any failure (first deploy, offline build) just means "no annotations yet".
  */
 export async function loadBakedAnnotations(): Promise<AnnotationMap> {
-  if (import.meta.env.DEV || process.env.BAKE_ANNOTATIONS === '0') return {};
-  try {
-    const res = await fetch(new URL('/api/annotations', SITE.url), {
-      headers: { Accept: 'application/json' },
-      signal: AbortSignal.timeout(5000),
-    });
-    if (!res.ok || !(res.headers.get('content-type') ?? '').includes('json')) return {};
-    const body = (await res.json()) as { annotations?: unknown };
-    return sanitizeAnnotationMap(body.annotations);
-  } catch {
-    return {};
-  }
+  return sanitizeAnnotationMap(await fromLiveApi('/api/annotations', 'annotations'));
+}
+
+/** Titles I added by hand, as they are at build time. Same rules as the annotations. */
+export async function loadBakedEntries(): Promise<ManualEntry[]> {
+  return sanitizeEntries(await fromLiveApi('/api/entries', 'entries'));
 }

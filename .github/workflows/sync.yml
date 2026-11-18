@@ -39,6 +39,11 @@ jobs:
       - name: Sync
         run: npm run sync
 
+      # A copy of my notes and hand-added titles, so every change is in the repository history.
+      # It never replaces a good copy with an empty or much smaller one.
+      - name: Back up my notes
+        run: npm run backup
+
       - name: Unit tests
         run: npm test
 

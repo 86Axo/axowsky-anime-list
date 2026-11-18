@@ -76,6 +76,11 @@ export interface Annotation {
   topOrder: number | null;
   /** A highlighted title: singled out on the page with a quieter version of the S+ look. */
   highlight: boolean;
+  /**
+   * The title's other keys (its `oa:<slug>`). They let the notes find their title again
+   * if a later sync matches it to a different MAL entry.
+   */
+  aliases: string[];
   updatedAt?: string;
 }
 export type AnnotationMap = Record<string, Annotation>;

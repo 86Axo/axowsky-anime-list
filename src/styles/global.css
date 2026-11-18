@@ -436,7 +436,7 @@ textarea {
   /* Line the first card up with the page column, also after scroll snapping. */
   --edge: max(var(--gutter), calc((100vw - var(--page)) / 2));
   scroll-padding-inline: var(--edge);
-  padding-block: 0.25rem 1rem;
+  padding-block: 0.75rem 1rem;
   padding-inline: var(--edge);
   scrollbar-width: thin;
   scrollbar-color: var(--border) transparent;
@@ -1505,4 +1505,52 @@ textarea {
 }
 .list[data-view='list'] .item--highlight:not(.item--top)::before {
   background: linear-gradient(90deg, color-mix(in oklch, var(--hl-bg) 80%, transparent), transparent 42%);
+}
+
+/* ── Perfect 100: outshines the rest of S+ ────────────────────────────────── */
+.tier--perfect {
+  background: linear-gradient(110deg, var(--tier-sp-fg) 25%, var(--perfect-glint) 50%, var(--tier-sp-fg) 75%);
+  background-size: 260% 100%;
+  background-position: 100% 0;
+  box-shadow: 0 0 0 1.5px var(--bg), 0 0 0 3px var(--tier-sp-solid), 0 3px 14px -3px var(--tier-sp-solid);
+}
+.tier--perfect .tier__name::before {
+  content: none; /* the crown replaces the sparkle */
+}
+.tier__crown {
+  flex: none;
+  margin-inline-end: 0.15em;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .tier--perfect {
+    animation: perfect-glint 5s linear infinite;
+  }
+}
+@keyframes perfect-glint {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -160% 0;
+  }
+}
+/* A second ring with a glow, a few pixels outside the S+ ring. */
+:is(.item--perfect .item__cover, .top-item--perfect .top-item__cover, .watch-card--perfect .watch-card__cover) {
+  position: relative;
+  overflow: visible;
+}
+:is(.item--perfect .item__cover, .top-item--perfect .top-item__cover, .watch-card--perfect .watch-card__cover)::after {
+  content: '';
+  position: absolute;
+  inset: -7px;
+  border: 1.5px solid color-mix(in oklch, var(--tier-sp-solid) 60%, transparent);
+  border-radius: calc(var(--radius-sm) + 7px);
+  box-shadow: 0 0 18px 1px color-mix(in oklch, var(--tier-sp-solid) 38%, transparent);
+  pointer-events: none;
+}
+.list[data-view='list'] .item--perfect::before {
+  background: linear-gradient(90deg, var(--tier-sp-bg), color-mix(in oklch, var(--tier-sp-bg) 40%, transparent) 70%, transparent);
+}
+.top-item--perfect .top-item__rank {
+  font-weight: 400;
 }

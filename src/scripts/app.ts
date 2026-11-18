@@ -1,5 +1,6 @@
 import { annotationsFingerprint, sanitizeAnnotationMap } from '../lib/annotations';
-import { annotate, computeStats, inProgress, tierCounts, topRated, type ListItem, type ViewItem } from '../lib/model';
+import { entriesFingerprint, mergeEntries, sanitizeEntries, type ManualEntry } from '../lib/entries';
+import { activityByMonth, annotate, computeStats, inProgress, statusCounts, tierCounts, topRated, type ListItem, type ViewItem } from '../lib/model';
 import {
   applyState,
   DEFAULT_DIR,
@@ -11,8 +12,19 @@ import {
   type ListState,
   type SortKey,
 } from '../lib/query';
-import { renderHeroCovers, renderItems, renderStats, renderTierChart, renderTop, renderWatching } from '../lib/render';
-import type { AnnotationMap } from '../lib/types';
+import {
+  renderActivity,
+  renderGenreChart,
+  renderHeroCovers,
+  renderItems,
+  renderOptions,
+  renderStats,
+  renderTierChart,
+  renderTop,
+  renderTypeChart,
+  renderWatching,
+} from '../lib/render';
+import { ANIME_TYPES, STATUSES, type AnnotationMap } from '../lib/types';
 import { initThemeToggle } from './theme';
 
 const $ = <T extends HTMLElement>(id: string): T => document.getElementById(id) as T;
@@ -21,9 +33,11 @@ const $ = <T extends HTMLElement>(id: string): T => document.getElementById(id) 
 initThemeToggle();
 
 // The list data is a separate static file, so the HTML stays small and paints early.
-const data = (await (await fetch('/data.json')).json()) as { items: ListItem[]; annotations: AnnotationMap };
+const data = (await (await fetch('/data.json')).json()) as { items: ListItem[]; annotations: AnnotationMap; entries?: unknown };
 let annotations = data.annotations;
-let items: ViewItem[] = annotate(data.items, annotations);
+// Titles I added by hand in the admin panel join my OglądajAnime list here.
+let entries: ManualEntry[] = sanitizeEntries(data.entries);
+let items: ViewItem[] = annotate(mergeEntries(data.items, entries), annotations);
 
 const state: ListState = parseState(new URLSearchParams(location.search));
 let results: ViewItem[] = [];
@@ -198,42 +212,43 @@ document.addEventListener('click', (e) => {
 });
 
 // ── Activity chart tooltip ───────────────────────────────────────────────────
-for (const chart of document.querySelectorAll<HTMLElement>('.cols')) {
-  const tip = chart.querySelector<HTMLElement>('.cols__tip');
-  const plot = chart.querySelector<HTMLElement>('.cols__plot');
-  if (!tip || !plot) continue;
-  let active: Element | null = null;
-  const hide = () => {
-    active?.classList.remove('is-active');
-    active = null;
-    tip.hidden = true;
-  };
-  plot.addEventListener('pointermove', (e) => {
-    const col = (e.target as Element).closest<HTMLElement>('.cols__col');
-    if (!col || col === active) return;
-    active?.classList.remove('is-active');
-    active = col;
-    col.classList.add('is-active');
-    const [month = '', count = ''] = (col.dataset.tip ?? '').split('|');
-    tip.replaceChildren();
-    const strong = document.createElement('strong');
-    strong.textContent = count;
-    tip.append(strong, document.createTextNode(`added in ${month}`));
-    tip.hidden = false;
-    const chartBox = chart.getBoundingClientRect();
-    const colBox = col.getBoundingClientRect();
-    const bar = col.querySelector('.cols__bar')!.getBoundingClientRect();
-    const half = tip.offsetWidth / 2;
-    const x = Math.min(Math.max(colBox.left + colBox.width / 2 - chartBox.left, half), chartBox.width - half);
-    tip.style.insetInlineStart = `${x}px`;
-    tip.style.insetBlockStart = `${Math.max(bar.top - chartBox.top, 44)}px`;
-  });
-  plot.addEventListener('pointerleave', hide);
+// Listens on the container, so it keeps working when the chart inside is re-rendered.
+const activityBox = $('activity-chart');
+let activeCol: Element | null = null;
+function hideTip(): void {
+  activeCol?.classList.remove('is-active');
+  activeCol = null;
+  const tip = activityBox.querySelector<HTMLElement>('.cols__tip');
+  if (tip) tip.hidden = true;
 }
+activityBox.addEventListener('pointermove', (e) => {
+  const chart = activityBox.querySelector<HTMLElement>('.cols');
+  const tip = chart?.querySelector<HTMLElement>('.cols__tip');
+  const col = (e.target as Element).closest<HTMLElement>('.cols__col');
+  if (!chart || !tip || !col) return hideTip();
+  if (col === activeCol) return;
+  activeCol?.classList.remove('is-active');
+  activeCol = col;
+  col.classList.add('is-active');
+  const [month = '', count = ''] = (col.dataset.tip ?? '').split('|');
+  tip.replaceChildren();
+  const strong = document.createElement('strong');
+  strong.textContent = count;
+  tip.append(strong, document.createTextNode(`added in ${month}`));
+  tip.hidden = false;
+  const chartBox = chart.getBoundingClientRect();
+  const colBox = col.getBoundingClientRect();
+  const bar = col.querySelector('.cols__bar')!.getBoundingClientRect();
+  const half = tip.offsetWidth / 2;
+  const x = Math.min(Math.max(colBox.left + colBox.width / 2 - chartBox.left, half), chartBox.width - half);
+  tip.style.insetInlineStart = `${x}px`;
+  tip.style.insetBlockStart = `${Math.max(bar.top - chartBox.top, 44)}px`;
+});
+activityBox.addEventListener('pointerleave', hideTip);
 
-// ── Fresh annotations ────────────────────────────────────────────────────────
-/** Re-render every section that depends on scores, tags or notes. */
-function renderAnnotated(): void {
+// ── Fresh annotations and hand-added titles ──────────────────────────────────
+/** Re-render every section that depends on the list or on my notes. */
+function renderAll(): void {
   $('stats').innerHTML = renderStats(computeStats(items));
   const watching = inProgress(items);
   $('watch-row').innerHTML = renderWatching(watching.shown, watching.totalWatching);
@@ -241,21 +256,63 @@ function renderAnnotated(): void {
   $('top-list').innerHTML = renderTop(top);
   $('hero-covers').innerHTML = renderHeroCovers(top);
   $('tier-chart').innerHTML = renderTierChart(tierCounts(items));
+  $('type-chart').innerHTML = renderTypeChart(items);
+  $('genre-chart').innerHTML = renderGenreChart(items);
+  $('activity-chart').innerHTML = renderActivity(activityByMonth(items));
+
+  // Counts and filter options were rendered at build time; a hand-added title can change them.
+  const counts = statusCounts(items);
+  $('list-total').textContent = `${items.length} titles`;
+  for (const tab of tabs) {
+    const count = tab.querySelector('.tab__count');
+    const status = STATUSES.find((s) => s.toLowerCase().replace(/ /g, '-') === tab.dataset.status);
+    if (count) count.textContent = String(status ? counts[status] : items.length);
+  }
+  const genres = [...new Set(items.flatMap((i) => i.genres))].sort();
+  if (genres.join('|') !== [...selGenre.options].slice(1).map((o) => o.value).join('|')) {
+    selGenre.innerHTML = renderOptions('All genres', genres);
+  }
+  const types = ANIME_TYPES.filter((t) => items.some((i) => i.type === t));
+  if (types.join('|') !== [...selType.options].slice(1).map((o) => o.value).join('|')) {
+    selType.innerHTML = renderOptions('All types', [...types]);
+  }
+  syncControls();
   renderList();
 }
 
-async function refreshAnnotations(): Promise<void> {
+async function getFresh<T>(path: string, field: string): Promise<T | undefined> {
+  // Always ask the server: an edit made in the admin panel should show on the very next page view.
+  const res = await fetch(path, { headers: { Accept: 'application/json' }, cache: 'no-store' });
+  if (!res.ok || !(res.headers.get('content-type') ?? '').includes('json')) return undefined;
+  return ((await res.json()) as Record<string, T>)[field];
+}
+
+async function refresh(): Promise<void> {
   try {
-    // Always ask the server: an edit made in the admin panel should show on the very next page view.
-    const res = await fetch('/api/annotations', { headers: { Accept: 'application/json' }, cache: 'no-store' });
-    if (!res.ok || !(res.headers.get('content-type') ?? '').includes('json')) return;
-    const fresh = sanitizeAnnotationMap(((await res.json()) as { annotations?: unknown }).annotations);
-    if (annotationsFingerprint(fresh) === annotationsFingerprint(annotations)) return;
-    annotations = fresh;
-    items = annotate(data.items, annotations);
-    renderAnnotated();
+    const [freshAnnotations, freshEntries] = await Promise.all([
+      getFresh<unknown>('/api/annotations', 'annotations'),
+      getFresh<unknown>('/api/entries', 'entries'),
+    ]);
+    let changed = false;
+    if (freshAnnotations !== undefined) {
+      const next = sanitizeAnnotationMap(freshAnnotations);
+      if (annotationsFingerprint(next) !== annotationsFingerprint(annotations)) {
+        annotations = next;
+        changed = true;
+      }
+    }
+    if (freshEntries !== undefined) {
+      const next = sanitizeEntries(freshEntries);
+      if (entriesFingerprint(next) !== entriesFingerprint(entries)) {
+        entries = next;
+        changed = true;
+      }
+    }
+    if (!changed) return;
+    items = annotate(mergeEntries(data.items, entries), annotations);
+    renderAll();
   } catch {
-    /* API unreachable: the page keeps the annotations it was built with */
+    /* API unreachable: the page keeps the data it was built with */
   }
 }
 
@@ -268,4 +325,4 @@ if (untouched) {
   shown = Math.min(PAGE_SIZE, results.length);
   updateMeta();
 } else renderList();
-void refreshAnnotations();
+void refresh();

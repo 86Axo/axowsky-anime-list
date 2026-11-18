@@ -43,6 +43,10 @@ export const TIERS: readonly Tier[] = [
 /** The top tier gets a special look on the page. */
 export const TOP_TIER_ID = 'sp';
 
+/** A perfect score outshines the rest of the top tier: a crown, its own label and a stronger look. */
+export const PERFECT_SCORE = 100;
+export const PERFECT_LABEL = 'Perfect';
+
 /** OA score (1–10) → 1–100. */
 export function convertScore(oaScore: number | null): number | null {
   if (oaScore === null || !Number.isFinite(oaScore)) return null;

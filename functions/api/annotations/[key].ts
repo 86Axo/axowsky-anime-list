@@ -1,4 +1,4 @@
-import { deleteAnnotation, saveAnnotation } from '../../../server/annotations';
+import { AnnotationConflictError, deleteAnnotation, saveAnnotation } from '../../../server/annotations';
 import { json, requireAdmin, type Env } from '../../../server/auth';
 import { isValidKey } from '../../../src/lib/annotations';
 
@@ -27,8 +27,13 @@ export const onRequestPut: PagesFunction<Env> = async ({ request, env, params })
   } catch {
     return json({ error: 'Body is not valid JSON.' }, 400);
   }
-  const saved = await saveAnnotation(env.DB, key, body);
-  return json({ key, annotation: saved });
+  try {
+    const saved = await saveAnnotation(env.DB, key, body);
+    return json({ key, annotation: saved });
+  } catch (err) {
+    if (err instanceof AnnotationConflictError) return json({ error: err.message }, 409);
+    throw err;
+  }
 };
 
 /** Remove one annotation. Admin only. */

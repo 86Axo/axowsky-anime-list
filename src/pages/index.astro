@@ -6,24 +6,34 @@ import ThreadsDivider from '../components/ThreadsDivider.astro';
 import { TIERS } from '../config/rating';
 import { SITE } from '../config/site';
 import Layout from '../layouts/Layout.astro';
-import { loadBakedAnnotations } from '../lib/baked-annotations';
+import { loadBakedAnnotations, loadBakedEntries } from '../lib/baked-annotations';
+import { mergeEntries } from '../lib/entries';
 import {
   activityByMonth,
   annotate,
   computeStats,
-  genreCounts,
   inProgress,
   statusCounts,
   tierCounts,
   toListItems,
   topRated,
-  typeCounts,
 } from '../lib/model';
 import { applyState, DEFAULT_STATE, PAGE_SIZE, statusSlug } from '../lib/query';
-import { barList, renderActivity, renderHeroCovers, renderItems, renderStats, renderTierChart, renderTop, renderWatching } from '../lib/render';
+import {
+  renderActivity,
+  renderGenreChart,
+  renderHeroCovers,
+  renderItems,
+  renderStats,
+  renderTierChart,
+  renderTop,
+  renderTypeChart,
+  renderWatching,
+} from '../lib/render';
 import { ANIME_TYPES, STATUSES, type AnimeEntry } from '../lib/types';
 
-const listItems = toListItems(dataset.entries as AnimeEntry[]);
+// My OglądajAnime list, plus the titles I added by hand in the admin panel.
+const listItems = mergeEntries(toListItems(dataset.entries as AnimeEntry[]), await loadBakedEntries());
 const annotations = await loadBakedAnnotations();
 const items = annotate(listItems, annotations);
 
@@ -31,13 +41,10 @@ const stats = computeStats(items);
 const watching = inProgress(items);
 const top = topRated(items);
 const counts = statusCounts(items);
-const genres = genreCounts(items);
-const types = typeCounts(items);
 const firstPage = applyState(items, DEFAULT_STATE).slice(0, PAGE_SIZE);
 
 const allGenres = [...new Set(items.flatMap((i) => i.genres))].sort();
 const usedTypes = ANIME_TYPES.filter((t) => items.some((i) => i.type === t));
-const started = items.filter((i) => i.status !== 'Plan to Watch').length;
 // Cover hosts actually used on the first screenful, most used first.
 const imageOrigins = [...new Set(items.flatMap((i) => (i.image ? [new URL(i.image).origin] : [])))].slice(0, 2);
 // MAL scores only come from Jikan. While none are known, the column and the sort option are left out.
@@ -123,7 +130,7 @@ const updated = new Date(`${syncMeta.lastChange}T00:00:00Z`).toLocaleDateString(
     <section class="section wrap" id="list" aria-labelledby="list-title">
       <div class="section__head">
         <h2 class="section__title" id="list-title">Full list</h2>
-        <p class="section__note">{items.length} titles</p>
+        <p class="section__note" id="list-total">{items.length} titles</p>
       </div>
 
       <div class="controls">
@@ -247,7 +254,7 @@ const updated = new Date(`${syncMeta.lastChange}T00:00:00Z`).toLocaleDateString(
             <h3 class="chart__title">Types</h3>
             <p class="chart__sub">Titles by format</p>
           </figcaption>
-          <ul class="bars" set:html={barList(types.map((t) => ({ label: t.name, value: t.count })), items.length)} />
+          <div id="type-chart" set:html={renderTypeChart(items)} />
         </figure>
 
         <figure class="chart">
@@ -255,13 +262,7 @@ const updated = new Date(`${syncMeta.lastChange}T00:00:00Z`).toLocaleDateString(
             <h3 class="chart__title">Genres</h3>
             <p class="chart__sub">Most common genres among titles I have started</p>
           </figcaption>
-          {
-            genres.length > 0 ? (
-              <ul class="bars" set:html={barList(genres.slice(0, 12).map((g) => ({ label: g.name, value: g.count })), started)} />
-            ) : (
-              <p class="chart-empty">Genre data is not available yet.</p>
-            )
-          }
+          <div id="genre-chart" set:html={renderGenreChart(items)} />
         </figure>
 
         <figure class="chart">
@@ -269,7 +270,7 @@ const updated = new Date(`${syncMeta.lastChange}T00:00:00Z`).toLocaleDateString(
             <h3 class="chart__title">Added to list per month</h3>
             <p class="chart__sub">When titles joined my list. OglądajAnime keeps no finish dates.</p>
           </figcaption>
-          <Fragment set:html={renderActivity(activityByMonth(items))} />
+          <div id="activity-chart" set:html={renderActivity(activityByMonth(items))} />
         </figure>
       </div>
     </section>

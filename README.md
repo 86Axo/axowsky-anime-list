@@ -97,7 +97,31 @@ Save is enabled only when something changed (Ctrl+Enter also saves). "Remove all
 
 **Top 10 order.** The Top 10 is sorted by final score. Where several titles share a score, this tab lets you put them in order with the arrow buttons and save. A title can never be moved above a higher score; change its score for that. "Back to automatic order" removes the manual positions, and ties fall back to date added.
 
-Annotations are keyed by MAL id (`mal:123`), falling back to the OA slug (`oa:some-slug`), so they survive title changes and removals on OglądajAnime.
+**Add anime.** For a title that is not on your OglądajAnime list. Type at least three letters of its name; the panel searches AniList from your browser and lists the matches (titles already on your list, or already added, are marked and cannot be added twice). Pick one, set the status, episodes watched, an optional score from 1 to 100 and the date, then "Add to my list". It appears on the public page like any other title, with its cover, genres and MAL link. Under "Added by hand" you can change the status and progress of these titles later, or remove one (two clicks; your notes on it are kept). If a title you added by hand later appears on your OglądajAnime list, that entry takes over, the hand-added copy is no longer shown, and the panel says so.
+
+Hand-added titles are stored in the database (`manual_entries`), not in `data/anime.json`, so the sync never touches them.
+
+Annotations are keyed by MAL id (`mal:123`) and also remember the title’s OA slug (`oa:some-slug`), so they survive title changes, removals on OglądajAnime and a change of MAL match (see the next section).
+
+## Your scores and notes are safe
+
+What you set in the admin panel (your own scores, reviews, tags, favorite characters, honorable mentions, Top 10 order, hand-added titles) lives only in the D1 database. Nothing in the sync, the build or a deployment writes to it.
+
+- **A list update never overwrites them.** The sync only refreshes the OglądajAnime data in `data/anime.json`. Your own score always wins over the OglądajAnime score; a title without your own score shows its OglądajAnime score × 10, so changing a score on OglądajAnime updates only those titles.
+- **A change of MAL match does not lose them.** Notes are stored under the title’s MAL id and remember its OglądajAnime slug as well. If a later sync matches the title to a different MAL entry (for example when Jikan is back and finds a better match), the notes are found again through the slug. If two list rows ever end up with the same MAL id, the server refuses to overwrite one title’s notes with the other’s (HTTP 409) and the panel stores the second title’s notes under its own slug.
+- **There is a daily copy in the repository.** The sync saves all notes and hand-added titles to `data/backup/annotations.json` and `data/backup/entries.json`, so every change is in the Git history. It never replaces a good copy with an empty or much smaller one. Run it by hand with `npm run backup`.
+
+To restore, turn a backup into SQL and run it (it rewrites the backed-up records and leaves others alone):
+
+```bash
+npx tsx scripts/restore.ts restore.sql
+```
+
+```bash
+npx wrangler d1 execute DB --remote --file restore.sql
+```
+
+For an older copy, take the file from an earlier commit first: `git show <commit>:data/backup/annotations.json > old.json`, then `npx tsx scripts/restore.ts restore.sql old.json`. A full export of the database is `npx wrangler d1 export DB --remote --output backup.sql`.
 
 ## Changing the rating system
 
@@ -124,6 +148,8 @@ I rate strictly: 50 already means "OK" and most titles land between 50 and 70. S
 The final score is the refined score when set, otherwise the OA score × 10. Every OglądajAnime score from 1 to 10 lands in a tier of its own; the "+" tiers in between are reached with a refined score (65 → C+). A score on a Plan to Watch entry is shown in the list but left out of the Top 10, the mean score and the tier chart.
 
 **S+** has its own look: a solid badge with a sparkle and a slow sheen, a ring around the cover and a tinted row.
+
+**A perfect 100** outshines the rest of S+: a crown instead of the sparkle, the label "Perfect" instead of "Masterpiece", a glint running across the badge, and a second glowing ring around the cover. The score and label are in `PERFECT_SCORE` / `PERFECT_LABEL` in `src/config/rating.ts`.
 
 **Honorable mention** is for a title that deserves to stand out without being S+. Tick "Give this title an honorable mention" in the admin panel and it gets a quieter version of the S+ look, in gold: a soft tint on its row, a thin ring around the cover, a mark on its badge, and the caption "Honorable mention" next to the score, so the highlight is never unexplained. They can be filtered with "✧ Honorable mentions".
 
@@ -191,7 +217,7 @@ If you prefer Cloudflare Access (Zero Trust), create an Access application cover
 | `CLOUDFLARE_ACCOUNT_ID` | GitHub repository secret | no, but kept out of the public repo | Which Cloudflare account to deploy to |
 | `ACCESS_TEAM_DOMAIN`, `ACCESS_AUD` | Pages variables | no | Only for the Cloudflare Access alternative |
 | `BAKE_ANNOTATIONS` | build environment | no | Set to `0` to build without fetching annotations (used by the tests) |
-| `DB` | `wrangler.toml` D1 binding | no | The annotations database |
+| `DB` | `wrangler.toml` D1 binding | no | The database: annotations and hand-added titles |
 
 The sync itself needs no secrets: it uses the built-in `GITHUB_TOKEN` to commit. No secret is ever committed; `.dev.vars` and `.env*` are git-ignored.
 
@@ -215,13 +241,13 @@ About the 60-day rule: the sync makes a small "heartbeat" commit to `data/sync-m
 ## Project layout
 
 ```
-data/            import/ (CSV exports), anime.json, mal-cache.json, overrides.json, unmatched.md, sync-meta.json
+data/            import/ (CSV exports), anime.json, mal-cache.json, overrides.json, unmatched.md, sync-meta.json, backup/ (daily copy of my notes)
 scripts/         sync.ts and its parsers, matcher, Jikan and AniList clients; postbuild.ts (security headers); screenshot helpers
 src/config/      rating.ts (tiers), site.ts
 src/lib/         shared model, filtering, HTML templates used by both the build and the browser
 src/pages/       index.astro, admin.astro, 404.astro, data.json.ts
 src/styles/      tokens.css (OKLCH design tokens), global.css
-functions/       Cloudflare Pages Functions: /api/annotations, /api/auth/*, /admin gate
+functions/       Cloudflare Pages Functions: /api/annotations, /api/entries, /api/auth/*, /admin gate
 server/          auth and database code used by the functions
 migrations/      D1 schema
 tests/           unit/ (Vitest), e2e/ (Playwright)

@@ -70,28 +70,41 @@ describe('highlight', () => {
 });
 
 describe('the top tier look', () => {
-  const view = annotate([item('Best', { score: 10 }), item('Great', { score: 9 })], {});
+  // OA 10 → 100 (perfect), a refined 97 (S+ but not perfect), OA 9 → 90 (S).
+  const view = annotate([item('Best', { score: 10 }), item('Near', { score: 9 }), item('Great', { score: 9 })], {
+    'oa:near': note({ refinedScore: 97 }),
+  });
+  const get = (title: string) => view.find((i) => i.title === title)!;
 
-  it('gives only S+ the special badge', () => {
-    expect(tierBadge(100)).toContain('class="tier tier--top" data-tier="sp"');
-    expect(tierBadge(95)).toContain('tier--top');
+  it('gives only S+ the special badge, and only 100 the crown and the "Perfect" label', () => {
+    expect(tierBadge(97)).toContain('class="tier tier--top" data-tier="sp"');
+    expect(tierBadge(97)).toContain('Masterpiece');
+    expect(tierBadge(95)).not.toContain('tier--perfect');
+    const perfect = tierBadge(100);
+    expect(perfect).toContain('class="tier tier--top tier--perfect" data-tier="sp"');
+    expect(perfect).toContain('class="tier__crown"');
+    expect(perfect).toContain('<span class="tier__label">Perfect</span>');
+    expect(perfect).toContain('title="S+ · 100 · Perfect"');
+    expect(perfect).not.toContain('Masterpiece');
     expect(tierBadge(94)).toContain('class="tier" data-tier="s"');
     expect(tierBadge(94)).not.toContain('tier--top');
   });
 
-  it('marks S+ cards in the list and in the Top 10', () => {
-    expect(renderItem(view[0]!)).toContain('<li class="item item--top"');
-    expect(renderItem(view[1]!)).toContain('<li class="item"');
-    const top = renderTop(view);
-    expect(top).toContain('class="top-item top-item--top top-item--first"');
+  it('marks S+ and perfect cards in the list and in the Top 10', () => {
+    expect(renderItem(get('Best'))).toContain('<li class="item item--top item--perfect"');
+    expect(renderItem(get('Near'))).toContain('<li class="item item--top"');
+    expect(renderItem(get('Great'))).toContain('<li class="item"');
+    const top = renderTop([get('Best'), get('Near'), get('Great')]);
+    expect(top).toContain('class="top-item top-item--top top-item--perfect top-item--first"');
+    expect(top).toContain('<li class="top-item top-item--top">');
     expect(top).toContain('<li class="top-item">');
   });
 
   it('keeps the S+ badge when an S+ title is also highlighted', () => {
     const both = annotate([item('Best', { score: 10 })], { 'oa:best': note({ highlight: true }) })[0]!;
     const html = renderItem(both);
-    expect(html).toContain('<li class="item item--top item--highlight"');
-    expect(html).toContain('class="tier tier--top"');
+    expect(html).toContain('<li class="item item--top item--perfect item--highlight"');
+    expect(html).toContain('class="tier tier--top tier--perfect"');
     expect(html).not.toContain('tier--highlight');
   });
 });

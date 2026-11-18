@@ -4,8 +4,8 @@
  * when filters change or fresh annotations arrive, so both always agree.
  * Every value that comes from data goes through esc().
  */
-import { tierById, tierFor, TOP_TIER_ID } from '../config/rating';
-import type { Activity, Stats, ViewItem } from './model';
+import { PERFECT_LABEL, PERFECT_SCORE, tierById, tierFor, TOP_TIER_ID } from '../config/rating';
+import { genreCounts, typeCounts, type Activity, type Stats, type ViewItem } from './model';
 import { statusSlug } from './query';
 
 const ESC: Record<string, string> = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
@@ -15,25 +15,35 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 const monthLabel = (ym: string): string => `${MONTHS[Number(ym.slice(5, 7)) - 1]} ${ym.slice(0, 4)}`;
 const fmt = (n: number): string => n.toLocaleString('en-US');
 
-/** `S · 92 · Exceptional`. `compact` drops the label. */
+const CROWN =
+  '<svg class="tier__crown" width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' +
+  '<path d="M2.5 7.5l5 4.2L12 4l4.5 7.7 5-4.2L19.4 19H4.6z"/></svg>';
+
+/** `S · 92 · Exceptional`. `compact` drops the label. A perfect 100 wears a crown and its own label. */
 export function tierBadge(score: number | null, compact = false, highlight = false): string {
   const tier = tierFor(score);
   if (!tier || score === null) return `<span class="tier tier--none">${compact ? '–' : 'Not rated'}</span>`;
+  const perfect = score === PERFECT_SCORE && tier.id === TOP_TIER_ID;
+  const label = perfect ? PERFECT_LABEL : tier.label;
+  const look = tier.id === TOP_TIER_ID ? (perfect ? ' tier--top tier--perfect' : ' tier--top') : highlight ? ' tier--highlight' : '';
   return (
-    `<span class="tier${tier.id === TOP_TIER_ID ? ' tier--top' : highlight ? ' tier--highlight' : ''}" data-tier="${tier.id}" title="${esc(`${tier.name} · ${score} · ${tier.label}`)}">` +
-    `<span class="tier__name">${esc(tier.name)}</span>` +
+    `<span class="tier${look}" data-tier="${tier.id}" title="${esc(`${tier.name} · ${score} · ${label}`)}">` +
+    `<span class="tier__name">${perfect ? CROWN : ''}${esc(tier.name)}</span>` +
     `<span class="tier__num">${score}</span>` +
-    (compact ? `<span class="vh"> ${esc(tier.label)}</span>` : `<span class="tier__label">${esc(tier.label)}</span>`) +
+    (compact ? `<span class="vh"> ${esc(label)}</span>` : `<span class="tier__label">${esc(label)}</span>`) +
     `</span>`
   );
 }
 
 /**
- * Extra class names for a card. The top tier has its own look; a title I highlighted by hand
- * gets a quieter version of it.
+ * Extra class names for a card. The top tier has its own look, a perfect 100 a stronger one;
+ * a title I highlighted by hand gets a quieter version of it.
  */
 const marks = (item: ViewItem, base: string): string =>
-  base + (item.tierId === TOP_TIER_ID ? ` ${base}--top` : '') + (item.highlight ? ` ${base}--highlight` : '');
+  base +
+  (item.tierId === TOP_TIER_ID ? ` ${base}--top` : '') +
+  (item.final === PERFECT_SCORE ? ` ${base}--perfect` : '') +
+  (item.highlight ? ` ${base}--highlight` : '');
 
 /**
  * Backdrop of the header: the covers of the best-rated titles on a track that drifts from
@@ -254,6 +264,23 @@ export function barList(rows: BarRow[], total: number): string {
     })
     .join('');
 }
+
+/** Titles by format. */
+export function renderTypeChart(items: ViewItem[]): string {
+  return `<ul class="bars">${barList(typeCounts(items).map((t) => ({ label: t.name, value: t.count })), items.length)}</ul>`;
+}
+
+/** Most common genres among titles I have started. */
+export function renderGenreChart(items: ViewItem[]): string {
+  const genres = genreCounts(items);
+  if (genres.length === 0) return '<p class="chart-empty">Genre data is not available yet.</p>';
+  const started = items.filter((i) => i.status !== 'Plan to Watch').length;
+  return `<ul class="bars">${barList(genres.slice(0, 12).map((g) => ({ label: g.name, value: g.count })), started)}</ul>`;
+}
+
+/** `<option>`s for a filter select, keeping the first "all" option. */
+export const renderOptions = (allLabel: string, values: string[]): string =>
+  `<option value="">${esc(allLabel)}</option>` + values.map((v) => `<option value="${esc(v)}">${esc(v)}</option>`).join('');
 
 export function renderTierChart(counts: { id: string; name: string; label: string; count: number }[]): string {
   const total = counts.reduce((s, c) => s + c.count, 0);

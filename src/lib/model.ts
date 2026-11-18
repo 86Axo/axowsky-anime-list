@@ -1,4 +1,5 @@
 import { finalScore, tierFor, TIERS } from '../config/rating';
+import { findAnnotation, indexAnnotations } from './annotations';
 import { STATUSES, type AnimeEntry, type AnimeType, type Annotation, type AnnotationMap, type Status } from './types';
 
 /** What the page needs per entry. Built at build time and embedded as JSON for the client. */
@@ -24,6 +25,8 @@ export interface ListItem {
   studio: string | null;
   /** Minutes per episode (or for the whole film). */
   duration: number | null;
+  /** Added by hand in the admin panel, not on my OglądajAnime list. */
+  manual?: boolean;
 }
 
 /** A list item with my annotations and the final score applied. */
@@ -70,12 +73,13 @@ export function toListItems(entries: AnimeEntry[]): ListItem[] {
 }
 
 export function annotationFor(item: Pick<ListItem, 'key' | 'altKey'>, annotations: AnnotationMap): Annotation | undefined {
-  return annotations[item.key] ?? (item.altKey ? annotations[item.altKey] : undefined);
+  return findAnnotation(item, annotations)?.annotation;
 }
 
 export function annotate(items: ListItem[], annotations: AnnotationMap): ViewItem[] {
+  const index = indexAnnotations(annotations);
   return items.map((item) => {
-    const a = annotationFor(item, annotations);
+    const a = findAnnotation(item, annotations, index)?.annotation;
     const final = finalScore(item.score, a?.refinedScore);
     return {
       ...item,
